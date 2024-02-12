@@ -1,0 +1,242 @@
+<div class="page-header d-print-none">
+    <div class="" style="margin: 0 20px 0 20px;">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                <!-- Page pre-title -->
+                <div class="page-pretitle">
+
+                </div>
+                <h2 class="page-title">
+                    Membership Registration
+                </h2>
+            </div>
+            <!-- Page title actions -->
+            <div class="col-auto ms-auto d-print-none">
+                <div class="btn-list">
+                    <!-- <span class="d-none d-sm-inline">
+              <a href="#" class="btn">
+                New view
+              </a>
+            </span> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="page-body ">
+
+    <div class="card">
+        <div class="card-status-top bg-primary"></div>
+        <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
+
+
+
+        <div style="margin:10px 0px 0px 10px;" class="example-form ml-3  mb-3">
+            <label class="form-label"></label>
+            <div class="input-icon">
+                <h2 class="page-title">
+                    MEMBERSHIP APPLICATION FORM
+                </h2>
+            </div>
+        </div>
+        <div style="margin: 40px;">
+            <form [formGroup]="memberForm">
+                <mat-divider></mat-divider>
+                <h3>Company Information</h3>
+                <div class="row">
+                    <div class="col-md-8" style="margin-top: 30px;">
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <label class="form-label">Company Name</label>
+                                <input type="text" class="form-control" formControlName="company_name"
+                                    placeholder="Input company name" />
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label">Company Email</label>
+                                <input type="email" class="form-control" formControlName="company_email"
+                                    placeholder="Input company email" />
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Company Phone</label>
+                                <input type="tel" class="form-control" formControlName="company_phone"
+                                    placeholder="Input company phone" />
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Company Phone</label>
+                                <input type="tel" class="form-control" formControlName="company_phone"
+                                    placeholder="Input company phone" />
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label">Region</label>
+                                <input type="text" class="form-control" formControlName="region"
+                                    placeholder="Input region" />
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label">District</label>
+                                <input type="text" class="form-control" formControlName="district"
+                                    placeholder="Input district" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row" style="float: right;padding-top: -10px;">
+                                    <div>
+                                        <img [src]="preview" style="float: right;" class="preview">
+                                    </div>
+                                    <div *ngIf="currentFile && progress" class="progress my-3">
+                                        <div class="progress-bar progress-bar-info" role="progressbar"
+                                            attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"
+                                            [ngStyle]="{ width: progress + '%' }">
+                                            {{ progress }}%
+                                        </div>
+                                    </div>
+                                    <div style="float: right;margin-bottom: 20px;">
+                                        <label class="btn btn-default" style="float: right;">
+                                            <input type="file" accept="image/*" (change)="selectFile($event)" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <br>
+                <mat-divider></mat-divider>
+                <br>
+                <h3>Membership</h3>
+                <div class="row">
+
+                    <div class="col-md">
+                        <label class="form-label">Membership Type</label>
+
+                        <mat-radio-group>
+                            <mat-radio-button class="example-margin" (click)="onRadioButtonClickTrue()" value="ole
+                            Proprietorship">Sole
+                                Proprietorship</mat-radio-button>
+                            <mat-radio-button class="example-margin" (click)="onRadioButtonClick()"
+                                value="Partnership">Partnership</mat-radio-button>
+                            <mat-radio-button class="example-margin" (click)="onRadioButtonClick()"
+                                value="Company">Company</mat-radio-button>
+                            <mat-radio-button class="example-margin" (click)="onRadioButtonClick()"
+                                value="Association">Association</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+
+
+                </div>
+                <div *ngIf="isSoleProprietorship">
+                    <br>
+                    <mat-divider></mat-divider>
+                    <br>
+                    <h3>Company Owner Information</h3>
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <label class="form-label">Owner Name</label>
+                            <input type="text" class="form-control" formControlName="owner_name"
+                                placeholder="Input owner name" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Owner Email</label>
+                            <input type="email" class="form-control" formControlName="owner_email"
+                                placeholder="Input owner email" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Owner Phone</label>
+                            <input type="tel" class="form-control" formControlName="owner_phone"
+                                placeholder="Input owner phone" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Representative Name</label>
+                            <input type="text" class="form-control" formControlName="representative_name"
+                                placeholder="Input representative name" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Gender</label>
+                            <select name="" id="" class="form-control" formControlName="gender">
+                                <option value="">-- Select Gender --</option>
+                                <option value="M">Male</option>
+                                <option value="M">Female</option>
+                            </select>
+
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Position</label>
+                            <input type="text" class="form-control" formControlName="position"
+                                placeholder="Input position" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Representative Email</label>
+                            <input type="email" class="form-control" formControlName="representative_email"
+                                placeholder="Input representative email" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Representative Phone</label>
+                            <input type="tel" class="form-control" formControlName="representative_phone"
+                                placeholder="Input representative phone" />
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <mat-divider></mat-divider>
+                <br>
+                <h3>Business Information</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Business Type</label>
+                        <input type="text" class="form-control" formControlName="business_type"
+                            placeholder="Input business type" />
+                    </div>
+
+
+                    <div class="col-md-4">
+                        <label class="form-label">ZRB Number</label>
+                        <input type="text" class="form-control" formControlName="business_activity"
+                            placeholder="Input business activity" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Company Certificate</label>
+                        <input type="text" class="form-control" formControlName="company_certificate"
+                            placeholder="Input company certificate" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Representative CV</label>
+                        <input type="text" class="form-control" formControlName="representative_cv"
+                            placeholder="Input representative CV" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" style="margin-top: 40px;">
+                        <button type="submit" class="btn btn-primary" (click)="  submit()">Register</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>

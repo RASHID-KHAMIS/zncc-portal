@@ -1,0 +1,39 @@
+name: Deploy Angular App to cPanel
+on:
+  push:
+    branches:
+      - medypro
+
+jobs:
+  Build-And-Deploy:
+    name: 🚀 Build and Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+
+      - name: 🌐 Install Angular CLI
+        run: npm install -g @angular/cli@16
+
+      - name: 📥 Install project dependencies
+        run: npm install
+        working-directory: ./
+
+      - name: 🏗️ Build Angular App
+        run: ng build 
+        working-directory: ./  # Change this to the directory containing your Angular project if needed
+
+      - name: 📂 Deploy to cPanel via FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/zncc_ui/  # Adjust this path to your Angular app's build output
+          server-dir: ./  # Target directory on the cPanel server

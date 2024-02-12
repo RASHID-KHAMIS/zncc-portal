@@ -1,0 +1,13 @@
+<div>
+    <apx-chart *ngIf="chartOptions.series !== undefined && 
+  chartOptions.chart !== undefined &&
+  chartOptions.dataLabels !== undefined &&
+  chartOptions.plotOptions !== undefined &&
+  chartOptions.yaxis !== undefined &&
+ 
+  chartOptions.fill !== undefined 
+   && chartOptions.xaxis !== undefined
+  " [series]="chartOptions.series" [chart]="chartOptions.chart" [dataLabels]="chartOptions.dataLabels"
+        [plotOptions]="chartOptions.plotOptions" [yaxis]="chartOptions.yaxis" [fill]="chartOptions.fill"
+        [xaxis]="chartOptions.xaxis"></apx-chart>
+</div>

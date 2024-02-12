@@ -1,0 +1,259 @@
+<div class="page-header d-print-none">
+    <div class="" style="margin: 0 20px 0 20px;">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                <!-- Page pre-title -->
+                <div class="page-pretitle">
+
+                </div>
+                <h2 class="page-title">
+                    Registration
+                </h2>
+            </div>
+            <!-- Page title actions -->
+            <div class="col-auto ms-auto d-print-none">
+                <div class="btn-list">
+                    <!-- <span class="d-none d-sm-inline">
+              <a href="#" class="btn">
+                New view
+              </a>
+            </span> -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="page-body ">
+
+    <div class="card">
+        <div class="card-status-top bg-primary"></div>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+
+
+
+        <div style="margin:10px 0px 0px 10px;" class="example-form ml-3  mb-3">
+            <label class="form-label"></label>
+            <div class="input-icon">
+                <h2 class="page-title">
+                    Registration Staff
+                </h2>
+            </div>
+        </div>
+        <div style="margin: 40px;">
+            <form [formGroup]="staffForm">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row" style="float: right;padding-top: -10px;">
+                            <div>
+                                <img [src]="preview" style="float: right;" class="preview">
+                            </div>
+                            <div *ngIf="currentFile && progress" class="progress my-3">
+                                <div class="progress-bar progress-bar-info" role="progressbar"
+                                    attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"
+                                    [ngStyle]="{ width: progress + '%' }">
+                                    {{ progress }}%
+                                </div>
+                            </div>
+                            <div style="float: right;margin-bottom: 20px;">
+                                <label class="btn btn-default" style="float: right;">
+                                    <input type="file" accept="image/*" (change)="selectFile($event)" />
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Registration Number</label>
+                        <input type="text" class="form-control" formControlName="regNo"
+                            placeholder="Input registration number" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">First Name</label>
+                        <input type="text" class="form-control" formControlName="firstName"
+                            placeholder="Input first name" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Middle Name</label>
+                        <input type="text" class="form-control" formControlName="middleName"
+                            placeholder="Input middle name" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Last Name</label>
+                        <input type="text" class="form-control" formControlName="lastName"
+                            placeholder="Input last name" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Date of Birth</label>
+                        <input type="date" class="form-control" formControlName="dob" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Gender</label>
+                        <input type="text" class="form-control" formControlName="gender" placeholder="Input gender" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Marital Status</label>
+                        <input type="text" class="form-control" formControlName="maritalStatus"
+                            placeholder="Input marital status" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Physical Address</label>
+                        <input type="text" class="form-control" formControlName="physicalAddress"
+                            placeholder="Input physical address" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Is Residence</label>
+                        <input type="checkbox" class="form-check-input" formControlName="isResidence" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">District</label>
+                        <input type="text" class="form-control" formControlName="district"
+                            placeholder="Input district" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Zan ID</label>
+                        <input type="text" class="form-control" formControlName="zanId" placeholder="Input Zan ID" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" formControlName="phoneNumber"
+                            placeholder="Input phone number" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Is Staff Have Disability</label>
+                        <input type="checkbox" class="form-check-input" formControlName="isStaffHaveDisability" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Religion</label>
+                        <input type="text" class="form-control" formControlName="religion"
+                            placeholder="Input religion" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Region</label>
+                        <input type="text" class="form-control" formControlName="region" placeholder="Input region" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Shehia</label>
+                        <input type="text" class="form-control" formControlName="shehia" placeholder="Input shehia" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Street Name</label>
+                        <input type="text" class="form-control" formControlName="streetName"
+                            placeholder="Input street name" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Post Code</label>
+                        <input type="text" class="form-control" formControlName="postCode"
+                            placeholder="Input post code" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">House No</label>
+                        <input type="text" class="form-control" formControlName="houseNo"
+                            placeholder="Input house number" />
+                    </div>
+
+                    <!-- <div class="col-md-4">
+                        <label class="form-label">Termination Status</label>
+                        <input type="number" class="form-control" formControlName="terminationStatus"
+                            placeholder="Input termination status" />
+                    </div> -->
+
+                    <div class="col-md-4">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" formControlName="email" placeholder="Input email" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Zone</label>
+                        <input type="text" class="form-control" formControlName="zone" placeholder="Input zone" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Work Phone</label>
+                        <input type="tel" class="form-control" formControlName="workPhone"
+                            placeholder="Input work phone" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Work Email</label>
+                        <input type="email" class="form-control" formControlName="workEmail"
+                            placeholder="Input work email" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Bank Name</label>
+                        <input type="text" class="form-control" formControlName="bankName"
+                            placeholder="Input bank name" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Account Number</label>
+                        <input type="text" class="form-control" formControlName="accountNumber"
+                            placeholder="Input account number" />
+                    </div>
+
+
+                    <div class="col-md-4">
+                        <label class="form-label">Staff Position</label>
+                        <input class="form-control" formControlName="staffPosition"
+                            placeholder="Input staff Position" />
+                    </div>
+
+                    <!-- <div class="col-md-4">
+                        <label class="form-label">Staff Category</label>
+                        <input class="form-control" formControlName="staffCategory"
+                            placeholder="Input staff category" />
+                    </div> -->
+                </div>
+                <div class="row mt-5">
+                    <div class="col-md-5">
+                        <button type="submit" class="btn btn-primary" (click)=" submit()">Submit</button>
+                    </div>
+                </div>
+
+            </form>
+
+
+
+        </div>
+    </div>
+
+</div>

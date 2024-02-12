@@ -1,0 +1,7 @@
+<div id="chart" style=" height: 350px;">
+    <apx-chart *ngIf="chartOptions.series !== undefined && 
+    chartOptions.chart !== undefined
+     && chartOptions.responsive !== undefined
+    " [series]="chartOptions.series" [chart]="chartOptions.chart" [labels]="chartOptions.labels"
+        [responsive]="chartOptions.responsive"></apx-chart>
+</div>
