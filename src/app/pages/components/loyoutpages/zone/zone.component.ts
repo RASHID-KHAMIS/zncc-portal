@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-zone',
@@ -12,7 +13,9 @@ export class ZoneComponent implements OnInit{
   displayedColumns: string[] = ['No', 'ZoneCode', 'ZoneName','action'];
   loding: boolean = true;
   @ViewChild('distributionDialog') distributionDialog!: TemplateRef<any>;
-  constructor(private dialog:MatDialog,){}
+  constructor(private router:Router,
+    private route:ActivatedRoute,
+     private dialog:MatDialog){}
   ngOnInit(): void {
   }
   applyFilter(event: Event) {
