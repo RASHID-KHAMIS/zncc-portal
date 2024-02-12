@@ -14,7 +14,6 @@ export class ZoneComponent implements OnInit{
   @ViewChild('distributionDialog') distributionDialog!: TemplateRef<any>;
   constructor(private dialog:MatDialog,){}
   ngOnInit(): void {
-//  ccc
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
