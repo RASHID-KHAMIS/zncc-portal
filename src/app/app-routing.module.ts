@@ -15,6 +15,8 @@ import { BusinesstypeComponent } from './pages/components/loyoutpages/businessty
 import { PaymentComponent } from './pages/components/loyoutpages/payment/payment.component';
 import { ZoneComponent } from './pages/components/loyoutpages/zone/zone.component';
 import { RegionComponent } from './pages/components/loyoutpages/region/region.component';
+import { DistrictComponent } from './pages/components/loyoutpages/district/district.component';
+import { ShehiaComponent } from './pages/components/loyoutpages/shehia/shehia.component';
 
 
 const routes: Routes = [
@@ -57,7 +59,16 @@ const routes: Routes = [
       },
       {
         path:'region',component:RegionComponent
-      }
+      },
+      {
+        path:'district',component:DistrictComponent
+      },
+      {
+        path:'shehia',component:ShehiaComponent
+      },
+      
+      
+      
 
 
     ]
