@@ -68,9 +68,9 @@
                                     placeholder="Input company phone" />
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">Company Phone</label>
-                                <input type="tel" class="form-control" formControlName="company_phone"
-                                    placeholder="Input company phone" />
+                                <label class="form-label">Representer No</label>
+                                <input type="text" class="form-control" formControlName="company_phone"
+                                    placeholder="Input representer No" />
                             </div>
 
                             <div class="col-md-4">
@@ -204,22 +204,45 @@
                 <h3>Business Information</h3>
                 <div class="row">
                     <div class="col-md-4">
-                        <label class="form-label">Business Type</label>
+                        <label class="form-label">Business Sector</label>
                         <input type="text" class="form-control" formControlName="business_type"
-                            placeholder="Input business type" />
+                            placeholder="Input business sector" />
                     </div>
 
 
                     <div class="col-md-4">
-                        <label class="form-label">ZRB Number</label>
+                        <label class="form-label">TRA Number</label>
                         <input type="text" class="form-control" formControlName="business_activity"
                             placeholder="Input business activity" />
                     </div>
 
                     <div class="col-md-4">
-                        <label class="form-label">Company Certificate</label>
+                        <label class="form-label">Company Certificate No</label>
                         <input type="text" class="form-control" formControlName="company_certificate"
-                            placeholder="Input company certificate" />
+                            placeholder="Input company certificate no" />
+                    </div>
+
+                 
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Company Certificate</label>
+                                <div class="row" >
+                                 
+                                    <div *ngIf="currentFile && progress" class="progress my-3">
+                                        <div class="progress-bar progress-bar-info" role="progressbar"
+                                            attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"
+                                            [ngStyle]="{ width: progress + '%' }">
+                                            {{ progress }}%
+                                        </div>
+                                    </div>
+                                    <div >
+                                        <label class="btn btn-default" style="width: 100%;">
+                                            <input type="file" accept="image/*" (change)="selectFile($event)" style="width: 100%;"/>
+                                        </label>
+                                    </div>
+                                </div>
+                           
                     </div>
 
                     <div class="col-md-4">
@@ -228,6 +251,7 @@
                             placeholder="Input representative CV" />
                     </div>
                 </div>
+           
                 <div class="row">
                     <div class="col-md-4" style="margin-top: 40px;">
                         <button type="submit" class="btn btn-primary" (click)="  submit()">Register</button>

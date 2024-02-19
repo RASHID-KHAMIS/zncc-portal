@@ -17,6 +17,9 @@ import { ZoneComponent } from './pages/components/loyoutpages/zone/zone.componen
 import { RegionComponent } from './pages/components/loyoutpages/region/region.component';
 import { DistrictComponent } from './pages/components/loyoutpages/district/district.component';
 import { ShehiaComponent } from './pages/components/loyoutpages/shehia/shehia.component';
+import { BusinessSizeComponent } from './pages/components/loyoutpages/business-size/business-size.component';
+import { DepartmentComponent } from './pages/components/loyoutpages/department/department.component';
+
 
 
 const routes: Routes = [
@@ -65,6 +68,12 @@ const routes: Routes = [
       },
       {
         path:'shehia',component:ShehiaComponent
+      },
+      {
+        path:'business-size',component:BusinessSizeComponent
+      },
+      {
+        path:'department',component:DepartmentComponent
       },
       
       

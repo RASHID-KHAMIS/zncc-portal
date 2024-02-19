@@ -39,6 +39,9 @@ import { ShehiaComponent } from './pages/components/loyoutpages/shehia/shehia.co
 import { CardComponent } from './pages/components/card/card.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import { BusinessSizeComponent } from './pages/components/loyoutpages/business-size/business-size.component';
+import { DepartmentComponent } from './pages/components/loyoutpages/department/department.component';
+
 
 @NgModule({
   declarations: [
@@ -61,7 +64,10 @@ import {MatButtonModule} from '@angular/material/button';
     ZoneComponent,
     DistrictComponent,
     ShehiaComponent,
-    CardComponent
+    CardComponent,
+    BusinessSizeComponent,
+    DepartmentComponent,
+   
   ],
   imports: [
     BrowserModule,

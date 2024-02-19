@@ -76,18 +76,18 @@
 
                 <ng-container matColumnDef="ZoneName">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Zone Name </th>
-                    <td mat-cell *matCellDef="let row"> {{row.regNo}} </td>
+                    <td mat-cell *matCellDef="let row"> {{row.regionCode}} </td>
                 </ng-container>
 
 
                 <ng-container matColumnDef="RegionCode">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Region Code </th>
-                    <td mat-cell *matCellDef="let row"> {{row.firstName + " " + row.middleName + " " + row.lastName}}
+                    <td mat-cell *matCellDef="let row"> {{row.regionCode}}
                     </td>
                 </ng-container>
                 <ng-container matColumnDef="RegionName">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Region Name </th>
-                    <td mat-cell *matCellDef="let row"> {{row.firstName + " " + row.middleName + " " + row.lastName}}
+                    <td mat-cell *matCellDef="let row"> {{row.regionName}}
                     </td>
                 </ng-container>
              
@@ -96,7 +96,7 @@
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
                     <td mat-cell *matCellDef="let row">
                         <div class="row">
-                            <button title="Modify" class="col-md-2 btn btn-outline-primary">
+                            <button title="Modify" class="col-md-2 btn btn-outline-primary" (click)="openDialog2(row)">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                         <path fill="currentColor"
@@ -137,27 +137,27 @@
 <ng-template #distributionDialog>
     <app-card title="Add Region">
       <hr>
-      <form >
-        <div class="row">
+      <form [formGroup]="regionForm">
+        <!-- <div class="row">
             <div class="col-md-12">
                 <mat-form-field  style="width: 100%;" appearance="outline">
                     <mat-label>Zone Name</mat-label>
                     <input matInput placeholder="Z001" >
                   </mat-form-field>
             </div>
-        </div>
+        </div> -->
         <div class="row">
           <div class="col-md-6">
             <mat-form-field  style="width: 100%;" appearance="outline">
               <mat-label>Region Code</mat-label>
-              <input matInput placeholder="Z001" >
+              <input matInput placeholder="Z001" formControlName="regionCode">
             </mat-form-field>
           </div>
 
           <div class="col-md-6">
             <mat-form-field  style="width: 100%;" appearance="outline">
               <mat-label>Region Name</mat-label>
-              <input matInput placeholder="Unguja" >
+              <input matInput placeholder="Unguja" formControlName="regionName">
             </mat-form-field>
           </div>
         </div>
@@ -165,8 +165,45 @@
 
       <div class="card-bottom">
         <button mat-raised-button matDialogClose="yes" >Cancel</button> &nbsp;
-        <button mat-raised-button  color="primary"  matDialogClose="yes">Add</button>
+        <button mat-raised-button  color="primary"  matDialogClose="yes" (click)="onSave()">Add</button>
     </div>
 
     </app-card>
     </ng-template>
+
+    <ng-template #distributionDialog2>
+        <app-card title="Edit Region">
+          <hr>
+          <form [formGroup]="regionEditForm">
+            <!-- <div class="row">
+                <div class="col-md-12">
+                    <mat-form-field  style="width: 100%;" appearance="outline">
+                        <mat-label>Zone Name</mat-label>
+                        <input matInput placeholder="Z001" >
+                      </mat-form-field>
+                </div>
+            </div> -->
+            <div class="row">
+              <div class="col-md-6">
+                <mat-form-field  style="width: 100%;" appearance="outline">
+                  <mat-label>Region Code</mat-label>
+                  <input matInput placeholder="Z001" formControlName="regionCode">
+                </mat-form-field>
+              </div>
+    
+              <div class="col-md-6">
+                <mat-form-field  style="width: 100%;" appearance="outline">
+                  <mat-label>Region Name</mat-label>
+                  <input matInput placeholder="Unguja" formControlName="regionName">
+                </mat-form-field>
+              </div>
+            </div>
+          </form><br><br>
+    
+          <div class="card-bottom">
+            <button mat-raised-button matDialogClose="yes" >Cancel</button> &nbsp;
+            <button mat-raised-button  color="primary"  matDialogClose="yes" (click)="onSave()" (click)="onEdit()">Add</button>
+        </div>
+    
+        </app-card>
+        </ng-template>
