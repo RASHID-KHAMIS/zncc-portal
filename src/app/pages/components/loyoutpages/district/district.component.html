@@ -48,7 +48,7 @@
 
     <div class="card">
         <div class="card-status-top bg-primary"></div>
-        <mat-progress-bar mode="indeterminate" *ngIf="loding"></mat-progress-bar>
+        <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
         <div style="margin:10px 0px 0px 10px;" class="example-form ml-3  mb-3">
             <label class="form-label"></label>
             <div class="input-icon" style="width: 30%;" > 
@@ -76,18 +76,18 @@
 
                 <ng-container matColumnDef="RegionName">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Region Name </th>
-                    <td mat-cell *matCellDef="let row"> {{row.regNo}} </td>
+                    <td mat-cell *matCellDef="let row"> {{row.regionId}} </td>
                 </ng-container>
 
 
                 <ng-container matColumnDef="DistrictCode">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>District Code</th>
-                    <td mat-cell *matCellDef="let row"> {{row.firstName + " " + row.middleName + " " + row.lastName}}
+                    <td mat-cell *matCellDef="let row"> {{row.districtName}}
                     </td>
                 </ng-container>
                 <ng-container matColumnDef="DistrictName">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>District Name </th>
-                    <td mat-cell *matCellDef="let row"> {{row.firstName + " " + row.middleName + " " + row.lastName}}
+                    <td mat-cell *matCellDef="let row"> {{row.districtName}}
                     </td>
                 </ng-container>
              
@@ -96,7 +96,7 @@
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
                     <td mat-cell *matCellDef="let row">
                         <div class="row">
-                            <button title="Modify" class="col-md-2 btn btn-outline-primary">
+                            <button title="Modify" class="col-md-2 btn btn-outline-primary" (click)="openDialog2(row)">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                         <path fill="currentColor"
@@ -137,36 +137,81 @@
 <ng-template #distributionDialog>
     <app-card title="Add District">
       <hr>
-      <form >
+      <form [formGroup]="districtForm">
         <div class="row">
-            <div class="col-md-12">
-                <mat-form-field  style="width: 100%;" appearance="outline">
+            <div class="col-md-4">
+                <mat-form-field appearance="outline" style="width:100%;">
                     <mat-label>Region Name</mat-label>
-                    <input matInput placeholder="Z001" >
+                    <mat-select formControlName="regionId">
+                      <mat-option *ngFor="let region of regionLists" [value]="region.regionId">
+                        {{region.regionName}}
+                      </mat-option>
+                    </mat-select>
                   </mat-form-field>
             </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <mat-form-field  style="width: 100%;" appearance="outline">
-              <mat-label>District Code</mat-label>
-              <input matInput placeholder="Z001" >
-            </mat-form-field>
-          </div>
 
-          <div class="col-md-6">
-            <mat-form-field  style="width: 100%;" appearance="outline">
-              <mat-label>District Name</mat-label>
-              <input matInput placeholder="Unguja" >
-            </mat-form-field>
-          </div>
+            <div class="col-md-4">
+                <mat-form-field  style="width: 100%;" appearance="outline">
+                  <mat-label>District Code</mat-label>
+                  <input matInput placeholder="Z001" formControlName="districtCode">
+                </mat-form-field>
+              </div>
+    
+              <div class="col-md-4">
+                <mat-form-field  style="width: 100%;" appearance="outline">
+                  <mat-label>District Name</mat-label>
+                  <input matInput placeholder="Unguja" formControlName="districtName">
+                </mat-form-field>
+              </div>
         </div>
+      
       </form><br><br>
 
       <div class="card-bottom">
         <button mat-raised-button matDialogClose="yes" >Cancel</button> &nbsp;
-        <button mat-raised-button  color="primary"  matDialogClose="yes">Add</button>
+        <button mat-raised-button  color="primary"  matDialogClose="yes" (click)="onSave()">Add</button>
     </div>
 
     </app-card>
     </ng-template>
+
+    <ng-template #distributionDialog2>
+        <app-card title="Edit District">
+          <hr>
+          <form [formGroup]="districtEditForm">
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-form-field appearance="outline" style="width:100%;">
+                        <mat-label>Region Name</mat-label>
+                        <mat-select formControlName="regionId">
+                          <mat-option *ngFor="let region of regionLists" [value]="region.regionId">
+                            {{region.regionName}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+    
+                <div class="col-md-4">
+                    <mat-form-field  style="width: 100%;" appearance="outline">
+                      <mat-label>District Code</mat-label>
+                      <input matInput placeholder="Z001" formControlName="districtCode">
+                    </mat-form-field>
+                  </div>
+        
+                  <div class="col-md-4">
+                    <mat-form-field  style="width: 100%;" appearance="outline">
+                      <mat-label>District Name</mat-label>
+                      <input matInput placeholder="Unguja" formControlName="districtName">
+                    </mat-form-field>
+                  </div>
+            </div>
+          
+          </form><br><br>
+    
+          <div class="card-bottom">
+            <button mat-raised-button matDialogClose="yes" >Cancel</button> &nbsp;
+            <button mat-raised-button  color="primary"  matDialogClose="yes" (click)="onEdit()">Edit</button>
+        </div>
+    
+        </app-card>
+        </ng-template>

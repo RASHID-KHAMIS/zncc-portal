@@ -1,6 +1,13 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { DistrictService } from 'src/app/pages/services/district.service';
+import { RegionService } from 'src/app/pages/services/region.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-district',
@@ -10,12 +17,24 @@ import { MatTableDataSource } from '@angular/material/table';
 export class DistrictComponent implements OnInit{
   dataSource = new MatTableDataSource();
   displayedColumns: string[] = ['No','RegionName','DistrictCode', 'DistrictName','action'];
-  loding: boolean = true;
+  loading: boolean = true;
   @ViewChild('distributionDialog') distributionDialog!: TemplateRef<any>;
+  @ViewChild('distributionDialog2') distributionDialog2!: TemplateRef<any>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private dialog:MatDialog,){}
+  districtForm!:FormGroup;
+  districtEditForm!:FormGroup;
+
+  constructor(private dialog:MatDialog,
+    private router:Router,
+    private regionService:RegionService,
+    private districtService:DistrictService){}
   ngOnInit(): void {
-  
+    this.fetchRegions();
+  this.fetchAllDistricts();
+  this.configForm();
+  this.configEditForm();
   }
 
     applyFilter(event: Event) {
@@ -24,6 +43,40 @@ export class DistrictComponent implements OnInit{
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  regionLists:any;
+  fetchRegions(){
+    this.regionService.getAllRegion().subscribe((resp:any)=>{
+      this.regionLists = resp;
+    })
+  }
+
+  fetchAllDistricts(){
+    this.districtService.getAllDistricts().subscribe((resp:any)=>{
+      this.dataSource = new MatTableDataSource(resp);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      this.loading = false;
+    })
+  }
+
+
+  configForm(){
+    this.districtForm = new FormGroup({
+      districtName: new FormControl(null,Validators.required),
+      districtCode: new FormControl(null,Validators.required),
+      regionId: new FormControl(null,Validators.required),
+    })
+  }
+
+  configEditForm(){
+    this.districtEditForm = new FormGroup({
+      id:new FormControl(null),
+      districtName: new FormControl(null,Validators.required),
+      districtCode: new FormControl(null,Validators.required),
+      regionId: new FormControl(null,Validators.required),
+    })
   }
 
   openDialog() {
@@ -41,4 +94,88 @@ export class DistrictComponent implements OnInit{
       }
     })
   }
+
+  openDialog2(row:any) {
+    this.districtEditForm = new FormGroup({
+      id:new FormControl(row.id),
+      districtName: new FormControl(row.districtName),
+      districtCode: new FormControl(row.districtCode),
+      regionId: new FormControl(row.regionId),
+    })
+
+    let dialogRef = this.dialog.open(this.distributionDialog2, {
+      width: '650px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result !== 'no') {
+          const enabled = "Y"
+
+        } else if (result === 'no') {
+        }
+      }
+    })
+  }
+
+
+  onSave(){
+    const values = this.districtForm.value;
+    this.districtService.addDistricts(values).subscribe((resp:any)=>{
+      this.alert();
+      this.reload()
+    })
+  }
+
+  onEdit(){
+    const id = this.districtEditForm.value.id;
+    const values = this.districtEditForm.value;
+    this.districtService.editDistricts(id,values).subscribe((resp:any)=>{
+      this.alert2();
+      this.reload()
+    })
+  }
+  reload(){
+    this.router.navigateByUrl('',{skipLocationChange:true}).then(()=>{
+      this.router.navigate(['district'])
+    })
+  }
+
+  alert(){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'District Added Successfully'
+    })
+  }
+
+  alert2(){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'District Edited Successfully'
+    })
+  }
+
 }

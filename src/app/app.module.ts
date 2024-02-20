@@ -41,6 +41,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import { BusinessSizeComponent } from './pages/components/loyoutpages/business-size/business-size.component';
 import { DepartmentComponent } from './pages/components/loyoutpages/department/department.component';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -86,7 +87,8 @@ import { DepartmentComponent } from './pages/components/loyoutpages/department/d
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

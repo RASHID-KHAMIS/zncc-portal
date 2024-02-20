@@ -6,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { RegionService } from 'src/app/pages/services/region.service';
+import { ZoneService } from 'src/app/pages/services/zone.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,7 +17,7 @@ import Swal from 'sweetalert2';
 export class RegionComponent implements OnInit{
   dataSource = new MatTableDataSource();
   displayedColumns: string[] = ['No','ZoneName','RegionCode', 'RegionName','action'];
-  loding: boolean = true;
+  loading: boolean = true;
   @ViewChild('distributionDialog') distributionDialog!: TemplateRef<any>;
   @ViewChild('distributionDialog2') distributionDialog2!: TemplateRef<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -26,8 +27,10 @@ export class RegionComponent implements OnInit{
   regionEditForm!:FormGroup;
   constructor(private dialog:MatDialog,
     private router:Router,
+    private zoneService:ZoneService,
     private regionService:RegionService){}
   ngOnInit(): void {
+    this.fetchAllZone();
     this.configureForm();
     this.fetchAllRegion();
     this.configureEditForm()
@@ -48,12 +51,21 @@ export class RegionComponent implements OnInit{
       this.dataSource = new MatTableDataSource(resp);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.loading = false;
       
+    })
+  }
+
+  zoneList:any;
+  fetchAllZone(){
+    this.zoneService.getAllZone().subscribe((resp:any)=>{
+      this.zoneList = resp;
     })
   }
 
   configureForm(){
     this.regionForm = new FormGroup({
+      zoneId:new FormControl(null,Validators.required),
       regionCode:new FormControl(null,Validators.required),
       regionName:new FormControl(null,Validators.required)
     })
@@ -61,7 +73,8 @@ export class RegionComponent implements OnInit{
 
   configureEditForm(){
     this.regionEditForm = new FormGroup({
-      settingsId:new FormControl(null),
+      regionId:new FormControl(null),
+      zoneId:new FormControl(null,Validators.required),
       regionCode:new FormControl(null,Validators.required),
       regionName:new FormControl(null,Validators.required)
     })
@@ -96,7 +109,8 @@ export class RegionComponent implements OnInit{
   openDialog2(row:any) {
     // console.log(row.regionCode);
     this.regionEditForm = new FormGroup({
-      settingsId:new FormControl(row.settingsId),
+      zoneId:new FormControl(row.zoneId),
+      regionId:new FormControl(row.regionId),
       regionCode:new FormControl(row.regionCode),
       regionName:new FormControl(row.regionName)
     })
@@ -117,7 +131,7 @@ export class RegionComponent implements OnInit{
   }
 
   onEdit(){
-    const id = this.regionEditForm.value.settingsId;
+    const id = this.regionEditForm.value.regionId;
     const values = this.regionEditForm.value;
     // console.log(values);
     this.regionService.editRegion(id,values).subscribe((resp:any)=>{
