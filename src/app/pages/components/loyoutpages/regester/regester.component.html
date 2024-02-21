@@ -110,8 +110,6 @@
                         </div>
                     </div>
 
-
-
                 </div>
 
                 <br>
@@ -123,16 +121,11 @@
                     <div class="col-md">
                         <label class="form-label">Membership Type</label>
 
-                        <mat-radio-group>
-                            <mat-radio-button class="example-margin" (click)="onRadioButtonClickTrue()" value="ole
-                            Proprietorship">Sole
-                                Proprietorship</mat-radio-button>
-                            <mat-radio-button class="example-margin" (click)="onRadioButtonClick()"
-                                value="Partnership">Partnership</mat-radio-button>
-                            <mat-radio-button class="example-margin" (click)="onRadioButtonClick()"
-                                value="Company">Company</mat-radio-button>
-                            <mat-radio-button class="example-margin" (click)="onRadioButtonClick()"
-                                value="Association">Association</mat-radio-button>
+                        <mat-radio-group formControlName="membership_type">
+                            <mat-radio-button class="example-margin" value="Sole Proprietorship"  >Sole Proprietorship</mat-radio-button>
+                            <mat-radio-button class="example-margin" value ="Partnership">Partnership</mat-radio-button>
+                            <mat-radio-button class="example-margin" value="Company">Company</mat-radio-button>
+                            <mat-radio-button class="example-margin" value="Association">Association</mat-radio-button>
                         </mat-radio-group>
                     </div>
 
@@ -222,27 +215,28 @@
                             placeholder="Input company certificate no" />
                     </div>
 
-                 
+
                 </div>
                 <div class="row">
                     <div class="col-md-4">
                         <label class="form-label">Company Certificate</label>
-                                <div class="row" >
-                                 
-                                    <div *ngIf="currentFile && progress" class="progress my-3">
-                                        <div class="progress-bar progress-bar-info" role="progressbar"
-                                            attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"
-                                            [ngStyle]="{ width: progress + '%' }">
-                                            {{ progress }}%
-                                        </div>
-                                    </div>
-                                    <div >
-                                        <label class="btn btn-default" style="width: 100%;">
-                                            <input type="file" accept="image/*" (change)="selectFile($event)" style="width: 100%;"/>
-                                        </label>
-                                    </div>
+                        <div class="row">
+
+                            <div *ngIf="currentFile && progress" class="progress my-3">
+                                <div class="progress-bar progress-bar-info" role="progressbar"
+                                    attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"
+                                    [ngStyle]="{ width: progress + '%' }">
+                                    {{ progress }}%
                                 </div>
-                           
+                            </div>
+                            <div>
+                                <label class="btn btn-default" style="width: 100%;">
+                                    <input type="file" accept="image/*" (change)="selectFile($event)"
+                                        style="width: 100%;" />
+                                </label>
+                            </div>
+                        </div>
+
                     </div>
 
                     <div class="col-md-4">
@@ -251,7 +245,7 @@
                             placeholder="Input representative CV" />
                     </div>
                 </div>
-           
+
                 <div class="row">
                     <div class="col-md-4" style="margin-top: 40px;">
                         <button type="submit" class="btn btn-primary" (click)="  submit()">Register</button>

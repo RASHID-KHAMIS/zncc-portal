@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { MemberService } from 'src/app/pages/services/membersservice/member.service';
@@ -33,8 +33,20 @@ export class RegesterComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    // this.imageInfos = this.uploadService.getFiles();
+
+    // this.memberForm.get('membership_type')?.valueChanges.subscribe(value => {
+    //   console.log('Selected Membership Type:', value);
+    // });
+
   }
+
+    // Function to handle radio button click
+    onRadioButtonClick(value: any) {
+      console.log(value);
+      this.memberForm.patchValue({
+        membership_type:value
+      })
+    }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -69,22 +81,16 @@ export class RegesterComponent implements OnInit {
       }
     }
   }
-  onRadioButtonClickTrue() {
-    this.isSoleProprietorship = true
-  }
-  onRadioButtonClick() {
-    this.isSoleProprietorship = false
-  }
+
   upload(): void {
     this.progress = 0;
+    
 
     if (this.selectedFiles) {
       const file: File | null = this.selectedFiles.item(0);
 
       if (file) {
         this.currentFile = file;
-
-
       }
 
       this.selectedFiles = undefined;
@@ -92,36 +98,35 @@ export class RegesterComponent implements OnInit {
   }
 
   initForm() {
-    this.memberForm = this.fb.group({
-      company_name: ['', Validators.required],
-      company_email: ['', [Validators.required, Validators.email]],
-      company_phone: [''],
-      region: [''],
-      district: [''],
-      owner_name: [''],
-      owner_email: [''],
-      owner_phone: [''],
-      representative_name: [''],
-      gender: [''],
-      position: [''],
-      representative_email: [''],
-      representative_phone: [''],
-      business_type: [''],
-      business_cluster: [''],
-      business_activity: [''],
-      company_certificate: [''],
-      representative_cv: ['']
+    this.memberForm = new FormGroup({
+      company_name:new FormControl('', Validators.required),
+      company_email:new FormControl('', [Validators.required, Validators.email]),
+      company_phone:new FormControl(''),
+      region: new FormControl(''),
+      district: new FormControl(''),
+      owner_name: new FormControl(''),
+      owner_email: new FormControl(''),
+      owner_phone: new FormControl(''),
+      representative_name: new FormControl(''),
+      gender: new FormControl(''),
+      position: new FormControl(''),
+      representative_email: new FormControl(''),
+      representative_phone:new FormControl(''),
+      business_type: new FormControl(''),
+      business_cluster: new FormControl(''),
+      business_activity:new FormControl(''),
+      company_certificate: new FormControl(''),
+      representative_cv: new FormControl(''),
+      membership_type: new FormControl('')
       // Add more form controls for the new fields
     });
   }
 
+  
   submit() {
-
-
-    // this.memberService.addPost(this.memberForm.value).subscribe((res: any) => {
-    //   this.succeAlart()
-
-    // })
+    const values = this.memberForm.value;
+    console.log(values);
+  
   }
 
 
