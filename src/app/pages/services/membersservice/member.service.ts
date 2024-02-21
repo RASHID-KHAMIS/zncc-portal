@@ -7,26 +7,17 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class MemberService {
-  baseUrl: any = environment.baseUrl + "members"
+  memberAPI = environment.baseUrl + "memberAccounts"
   constructor(private http: HttpClient) { }
 
 
-  getPosts(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}`);
+  getAllMember() {
+    return this.http.get(this.memberAPI);
   }
 
-  getPostById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/${id}`);
+    addMember(body: any) {
+    return this.http.post(this.memberAPI,body);
   }
 
-  addPost(post: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}`, post);
-  }
 
-  updatePost(id: number, post: any): Observable<any> {
-    return this.http.put<any>(`${this.baseUrl}/${id}`, post);
-  }
-  deletePost(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.baseUrl}/${id}`);
-  }
 }

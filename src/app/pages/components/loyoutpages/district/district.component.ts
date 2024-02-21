@@ -55,6 +55,8 @@ export class DistrictComponent implements OnInit{
   fetchAllDistricts(){
     this.districtService.getAllDistricts().subscribe((resp:any)=>{
       this.dataSource = new MatTableDataSource(resp);
+      // console.log(resp);
+      
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.loading = false;
@@ -120,6 +122,8 @@ export class DistrictComponent implements OnInit{
 
   onSave(){
     const values = this.districtForm.value;
+    // console.log(values);
+    
     this.districtService.addDistricts(values).subscribe((resp:any)=>{
       this.alert();
       this.reload()

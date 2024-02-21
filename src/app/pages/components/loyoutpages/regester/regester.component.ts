@@ -118,10 +118,10 @@ export class RegesterComponent implements OnInit {
   submit() {
 
 
-    this.memberService.addPost(this.memberForm.value).subscribe((res: any) => {
-      this.succeAlart()
+    // this.memberService.addPost(this.memberForm.value).subscribe((res: any) => {
+    //   this.succeAlart()
 
-    })
+    // })
   }
 
 

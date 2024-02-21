@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { CreateaccountService } from '../../services/createaccountservice/createaccount.service';
 import Swal from 'sweetalert2';
+import { MemberService } from '../../services/membersservice/member.service';
 
 @Component({
   selector: 'app-createaccount',
@@ -13,8 +14,7 @@ export class CreateaccountComponent implements OnInit {
   constructor(
     private router: Router,
     private service: CreateaccountService,
-    private formBuilder: FormBuilder
-  ) { }
+    private memberService:MemberService) { }
   userForm !: FormGroup;
   shouldAddClass1 = false;
   shouldAddClass2 = true;
@@ -25,36 +25,33 @@ export class CreateaccountComponent implements OnInit {
   }
   // Set your condition to add a class
   createForm() {
+    this.userForm = new FormGroup({
+      emailAddress:new FormControl(null,Validators.email),
+      password: new FormControl(null, [Validators.required,Validators.minLength(6),
+        Validators.pattern(/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*_+-]).{6,}$/)]),
+        repeatPassword: new FormControl(null, [Validators.required,Validators.minLength(6),
+        Validators.pattern(/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*_+-]).{6,}$/)]),
+        dob: new FormControl(null,Validators.required),
+        nationality: new FormControl(null,Validators.required),
+        idNumber: new FormControl(null,Validators.required),
+        gender: new FormControl(null,Validators.required),
+        fisrName: new FormControl(null,Validators.required),
+        middleName: new FormControl(null,Validators.required),
+        lastName: new FormControl(null,Validators.required),
+        mobile: new FormControl(null,Validators.required),
 
+    })
 
-    // this.userForm = this.fb.group({
-    //   email: ['', [Validators.required, Validators.email]],
-    //   phoneNumbe: ['', Validators.required],
-    //   password: ['', Validators.required],
-    //   repassword: ['', Validators.required],
+  }
 
-    //   username: ['', Validators.required],
-    // });
-    this.userForm = this.formBuilder.group({
-      nationality: ['', Validators.required],
-      dateOfBirth: ['', Validators.required],
-      nationalID: ['', Validators.required],
-      firstName: ['', Validators.required],
-      middleName: [''],
-      lastName: ['', Validators.required],
-      gender: ['', Validators.required],
-      mobileTelephone: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6), Validators.pattern(/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*_+-]).{6,}$/)]],
-      repeatPassword: ['', Validators.required],
-      role: ['', Validators.required],
-    });
-
-
-
-
-
-
+  onCreate(){
+    const values = this.userForm.value;
+    console.log(values);
+    this.memberService.addMember(values).subscribe((resp:any)=>{
+      // console.log('added');
+      
+    })
+    
   }
   togglePassword(input: HTMLInputElement) {
     if (input.type === 'password') {

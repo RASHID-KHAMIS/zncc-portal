@@ -15,7 +15,7 @@ export class MembersComponent implements OnInit {
 
   }
   ngOnInit(): void {
-    this.getAll()
+    // this.getAll()
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -25,11 +25,11 @@ export class MembersComponent implements OnInit {
     }
   }
 
-  getAll() {
-    this.memberService.getPosts()
-      .subscribe((res: any) => {
-        this.loding = false
-        this.dataSource = new MatTableDataSource(res);
-      })
-  }
+  // getAll() {
+  //   this.memberService.getPosts()
+  //     .subscribe((res: any) => {
+  //       this.loding = false
+  //       this.dataSource = new MatTableDataSource(res);
+  //     })
+  // }
 }
