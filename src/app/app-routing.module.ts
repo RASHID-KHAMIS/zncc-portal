@@ -19,6 +19,7 @@ import { DistrictComponent } from './pages/components/loyoutpages/district/distr
 import { ShehiaComponent } from './pages/components/loyoutpages/shehia/shehia.component';
 import { BusinessSizeComponent } from './pages/components/loyoutpages/business-size/business-size.component';
 import { DepartmentComponent } from './pages/components/loyoutpages/department/department.component';
+import { ViewMemberInfoComponent } from './pages/components/view-member-info/view-member-info.component';
 
 
 
@@ -75,6 +76,10 @@ const routes: Routes = [
       {
         path:'department',component:DepartmentComponent
       },
+      {
+        path:'view-member-info',
+        component:ViewMemberInfoComponent
+      }
       
       
       

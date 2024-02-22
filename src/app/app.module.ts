@@ -42,6 +42,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { BusinessSizeComponent } from './pages/components/loyoutpages/business-size/business-size.component';
 import { DepartmentComponent } from './pages/components/loyoutpages/department/department.component';
 import {MatSelectModule} from '@angular/material/select';
+import { ViewMemberInfoComponent } from './pages/components/view-member-info/view-member-info.component';
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import {MatSelectModule} from '@angular/material/select';
     CardComponent,
     BusinessSizeComponent,
     DepartmentComponent,
+    ViewMemberInfoComponent,
    
   ],
   imports: [

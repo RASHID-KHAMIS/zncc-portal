@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { MembershipService } from 'src/app/pages/services/membership.service';
 import { MemberService } from 'src/app/pages/services/membersservice/member.service';
 
@@ -17,7 +18,8 @@ export class MembersComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   
-  constructor(private membershipService: MembershipService) {
+  constructor(private membershipService: MembershipService,
+    private router:Router) {
 
   }
   ngOnInit(): void {
@@ -38,5 +40,11 @@ export class MembersComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       })
+  }
+
+  onEdit(data:any){
+    // console.log(data);
+    
+    this.router.navigate(['/view-member-info'], { queryParams: { id: data.memberShipFormId} });
   }
 }

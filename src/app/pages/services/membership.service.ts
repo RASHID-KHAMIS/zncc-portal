@@ -14,6 +14,10 @@ export class MembershipService {
     return this.http.get(this.membershipAPI)
   }
 
+  getByMemberId(id:any){
+    return this.http.get(this.membershipAPI + "/" + id)
+  }
+
   addMembership(body:any){
     return this.http.post(this.membershipAPI,body)
   }
