@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { BusinessService } from 'src/app/pages/services/bussnessservices/business.service';
 import { DistrictService } from 'src/app/pages/services/district.service';
+import { MembershipService } from 'src/app/pages/services/membership.service';
 import { MemberService } from 'src/app/pages/services/membersservice/member.service';
 import { RegionService } from 'src/app/pages/services/region.service';
 import Swal from 'sweetalert2';
@@ -32,13 +33,16 @@ export class RegesterComponent implements OnInit {
 
 
   imageInfos?: Observable<any>;
+  memberAccountId:any;
   constructor(private fb: FormBuilder, 
     private memberService: MemberService,
     private regionService:RegionService,
     private districtService:DistrictService,
-    private businessService:BusinessService) { }
+    private businessService:BusinessService,
+    private membershipService:MembershipService) { }
 
   ngOnInit(): void {
+    this.memberAccountId = localStorage.getItem('memberAccountId'),
     this.initForm();
     this.fetchAllRegion();
     this.fetchAllDistrict();
@@ -122,6 +126,7 @@ export class RegesterComponent implements OnInit {
       company_certificate_number:new FormControl(''),
       upload_BPRA: new FormControl(''),
       representative_CV: new FormControl(''),
+      memberAccountId:new FormControl(this.memberAccountId)
     });
   }
 
@@ -135,6 +140,7 @@ export class RegesterComponent implements OnInit {
   districtList:any;
   fetchAllDistrict(){
     this.districtService.getAllDistricts().subscribe((resp:any)=>{
+      // console.log(resp);
       this.districtList = resp;
     })
   }
@@ -145,13 +151,15 @@ export class RegesterComponent implements OnInit {
       this.sectorLists = resp;
     })
   }
-
-
   
   submit() {
     const values = this.memberForm.value;
-    console.log(values);
-  
+    // console.log(values);
+    this.membershipService.addMembership(values).subscribe((resp:any)=>{
+      console.log(resp);
+      console.log('added');
+      
+    })
   }
 
   succeAlart() {

@@ -87,7 +87,7 @@
                                 <label class="form-label">District</label>
                                 <select class="form-control" formControlName="districtId">
                                     <option value="">-- Select District --</option>
-                                    <option *ngFor="let district of districtList" [value]="district.districtId">
+                                    <option *ngFor="let district of districtList" [value]="district.id">
                                         {{district.districtName}}</option>
                                 </select>
                             </div>
@@ -129,8 +129,7 @@
                         <label class="form-label">Membership Type</label>
 
                         <mat-radio-group formControlName="membership_type">
-                            <mat-radio-button class="example-margin" value="Sole Proprietorship">Sole
-                                Proprietorship</mat-radio-button>
+                            <mat-radio-button class="example-margin" value="Sole Proprietorship">Sole Proprietorship</mat-radio-button>
                             <mat-radio-button class="example-margin" value="Partnership">Partnership</mat-radio-button>
                             <mat-radio-button class="example-margin" value="Company">Company</mat-radio-button>
                             <mat-radio-button class="example-margin" value="Association">Association</mat-radio-button>
@@ -144,7 +143,7 @@
                     <mat-divider></mat-divider>
                     <br>
                     <h3>Company Owner Information</h3>
-                    <div class="row">
+                    <div class="row" *ngIf="memberForm.get('membership_type')?.value === 'Sole Proprietorship'">
 
                         <div class="col-md-4">
                             <label class="form-label">Owner Name</label>
@@ -250,9 +249,25 @@
 
                     <div class="col-md-4">
                         <label class="form-label">Representative CV</label>
-                        <input type="text" class="form-control" formControlName="representative_CV"
-                            placeholder="Input representative CV" />
-                    </div>
+                        <div class="row">
+
+                            <div *ngIf="currentFile && progress" class="progress my-3">
+                                <div class="progress-bar progress-bar-info" role="progressbar"
+                                    attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"
+                                    [ngStyle]="{ width: progress + '%' }">
+                                    {{ progress }}%
+                                </div>
+                            </div>
+                            <div>
+                                  
+                    <label class="btn btn-default" style="width: 100%;">
+                        <input type="file" accept="image/*" (change)="selectFile($event)"
+                        style="width: 100%;" formControlName="representative_CV" />
+                    </label>
+                            </div>
+                        </div>
+                       
+                </div>
                 </div>
 
                 <div class="row">

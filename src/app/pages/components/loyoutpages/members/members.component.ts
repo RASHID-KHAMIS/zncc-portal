@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MembershipService } from 'src/app/pages/services/membership.service';
 import { MemberService } from 'src/app/pages/services/membersservice/member.service';
 
 @Component({
@@ -9,13 +12,16 @@ import { MemberService } from 'src/app/pages/services/membersservice/member.serv
 })
 export class MembersComponent implements OnInit {
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['id', 'company_name', 'company_email', 'company_phone', 'owner_name', 'action'];
-  loding = true
-  constructor(private memberService: MemberService) {
+  displayedColumns: string[] = ['id', 'company_name', 'company_email', 'company_phone', 'representative_name', 'action'];
+  loding = true;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+  
+  constructor(private membershipService: MembershipService) {
 
   }
   ngOnInit(): void {
-    // this.getAll()
+    this.getAllMembership();
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -25,11 +31,12 @@ export class MembersComponent implements OnInit {
     }
   }
 
-  // getAll() {
-  //   this.memberService.getPosts()
-  //     .subscribe((res: any) => {
-  //       this.loding = false
-  //       this.dataSource = new MatTableDataSource(res);
-  //     })
-  // }
+  getAllMembership() {
+    this.membershipService.getAllMembership().subscribe((res: any) => {
+        this.loding = false;
+        this.dataSource = new MatTableDataSource(res);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      })
+  }
 }

@@ -57,16 +57,16 @@ export class LoginComponent implements OnInit {
       
       const values = this.loginForm.value;
       const jwtHelper = new JwtHelperService();
-      // console.log(values);
       this.usersService.userLogin(values).subscribe((resp:any)=>{
         // console.log(resp);
         const decodedToken = jwtHelper.decodeToken(resp.accessToken);
         // console.log(decodedToken.sub);
         
         if(decodedToken.sub.role.length >= 1){
-          console.log(decodedToken.sub.role);
+          // console.log(decodedToken.sub.role);
           localStorage.setItem('role',decodedToken.sub.role),
-          localStorage.setItem('email',decodedToken.sub.email)
+          localStorage.setItem('email',decodedToken.sub.email),
+          localStorage.setItem('memberAccountId',decodedToken.sub.userMemberId)
 
         }
         this.alert();
@@ -74,8 +74,6 @@ export class LoginComponent implements OnInit {
       })
      
     }
-
-    
   }
 
   alert(){
