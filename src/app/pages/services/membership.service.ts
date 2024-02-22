@@ -21,4 +21,8 @@ export class MembershipService {
   editMembership(id:any,body:any){
     return this.http.put(this.membershipAPI + "/" + id,body)
   }
+
+  getMembershirpsByMemberID(id:any){
+    return this.http.get(this.membershipAPI + "/" + "with-account-id" + "/" + id)
+  }
 }
