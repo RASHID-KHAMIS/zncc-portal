@@ -23,7 +23,7 @@
                             <path d="M12 5l0 14" />
                             <path d="M5 12l14 0" />
                         </svg>
-                        Add Business Type
+                        Add Business Sector
                     </a>
                     <a routerLink="../register-staff" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
                         data-bs-target="#modal-report" aria-label="Create new report">
@@ -78,18 +78,26 @@
                     <td mat-cell *matCellDef="let row;let i = index"> {{i + 1}} </td>
                 </ng-container>
 
-                <ng-container matColumnDef="typeName">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Type Name </th>
-                    <td mat-cell *matCellDef="let row"> {{row.typeName}} </td>
+                <ng-container matColumnDef="sectorCode">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Sector Code</th>
+                    <td mat-cell *matCellDef="let row"> {{row.sectorCode}} </td>
                 </ng-container>
-                <ng-container matColumnDef="code">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Code </th>
-                    <td mat-cell *matCellDef="let row"> {{row.code}} </td>
+                <ng-container matColumnDef="sectorName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Sector Name </th>
+                    <td mat-cell *matCellDef="let row"> {{row.sectorName}} </td>
                 </ng-container>
 
-
-
-
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                    <td mat-cell *matCellDef="let row">
+                      <span *ngIf="row.currentStatus == 1">
+                        <span class="badge badge-success">Active</span>
+                      </span>
+                      <span *ngIf="row.currentStatus == 0">
+                        <span class="badge badge-danger"> In Active</span>
+                      </span>
+                    </td>
+                  </ng-container>
 
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
@@ -133,27 +141,35 @@
 
 
 <ng-template #callDialog>
-    <h2 mat-dialog-title>Add Type Of Business</h2>
-    <form [formGroup]="businesForm">
-        <mat-dialog-content>
-
-
-            <mat-form-field appearance="outline" class="example-full-width">
-                <mat-label>Type Name</mat-label>
-                <input matInput formControlName="typeName">
-            </mat-form-field>
-        </mat-dialog-content>
-        <mat-dialog-actions>
-            <div class="row">
-                <div class="col-md-6">
-                    <button class="btn btn-primary" (click)="submit()" [mat-dialog-close]>Save</button>
-                </div>
-                <div class="col-md-6">
-                    <button class="btn btn-danger" [mat-dialog-close] cdkFocusInitial>Close</button>
-                </div>
+    <app-card title="Add Business Sector"><hr>
+      <form [formGroup]="businesSectorForm">
+        <div class="row">
+            <div class="col-md-6">
+                <mat-dialog-content>
+                    <mat-form-field appearance="outline" class="example-full-width">
+                        <mat-label>Sector Code</mat-label>
+                        <input matInput formControlName="sectorCode">
+                    </mat-form-field>
+                </mat-dialog-content>
             </div>
 
+            <div class="col-md-6">
+                <mat-dialog-content>
+                    <mat-form-field appearance="outline" class="example-full-width">
+                        <mat-label>Sector Name</mat-label>
+                        <input matInput formControlName="sectorName">
+                    </mat-form-field>
+                </mat-dialog-content>
+            </div>
+        </div>
+      </form><br>
+      <div class="card-bottom">
+        <button mat-raised-button matDialogClose="yes" >Cancel</button> &nbsp;
+        <button mat-raised-button  color="primary"  matDialogClose="yes" (click)="submit()">Add</button>
+    </div>
 
-        </mat-dialog-actions>
-    </form>
-</ng-template>
+    </app-card>
+    </ng-template>
+
+
+

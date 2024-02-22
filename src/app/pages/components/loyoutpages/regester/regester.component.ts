@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
+import { BusinessService } from 'src/app/pages/services/bussnessservices/business.service';
+import { DistrictService } from 'src/app/pages/services/district.service';
 import { MemberService } from 'src/app/pages/services/membersservice/member.service';
+import { RegionService } from 'src/app/pages/services/region.service';
 import Swal from 'sweetalert2';
 class ImageSnippet {
   pending: boolean = false;
@@ -29,14 +32,17 @@ export class RegesterComponent implements OnInit {
 
 
   imageInfos?: Observable<any>;
-  constructor(private fb: FormBuilder, private memberService: MemberService) { }
+  constructor(private fb: FormBuilder, 
+    private memberService: MemberService,
+    private regionService:RegionService,
+    private districtService:DistrictService,
+    private businessService:BusinessService) { }
 
   ngOnInit(): void {
     this.initForm();
-
-    // this.memberForm.get('membership_type')?.valueChanges.subscribe(value => {
-    //   console.log('Selected Membership Type:', value);
-    // });
+    this.fetchAllRegion();
+    this.fetchAllDistrict();
+    this.fetchBusinessSector();
 
   }
 
@@ -84,8 +90,6 @@ export class RegesterComponent implements OnInit {
 
   upload(): void {
     this.progress = 0;
-    
-
     if (this.selectedFiles) {
       const file: File | null = this.selectedFiles.item(0);
 
@@ -102,8 +106,10 @@ export class RegesterComponent implements OnInit {
       company_name:new FormControl('', Validators.required),
       company_email:new FormControl('', [Validators.required, Validators.email]),
       company_phone:new FormControl(''),
-      region: new FormControl(''),
-      district: new FormControl(''),
+      representative_phone:new FormControl(''),
+      regionId: new FormControl(''),
+      districtId: new FormControl(''),
+      membership_type: new FormControl(''),
       owner_name: new FormControl(''),
       owner_email: new FormControl(''),
       owner_phone: new FormControl(''),
@@ -111,16 +117,35 @@ export class RegesterComponent implements OnInit {
       gender: new FormControl(''),
       position: new FormControl(''),
       representative_email: new FormControl(''),
-      representative_phone:new FormControl(''),
-      business_type: new FormControl(''),
-      business_cluster: new FormControl(''),
-      business_activity:new FormControl(''),
-      company_certificate: new FormControl(''),
-      representative_cv: new FormControl(''),
-      membership_type: new FormControl('')
-      // Add more form controls for the new fields
+      businessSectorId: new FormControl(''),
+      TRA_number: new FormControl(''),
+      company_certificate_number:new FormControl(''),
+      upload_BPRA: new FormControl(''),
+      representative_CV: new FormControl(''),
     });
   }
+
+  regionList:any;
+  fetchAllRegion(){
+    this.regionService.getAllRegion().subscribe((resp:any)=>{
+      this.regionList = resp;
+    })
+  }
+
+  districtList:any;
+  fetchAllDistrict(){
+    this.districtService.getAllDistricts().subscribe((resp:any)=>{
+      this.districtList = resp;
+    })
+  }
+
+  sectorLists:any;
+  fetchBusinessSector(){
+    this.businessService.getAllBusinessSector().subscribe((resp:any)=>{
+      this.sectorLists = resp;
+    })
+  }
+
 
   
   submit() {
@@ -128,8 +153,6 @@ export class RegesterComponent implements OnInit {
     console.log(values);
   
   }
-
-
 
   succeAlart() {
     const Toast = Swal.mixin({

@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class BusinessService {
   baseUrl: any = environment.baseUrl + "businessTypes"
+  businessSectorAPI = environment.baseUrl + "businessSectors"
   constructor(private http: HttpClient) { }
 
 
@@ -29,5 +30,13 @@ export class BusinessService {
 
   deletePost(id: number): Observable<any> {
     return this.http.delete<any>(`${this.baseUrl}/${id}`);
+  }
+
+  getAllBusinessSector(){
+    return this.http.get(this.businessSectorAPI)
+  }
+
+  addBusinessSector(body:any){
+    return this.http.post(this.businessSectorAPI,body)
   }
 }

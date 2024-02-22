@@ -54,6 +54,7 @@ export class LoginComponent implements OnInit {
     } else if (this.loginForm.value.password == '') {
       this.password = true
     } else {
+      
       const values = this.loginForm.value;
       const jwtHelper = new JwtHelperService();
       // console.log(values);
@@ -72,7 +73,6 @@ export class LoginComponent implements OnInit {
          this.router.navigate(["home"])
       })
      
-
     }
 
     

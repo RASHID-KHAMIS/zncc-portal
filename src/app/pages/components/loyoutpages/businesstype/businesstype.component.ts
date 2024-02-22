@@ -1,7 +1,10 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { BusinessService } from 'src/app/pages/services/bussnessservices/business.service';
 import Swal from 'sweetalert2';
 
@@ -12,22 +15,27 @@ import Swal from 'sweetalert2';
 })
 export class BusinesstypeComponent implements OnInit {
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['id', 'typeName', 'code', 'action'];
+  displayedColumns: string[] = ['id', 'sectorCode', 'sectorName','status','action'];
   loding = true
   @ViewChild('callDialog') callDialog!: TemplateRef<any>;
-  businesForm!: FormGroup
-  constructor(private businessService: BusinessService, public dialog: MatDialog) {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+  
+  businesSectorForm!: FormGroup
+  constructor(private businessService: BusinessService, 
+    public dialog: MatDialog,
+    private router:Router,) {
 
   }
   ngOnInit(): void {
-    this.getAll()
+    this.getAllBusinessSector()
     this.createForm()
   }
 
   createForm() {
-    this.businesForm = new FormGroup({
-      typeName: new FormControl(''),
-      typeCode: new FormControl('444')
+    this.businesSectorForm = new FormGroup({
+      sectorCode: new FormControl(null,Validators.required),
+      sectorName: new FormControl(null,Validators.required)
     })
   }
   applyFilter(event: Event) {
@@ -45,7 +53,7 @@ export class BusinesstypeComponent implements OnInit {
       if (result !== undefined) {
         if (result !== 'no') {
           const enabled = "Y"
-          console.log(result);
+          // console.log(result);
         } else if (result === 'no') {
           // console.log('User clicked no.');
         }
@@ -53,19 +61,22 @@ export class BusinesstypeComponent implements OnInit {
     })
   }
 
-  getAll() {
-    this.businessService.getPosts()
-      .subscribe((res: any) => {
+  getAllBusinessSector() {
+    this.businessService.getAllBusinessSector().subscribe((resp: any) => {
         this.loding = false
-
-        this.dataSource = new MatTableDataSource(res);
+        this.dataSource = new MatTableDataSource(resp);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       })
   }
 
   submit() {
-    this.businessService.addPost(this.businesForm.value).subscribe((data: any) => {
-      this.succeAlart()
-      this.getAll()
+    const values = this.businesSectorForm.value;
+    console.log(values);
+    
+    this.businessService.addBusinessSector(values).subscribe((resp:any)=>{
+      this.alert();
+      this.reload()
     })
   }
   succeAlart() {
@@ -122,4 +133,30 @@ export class BusinesstypeComponent implements OnInit {
       title: 'Un Authorized'
     })
   }
+
+  reload(){
+    this.router.navigateByUrl('',{skipLocationChange:true}).then(()=>{
+      this.router.navigate(['business-type'])
+    })
+  }
+
+  alert(){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Business Sector Added Successfully'
+    })
+  }
+
 }
