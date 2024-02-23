@@ -6,8 +6,8 @@
             <!-- Page title actions -->
             <div class="col-auto ms-auto d-print-none">
                 <div class="btn-list">
-                    <button class="btn btn-primary d-none d-sm-inline-block" *ngIf="memberInfo.membership_type !== 'Sole Proprietorship'"
-                     (click)="openDialog()">
+                    <button class="btn btn-primary d-none d-sm-inline-block"
+                        *ngIf="memberInfo.membership_type !== 'Sole Proprietorship'" (click)="openDialog()">
 
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
                             stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
@@ -70,7 +70,7 @@
                             </path>
                             <path d="M12 4l1.465 1.638a2 2 0 1 1 -3.015 .099l1.55 -1.737z"></path>
                         </svg>
-                       {{memberInfo.registerDate | date:'dd/MM/YYYY'}}
+                        {{memberInfo.registerDate | date:'dd/MM/YYYY'}}
                     </div>
                 </div>
             </div>
@@ -153,7 +153,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="card-title">Company  information</div>
+                                <div class="card-title">Company information</div>
                                 <div class="mb-2">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/book -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary" width="24"
@@ -183,7 +183,7 @@
                                     </svg>
                                     Company Email: <strong>{{memberInfo.company_email}}</strong>
                                 </div>
-                      
+
                                 <div class="mb-2">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary" width="24"
@@ -204,18 +204,18 @@
                                 <div>
                                     <!-- Download SVG icon from http://tabler-icons.io/i/clock -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary" width="24"
-                                    height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path
-                                        d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
-                                    </path>
-                                    <path d="M16 3v4"></path>
-                                    <path d="M8 3v4"></path>
-                                    <path d="M4 11h16"></path>
-                                    <path d="M11 15h1"></path>
-                                    <path d="M12 15v3"></path>
-                                </svg>
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                        </path>
+                                        <path d="M16 3v4"></path>
+                                        <path d="M8 3v4"></path>
+                                        <path d="M4 11h16"></path>
+                                        <path d="M11 15h1"></path>
+                                        <path d="M12 15v3"></path>
+                                    </svg>
                                     TRA Number: <strong>{{memberInfo.TRA_number}}</strong>
                                 </div>
                             </div>
@@ -226,7 +226,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="card-title">Representative  information</div>
+                                <div class="card-title">Representative information</div>
                                 <div class="mb-2">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/book -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary" width="24"
@@ -256,7 +256,7 @@
                                     </svg>
                                     Representative Email: <strong>{{memberInfo.representative_email}}</strong>
                                 </div>
-                      
+
                                 <div class="mb-2">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary" width="24"
@@ -277,19 +277,20 @@
                                 <div>
                                     <!-- Download SVG icon from http://tabler-icons.io/i/clock -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary" width="24"
-                                    height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path
-                                        d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
-                                    </path>
-                                    <path d="M16 3v4"></path>
-                                    <path d="M8 3v4"></path>
-                                    <path d="M4 11h16"></path>
-                                    <path d="M11 15h1"></path>
-                                    <path d="M12 15v3"></path>
-                                </svg>
-                                Gender: <strong>{{ memberInfo.gender === 'M' ? 'Male' : (memberInfo.gender === 'F' ? 'Female' : 'Unknown') }}</strong>
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                        </path>
+                                        <path d="M16 3v4"></path>
+                                        <path d="M8 3v4"></path>
+                                        <path d="M4 11h16"></path>
+                                        <path d="M11 15h1"></path>
+                                        <path d="M12 15v3"></path>
+                                    </svg>
+                                    Gender: <strong>{{ memberInfo.gender === 'M' ? 'Male' : (memberInfo.gender === 'F' ?
+                                        'Female' : 'Unknown') }}</strong>
                                 </div>
                             </div>
                         </div>
@@ -303,7 +304,7 @@
             <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
             <div style="margin:10px 0px 0px 10px;" class="example-form ml-3  mb-3">
                 <label class="form-label"></label>
-                <div class="input-icon" style="width: 30%;" > 
+                <div class="input-icon" style="width: 30%;">
                     <input type="text" #input (keyup)="applyFilter($event)" class="form-control form-control-rounded"
                         placeholder="Search…" />
                     <span class="input-icon-addon">
@@ -316,16 +317,16 @@
                 </div>
             </div>
             <div style="margin: 10px;">
-    
-    
+
+
                 <table mat-table [dataSource]="dataSource" matSort>
-    
+
                     <!-- ID Column -->
                     <ng-container matColumnDef="No">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> SNo. </th>
                         <td mat-cell *matCellDef="let row;let i = index"> {{i + 1}} </td>
                     </ng-container>
-    
+
                     <ng-container matColumnDef="owner_name">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header>Owner Name</th>
                         <td mat-cell *matCellDef="let row"> {{row.owner_name}}
@@ -351,14 +352,16 @@
                         <td mat-cell *matCellDef="let row"> {{row.position}} </td>
                     </ng-container>
 
-                 
+
                     <ng-container matColumnDef="action">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
                         <td mat-cell *matCellDef="let row">
                             <div class="row">
-                                <button title="Modify" class="col-md-2 btn btn-outline-primary">
+                                <button title="Modify" class="col-md-2 btn btn-outline-primary"
+                                    (click)="openDialog2(row)">
                                     <span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24">
                                             <path fill="currentColor"
                                                 d="M21.04 12.13c.14 0 .27.06.38.17l1.28 1.28c.22.21.22.56 0 .77l-1 1l-2.05-2.05l1-1c.11-.11.25-.17.39-.17m-1.97 1.75l2.05 2.05L15.06 22H13v-2.06l6.07-6.06M10 2h4a2 2 0 0 1 2 2v2h4a2 2 0 0 1 2 2l-2 2V8H4v11h7v2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4V4a2 2 0 0 1 2-2m4 4V4h-4v2h4Z" />
                                         </svg>
@@ -367,10 +370,10 @@
                             </div>
                         </td>
                     </ng-container>
-    
+
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    
+
                     <!-- Row shown when there is no matching data. -->
                     <tr class="mat-row" *matNoDataRow>
                         <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
@@ -380,74 +383,143 @@
             </div>
         </div>
     </div>
-   
+
 </div>
 
 
 
 <ng-template #distributionDialog>
     <app-card title="Add Owner">
-      <hr>
-      <form [formGroup]="ownerForm">
-        <div class="row">
-          <div class="col-md-6">
-            <mat-form-field  style="width: 100%;" appearance="outline">
-              <mat-label>Owner Name</mat-label>
-              <input matInput placeholder="Z001" formControlName="owner_name">
-            </mat-form-field>
-          </div>
+        <hr>
+        <form [formGroup]="ownerForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>Owner Name</mat-label>
+                        <input matInput placeholder="Z001" formControlName="owner_name">
+                    </mat-form-field>
+                </div>
 
-          <div class="col-md-6">
-            <mat-form-field  style="width: 100%;" appearance="outline">
-              <mat-label>Owner Email</mat-label>
-              <input matInput placeholder="Unguja" formControlName="owner_email">
-            </mat-form-field>
-          </div>
+                <div class="col-md-6">
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>Owner Email</mat-label>
+                        <input matInput placeholder="Unguja" formControlName="owner_email">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>Owner Phone</mat-label>
+                        <input matInput placeholder="Z001" formControlName="owner_phone">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>Representative Name</mat-label>
+                        <input matInput placeholder="Z001" formControlName="representative_name">
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <mat-form-field appearance="outline" style="width:100%;">
+                        <mat-label>Gender</mat-label>
+                        <mat-select formControlName="gender">
+                            <mat-option *ngFor="let gender of GenderList" [value]="gender.value">
+                                {{gender.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>Position</mat-label>
+                        <input matInput placeholder="Z001" formControlName="position">
+                    </mat-form-field>
+                </div>
+            </div>
+        </form><br><br>
+
+        <div class="card-bottom">
+            <button mat-raised-button matDialogClose="yes">Cancel</button> &nbsp;
+            <button mat-raised-button color="primary" matDialogClose="yes" (click)="onSave()">Add</button>
         </div>
 
-        <div class="row">
-            <div class="col-md-6">
-              <mat-form-field  style="width: 100%;" appearance="outline">
-                <mat-label>Owner Phone</mat-label>
-                <input matInput placeholder="Z001" formControlName="owner_phone">
-              </mat-form-field>
+    </app-card>
+</ng-template>
+
+
+
+<ng-template #distributionDialog2>
+    <app-card title="Edit Owner">
+        <hr>
+        <form [formGroup]="ownerEditForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>Owner Name</mat-label>
+                        <input matInput placeholder="Z001" formControlName="owner_name">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>Owner Email</mat-label>
+                        <input matInput placeholder="Unguja" formControlName="owner_email">
+                    </mat-form-field>
+                </div>
             </div>
 
-            <div class="col-md-6">
-                <mat-form-field  style="width: 100%;" appearance="outline">
-                  <mat-label>Representative Name</mat-label>
-                  <input matInput placeholder="Z001" formControlName="representative_name">
-                </mat-form-field>
-              </div>
-  
-          </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>Owner Phone</mat-label>
+                        <input matInput placeholder="Z001" formControlName="owner_phone">
+                    </mat-form-field>
+                </div>
 
-          <div class="row">
-           
-            <div class="col-md-6">
-                <mat-form-field appearance="outline" style="width:100%;">
-                    <mat-label>Gender</mat-label>
-                    <mat-select formControlName="gender">
-                      <mat-option *ngFor="let gender of GenderList" [value]="gender.value">
-                        {{gender.viewValue}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
+                <div class="col-md-6">
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>Representative Name</mat-label>
+                        <input matInput placeholder="Z001" formControlName="representative_name">
+                    </mat-form-field>
+                </div>
+
             </div>
 
-            <div class="col-md-6">
-                <mat-form-field  style="width: 100%;" appearance="outline">
-                  <mat-label>Position</mat-label>
-                  <input matInput placeholder="Z001" formControlName="position">
-                </mat-form-field>
-              </div>
-          </div>
-      </form><br><br>
+            <div class="row">
 
-      <div class="card-bottom">
-        <button mat-raised-button matDialogClose="yes" >Cancel</button> &nbsp;
-        <button mat-raised-button  color="primary"  matDialogClose="yes" (click)="onSave()">Add</button>
-    </div>
+                <div class="col-md-6">
+                    <mat-form-field appearance="outline" style="width:100%;">
+                        <mat-label>Gender</mat-label>
+                        <mat-select formControlName="gender">
+                            <mat-option *ngFor="let gender of GenderList" [value]="gender.value">
+                                {{gender.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>Position</mat-label>
+                        <input matInput placeholder="Z001" formControlName="position">
+                    </mat-form-field>
+                </div>
+            </div>
+        </form><br><br>
+
+        <div class="card-bottom">
+            <button mat-raised-button matDialogClose="yes">Cancel</button> &nbsp;
+            <button mat-raised-button color="primary" matDialogClose="yes" (click)="onEdit()">Edit</button>
+        </div>
 
     </app-card>
-    </ng-template>
+</ng-template>

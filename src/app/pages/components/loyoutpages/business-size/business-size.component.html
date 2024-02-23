@@ -69,7 +69,7 @@
                 </ng-container>
                 <ng-container matColumnDef="amountToPay">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
-                    <td mat-cell *matCellDef="let row"> {{row.amountToPay}} </td>
+                    <td mat-cell *matCellDef="let row"> {{row.amountToPay | number}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="distriction">
@@ -80,8 +80,15 @@
 
                 <ng-container matColumnDef="status">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-                    <td mat-cell *matCellDef="let row"> {{row.currentStatus}} </td>
-                </ng-container>
+                    <td mat-cell *matCellDef="let row">
+                      <span *ngIf="row.currentStatus == 1">
+                        <span class="badge badge-success">Active</span>
+                      </span>
+                      <span *ngIf="row.currentStatus == 0">
+                        <span class="badge badge-danger"> In Active</span>
+                      </span>
+                    </td>
+                  </ng-container>
 
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
@@ -129,26 +136,28 @@
       <hr>
       <form [formGroup]="sizeForm">
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-6">
             <mat-form-field  style="width: 100%;" appearance="outline">
-              <mat-label>Business Name</mat-label>
+              <mat-label>Business Size Name</mat-label>
               <input matInput placeholder="Z001" formControlName="businessName">
             </mat-form-field>
           </div>
 
-          <div class="col-md-4">
+          <div class="col-md-6">
             <mat-form-field  style="width: 100%;" appearance="outline">
               <mat-label>Amount</mat-label>
               <input matInput placeholder="Unguja" formControlName="amountToPay">
             </mat-form-field>
           </div>
+        </div>
 
-          <div class="col-md-4">
-            <mat-form-field  style="width: 100%;" appearance="outline">
-              <mat-label>Distriction</mat-label>
-              <input matInput placeholder="Unguja" formControlName="distriction">
-            </mat-form-field>
-          </div>
+        <div class="row">
+            <div class="col-md-12">
+                <mat-form-field  style="width: 100%;" appearance="outline" >
+                    <mat-label>Distription</mat-label>
+                    <textarea matInput placeholder="Ex. It makes me feel..." formControlName="distriction"></textarea >
+                  </mat-form-field>
+              </div>
         </div>
       </form><br><br>
 
@@ -161,31 +170,41 @@
     </ng-template>
 
 
-<!-- <ng-template #distributionDialog2>
-    <app-card title="Edit Zone">
-      <hr>
-      <form [formGroup]="zoneEditForm">
-        <div class="row">
-          <div class="col-md-6">
-            <mat-form-field  style="width: 100%;" appearance="outline">
-              <mat-label>Zone Code</mat-label>
-              <input matInput placeholder="Z001" formControlName="zoneCode">
-            </mat-form-field>
-          </div>
 
-          <div class="col-md-6">
-            <mat-form-field  style="width: 100%;" appearance="outline">
-              <mat-label>Zone Name</mat-label>
-              <input matInput placeholder="Unguja" formControlName="zoneName">
-            </mat-form-field>
-          </div>
+    <ng-template #distributionDialog2>
+        <app-card title="Edit Business Size">
+          <hr>
+          <form [formGroup]="sizeEditForm">
+            <div class="row">
+              <div class="col-md-6">
+                <mat-form-field  style="width: 100%;" appearance="outline">
+                  <mat-label>Business Size Name</mat-label>
+                  <input matInput placeholder="Z001" formControlName="businessName">
+                </mat-form-field>
+              </div>
+    
+              <div class="col-md-6">
+                <mat-form-field  style="width: 100%;" appearance="outline">
+                  <mat-label>Amount</mat-label>
+                  <input matInput placeholder="Unguja" formControlName="amountToPay">
+                </mat-form-field>
+              </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-form-field  style="width: 100%;" appearance="outline" >
+                        <mat-label>Distription</mat-label>
+                        <textarea matInput placeholder="Ex. It makes me feel..." formControlName="distriction"></textarea >
+                      </mat-form-field>
+                  </div>
+            </div>
+          </form><br><br>
+    
+          <div class="card-bottom">
+            <button mat-raised-button matDialogClose="yes" >Cancel</button> &nbsp;
+            <button mat-raised-button  color="primary"  matDialogClose="yes" (click)="onEdit()">Edit</button>
         </div>
-      </form><br><br>
-
-      <div class="card-bottom">
-        <button mat-raised-button matDialogClose="yes" >Cancel</button> &nbsp;
-        <button mat-raised-button  color="primary"  matDialogClose="yes" (click)="onEdit()">Edit</button>
-    </div>
-
-    </app-card>
-    </ng-template> -->
+    
+        </app-card>
+        </ng-template>

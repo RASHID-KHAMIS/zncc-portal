@@ -21,4 +21,7 @@ ownershipAPI = environment.baseUrl + "CompanyOwnerInformations"
   editOwnership(id:any,body:any){
     return this.http.put(this.ownershipAPI + "/" + id,body)
   }
+  getByMembershipId(id:any){
+    return this.http.get(this.ownershipAPI + "/" + "with-membership" + "/" + id )
+  }
 }

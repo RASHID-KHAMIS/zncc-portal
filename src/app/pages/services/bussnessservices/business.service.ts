@@ -8,7 +8,8 @@ import { environment } from 'src/environments/environment';
 })
 export class BusinessService {
   baseUrl: any = environment.baseUrl + "businessTypes"
-  businessSectorAPI = environment.baseUrl + "businessSectors"
+  businessSectorAPI = environment.baseUrl + "businessSectors";
+  businessSizeAPI = environment.baseUrl + "businessSizes"
   constructor(private http: HttpClient) { }
 
 
@@ -30,6 +31,20 @@ export class BusinessService {
 
   deletePost(id: number): Observable<any> {
     return this.http.delete<any>(`${this.baseUrl}/${id}`);
+  }
+
+
+
+  getAllBusinessSize(){
+    return this.http.get(this.businessSizeAPI)
+  }
+
+  addBusinessSize(body:any){
+    return this.http.post(this.businessSizeAPI,body)
+  }
+
+  editBusinessSize(id:any,body:any){
+    return this.http.put(this.businessSizeAPI + "/" + id,body)
   }
 
   getAllBusinessSector(){

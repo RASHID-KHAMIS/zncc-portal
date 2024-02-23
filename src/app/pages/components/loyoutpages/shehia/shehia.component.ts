@@ -83,7 +83,6 @@ export class ShehiaComponent implements OnInit {
     this.shehiaEditForm = new FormGroup({
       id:new FormControl(null),
       shehiaName: new FormControl(null,Validators.required),
-      shehiaCode: new FormControl(null,Validators.required),
       districtId: new FormControl(null,Validators.required),
     });
   }
@@ -108,7 +107,6 @@ export class ShehiaComponent implements OnInit {
     this.shehiaEditForm = new FormGroup({
       id:new FormControl(row.id),
       shehiaName: new FormControl(row.shehiaName),
-      shehiaCode: new FormControl(row.shehiaCode),
       districtId: new FormControl(row.districtId),
     });
     let dialogRef = this.dialog.open(this.distributionDialog2, {
@@ -136,6 +134,15 @@ export class ShehiaComponent implements OnInit {
   }
 
 
+  onEdit(){
+    const id = this.shehiaEditForm.value.id;
+    const values = this.shehiaEditForm.value;
+    this.shehiaService.editShehia(id,values).subscribe((resp:any)=>{
+      this.alert2();
+      this.reload()
+    })
+  }
+
   reload(){
     this.router.navigateByUrl('',{skipLocationChange:true}).then(()=>{
       this.router.navigate(['shehia'])
@@ -158,6 +165,26 @@ export class ShehiaComponent implements OnInit {
     Toast.fire({
       icon: 'success',
       title: 'District Added Successfully'
+    })
+  }
+
+
+  alert2(){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'District Edited Successfully'
     })
   }
 }
