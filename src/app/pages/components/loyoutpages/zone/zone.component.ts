@@ -53,7 +53,6 @@ export class ZoneComponent implements OnInit{
 
   configureForm(){
     this.zoneForm = new FormGroup({
-      zoneCode:new FormControl(null,Validators.required),
       zoneName:new FormControl(null,Validators.required)
     })
   }
@@ -61,7 +60,6 @@ export class ZoneComponent implements OnInit{
   configureEditForm(){
     this.zoneEditForm = new FormGroup({
       zoneId:new FormControl(null,Validators.required),
-      zoneCode:new FormControl(null,Validators.required),
       zoneName:new FormControl(null,Validators.required)
     })
   }
@@ -85,7 +83,6 @@ export class ZoneComponent implements OnInit{
   openDialog2(row:any) {
     this.zoneEditForm = new FormGroup({
       zoneId:new FormControl(row.zoneId),
-      zoneCode:new FormControl(row.zoneCode),
       zoneName:new FormControl(row.zoneName)
     })
     
@@ -106,9 +103,10 @@ export class ZoneComponent implements OnInit{
 
   onSave(){
     const values = this.zoneForm.value;
-    console.log(values);
     this.zoneService.addZone(values).subscribe((resp:any)=>{
-      console.log(resp);
+      // console.log(resp);
+      this.alert();
+      this.reload()
       
     })
   }

@@ -42,9 +42,8 @@ export class MembersComponent implements OnInit {
       })
   }
 
-  onEdit(data:any){
+  onView(data:any){
     // console.log(data);
-    
     this.router.navigate(['/view-member-info'], { queryParams: { id: data.memberShipFormId} });
   }
 }

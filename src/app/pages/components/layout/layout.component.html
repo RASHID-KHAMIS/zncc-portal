@@ -8,11 +8,15 @@
             </button>
             <div style="margin: auto;">
 
-                <h1 class="navbar-brand navbar-brand-autodark">ZNCC</h1>
+                <h1 class="navbar-brand navbar-brand-autodark">
+                    <div class="profile-image">
+                        <img src="../../../assets/zncc.webp" alt="User Profile Image">
+                    </div>
+                </h1>
             </div>
 
             <span class="badge bg-yellow" style="text-align: center;font-size: 80%;">
-                Zanzibar National Chamber Of Commerce
+              <marquee behavior="scroll" direction="left">Zanzibar National Chamber Of Commerce</marquee>  
             </span>
             <div class="navbar-nav flex-row d-lg-none">
                 <div class="nav-item d-none d-lg-flex me-3">
@@ -227,7 +231,7 @@
                             </span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="role == 'SUPER ADMIN'">
                         <a class="nav-link" routerLink="members">
                             <span
                                 class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
@@ -242,7 +246,7 @@
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="role == 'SUPER ADMIN'">
                         <a class="nav-link" routerLink="staff-info">
                             <span
                                 class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
@@ -256,7 +260,7 @@
                             </span>
                         </a>
                     </li>
-                    <li class="nav-item" >
+                    <li class="nav-item" *ngIf="role == 'MEMBERSHIP'">
                         <a class="nav-link" routerLink="payment">
                             <span
                                 class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/star -->
@@ -271,24 +275,7 @@
                         </a>
                     </li>
 
-
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" routerLink="business-type">
-                            <span
-                                class="nav-link-icon d-md-none d-lg-inline-block">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M3 6v12h10.32a6.38 6.38 0 0 1-.32-2H7a2 2 0 0 0-2-2v-4c1.11 0 2-.89 2-2h10a2 2 0 0 0 2 2v.06c.67 0 1.34.12 2 .34V6H3m9 3c-1.7.03-3 1.3-3 3s1.3 2.94 3 3c.38 0 .77-.08 1.14-.23c.27-1.1.72-2.14 1.83-3.16C14.85 10.28 13.59 8.97 12 9m7 2l2.25 2.25L19 15.5V14c-1.85 0-3.06 1.96-2.24 3.62l-1.09 1.09c-1.76-2.66.14-6.21 3.33-6.21V11m0 11l-2.25-2.25L19 17.5V19c1.85 0 3.06-1.96 2.24-3.62l1.09-1.09c1.76 2.66-.14 6.21-3.33 6.21V22" />
-                                </svg>
-                            </span>
-                            <span class="nav-link-title">
-                                Business Type
-                            </span>
-                        </a>
-                    </li> -->
-
-
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown" *ngIf="role == 'MEMBERSHIP'">
                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                             data-bs-auto-close="false" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -335,7 +322,7 @@
                     </li>
 
 
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown" *ngIf="role == 'SUPER ADMIN'">
                         <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown"
                             data-bs-auto-close="false" role="button" aria-expanded="false">
                             <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -429,8 +416,8 @@
                             </div>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="users">
+                    <li class="nav-item" *ngIf="role == 'SUPER ADMIN'">
+                        <a class="nav-link" routerLink="user-management">
                             <span
                                 class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/ghost -->
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -567,7 +554,7 @@
                         <span class="avatar avatar-sm" style="background-image: url(assets/profileImage.jpg)"></span>
                         <div class="d-none d-xl-block ps-2">
                             <div>Admin</div>
-                            <div class="mt-1 small text-muted">Admin</div>
+                            <div class="mt-1 small text-muted">{{role}}</div>
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">

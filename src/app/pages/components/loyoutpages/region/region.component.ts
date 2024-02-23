@@ -66,7 +66,6 @@ export class RegionComponent implements OnInit{
   configureForm(){
     this.regionForm = new FormGroup({
       zoneId:new FormControl(null,Validators.required),
-      regionCode:new FormControl(null,Validators.required),
       regionName:new FormControl(null,Validators.required)
     })
   }
@@ -75,7 +74,6 @@ export class RegionComponent implements OnInit{
     this.regionEditForm = new FormGroup({
       regionId:new FormControl(null),
       zoneId:new FormControl(null,Validators.required),
-      regionCode:new FormControl(null,Validators.required),
       regionName:new FormControl(null,Validators.required)
     })
   }
@@ -111,7 +109,6 @@ export class RegionComponent implements OnInit{
     this.regionEditForm = new FormGroup({
       zoneId:new FormControl(row.zoneId),
       regionId:new FormControl(row.regionId),
-      regionCode:new FormControl(row.regionCode),
       regionName:new FormControl(row.regionName)
     })
     

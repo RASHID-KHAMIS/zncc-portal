@@ -8,6 +8,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { CompanyOwnershipService } from 'src/app/pages/services/company-ownership.service';
 import { MembershipService } from 'src/app/pages/services/membership.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-member-information',
@@ -31,6 +32,7 @@ export class MemberInformationComponent implements OnInit{
   ownerForm!:FormGroup;
   memberAccountId:any;
   loading: boolean = true;
+  check:boolean = false;
   constructor(private router:Router,
     private dialog:MatDialog,
     private membershipService:MembershipService,
@@ -54,6 +56,7 @@ export class MemberInformationComponent implements OnInit{
     this.companyOwnershipService.getAllOwnership().subscribe((resp:any)=>{
       this.dataSource = new MatTableDataSource(resp);
       this.loading = false;
+      this.check = true;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort
     })
@@ -63,7 +66,6 @@ export class MemberInformationComponent implements OnInit{
   memberInfo:any;
   fetchByMembershipId(){
     this.membershipService.getMembershirpsByMemberID(this.memberAccountId).subscribe((resp:any)=>{
-      // console.log(resp);
       this.memberInfo = resp;
       // console.log(this.memberInfo.memberShipFormId);
     })
@@ -108,5 +110,31 @@ export class MemberInformationComponent implements OnInit{
     })
     
   }
+
+  reload(){
+    this.router.navigateByUrl('',{skipLocationChange:true}).then(()=>{
+      this.router.navigate(['memberInfor'])
+    })
+  }
+
+  alert(){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Owner Added Successfully'
+    })
+  }
+
 
 }

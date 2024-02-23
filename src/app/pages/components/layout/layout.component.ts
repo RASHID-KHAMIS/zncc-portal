@@ -6,14 +6,17 @@ import { Router } from '@angular/router';
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.css']
 })
+
+
 export class LayoutComponent {
-  // role: any = localStorage.getItem("role")
-  // fullName: any = localStorage.getItem("fullName")
+  role: any;
   constructor(private router: Router) {
 
   }
   ngOnInit(): void {
-    // this.role = localStorage.getItem("role")
+    this.role = localStorage.getItem("role")
+    // console.log(this.role);
+    
     // this.fullName = localStorage.getItem("fullName")
     // this.cheLoging()
   }

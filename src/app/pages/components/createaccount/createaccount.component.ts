@@ -46,10 +46,11 @@ export class CreateaccountComponent implements OnInit {
 
   onCreate(){
     const values = this.userForm.value;
-    console.log(values);
+    // console.log(values);
     this.memberService.addMember(values).subscribe((resp:any)=>{
       // console.log('added');
-      
+      this.alert();
+      this.reload()
     })
     
   }
@@ -167,4 +168,30 @@ export class CreateaccountComponent implements OnInit {
       title: 'Un Authorized'
     })
   }
+
+  reload(){
+    this.router.navigateByUrl('',{skipLocationChange:true}).then(()=>{
+      this.router.navigate([''])
+    })
+  }
+
+  alert(){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'User Created Successfully'
+    })
+  }
+
 }

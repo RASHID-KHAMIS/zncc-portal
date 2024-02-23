@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { BusinessService } from 'src/app/pages/services/bussnessservices/business.service';
 import { DistrictService } from 'src/app/pages/services/district.service';
@@ -35,6 +36,7 @@ export class RegesterComponent implements OnInit {
   imageInfos?: Observable<any>;
   memberAccountId:any;
   constructor(private fb: FormBuilder, 
+    private router:Router,
     private memberService: MemberService,
     private regionService:RegionService,
     private districtService:DistrictService,
@@ -154,10 +156,10 @@ export class RegesterComponent implements OnInit {
   
   submit() {
     const values = this.memberForm.value;
-    // console.log(values);
     this.membershipService.addMembership(values).subscribe((resp:any)=>{
-      console.log(resp);
-      console.log('added');
+      // console.log('added');
+      this.alert();
+      this.reload()
       
     })
   }
@@ -214,6 +216,31 @@ export class RegesterComponent implements OnInit {
     Toast.fire({
       icon: 'error',
       title: 'Un Authorized'
+    })
+  }
+
+  reload(){
+    this.router.navigateByUrl('',{skipLocationChange:true}).then(()=>{
+      this.router.navigate(['members'])
+    })
+  }
+
+  alert(){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Member Added Successfully'
     })
   }
 }

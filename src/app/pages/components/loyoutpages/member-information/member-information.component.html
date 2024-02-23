@@ -298,7 +298,7 @@
             </div>
         </div>
         <br>
-        <div class="card">
+        <div class="card" *ngIf="check">
             <div class="card-status-top bg-primary"></div>
             <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
             <div style="margin:10px 0px 0px 10px;" class="example-form ml-3  mb-3">
@@ -356,13 +356,11 @@
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
                         <td mat-cell *matCellDef="let row">
                             <div class="row">
-                              
-                                <button title="distribute" style="margin-left: 5px;"
-                                    class="col-md-2 btn btn-outline-success">
+                                <button title="Modify" class="col-md-2 btn btn-outline-primary">
                                     <span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                             <path fill="currentColor"
-                                                d="M12.08 4.08L20 12l-7.92 7.92l-1.41-1.42l5.5-5.5H2v-2h14.17l-5.5-5.5l1.41-1.42M20 12v10h2V2h-2v10Z" />
+                                                d="M21.04 12.13c.14 0 .27.06.38.17l1.28 1.28c.22.21.22.56 0 .77l-1 1l-2.05-2.05l1-1c.11-.11.25-.17.39-.17m-1.97 1.75l2.05 2.05L15.06 22H13v-2.06l6.07-6.06M10 2h4a2 2 0 0 1 2 2v2h4a2 2 0 0 1 2 2l-2 2V8H4v11h7v2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4V4a2 2 0 0 1 2-2m4 4V4h-4v2h4Z" />
                                         </svg>
                                     </span>
                                 </button>

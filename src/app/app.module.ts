@@ -43,6 +43,7 @@ import { BusinessSizeComponent } from './pages/components/loyoutpages/business-s
 import { DepartmentComponent } from './pages/components/loyoutpages/department/department.component';
 import {MatSelectModule} from '@angular/material/select';
 import { ViewMemberInfoComponent } from './pages/components/view-member-info/view-member-info.component';
+import { UserManagementComponent } from './pages/components/loyoutpages/user-management/user-management.component';
 
 
 @NgModule({
@@ -70,6 +71,7 @@ import { ViewMemberInfoComponent } from './pages/components/view-member-info/vie
     BusinessSizeComponent,
     DepartmentComponent,
     ViewMemberInfoComponent,
+    UserManagementComponent,
    
   ],
   imports: [

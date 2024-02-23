@@ -103,7 +103,7 @@ export class ShehiaComponent implements OnInit {
   }
 
   openDialog2(row:any) {
-    console.log(row);
+    // console.log(row);
     
     this.shehiaEditForm = new FormGroup({
       id:new FormControl(row.id),
