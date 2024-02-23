@@ -24,17 +24,7 @@
                         </svg>
                         Register Shehia 
                     </button>
-                    <!-- <a routerLink="../register-staff" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
-                        data-bs-target="#modal-report" aria-label="Create new report">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                            stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M12 5l0 14" />
-                            <path d="M5 12l14 0" />
-                        </svg>
-                    </a> -->
+                 
 
                 </div>
             </div>
@@ -48,7 +38,7 @@
 
     <div class="card">
         <div class="card-status-top bg-primary"></div>
-        <mat-progress-bar mode="indeterminate" *ngIf="loding"></mat-progress-bar>
+        <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
         <div style="margin:10px 0px 0px 10px;" class="example-form ml-3  mb-3">
             <label class="form-label"></label>
             <div class="input-icon" style="width: 30%;" > 
@@ -76,18 +66,18 @@
 
                 <ng-container matColumnDef="DistrictName">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>District Name </th>
-                    <td mat-cell *matCellDef="let row"> {{row.regNo}} </td>
+                    <td mat-cell *matCellDef="let row"> {{row.districtName}} </td>
                 </ng-container>
 
 
                 <ng-container matColumnDef="ShehiaCode">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Shehia Code</th>
-                    <td mat-cell *matCellDef="let row"> {{row.firstName + " " + row.middleName + " " + row.lastName}}
+                    <td mat-cell *matCellDef="let row"> {{row.shehiaCode}}
                     </td>
                 </ng-container>
                 <ng-container matColumnDef="ShehiaName">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Shehia Name </th>
-                    <td mat-cell *matCellDef="let row"> {{row.firstName + " " + row.middleName + " " + row.lastName}}
+                    <td mat-cell *matCellDef="let row"> {{row.shehiaName}}
                     </td>
                 </ng-container>
              
@@ -96,7 +86,7 @@
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
                     <td mat-cell *matCellDef="let row">
                         <div class="row">
-                            <button title="Modify" class="col-md-2 btn btn-outline-primary">
+                            <button title="Modify" class="col-md-2 btn btn-outline-primary" (click)="openDialog2(row)">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                         <path fill="currentColor"
@@ -137,36 +127,83 @@
 <ng-template #distributionDialog>
     <app-card title="Add Shehia">
       <hr>
-      <form >
+      <form [formGroup]="shehiaForm">
         <div class="row">
-            <div class="col-md-12">
-                <mat-form-field  style="width: 100%;" appearance="outline">
+            <div class="col-md-4">
+                <mat-form-field appearance="outline" style="width:100%;">
                     <mat-label>District Name</mat-label>
-                    <input matInput placeholder="Z001" >
+                    <mat-select formControlName="districtId">
+                      <mat-option *ngFor="let list of districtList" [value]="list.id">
+                        {{list.districtName}}
+                      </mat-option>
+                    </mat-select>
                   </mat-form-field>
             </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <mat-form-field  style="width: 100%;" appearance="outline">
-              <mat-label>Shehia Code</mat-label>
-              <input matInput placeholder="Z001" >
-            </mat-form-field>
-          </div>
 
-          <div class="col-md-6">
-            <mat-form-field  style="width: 100%;" appearance="outline">
-              <mat-label>Shehia Name</mat-label>
-              <input matInput placeholder="Unguja" >
-            </mat-form-field>
-          </div>
+            <div class="col-md-4">
+                <mat-form-field  style="width: 100%;" appearance="outline">
+                  <mat-label>Shehia Code</mat-label>
+                  <input matInput placeholder="Z001" formControlName="shehiaCode">
+                </mat-form-field>
+              </div>
+
+              <div class="col-md-4">
+                <mat-form-field  style="width: 100%;" appearance="outline">
+                  <mat-label>Shehia Name</mat-label>
+                  <input matInput placeholder="Unguja" formControlName="shehiaName">
+                </mat-form-field>
+              </div>
+
         </div>
-      </form><br><br>
+
+        </form><br><br>
 
       <div class="card-bottom">
         <button mat-raised-button matDialogClose="yes" >Cancel</button> &nbsp;
-        <button mat-raised-button  color="primary"  matDialogClose="yes">Add</button>
+        <button mat-raised-button  color="primary"  matDialogClose="yes" (click)="onSave()">Add</button>
     </div>
 
     </app-card>
     </ng-template>
+
+    <ng-template #distributionDialog2>
+        <app-card title="Edit Shehia">
+          <hr>
+          <form [formGroup]="shehiaEditForm">
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-form-field appearance="outline" style="width:100%;">
+                        <mat-label>District Name</mat-label>
+                        <mat-select formControlName="districtId">
+                          <mat-option *ngFor="let list of districtList" [value]="list.id">
+                            {{list.districtName}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                </div>
+    
+                <div class="col-md-4">
+                    <mat-form-field  style="width: 100%;" appearance="outline">
+                      <mat-label>Shehia Code</mat-label>
+                      <input matInput placeholder="Z001" formControlName="shehiaCode">
+                    </mat-form-field>
+                  </div>
+    
+                  <div class="col-md-4">
+                    <mat-form-field  style="width: 100%;" appearance="outline">
+                      <mat-label>Shehia Name</mat-label>
+                      <input matInput placeholder="Unguja" formControlName="shehiaName">
+                    </mat-form-field>
+                  </div>
+    
+            </div>
+    
+            </form><br><br>
+    
+          <div class="card-bottom">
+            <button mat-raised-button matDialogClose="yes" >Cancel</button> &nbsp;
+            <button mat-raised-button  color="primary"  matDialogClose="yes" (click)="onSave()">Add</button>
+        </div>
+    
+        </app-card>
+        </ng-template>

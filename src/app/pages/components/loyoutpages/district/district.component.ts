@@ -67,7 +67,6 @@ export class DistrictComponent implements OnInit{
   configForm(){
     this.districtForm = new FormGroup({
       districtName: new FormControl(null,Validators.required),
-      districtCode: new FormControl(null,Validators.required),
       regionId: new FormControl(null,Validators.required),
     })
   }
@@ -76,7 +75,6 @@ export class DistrictComponent implements OnInit{
     this.districtEditForm = new FormGroup({
       id:new FormControl(null),
       districtName: new FormControl(null,Validators.required),
-      districtCode: new FormControl(null,Validators.required),
       regionId: new FormControl(null,Validators.required),
     })
   }
