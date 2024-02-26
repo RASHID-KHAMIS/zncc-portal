@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { DepartmentService } from 'src/app/pages/services/department.service';
+import { DistrictService } from 'src/app/pages/services/district.service';
 import { StaffsService } from 'src/app/pages/services/membersservice/staffs.service';
+import { RegionService } from 'src/app/pages/services/region.service';
+import { ShehiaService } from 'src/app/pages/services/shehia.service';
+import { ZoneService } from 'src/app/pages/services/zone.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -24,10 +30,21 @@ export class RegisterFormComponent implements OnInit {
 
 
   imageInfos?: Observable<any>;
-  constructor(private fb: FormBuilder, private staffsService: StaffsService) { }
+  constructor(private router:Router,
+    private staffsService: StaffsService,
+    private zoneService:ZoneService,
+    private regionService:RegionService,
+    private districtService:DistrictService,
+    private shehiaService:ShehiaService,
+    private departmentService:DepartmentService) { }
 
   ngOnInit(): void {
     this.initForm();
+    this.fetchAllZone();
+    this.fetchAllRegion();
+    this.fetchAllDistricts();
+    this.fetchAllShehia();
+    this.fetchAllDepartment()
     // this.imageInfos = this.uploadService.getFiles();
   }
   applyFilter(event: Event) {
@@ -73,54 +90,89 @@ export class RegisterFormComponent implements OnInit {
 
       if (file) {
         this.currentFile = file;
-
-
       }
 
       this.selectedFiles = undefined;
     }
   }
 
+  zoneLists:any;
+  fetchAllZone(){
+    this.zoneService.getAllZone().subscribe((resp:any)=>{
+      this.zoneLists = resp;
+    })
+  }
+
+  regionList:any
+  fetchAllRegion(){
+    this.regionService.getAllRegion().subscribe((resp:any)=>{
+      this.regionList = resp; 
+    })
+  }
+
+  districtList:any;
+  fetchAllDistricts(){
+    this.districtService.getAllDistricts().subscribe((resp:any)=>{
+      this.districtList = resp;     
+    })
+  }
+
+  shehiaLists:any;
+  fetchAllShehia(){
+    this.shehiaService.getAllShehia().subscribe((resp:any)=>{
+      this.shehiaLists = resp;
+    })
+  }
+
+  departmentList:any;
+  fetchAllDepartment(){
+    this.departmentService.getAllDepartment().subscribe((resp:any)=>{
+      this.departmentList = resp;
+    })
+  }
   initForm(): void {
-    this.staffForm = this.fb.group({
-      regNo: ['', Validators.required],
-      firstName: ['', Validators.required],
-      middleName: [''],
-      lastName: ['', Validators.required],
-      dob: [null, Validators.required],
-      gender: ['', Validators.required],
-      maritalStatus: [''],
-      physicalAddress: [''],
-      isResidence: [false],
-      district: [''],
-      zanId: [''],
-      phoneNumber: [''],
-      isStaffHaveDisability: [false],
-      religion: [''],
-      region: [''],
-      shehia: [''],
-      streetName: [''],
-      postCode: [''],
-      houseNo: [''],
-      terminationStatus: [1],
-      email: ['', Validators.email],
-      zone: [''],
-      workPhone: [''],
-      workEmail: [''],
-      bankName: [''],
-      accountNumber: [''],
-      staffTypeId: [1],
-      staffPosition: [''],
-      staffCategory: [1],
+    
+    this.staffForm = new FormGroup({
+      regNo: new FormControl(null,Validators.required),
+      firstName:new FormControl(null,Validators.required),
+      middleName: new FormControl(null,Validators.required),
+      lastName: new FormControl(null,Validators.required),
+      dob: new FormControl(null),
+      gender:new FormControl(null,Validators.required),
+      maritalStatus:new FormControl(null),
+      physicalAddress: new FormControl(null,Validators.required),
+      isResidence: new FormControl(null,Validators.required),
+      zoneId: new FormControl(null,Validators.required),
+      phoneNumber:new FormControl(null,Validators.required),
+      isStaffHaveDisability:new FormControl(false), 
+      regionId: new FormControl(null),
+      districtId: new FormControl(null),
+      shehiaId: new FormControl(null),
+      streetName: new FormControl(null),
+      postCode: new FormControl(null),
+      houseNo:new FormControl(null),
+      terminationStatus: new FormControl(1),
+      email:new FormControl(null,Validators.email),
+      workPhone: new FormControl(null),
+      workEmail: new FormControl(null),
+      bankName:new FormControl(null),
+      accountNumber: new FormControl(null,Validators.required),
+      departmentId: new FormControl(null,Validators.required),
+      staffPosition: new FormControl(null,Validators.required),
+      staffCategory: new FormControl(null,Validators.required),
+      // religion: new FormControl(null),
+
     });
   }
 
 
   submit() {
-    this.staffsService.addPost(this.staffForm.value).subscribe((res: any) => {
-      this.succeAlart()
-    })
+    const values = this.staffForm.value;
+    console.log(values);
 
+    this.alert();
+    this.reload();
+     
   }
 
   succeAlart() {
@@ -175,6 +227,31 @@ export class RegisterFormComponent implements OnInit {
     Toast.fire({
       icon: 'error',
       title: 'Un Authorized'
+    })
+  }
+
+  reload(){
+    this.router.navigateByUrl('',{skipLocationChange:true}).then(()=>{
+      this.router.navigate(['staff-info'])
+    })
+  }
+
+  alert(){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Staff Added Successfully'
     })
   }
 }
