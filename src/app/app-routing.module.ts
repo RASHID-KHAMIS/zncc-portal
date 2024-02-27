@@ -23,6 +23,7 @@ import { ViewMemberInfoComponent } from './pages/components/view-member-info/vie
 import { UserManagementComponent } from './pages/components/loyoutpages/user-management/user-management.component';
 import { StaffPositionComponent } from './pages/components/staff-position/staff-position.component';
 import { EditStaffComponent } from './pages/components/loyoutpages/edit-staff/edit-staff.component';
+import { ResetPasswordComponent } from './pages/components/reset-password/reset-password.component';
 
 
 
@@ -32,6 +33,10 @@ const routes: Routes = [
   },
   {
     path: 'create-account', component: CreateaccountComponent
+  },
+  {
+    path:'reset-password',
+    component:ResetPasswordComponent
   },
   {
     path: '', component: LayoutComponent
@@ -94,12 +99,8 @@ const routes: Routes = [
       {
         path:'edit-staff',
         component:EditStaffComponent
-      }
+      },
       
-      
-      
-
-
     ]
   }
 ];

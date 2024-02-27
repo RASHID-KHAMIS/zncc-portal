@@ -43,7 +43,6 @@ export class MemberInformationComponent implements OnInit{
     this.configureForm();
    this.memberAccountId = localStorage.getItem('memberAccountId');
    this.fetchByMembershipId();
-   this.fetchOwnerByMemberId();
    this.configureEditForm();
   }
 
@@ -53,10 +52,6 @@ export class MemberInformationComponent implements OnInit{
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-  }
-
-  fetchOwnerByMemberId(){
-  
   }
 
 
@@ -150,7 +145,6 @@ export class MemberInformationComponent implements OnInit{
     })
     const values = this.ownerForm.value;
     this.companyOwnershipService.addOwnership(values).subscribe((resp:any)=>{
-      // console.log('add');
       this.alert();
       this.reload()
       

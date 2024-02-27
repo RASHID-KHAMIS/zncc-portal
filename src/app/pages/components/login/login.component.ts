@@ -11,9 +11,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  constructor(
-    private router: Router,
-    private usersService:UsersService) { }
+  constructor(private router: Router,
+  private usersService:UsersService) { }
   loginForm !: FormGroup;
   shouldAddClass1 = false;
   shouldAddClass2 = true;
@@ -21,7 +20,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.createForm()
   }
-  // Set your condition to add a class
   createForm() {
     this.loginForm = new FormGroup({
       email: new FormControl(''),
@@ -66,11 +64,17 @@ export class LoginComponent implements OnInit {
           // console.log(decodedToken.sub.role);
           localStorage.setItem('role',decodedToken.sub.role),
           localStorage.setItem('email',decodedToken.sub.email),
-          localStorage.setItem('memberAccountId',decodedToken.sub.userMemberId)
+          localStorage.setItem('memberAccountId',decodedToken.sub.userMemberId),
+          localStorage.setItem('id',decodedToken.sub.id)
 
         }
         this.alert();
-         this.router.navigate(["home"])
+        if(decodedToken.sub.loginStatus == 0){
+          // this.router.navigate(["reset-password"])
+          this.router.navigate(['/reset-password'], { queryParams: { id: decodedToken.sub.id} });
+        }else{
+          this.router.navigate(["home"])
+        }
       })
      
     }

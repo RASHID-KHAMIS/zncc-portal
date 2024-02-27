@@ -13,4 +13,8 @@ export class UsersService {
   userLogin(body:any){
     return this.http.post(this.userAPI + "/" + "login",body)
   }
+
+  userFirstLogin(id:any,body:any){
+    return this.http.post(this.userAPI + "/" + "firts-changePassword" + "/" + id,body )
+  }
 }

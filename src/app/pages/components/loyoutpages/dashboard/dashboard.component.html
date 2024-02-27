@@ -28,7 +28,7 @@
 
 <div class="page-body" style="margin: 10px;">
 
-    <div class="row row-deck row-cards">
+    <div class="row row-deck row-cards" *ngIf="role=='SUPER ADMIN'">
         <div class="col-sm-6 col-lg-3">
             <div class="card">
                 <div class="card-body">
@@ -198,10 +198,8 @@
             </div>
         </div>
 
-
-
     </div>
-    <div class="row">
+    <div class="row" *ngIf="role=='SUPER ADMIN'">
         <div class="col-sm-6 col-lg-6" style=" margin-top: 30px;">
             <div class="card">
                 <div class="card-body">
@@ -224,7 +222,533 @@
 
         </div>
 
+    </div>
+
+    <div class="row" *ngIf="role=='MEMBERSHIP'">
+       <!-- Page body -->
+<div class="page-header d-print-none">
+    <div class="" style="margin: 0 20px 0 20px;">
+        <div class="row g-2 align-items-center">
+
+            <!-- Page title actions -->
+            <div class="col-auto ms-auto d-print-none">
+                <div class="btn-list">
+                    <button class="btn btn-primary d-none d-sm-inline-block"
+                        *ngIf="memberInfo.membership_type !== 'Sole Proprietorship'" (click)="openDialog()">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M12 5l0 14" />
+                            <path d="M5 12l14 0" />
+                        </svg>
+                        Register Owner
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-auto">
+                <span class="avatar avatar-lg rounded" style="background-image: url(assets/profileImage.jpg)"></span>
+            </div>
+            <div class="col">
+                <h1 class="fw-bold">{{memberInfo.company_name}}</h1>
+                <div class="my-2">
+                </div>
+                <div class="list-inline list-inline-dots text-secondary">
+                    <div class="list-inline-item">
+                        <!-- Download SVG icon from http://tabler-icons.io/i/map -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M3 7l6 -3l6 3l6 -3v13l-6 3l-6 -3l-6 3v-13"></path>
+                            <path d="M9 4v13"></path>
+                            <path d="M15 7v13"></path>
+                        </svg>
+                        {{memberInfo.regionName}}, {{memberInfo.districtName}}
+                    </div>
+                    <div class="list-inline-item">
+                        <!-- Download SVG icon from http://tabler-icons.io/i/mail -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z">
+                            </path>
+                            <path d="M3 7l9 6l9 -6"></path>
+                        </svg>
+                        <a href="#" class="text-reset">{{memberInfo.company_email}}</a>
+                    </div>
+                    <div class="list-inline-item">
+                        <!-- Download SVG icon from http://tabler-icons.io/i/cake -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M3 20h18v-8a3 3 0 0 0 -3 -3h-12a3 3 0 0 0 -3 3v8z"></path>
+                            <path
+                                d="M3 14.803c.312 .135 .654 .204 1 .197a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1c.35 .007 .692 -.062 1 -.197">
+                            </path>
+                            <path d="M12 4l1.465 1.638a2 2 0 1 1 -3.015 .099l1.55 -1.737z"></path>
+                        </svg>
+                        {{memberInfo.registerDate | date:'dd/MM/YYYY'}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto ms-auto">
+                <div class="btn-list">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-body">
+
+    <div class="container-xl">
+        <div class="row g-3">
+            <div class="col">
+                <ul class="timeline">
+                    <li class="timeline-event">
+                        <div class="timeline-event-icon bg-twitter-lt">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/brand-twitter -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256">
+                                <path fill="currentColor"
+                                    d="M208 20H64a20 20 0 0 0-20 20v20H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v20a20 20 0 0 0 20 20h144a20 20 0 0 0 20-20V40a20 20 0 0 0-20-20m-4 192H68V44h136Zm-103.2-40.63a48 48 0 0 1 70.4 0a12 12 0 0 0 17.6-16.32a72 72 0 0 0-19.21-14.68a44 44 0 1 0-67.19 0a72.12 72.12 0 0 0-19.2 14.68a12 12 0 0 0 17.6 16.32M116 112a20 20 0 1 1 20 20a20 20 0 0 1-20-20" />
+                            </svg>
+                        </div>
+                        <div class="card timeline-event-card">
+                            <div class="card-body">
+                                <div class="text-secondary float-end"></div>
+                                <h4>Membership Type</h4>
+                                <p class="text-secondary">{{memberInfo.membership_type}}</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="timeline-event">
+                        <div class="timeline-event-icon">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/briefcase -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path
+                                    d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z">
+                                </path>
+                                <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"></path>
+                                <path d="M12 12l0 .01"></path>
+                                <path d="M3 13a20 20 0 0 0 18 0"></path>
+                            </svg>
+                        </div>
+                        <div class="card timeline-event-card">
+                            <div class="card-body">
+                                <div class="text-secondary float-end"></div>
+                                <h4>Sector</h4>
+                                <p class="text-secondary">{{memberInfo.sectorName}}</p>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="timeline-event">
+                        <div class="timeline-event-icon bg-facebook-lt">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/brand-facebook -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256">
+                                <path fill="currentColor"
+                                    d="M201.54 54.46A104 104 0 0 0 54.46 201.54A104 104 0 0 0 201.54 54.46m-11.31 11.32a88.18 88.18 0 0 1 11 13.48L167.55 119l-27.92-78.22a87.34 87.34 0 0 1 50.6 25M155.59 133l-18.16 21.37l-27.59-5l-9.43-26.37l18.16-21.37l27.59 5ZM65.77 65.78a87.34 87.34 0 0 1 56.66-25.59l17.51 49L58.3 74.32a88 88 0 0 1 7.47-8.54m-19.12 95.76a88.41 88.41 0 0 1 2.53-72.62l51.21 9.35Zm19.12 28.68a88.18 88.18 0 0 1-11-13.48L88.45 137l27.92 78.18a87.34 87.34 0 0 1-50.6-24.96m124.46 0a87.34 87.34 0 0 1-56.66 25.59l-17.51-49l81.64 14.91a88 88 0 0 1-7.47 8.5m-34.62-32.49l53.74-63.27a88.41 88.41 0 0 1-2.53 72.62Z" />
+                            </svg>
+                        </div>
+                        <div class="card timeline-event-card">
+                            <div class="card-body">
+                                <div class="text-secondary float-end"></div>
+                                <h4>Company Certificate Number</h4>
+                                <p class="text-secondary">{{memberInfo.company_certificate_number}}</p>
+                            </div>
+                        </div>
+                    </li>
 
 
+                </ul>
+            </div>
+            <div class="col-lg-4">
+                <div class="row row-cards">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title">Company information</div>
+                                <div class="mb-2">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/book -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
+                                        <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
+                                        <path d="M3 6l0 13"></path>
+                                        <path d="M12 6l0 13"></path>
+                                        <path d="M21 6l0 13"></path>
+                                    </svg>
+                                    Company Name: <strong>{{memberInfo.company_name}}</strong>
+                                </div>
+                                <div class="mb-2">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/briefcase -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z">
+                                        </path>
+                                        <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"></path>
+                                        <path d="M12 12l0 .01"></path>
+                                        <path d="M3 13a20 20 0 0 0 18 0"></path>
+                                    </svg>
+                                    Company Email: <strong>{{memberInfo.company_email}}</strong>
+                                </div>
+
+                                <div class="mb-2">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                        </path>
+                                        <path d="M16 3v4"></path>
+                                        <path d="M8 3v4"></path>
+                                        <path d="M4 11h16"></path>
+                                        <path d="M11 15h1"></path>
+                                        <path d="M12 15v3"></path>
+                                    </svg>
+                                    Company Phone: <strong>{{memberInfo.company_phone}}</strong>
+                                </div>
+                                <div>
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/clock -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                        </path>
+                                        <path d="M16 3v4"></path>
+                                        <path d="M8 3v4"></path>
+                                        <path d="M4 11h16"></path>
+                                        <path d="M11 15h1"></path>
+                                        <path d="M12 15v3"></path>
+                                    </svg>
+                                    TRA Number: <strong>{{memberInfo.TRA_number}}</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title">Representative information</div>
+                                <div class="mb-2">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/book -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
+                                        <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
+                                        <path d="M3 6l0 13"></path>
+                                        <path d="M12 6l0 13"></path>
+                                        <path d="M21 6l0 13"></path>
+                                    </svg>
+                                    Representative Name: <strong>{{memberInfo.representative_name}}</strong>
+                                </div>
+                                <div class="mb-2">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/briefcase -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z">
+                                        </path>
+                                        <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"></path>
+                                        <path d="M12 12l0 .01"></path>
+                                        <path d="M3 13a20 20 0 0 0 18 0"></path>
+                                    </svg>
+                                    Representative Email: <strong>{{memberInfo.representative_email}}</strong>
+                                </div>
+
+                                <div class="mb-2">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                        </path>
+                                        <path d="M16 3v4"></path>
+                                        <path d="M8 3v4"></path>
+                                        <path d="M4 11h16"></path>
+                                        <path d="M11 15h1"></path>
+                                        <path d="M12 15v3"></path>
+                                    </svg>
+                                    Representative Phone: <strong>{{memberInfo.representative_phone}}</strong>
+                                </div>
+                                <div>
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/clock -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                        </path>
+                                        <path d="M16 3v4"></path>
+                                        <path d="M8 3v4"></path>
+                                        <path d="M4 11h16"></path>
+                                        <path d="M11 15h1"></path>
+                                        <path d="M12 15v3"></path>
+                                    </svg>
+                                    Gender: <strong>{{ memberInfo.gender === 'M' ? 'Male' : (memberInfo.gender === 'F' ?
+                                        'Female' : 'Unknown') }}</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="card" *ngIf="check">
+            <div class="card-status-top bg-primary"></div>
+            <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+            <div style="margin:10px 0px 0px 10px;" class="example-form ml-3  mb-3">
+                <label class="form-label"></label>
+                <div class="input-icon" style="width: 30%;">
+                    <input type="text" #input (keyup)="applyFilter($event)" class="form-control form-control-rounded"
+                        placeholder="Search…" />
+                    <span class="input-icon-addon">
+                        <!-- SVG icon from http://tabler-icons.io/i/search -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5l-1.5 1.5l-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16A6.5 6.5 0 0 1 3 9.5A6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14S14 12 14 9.5S12 5 9.5 5Z" />
+                        </svg>
+                    </span>
+                </div>
+            </div>
+            <div style="margin: 10px;">
+
+
+                <table mat-table [dataSource]="dataSource" matSort>
+
+                    <!-- ID Column -->
+                    <ng-container matColumnDef="No">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> SNo. </th>
+                        <td mat-cell *matCellDef="let row;let i = index"> {{i + 1}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="owner_name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Owner Name</th>
+                        <td mat-cell *matCellDef="let row"> {{row.owner_name}}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="owner_email">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Owner Email</th>
+                        <td mat-cell *matCellDef="let row"> {{row.owner_email}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="owner_phone">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Owner Phone</th>
+                        <td mat-cell *matCellDef="let row"> {{row.owner_phone}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="representative_name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Representative Name</th>
+                        <td mat-cell *matCellDef="let row"> {{row.representative_name}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="position">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Position</th>
+                        <td mat-cell *matCellDef="let row"> {{row.position}} </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+                        <td mat-cell *matCellDef="let row">
+                            <div class="row">
+                                <button title="Modify" class="col-md-2 btn btn-outline-primary"
+                                    (click)="openDialog2(row)">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M21.04 12.13c.14 0 .27.06.38.17l1.28 1.28c.22.21.22.56 0 .77l-1 1l-2.05-2.05l1-1c.11-.11.25-.17.39-.17m-1.97 1.75l2.05 2.05L15.06 22H13v-2.06l6.07-6.06M10 2h4a2 2 0 0 1 2 2v2h4a2 2 0 0 1 2 2l-2 2V8H4v11h7v2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4V4a2 2 0 0 1 2-2m4 4V4h-4v2h4Z" />
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                    <!-- Row shown when there is no matching data. -->
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                    </tr>
+                </table>
+                <mat-paginator [pageSizeOptions]="[ 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<ng-template #distributionDialog>
+    <app-card title="Add Owner">
+        <hr>
+        <form [formGroup]="ownerForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>Owner Name</mat-label>
+                        <input matInput placeholder="Z001" formControlName="owner_name">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>Owner Email</mat-label>
+                        <input matInput placeholder="Unguja" formControlName="owner_email">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>Owner Phone</mat-label>
+                        <input matInput placeholder="Z001" formControlName="owner_phone">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>Representative Name</mat-label>
+                        <input matInput placeholder="Z001" formControlName="representative_name">
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <mat-form-field appearance="outline" style="width:100%;">
+                        <mat-label>Gender</mat-label>
+                        <mat-select formControlName="gender">
+                            <mat-option *ngFor="let gender of GenderList" [value]="gender.value">
+                                {{gender.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>Position</mat-label>
+                        <input matInput placeholder="Z001" formControlName="position">
+                    </mat-form-field>
+                </div>
+            </div>
+        </form><br><br>
+
+        <div class="card-bottom">
+            <button mat-raised-button matDialogClose="yes">Cancel</button> &nbsp;
+            <button mat-raised-button color="primary" matDialogClose="yes" (click)="onSave()">Add</button>
+        </div>
+
+    </app-card>
+</ng-template>
+
+
+
+<ng-template #distributionDialog2>
+    <app-card title="Edit Owner">
+        <hr>
+        <form [formGroup]="ownerEditForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>Owner Name</mat-label>
+                        <input matInput placeholder="Z001" formControlName="owner_name">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>Owner Email</mat-label>
+                        <input matInput placeholder="Unguja" formControlName="owner_email">
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>Owner Phone</mat-label>
+                        <input matInput placeholder="Z001" formControlName="owner_phone">
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>Representative Name</mat-label>
+                        <input matInput placeholder="Z001" formControlName="representative_name">
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-6">
+                    <mat-form-field appearance="outline" style="width:100%;">
+                        <mat-label>Gender</mat-label>
+                        <mat-select formControlName="gender">
+                            <mat-option *ngFor="let gender of GenderList" [value]="gender.value">
+                                {{gender.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="col-md-6">
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>Position</mat-label>
+                        <input matInput placeholder="Z001" formControlName="position">
+                    </mat-form-field>
+                </div>
+            </div>
+        </form><br><br>
+
+        <div class="card-bottom">
+            <button mat-raised-button matDialogClose="yes">Cancel</button> &nbsp;
+            <button mat-raised-button color="primary" matDialogClose="yes" (click)="onEdit()">Edit</button>
+        </div>
+
+    </app-card>
+</ng-template>
     </div>
 </div>
