@@ -45,7 +45,8 @@ export class RegisterFormComponent implements OnInit {
     this.fetchAllRegion();
     this.fetchAllDistricts();
     this.fetchAllShehia();
-    this.fetchAllDepartment()
+    this.fetchAllDepartment();
+    this.fetchStaffPosition();
     // this.imageInfos = this.uploadService.getFiles();
   }
   applyFilter(event: Event) {
@@ -136,6 +137,13 @@ export class RegisterFormComponent implements OnInit {
   fetchAllDepartment(){
     this.departmentService.getAllDepartment().subscribe((resp:any)=>{
       this.departmentList = resp;
+    })
+  }
+
+  positionList:any
+  fetchStaffPosition(){
+    this.memberStaffService.getAllStaffPosition().subscribe((resp:any)=>{
+      this.positionList = resp;
     })
   }
   initForm(): void {

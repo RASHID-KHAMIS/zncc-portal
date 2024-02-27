@@ -45,6 +45,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { ViewMemberInfoComponent } from './pages/components/view-member-info/view-member-info.component';
 import { UserManagementComponent } from './pages/components/loyoutpages/user-management/user-management.component';
 import { StaffPositionComponent } from './pages/components/staff-position/staff-position.component';
+import { EditStaffComponent } from './pages/components/loyoutpages/edit-staff/edit-staff.component';
+
 
 
 @NgModule({
@@ -74,6 +76,8 @@ import { StaffPositionComponent } from './pages/components/staff-position/staff-
     ViewMemberInfoComponent,
     UserManagementComponent,
     StaffPositionComponent,
+    EditStaffComponent,
+
    
   ],
   imports: [

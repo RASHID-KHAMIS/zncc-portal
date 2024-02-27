@@ -25,8 +25,6 @@
     </div>
 </div>
 
-
-
 <div class="page-body ">
 
     <div class="card">
@@ -42,28 +40,7 @@
             </div>
         </div>
         <div style="margin: 40px;">
-            <form [formGroup]="staffForm">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="row" style="float: right;padding-top: -10px;">
-                            <div>
-                                <img [src]="preview" style="float: right;" class="preview">
-                            </div>
-                            <div *ngIf="currentFile && progress" class="progress my-3">
-                                <div class="progress-bar progress-bar-info" role="progressbar"
-                                    attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"
-                                    [ngStyle]="{ width: progress + '%' }">
-                                    {{ progress }}%
-                                </div>
-                            </div>
-                            <div style="float: right;margin-bottom: 20px;">
-                                <label class="btn btn-default" style="float: right;">
-                                    <input type="file" accept="image/*" (change)="selectFile($event)" />
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <form [formGroup]="staffEditForm">
                 <div class="row">
                     <div class="col-md-4">
                         <label class="form-label">Registration Number</label>
@@ -98,7 +75,7 @@
 
                     <div class="col-md-4">
                         <label class="form-label">Gender</label>
-                        <select  class="form-control" formControlName="gender">
+                        <select class="form-control" formControlName="gender">
                             <option value="">-- Select Gender --</option>
                             <option value="M">Male</option>
                             <option value="F">Female</option>
@@ -109,11 +86,11 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label class="form-label">Marital Status</label>
-                            <select  class="form-control" formControlName="maritalStatus">
-                                <option value="">-- Select Merital Status --</option>
-                                <option value="Married">Married</option>
-                                <option value="Not Married">Not Married</option>
-                            </select>
+                        <select class="form-control" formControlName="maritalStatus">
+                            <option value="">-- Select Merital Status --</option>
+                            <option value="Married">Married</option>
+                            <option value="Not Married">Not Married</option>
+                        </select>
                     </div>
 
                     <div class="col-md-4">
@@ -128,15 +105,6 @@
                             <option *ngFor="let list of zoneLists" [value]="list.zoneId">{{list.zoneName}}</option>
                         </select>
                     </div>
-
-                    <!-- <div class="col-md-4">
-                        <label class="form-label">Zone</label>
-                        <select  class="form-control" formControlName="zoneId" (change)="callByZone($event)">
-                            <option value="">-- Select Zone --</option>
-                            <option *ngFor="let list of zoneLists" [value]="list.zoneId" >{{list.zoneName}}</option>
-                        </select>
-                    </div> -->
-                 
                 </div>
 
                 <div class="row">
@@ -186,7 +154,7 @@
                         <input type="text" class="form-control" formControlName="houseNo"
                             placeholder="Input house number" />
                     </div>
-                  
+
                 </div>
 
                 <div class="row">
@@ -206,7 +174,8 @@
                         <label class="form-label">Department</label>
                         <select n class="form-control" formControlName="departmentId">
                             <option value="">-- Select Department --</option>
-                            <option *ngFor="let list of departmentList" [value]="list.departmentId">{{list.departmentName}}</option>
+                            <option *ngFor="let list of departmentList" [value]="list.departmentId">
+                                {{list.departmentName}}</option>
                         </select>
                     </div>
                 </div>
@@ -219,10 +188,11 @@
 
                     <div class="col-md-4">
                         <label class="form-label">Staff Position</label>
-                            <select n class="form-control" formControlName="staffPosition">
-                                <option value="">-- Select Staff Position --</option>
-                                <option *ngFor="let list of positionList" [value]="list.staffPersonalPositionId">{{list.staffPersonalPosition_name}}</option>
-                            </select>
+                        <select n class="form-control" formControlName="staffPosition">
+                            <option value="">-- Select Staff Position --</option>
+                            <option *ngFor="let list of positionList" [value]="list.staffPersonalPositionId">
+                                {{list.staffPersonalPosition_name}}</option>
+                        </select>
                     </div>
 
                     <div class="col-md-4">
@@ -230,11 +200,11 @@
                         <input type="checkbox" class="form-check-input" formControlName="isStaffHaveDisability" />
                     </div>
 
-              
+
                 </div>
 
                 <div class="row">
-                   
+
                     <div class="col-md-4">
                         <label class="form-label">Work Phone</label>
                         <input type="tel" class="form-control" formControlName="workPhone"
@@ -249,19 +219,19 @@
 
                     <div class="col-md-4">
                         <label class="form-label">Bank Name</label>
-                    
-                            <select name="" id="" class="form-control" formControlName="bankName">
-                                <option value="">-- Select Bank Name --</option>
-                                <option value="PBZ">PBZ</option>
-                                <option value="CRDB">CRDB</option>
-                                <option value="NMB">NMB</option>
-                                <option value="Equity">Equity</option>
-                                <option value="NBC">NBC</option>
-                                <option value="AMANA">AMANA</option>
-                            </select>
+
+                        <select name="" id="" class="form-control" formControlName="bankName">
+                            <option value="">-- Select Bank Name --</option>
+                            <option value="PBZ">PBZ</option>
+                            <option value="CRDB">CRDB</option>
+                            <option value="NMB">NMB</option>
+                            <option value="Equity">Equity</option>
+                            <option value="NBC">NBC</option>
+                            <option value="AMANA">AMANA</option>
+                        </select>
                     </div>
 
-                  
+
                 </div>
 
                 <div class="row">
@@ -271,7 +241,7 @@
                             placeholder="Input account number" />
                     </div>
 
-        
+
                     <div class="col-md-4">
                         <label class="form-label">Zan ID/National Id/Passport</label>
                         <input type="text" class="form-control" formControlName="personalId"
@@ -279,15 +249,10 @@
                     </div>
 
 
-                    <!-- <div class="col-md-4">
-                        <label class="form-label">Staff Category</label>
-                        <input class="form-control" formControlName="staffCategory"
-                            placeholder="Input staff category" />
-                    </div> -->
                 </div>
                 <div class="row mt-5">
                     <div class="col-md-5">
-                        <button type="submit" class="btn btn-primary" (click)=" submit()">Submit</button>
+                        <button type="submit" class="btn btn-primary" (click)=" submit()">Edit</button>
                     </div>
                 </div>
 

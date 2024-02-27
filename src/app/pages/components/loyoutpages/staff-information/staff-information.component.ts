@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { MemberStaffService } from 'src/app/pages/services/member-staff.service';
 import { StaffsService } from 'src/app/pages/services/membersservice/staffs.service';
 
@@ -19,7 +20,8 @@ export class StaffInformationComponent implements OnInit {
 
 
   constructor(private staffServices: StaffsService,
-    private memberStaffService:MemberStaffService) {
+    private memberStaffService:MemberStaffService,
+    private router:Router) {
   }
   ngOnInit(): void {
     this.getAllStaff();
@@ -39,6 +41,10 @@ export class StaffInformationComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     })
+  }
+
+  onEdit(data:any){
+    this.router.navigate(['/edit-staff'], { queryParams: { id: data.id} });
   }
 
 }
