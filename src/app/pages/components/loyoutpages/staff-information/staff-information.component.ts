@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MemberStaffService } from 'src/app/pages/services/member-staff.service';
 import { StaffsService } from 'src/app/pages/services/membersservice/staffs.service';
 
 @Component({
@@ -10,13 +13,16 @@ import { StaffsService } from 'src/app/pages/services/membersservice/staffs.serv
 export class StaffInformationComponent implements OnInit {
   dataSource = new MatTableDataSource();
   displayedColumns: string[] = ['id', 'fullName', 'regNo', 'gender', 'physicalAddress', 'phoneNumber', 'action'];
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
   loding: boolean = true;
 
 
-  constructor(private staffServices: StaffsService) {
+  constructor(private staffServices: StaffsService,
+    private memberStaffService:MemberStaffService) {
   }
   ngOnInit(): void {
-    this.getAllStaff()
+    this.getAllStaff();
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -27,9 +33,12 @@ export class StaffInformationComponent implements OnInit {
   }
 
   getAllStaff() {
-    this.staffServices.getPosts().subscribe((res: any) => {
-      this.dataSource = new MatTableDataSource(res)
-      this.loding = false
+    this.memberStaffService.getAllStaff().subscribe((resp:any)=>{
+      this.dataSource = new MatTableDataSource(resp);
+      // console.log(this.dataSource.data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     })
   }
+
 }

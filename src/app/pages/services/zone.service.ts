@@ -21,4 +21,8 @@ export class ZoneService {
   editZone(id:any,body:any){
     return this.http.put(this.zoneAPI + "/" + id,body)
   }
+
+  getByZoneId(id:any){
+    return this.http.get(this.zoneAPI + "/" + id)
+  }
 }

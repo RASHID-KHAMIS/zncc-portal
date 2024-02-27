@@ -109,8 +109,11 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label class="form-label">Marital Status</label>
-                        <input type="text" class="form-control" formControlName="maritalStatus"
-                            placeholder="Input marital status" />
+                            <select  class="form-control" formControlName="maritalStatus">
+                                <option value="">-- Select Merital Status --</option>
+                                <option value="Married">Married</option>
+                                <option value="Not Married">Not Married</option>
+                            </select>
                     </div>
 
                     <div class="col-md-4">
@@ -125,6 +128,14 @@
                             <option *ngFor="let list of zoneLists" [value]="list.zoneId">{{list.zoneName}}</option>
                         </select>
                     </div>
+
+                    <!-- <div class="col-md-4">
+                        <label class="form-label">Zone</label>
+                        <select  class="form-control" formControlName="zoneId" (change)="callByZone($event)">
+                            <option value="">-- Select Zone --</option>
+                            <option *ngFor="let list of zoneLists" [value]="list.zoneId" >{{list.zoneName}}</option>
+                        </select>
+                    </div> -->
                  
                 </div>
 
@@ -185,12 +196,6 @@
                             placeholder="Input post code" />
                     </div>
 
-
-                    <!-- <div class="col-md-4">
-                        <label class="form-label">Zan ID</label>
-                        <input type="text" class="form-control" formControlName="zanId" placeholder="Input Zan ID" />
-                    </div> -->
-
                     <div class="col-md-4">
                         <label class="form-label">Phone Number</label>
                         <input type="tel" class="form-control" formControlName="phoneNumber"
@@ -209,25 +214,6 @@
                 </div>
 
                 <div class="row">
-                    <!-- <div class="col-md-4">
-                        <label class="form-label">Religion</label>
-                            <select name="" id="" class="form-control" formControlName="religion">
-                                <option value="">-- Select Religion --</option>
-                                <option value="Muslim">Muslim</option>
-                                <option value="Christian">Christian</option>
-                                <option value="Hindu">Hindu</option>
-                                <option value="None">None</option>
-                            </select>
-                    </div> -->
-
-                    <!-- <div class="col-md-4">
-                        <label class="form-label">Termination Status</label>
-                        <input type="number" class="form-control" formControlName="terminationStatus"
-                            placeholder="Input termination status" />
-                    </div> -->
-
-                 
-
                     <div class="col-md-4">
                         <label class="form-label">Email</label>
                         <input type="email" class="form-control" formControlName="email" placeholder="Input email" />
@@ -283,6 +269,13 @@
                         <label class="form-label">Account Number</label>
                         <input type="text" class="form-control" formControlName="accountNumber"
                             placeholder="Input account number" />
+                    </div>
+
+        
+                    <div class="col-md-4">
+                        <label class="form-label">Zan ID/National Id/Passport</label>
+                        <input type="text" class="form-control" formControlName="personalId"
+                            placeholder="Input staffPosition" />
                     </div>
 
 

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DepartmentService } from 'src/app/pages/services/department.service';
 import { DistrictService } from 'src/app/pages/services/district.service';
+import { MemberStaffService } from 'src/app/pages/services/member-staff.service';
 import { StaffsService } from 'src/app/pages/services/membersservice/staffs.service';
 import { RegionService } from 'src/app/pages/services/region.service';
 import { ShehiaService } from 'src/app/pages/services/shehia.service';
@@ -28,7 +29,6 @@ export class RegisterFormComponent implements OnInit {
   progress = 0;
   message = '';
 
-
   imageInfos?: Observable<any>;
   constructor(private router:Router,
     private staffsService: StaffsService,
@@ -36,7 +36,8 @@ export class RegisterFormComponent implements OnInit {
     private regionService:RegionService,
     private districtService:DistrictService,
     private shehiaService:ShehiaService,
-    private departmentService:DepartmentService) { }
+    private departmentService:DepartmentService,
+    private memberStaffService:MemberStaffService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -103,6 +104,13 @@ export class RegisterFormComponent implements OnInit {
     })
   }
 
+//   callByZone(event: any) {
+//     const selectedValue = event.target ? (event.target as HTMLSelectElement).value : null;
+//     if (selectedValue !== null) {
+//         console.log(selectedValue);
+//     }
+// }
+
   regionList:any
   fetchAllRegion(){
     this.regionService.getAllRegion().subscribe((resp:any)=>{
@@ -159,7 +167,7 @@ export class RegisterFormComponent implements OnInit {
       accountNumber: new FormControl(null,Validators.required),
       departmentId: new FormControl(null,Validators.required),
       staffPosition: new FormControl(null,Validators.required),
-      staffCategory: new FormControl(null,Validators.required),
+      personalId: new FormControl(null),
       // religion: new FormControl(null),
 
     });
@@ -168,11 +176,12 @@ export class RegisterFormComponent implements OnInit {
 
   submit() {
     const values = this.staffForm.value;
-    console.log(values);
+    // console.log(values);
+    this.memberStaffService.addStaff(values).subscribe((resp:any)=>{
+          this.alert();
+      this.reload();
+    })
 
-    this.alert();
-    this.reload();
-     
   }
 
   succeAlart() {

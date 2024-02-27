@@ -44,6 +44,7 @@ import { DepartmentComponent } from './pages/components/loyoutpages/department/d
 import {MatSelectModule} from '@angular/material/select';
 import { ViewMemberInfoComponent } from './pages/components/view-member-info/view-member-info.component';
 import { UserManagementComponent } from './pages/components/loyoutpages/user-management/user-management.component';
+import { StaffPositionComponent } from './pages/components/staff-position/staff-position.component';
 
 
 @NgModule({
@@ -72,6 +73,7 @@ import { UserManagementComponent } from './pages/components/loyoutpages/user-man
     DepartmentComponent,
     ViewMemberInfoComponent,
     UserManagementComponent,
+    StaffPositionComponent,
    
   ],
   imports: [

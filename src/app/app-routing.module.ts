@@ -21,6 +21,7 @@ import { BusinessSizeComponent } from './pages/components/loyoutpages/business-s
 import { DepartmentComponent } from './pages/components/loyoutpages/department/department.component';
 import { ViewMemberInfoComponent } from './pages/components/view-member-info/view-member-info.component';
 import { UserManagementComponent } from './pages/components/loyoutpages/user-management/user-management.component';
+import { StaffPositionComponent } from './pages/components/staff-position/staff-position.component';
 
 
 
@@ -84,6 +85,10 @@ const routes: Routes = [
       {
         path:'user-management',
         component:UserManagementComponent
+      },
+      {
+        path:'staff-position',
+        component:StaffPositionComponent
       }
       
       
