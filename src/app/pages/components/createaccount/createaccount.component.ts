@@ -27,10 +27,6 @@ export class CreateaccountComponent implements OnInit {
   createForm() {
     this.userForm = new FormGroup({
       emailAddress:new FormControl(null,Validators.email),
-      password: new FormControl(null, [Validators.required,Validators.minLength(6),
-        Validators.pattern(/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*_+-]).{6,}$/)]),
-        repeatPassword: new FormControl(null, [Validators.required,Validators.minLength(6),
-        Validators.pattern(/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*_+-]).{6,}$/)]),
         dob: new FormControl(null,Validators.required),
         nationality: new FormControl(null,Validators.required),
         idNumber: new FormControl(null,Validators.required),
