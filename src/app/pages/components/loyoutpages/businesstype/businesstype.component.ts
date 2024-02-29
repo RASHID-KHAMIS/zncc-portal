@@ -72,7 +72,7 @@ export class BusinesstypeComponent implements OnInit {
 
   submit() {
     const values = this.businesSectorForm.value;
-    console.log(values);
+    // console.log(values);
     
     this.businessService.addBusinessSector(values).subscribe((resp:any)=>{
       this.alert();

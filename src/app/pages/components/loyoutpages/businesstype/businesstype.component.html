@@ -51,8 +51,6 @@
         <div class="card-status-top bg-primary"></div>
         <mat-progress-bar mode="indeterminate" *ngIf="loding"></mat-progress-bar>
 
-
-
         <div style="margin:10px 0px 0px 10px;" class="example-form ml-3  mb-3">
             <label class="form-label"></label>
             <div class="input-icon">
@@ -140,36 +138,39 @@
 </div>
 
 
-<ng-template #callDialog>
-    <app-card title="Add Business Sector"><hr>
-      <form [formGroup]="businesSectorForm">
-        <div class="row">
-            <div class="col-md-6">
-                <mat-dialog-content>
-                    <mat-form-field appearance="outline" class="example-full-width">
-                        <mat-label>Sector Code</mat-label>
-                        <input matInput formControlName="sectorCode">
-                    </mat-form-field>
-                </mat-dialog-content>
+    <ng-template #callDialog>
+        <app-card title="Add Business Sector">
+          <form [formGroup]="businesSectorForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-dialog-content>
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <mat-label>Sector Code</mat-label>
+                            <input matInput formControlName="sectorCode">
+                        </mat-form-field>
+                    </mat-dialog-content>
+                </div>
+    
+                <div class="col-md-6">
+                    <mat-dialog-content>
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <mat-label>Sector Name</mat-label>
+                            <input matInput formControlName="sectorName">
+                        </mat-form-field>
+                    </mat-dialog-content>
+                </div>
             </div>
-
-            <div class="col-md-6">
-                <mat-dialog-content>
-                    <mat-form-field appearance="outline" class="example-full-width">
-                        <mat-label>Sector Name</mat-label>
-                        <input matInput formControlName="sectorName">
-                    </mat-form-field>
-                </mat-dialog-content>
-            </div>
+          </form><br>
+          <div class="card-bottom">
+            <button mat-raised-button matDialogClose="yes" >Cancel</button> &nbsp;
+            <button mat-raised-button  color="primary"  matDialogClose="yes" (click)="submit()">Add</button>
         </div>
-      </form><br>
-      <div class="card-bottom">
-        <button mat-raised-button matDialogClose="yes" >Cancel</button> &nbsp;
-        <button mat-raised-button  color="primary"  matDialogClose="yes" (click)="submit()">Add</button>
-    </div>
+    
+        </app-card>
+        </ng-template>
 
-    </app-card>
-    </ng-template>
+
+
 
 
 

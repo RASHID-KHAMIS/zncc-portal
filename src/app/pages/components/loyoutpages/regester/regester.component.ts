@@ -128,6 +128,8 @@ export class RegesterComponent implements OnInit {
       company_certificate_number:new FormControl(''),
       upload_BPRA: new FormControl(''),
       representative_CV: new FormControl(''),
+      street: new FormControl(''),
+      businessActivity: new FormControl(''),
       memberAccountId:new FormControl(this.memberAccountId)
     });
   }

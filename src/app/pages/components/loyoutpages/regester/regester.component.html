@@ -67,13 +67,16 @@
                                 <input type="tel" class="form-control" formControlName="company_phone"
                                     placeholder="Input company phone" />
                             </div>
-                            <div class="col-md-4">
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
                                 <label class="form-label">Representative Phone</label>
                                 <input type="text" class="form-control" formControlName="representative_phone"
                                     placeholder="Input representer No" />
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <label class="form-label">Region</label>
 
                                 <select class="form-control" formControlName="regionId">
@@ -83,13 +86,19 @@
                                 </select>
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <label class="form-label">District</label>
                                 <select class="form-control" formControlName="districtId">
                                     <option value="">-- Select District --</option>
                                     <option *ngFor="let district of districtList" [value]="district.id">
                                         {{district.districtName}}</option>
                                 </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label">Street Name</label>
+                                <input type="text" class="form-control" formControlName="street"
+                                    placeholder="Input Street Name" />
                             </div>
                         </div>
                     </div>
@@ -227,9 +236,13 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4">
+                        <label class="form-label">Business Activity</label>
+                        <input type="text" class="form-control" formControlName="businessActivity"
+                            placeholder="Input business activity" />
+                    </div>
+                    <div class="col-md-4">
                         <label class="form-label">Company Certificate</label>
                         <div class="row">
-
                             <div *ngIf="currentFile && progress" class="progress my-3">
                                 <div class="progress-bar progress-bar-info" role="progressbar"
                                     attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"

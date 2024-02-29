@@ -3,8 +3,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { BusinessService } from 'src/app/pages/services/bussnessservices/business.service';
 import { MembershipService } from 'src/app/pages/services/membership.service';
 import { MemberService } from 'src/app/pages/services/membersservice/member.service';
+import { ZoneService } from 'src/app/pages/services/zone.service';
 
 @Component({
   selector: 'app-members',
@@ -19,11 +21,14 @@ export class MembersComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
   
   constructor(private membershipService: MembershipService,
-    private router:Router) {
+    private router:Router,
+    private businessService:BusinessService,
+    private zoneService:ZoneService) {
 
   }
   ngOnInit(): void {
     this.getAllMembership();
+    this.fetchAllBusinessSector()
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -32,6 +37,15 @@ export class MembersComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  sectorList:any;
+  fetchAllBusinessSector(){
+    this.businessService.getAllBusinessSector().subscribe((resp:any)=>{
+      // console.log(resp);
+      this.sectorList = resp;
+    })
+  }
+
 
   getAllMembership() {
     this.membershipService.getAllMembership().subscribe((res: any) => {
