@@ -154,7 +154,9 @@
                                     </label> -->
                                 </div>
                                 <div class="form-footer">
-                                    <button  class="btn btn-primary w-100" (click)="onLogin()">Sign in</button>
+                                    <button  class="btn btn-primary w-100" (click)="onLogin()"> <div style="display: flex; justify-content: center; align-items: center;">
+                                        <mat-spinner diameter="30" *ngIf="loading"></mat-spinner>
+                                      </div> &nbsp;Sign in</button>
                                 </div>
                             </form>
                             <div class="text-right text-muted mt-3">

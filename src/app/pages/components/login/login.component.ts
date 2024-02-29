@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UsersService } from '../../services/users.service';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import Swal from 'sweetalert2';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
   shouldAddClass1 = false;
   shouldAddClass2 = true;
   password = false
+  loading:boolean = false;
   ngOnInit(): void {
     this.createForm()
   }
@@ -52,14 +54,19 @@ export class LoginComponent implements OnInit {
     } else if (this.loginForm.value.password == '') {
       this.password = true
     } else {
-      
+      this.loading = true;
       const values = this.loginForm.value;
       const jwtHelper = new JwtHelperService();
       this.usersService.userLogin(values).subscribe((resp:any)=>{
-        // console.log(resp);
+      if(resp?.error?.status==404 || resp?.error?.status==401){
+        this.alert2();
+        this.loading = false;
+      }else{
         const decodedToken = jwtHelper.decodeToken(resp.accessToken);
         // console.log(decodedToken.sub);
+        // console.log(resp);
         
+        this.loading = false;
         if(decodedToken.sub.role.length >= 1){
           // console.log(decodedToken.sub.role);
           localStorage.setItem('role',decodedToken.sub.role),
@@ -75,7 +82,13 @@ export class LoginComponent implements OnInit {
         }else{
           this.router.navigate(["home"])
         }
-      })
+      }
+      },  (error: HttpErrorResponse) => {
+        // console.log();
+        
+        this.alert2();
+      }
+      )
      
     }
   }
@@ -96,6 +109,26 @@ export class LoginComponent implements OnInit {
     Toast.fire({
       icon: 'success',
       title: 'Signed in successfully'
+    })
+  }
+
+
+  alert2(){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'error',
+      title: 'Invalid Credentials'
     })
   }
 

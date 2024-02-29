@@ -47,6 +47,7 @@ import { UserManagementComponent } from './pages/components/loyoutpages/user-man
 import { StaffPositionComponent } from './pages/components/staff-position/staff-position.component';
 import { EditStaffComponent } from './pages/components/loyoutpages/edit-staff/edit-staff.component';
 import { ResetPasswordComponent } from './pages/components/reset-password/reset-password.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
@@ -101,7 +102,8 @@ import { ResetPasswordComponent } from './pages/components/reset-password/reset-
     MatInputModule,
     MatCardModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
