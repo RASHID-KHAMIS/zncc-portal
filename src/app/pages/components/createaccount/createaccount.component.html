@@ -202,10 +202,14 @@
                                 <div class="row">
 
                                     <div class="col-md-4">
+                                       
                                         <div class="form-group ">
-                                            <label for="nationality">Nationality</label>
+                                            <label for="gender">Nationality</label>
                                             <div>
-                                                <input type="text" class="form-control" id="nationality" formControlName="nationality">
+                                                <select class="form-control"  formControlName="nationality">
+                                                    <option >--Select Country--</option>
+                                                    <option *ngFor="let  list of nationality" [value]="list.value">{{list.viewValue}}</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -292,7 +296,10 @@
                                             Create Account
                                         </button>
                                     </div>
-
+                                
+                                    <div class="col-md-4">
+                                        <mat-spinner diameter="30" *ngIf="loading"></mat-spinner>
+                                    </div>
                                 </div>
                                 <!-- <div class="col-md-4">
                                     <div class="form-group ">

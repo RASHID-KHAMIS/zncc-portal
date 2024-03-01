@@ -29,4 +29,8 @@ export class MembershipService {
   getMembershirpsByMemberID(id:any){
     return this.http.get(this.membershipAPI + "/" + "with-account-id" + "/" + id)
   }
+
+  verify(body:any){
+    return this.http.post(this.membershipAPI +"/" + "verfyMember",body)
+  }
 }

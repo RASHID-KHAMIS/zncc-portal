@@ -48,6 +48,7 @@ import { StaffPositionComponent } from './pages/components/staff-position/staff-
 import { EditStaffComponent } from './pages/components/loyoutpages/edit-staff/edit-staff.component';
 import { ResetPasswordComponent } from './pages/components/reset-password/reset-password.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { NewApplicantComponent } from './pages/components/new-applicant/new-applicant.component';
 
 
 
@@ -81,6 +82,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     StaffPositionComponent,
     EditStaffComponent,
     ResetPasswordComponent,
+    NewApplicantComponent,
 
    
   ],

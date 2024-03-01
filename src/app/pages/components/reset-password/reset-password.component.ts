@@ -23,7 +23,7 @@ export class ResetPasswordComponent implements OnInit{
     }
     createForm() {
       this.resetForm = new FormGroup({
-        oldPassword: new FormControl(''),
+        // oldPassword: new FormControl(''),
         password: new FormControl(''),
         password2:new FormControl(''),
       });
@@ -70,7 +70,8 @@ export class ResetPasswordComponent implements OnInit{
             console.log(resp);
             
             this.alert2();
-            this.router.navigate(["home"])
+            this.router.navigate([""])
+
           })
         }
       

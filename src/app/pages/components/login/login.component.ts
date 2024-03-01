@@ -64,7 +64,6 @@ export class LoginComponent implements OnInit {
       }else{
         const decodedToken = jwtHelper.decodeToken(resp.accessToken);
         // console.log(decodedToken.sub);
-        // console.log(resp);
         
         this.loading = false;
         if(decodedToken.sub.role.length >= 1){
@@ -77,15 +76,14 @@ export class LoginComponent implements OnInit {
         }
         this.alert();
         if(decodedToken.sub.loginStatus == 0){
-          // this.router.navigate(["reset-password"])
-          this.router.navigate(['/reset-password'], { queryParams: { id: decodedToken.sub.id} });
+          this.alert3();
+          // this.router.navigate(['/reset-password'], { queryParams: { id: decodedToken.sub.id} });
         }else{
           this.router.navigate(["home"])
         }
       }
       },  (error: HttpErrorResponse) => {
-        // console.log();
-        
+
         this.alert2();
       }
       )
@@ -131,6 +129,26 @@ export class LoginComponent implements OnInit {
       title: 'Invalid Credentials'
     })
   }
+
+  alert3(){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'error',
+      title: 'You have not verify your registration'
+    })
+  }
+
 
 
 

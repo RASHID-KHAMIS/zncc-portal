@@ -1,4 +1,3 @@
-
 <div class="page-header">
     <div class="container">
         <div class="row align-items-center">
@@ -9,46 +8,56 @@
                 <h1 class="fw-bold">{{memberInfo.company_name}}</h1>
                 <div class="my-2">
                 </div>
-                <div class="list-inline list-inline-dots text-secondary">
-                    <div class="list-inline-item">
-                        <!-- Download SVG icon from http://tabler-icons.io/i/map -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24"
-                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M3 7l6 -3l6 3l6 -3v13l-6 3l-6 -3l-6 3v-13"></path>
-                            <path d="M9 4v13"></path>
-                            <path d="M15 7v13"></path>
-                        </svg>
-                        {{memberInfo.regionName}}, {{memberInfo.districtName}}
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="list-inline list-inline-dots text-secondary">
+                            <div class="list-inline-item">
+                                <!-- Download SVG icon from http://tabler-icons.io/i/map -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M3 7l6 -3l6 3l6 -3v13l-6 3l-6 -3l-6 3v-13"></path>
+                                    <path d="M9 4v13"></path>
+                                    <path d="M15 7v13"></path>
+                                </svg>
+                                {{memberInfo.regionName}}, {{memberInfo.districtName}}
+                            </div>
+                            <div class="list-inline-item">
+                                <!-- Download SVG icon from http://tabler-icons.io/i/mail -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path
+                                        d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z">
+                                    </path>
+                                    <path d="M3 7l9 6l9 -6"></path>
+                                </svg>
+                                <a href="#" class="text-reset">{{memberInfo.company_email}}</a>
+                            </div>
+                            <div class="list-inline-item">
+                                <!-- Download SVG icon from http://tabler-icons.io/i/cake -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M3 20h18v-8a3 3 0 0 0 -3 -3h-12a3 3 0 0 0 -3 3v8z"></path>
+                                    <path
+                                        d="M3 14.803c.312 .135 .654 .204 1 .197a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1c.35 .007 .692 -.062 1 -.197">
+                                    </path>
+                                    <path d="M12 4l1.465 1.638a2 2 0 1 1 -3.015 .099l1.55 -1.737z"></path>
+                                </svg>
+                                {{memberInfo.registerDate | date:'dd/MM/YYYY'}}
+                            </div>
+                        </div>
                     </div>
-                    <div class="list-inline-item">
-                        <!-- Download SVG icon from http://tabler-icons.io/i/mail -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24"
-                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z">
-                            </path>
-                            <path d="M3 7l9 6l9 -6"></path>
-                        </svg>
-                        <a href="#" class="text-reset">{{memberInfo.company_email}}</a>
-                    </div>
-                    <div class="list-inline-item">
-                        <!-- Download SVG icon from http://tabler-icons.io/i/cake -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24"
-                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M3 20h18v-8a3 3 0 0 0 -3 -3h-12a3 3 0 0 0 -3 3v8z"></path>
-                            <path
-                                d="M3 14.803c.312 .135 .654 .204 1 .197a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1c.35 .007 .692 -.062 1 -.197">
-                            </path>
-                            <path d="M12 4l1.465 1.638a2 2 0 1 1 -3.015 .099l1.55 -1.737z"></path>
-                        </svg>
-                       {{memberInfo.registerDate | date:'dd/MM/YYYY'}}
+                    <div class="col-md-4 d-flex justify-content-end">
+                        <button mat-raised-button color="primary"  (click)="openDialog()">Verify</button> &nbsp;&nbsp;
+                        <button mat-raised-button color="primary">Comment</button>
                     </div>
                 </div>
+
             </div>
             <div class="col-auto ms-auto">
                 <div class="btn-list">
@@ -129,7 +138,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="card-title">Company  information</div>
+                                <div class="card-title">Company information</div>
                                 <div class="mb-2">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/book -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary" width="24"
@@ -159,7 +168,7 @@
                                     </svg>
                                     Company Email: <strong>{{memberInfo.company_email}}</strong>
                                 </div>
-                      
+
                                 <div class="mb-2">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary" width="24"
@@ -180,18 +189,18 @@
                                 <div>
                                     <!-- Download SVG icon from http://tabler-icons.io/i/clock -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary" width="24"
-                                    height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path
-                                        d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
-                                    </path>
-                                    <path d="M16 3v4"></path>
-                                    <path d="M8 3v4"></path>
-                                    <path d="M4 11h16"></path>
-                                    <path d="M11 15h1"></path>
-                                    <path d="M12 15v3"></path>
-                                </svg>
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                        </path>
+                                        <path d="M16 3v4"></path>
+                                        <path d="M8 3v4"></path>
+                                        <path d="M4 11h16"></path>
+                                        <path d="M11 15h1"></path>
+                                        <path d="M12 15v3"></path>
+                                    </svg>
                                     TRA Number: <strong>{{memberInfo.TRA_number}}</strong>
                                 </div>
                             </div>
@@ -202,7 +211,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="card-title">Representative  information</div>
+                                <div class="card-title">Representative information</div>
                                 <div class="mb-2">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/book -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary" width="24"
@@ -232,7 +241,7 @@
                                     </svg>
                                     Representative Email: <strong>{{memberInfo.representative_email}}</strong>
                                 </div>
-                      
+
                                 <div class="mb-2">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary" width="24"
@@ -253,19 +262,20 @@
                                 <div>
                                     <!-- Download SVG icon from http://tabler-icons.io/i/clock -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary" width="24"
-                                    height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path
-                                        d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
-                                    </path>
-                                    <path d="M16 3v4"></path>
-                                    <path d="M8 3v4"></path>
-                                    <path d="M4 11h16"></path>
-                                    <path d="M11 15h1"></path>
-                                    <path d="M12 15v3"></path>
-                                </svg>
-                                Gender: <strong>{{ memberInfo.gender === 'M' ? 'Male' : (memberInfo.gender === 'F' ? 'Female' : 'Unknown') }}</strong>
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                        </path>
+                                        <path d="M16 3v4"></path>
+                                        <path d="M8 3v4"></path>
+                                        <path d="M4 11h16"></path>
+                                        <path d="M11 15h1"></path>
+                                        <path d="M12 15v3"></path>
+                                    </svg>
+                                    Gender: <strong>{{ memberInfo.gender === 'M' ? 'Male' : (memberInfo.gender === 'F' ?
+                                        'Female' : 'Unknown') }}</strong>
                                 </div>
                             </div>
                         </div>
@@ -274,7 +284,33 @@
             </div>
         </div>
         <br>
-     
+
     </div>
-   
+
 </div>
+
+<ng-template #distributionDialog>
+    <app-card title="Business Size">
+        <hr>
+        <form [formGroup]="verifyForm">
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-form-field appearance="outline" style="width:100%;">
+                        <mat-label>Business Size</mat-label>
+                        <mat-select formControlName="businessSizeId">
+                            <mat-option *ngFor="let list of sizeList" [value]="list.businessSizeId">
+                                {{list.businessName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+        </form><br><br>
+
+        <div class="card-bottom">
+            <button mat-raised-button matDialogClose="yes">Cancel</button> &nbsp;
+            <button mat-raised-button color="primary" matDialogClose="yes" (click)="onSave()">Add</button>
+        </div>
+
+    </app-card>
+</ng-template>

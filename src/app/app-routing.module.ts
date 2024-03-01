@@ -24,6 +24,7 @@ import { UserManagementComponent } from './pages/components/loyoutpages/user-man
 import { StaffPositionComponent } from './pages/components/staff-position/staff-position.component';
 import { EditStaffComponent } from './pages/components/loyoutpages/edit-staff/edit-staff.component';
 import { ResetPasswordComponent } from './pages/components/reset-password/reset-password.component';
+import { NewApplicantComponent } from './pages/components/new-applicant/new-applicant.component';
 
 
 
@@ -100,6 +101,10 @@ const routes: Routes = [
         path:'edit-staff',
         component:EditStaffComponent
       },
+      {
+        path:'new-Applicant',
+        component:NewApplicantComponent
+      }
       
     ]
   }
