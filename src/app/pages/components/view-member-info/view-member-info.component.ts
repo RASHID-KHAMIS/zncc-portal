@@ -85,6 +85,10 @@ export class ViewMemberInfoComponent implements OnInit{
     
   }
 
+  onBack(){
+    this.router.navigate(['new-Applicant'])
+  }
+
   alert(){
     const Toast = Swal.mixin({
       toast: true,

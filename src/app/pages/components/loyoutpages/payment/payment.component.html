@@ -1,8 +1,8 @@
-<div class="page-header d-print-none">
+<!-- <div class="page-header d-print-none">
   <div class="" style="margin: 0 20px 0 20px;">
     <div class="row g-2 align-items-center">
       <div class="col">
-        <!-- Page pre-title -->
+ 
         <div class="page-pretitle">
 
         </div>
@@ -10,15 +10,10 @@
           Payment
         </h2>
       </div>
-      <!-- Page title actions -->
+   
       <div class="col-auto ms-auto d-print-none">
         <div class="btn-list">
-          <!-- <span class="d-none d-sm-inline">
-            <a href="#" class="btn">
-              New view
-            </a>
-          </span> -->
-
+      
         </div>
       </div>
     </div>
@@ -35,38 +30,12 @@
 
 
     <div class="col-12 mt-4">
-      <!-- <div class="card p-3">
-        <p class="mb-0 fw-bold h4">Payment </p>
-      </div> -->
     </div>
     <div class="col-12">
       <div class="card p-3">
         <div class="card-body border p-0">
           <p>
-            <!-- <a class="btn btn-primary w-100 h-100 d-flex align-items-center justify-content-between"
-              data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true"
-              aria-controls="collapseExample">
-              <span class="fw-bold">PayPal</span>
-              <span class="fab fa-cc-paypal">
-              </span>
-            </a> -->
-          </p>
-          <!-- <div class="collapse p-3 pt-0" id="collapseExample">
-            <div class="row">
-              <div class="col-8">
-                <p class="h4 mb-0">Summary</p>
-                <p class="mb-0"><span class="fw-bold">Product:</span><span class="c-green">: Name of
-                    product</span></p>
-                <p class="mb-0"><span class="fw-bold">Price:</span><span class="c-green">:$452.90</span></p>
-                <p class="mb-0">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque
-                  nihil neque
-                  quisquam aut
-                  repellendus, dicta vero? Animi dicta cupiditate, facilis provident quibusdam ab
-                  quis,
-                  iste harum ipsum hic, nemo qui!</p>
-              </div>
-            </div>
-          </div> -->
+        
         </div>
         <div class="card-body border p-0">
 
@@ -142,11 +111,105 @@
         </div>
       </div>
     </div>
-    <!-- <div class="col-12">
-      <div class="btn btn-primary payment">
-        Make Payment
+  </div>
+
+</div> -->
+
+<div class="page-header d-print-none">
+  <div class="" style="margin: 0 20px 0 20px;">
+      <div class="row g-2 align-items-center">
+          <div class="col">
+              <!-- Page pre-title -->
+              <div class="page-pretitle">
+
+              </div>
+              <h2 class="page-title">
+                  Zone List
+              </h2>
+          </div>
+          <!-- Page title actions -->
+          <div class="col-auto ms-auto d-print-none">
+              <div class="btn-list">
+                  <button class="btn btn-primary d-none d-sm-inline-block"  (click)="onBack()">Back</button>
+              </div>
+          </div>
       </div>
-    </div> -->
+  </div>
+</div>
+
+
+
+<div class="page-body ">
+
+  <div class="card">
+      <div class="card-status-top bg-primary"></div>
+      <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+      <div style="margin:10px 0px 0px 10px;" class="example-form ml-3  mb-3">
+          <label class="form-label"></label>
+          <div class="input-icon" style="width: 30%;" > 
+              <input type="text" #input (keyup)="applyFilter($event)" class="form-control form-control-rounded"
+                  placeholder="Search…" />
+              <span class="input-icon-addon">
+                  <!-- SVG icon from http://tabler-icons.io/i/search -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                      <path fill="currentColor"
+                          d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5l-1.5 1.5l-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16A6.5 6.5 0 0 1 3 9.5A6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14S14 12 14 9.5S12 5 9.5 5Z" />
+                  </svg>
+              </span>
+          </div>
+      </div>
+      <div style="margin: 10px;">
+
+
+          <table mat-table [dataSource]="dataSource" matSort>
+
+              <!-- ID Column -->
+              <ng-container matColumnDef="No">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> SNo. </th>
+                  <td mat-cell *matCellDef="let row;let i = index"> {{i + 1}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="invoiceNumber">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Invoice Number </th>
+                  <td mat-cell *matCellDef="let row"> {{row.invoiceNumber}}
+                  </td>
+              </ng-container>
+              <ng-container matColumnDef="nvoiceDate">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Invoice Date</th>
+                  <td mat-cell *matCellDef="let row"> {{row.nvoiceDate | date:'dd-MM-YYYY'}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="invoiceAmount">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
+                <td mat-cell *matCellDef="let row"> {{row.invoiceAmount | number}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="paymentStatus">
+              
+
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                    <td mat-cell *matCellDef="let row">
+                      <span *ngIf="row.paymentStatus == 1">
+                        <span class="badge badge-success">PAID</span>
+                      </span>
+                      <span *ngIf="row.paymentStatus == 0">
+                        <span class="badge badge-danger"> NOT PAID </span>
+                      </span>
+                    </td>
+          </ng-container>
+
+        
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+              <!-- Row shown when there is no matching data. -->
+              <tr class="mat-row" *matNoDataRow>
+                  <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+              </tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[ 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+      </div>
   </div>
 
 </div>
+
