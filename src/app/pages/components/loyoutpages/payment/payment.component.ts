@@ -36,8 +36,6 @@ export class PaymentComponent implements OnInit{
     }
   }
 
-
-
   fetchAllInvoice(){
     this.invoicesService.getAllInvoice().subscribe((resp:any)=>{
       // console.log(resp);
