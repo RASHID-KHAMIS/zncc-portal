@@ -1,0 +1,8 @@
+{
+    "/api": {
+      "target": "https://zncc-service.edugamez.org",
+      "secure": false,
+      "changeOrigin": true
+    }
+  }
+  

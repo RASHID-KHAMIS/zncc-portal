@@ -253,7 +253,7 @@
                             <div>
                                 <label class="btn btn-default" style="width: 100%;">
                                     <input type="file" accept="image/*" (change)="selectFile($event)"
-                                        style="width: 100%;" formControlName="upload_BPRA" />
+                                        style="width: 100%;"  #imageInput (change)="processFile(imageInput)" id="profile"/>
                                 </label>
                             </div>
                         </div>
@@ -275,7 +275,8 @@
                                   
                     <label class="btn btn-default" style="width: 100%;">
                         <input type="file" accept="image/*" (change)="selectFile($event)"
-                        style="width: 100%;" formControlName="representative_CV" />
+                        style="width: 100%;" 
+                         />
                     </label>
                             </div>
                         </div>
@@ -293,5 +294,7 @@
 
         </div>
     </div>
+
+    
 
 </div>

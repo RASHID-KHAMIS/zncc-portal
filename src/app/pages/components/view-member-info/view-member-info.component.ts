@@ -5,6 +5,10 @@ import { BusinessService } from '../../services/bussnessservices/business.servic
 import { MatDialog } from '@angular/material/dialog';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { ZoneService } from '../../services/zone.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MembershipUploadService } from '../../services/membership-upload.service';
+import { PictureDialogComponentComponent } from '../loyoutpages/picture-dialog-component/picture-dialog-component.component';
 
 @Component({
   selector: 'app-view-member-info',
@@ -14,11 +18,18 @@ import Swal from 'sweetalert2';
 export class ViewMemberInfoComponent implements OnInit{
   @ViewChild('distributionDialog') distributionDialog!: TemplateRef<any>;
 
+  dataSource = new MatTableDataSource();
+  displayedColumns: string[] = ['No', 'Category','action'];
+  loading: boolean = true;
+
+
   verifyForm!:FormGroup;
   constructor(private router:Router,
     private route:ActivatedRoute,
     private membershipService:MembershipService,
     private businessService:BusinessService,
+    private zoneService:ZoneService,
+    private membershipUploadService:MembershipUploadService,
     private dialog:MatDialog){}
   ngOnInit(): void {
     this.fetchAllBusinessSize();
@@ -27,15 +38,72 @@ export class ViewMemberInfoComponent implements OnInit{
     const member = this.route.snapshot.queryParamMap.get('id');
     // console.log(member);
     this.fetchMemberByID(member)
+    this.fetchPictureById(member)
   
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+
+  fetchPictureById(member:any){
+    this.membershipUploadService.getPictureById(member).subscribe((resp:any)=>{
+      // console.log(resp);
+      this.dataSource = new MatTableDataSource(resp);
+    })
+      
+    
+      // this.loading = false;
+      
+    // })
+  }
+
+  openPictureDialog(member: any): void {
+    console.log(member.file_path);
+    
+    const dialogRef = this.dialog.open(PictureDialogComponentComponent, {
+      data: { pictureUrl: member.file_path } // Assuming 'file_path' contains the URL of the picture
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  openPdf(file: any) {
+    // if (file && file.file_path) {
+    //   const extension = file.file_path.split('.').pop().toLowerCase();
+    //   if (extension === 'pdf') {
+    //     window.open('https://'+file.file_path, '_blank');
+    //   } else {
+    //     console.error('The file is not a PDF.');
+    //   }
+    // } else {
+    //   console.error('Invalid file object.');
+    // }
+
+    if (file && file.file_path) {
+      const extension = file.file_path.split('.').pop().toLowerCase();
+      if (extension === 'pdf') {
+        const dialogOptions = 'width=800,height=600,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes';
+        window.open('https://'+file.file_path, 'PDF Dialog', dialogOptions);
+      } else {
+        console.error('The file is not a PDF.');
+      }
+    } else {
+      console.error('Invalid file object.');
+    }
+  }
   sizeList:any;
   fetchAllBusinessSize(){
     this.businessService.getAllBusinessSize().subscribe((resp:any)=>{
       this.sizeList =resp;
       // console.log(resp);
-      
     })
   }
 

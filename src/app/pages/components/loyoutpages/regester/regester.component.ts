@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { BusinessService } from 'src/app/pages/services/bussnessservices/business.service';
 import { DistrictService } from 'src/app/pages/services/district.service';
+import { MembershipUploadService } from 'src/app/pages/services/membership-upload.service';
 import { MembershipService } from 'src/app/pages/services/membership.service';
 import { MemberService } from 'src/app/pages/services/membersservice/member.service';
 import { RegionService } from 'src/app/pages/services/region.service';
@@ -35,13 +36,17 @@ export class RegesterComponent implements OnInit {
 
   imageInfos?: Observable<any>;
   memberAccountId:any;
+  loading:boolean = true;
+  files:any
   constructor(private fb: FormBuilder, 
     private router:Router,
     private memberService: MemberService,
     private regionService:RegionService,
     private districtService:DistrictService,
     private businessService:BusinessService,
-    private membershipService:MembershipService) { }
+    private membershipService:MembershipService,
+    private membershipUploadService:MembershipUploadService) { }
+    
 
   ngOnInit(): void {
     this.memberAccountId = localStorage.getItem('memberAccountId'),
@@ -50,6 +55,19 @@ export class RegesterComponent implements OnInit {
     this.fetchAllDistrict();
     this.fetchBusinessSector();
 
+  }
+
+  processFile(imageInput: any) {
+    this.loading = true;
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
+    this.files = file;
+    reader.addEventListener('load', (event: any) => {
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+      this.loading = false;
+    });
+
+    reader.readAsDataURL(file);
   }
 
     // Function to handle radio button click
@@ -94,18 +112,7 @@ export class RegesterComponent implements OnInit {
     }
   }
 
-  upload(): void {
-    this.progress = 0;
-    if (this.selectedFiles) {
-      const file: File | null = this.selectedFiles.item(0);
 
-      if (file) {
-        this.currentFile = file;
-      }
-
-      this.selectedFiles = undefined;
-    }
-  }
 
   initForm() {
     this.memberForm = new FormGroup({
@@ -126,8 +133,8 @@ export class RegesterComponent implements OnInit {
       businessSectorId: new FormControl(''),
       TRA_number: new FormControl(''),
       company_certificate_number:new FormControl(''),
-      upload_BPRA: new FormControl(''),
-      representative_CV: new FormControl(''),
+      upload_BPRA: new FormControl('BPRA'),
+      representative_CV: new FormControl('representative_CV'),
       street: new FormControl(''),
       businessActivity: new FormControl(''),
       memberAccountId:new FormControl(this.memberAccountId)
@@ -159,67 +166,23 @@ export class RegesterComponent implements OnInit {
   submit() {
     const values = this.memberForm.value;
     this.membershipService.addMembership(values).subscribe((resp:any)=>{
-      // console.log('added');
+      const form = new FormData();
+      // if (this.files!=null) {
+        
+      // }
+      form.append('file', this.files, this.files.name);
+      form.append('fileCategory', values.upload_BPRA);
+      this.membershipUploadService.addFilesUpload(resp.memberShipFormId,form).subscribe((resp)=>{
+        console.log('uploaded');
+        
+      })
       this.alert();
       this.reload()
       
     })
   }
 
-  succeAlart() {
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
 
-    Toast.fire({
-      icon: 'success',
-      title: 'Signed in successfully'
-    })
-  }
-  invalidAlart() {
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
-
-    Toast.fire({
-      icon: 'error',
-      title: 'Invalid Email Or Password'
-    })
-  }
-  failedAlert() {
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
-
-    Toast.fire({
-      icon: 'error',
-      title: 'Un Authorized'
-    })
-  }
 
   reload(){
     this.router.navigateByUrl('',{skipLocationChange:true}).then(()=>{

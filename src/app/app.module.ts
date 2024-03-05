@@ -49,6 +49,11 @@ import { EditStaffComponent } from './pages/components/loyoutpages/edit-staff/ed
 import { ResetPasswordComponent } from './pages/components/reset-password/reset-password.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { NewApplicantComponent } from './pages/components/new-applicant/new-applicant.component';
+import {MatIconModule} from '@angular/material/icon';
+import { PictureDialogComponentComponent } from './pages/components/loyoutpages/picture-dialog-component/picture-dialog-component.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+// import { PdfViewerModule } from 'ngx-extended-pdf-viewer'
+
 
 
 
@@ -83,6 +88,7 @@ import { NewApplicantComponent } from './pages/components/new-applicant/new-appl
     EditStaffComponent,
     ResetPasswordComponent,
     NewApplicantComponent,
+    PictureDialogComponentComponent,
 
    
   ],
@@ -105,7 +111,11 @@ import { NewApplicantComponent } from './pages/components/new-applicant/new-appl
     MatCardModule,
     MatButtonModule,
     MatSelectModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatIconModule,
+    PdfViewerModule
+    
+
   ],
   providers: [],
   bootstrap: [AppComponent]
