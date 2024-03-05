@@ -152,7 +152,7 @@
                     <mat-divider></mat-divider>
                     <br>
                     <h3>Company Owner Information</h3>
-                    <div class="row" *ngIf="memberForm.get('membership_type')?.value === 'Sole Proprietorship'">
+                    <div class="row" *ngIf="memberForm?.get('membership_type')?.value === 'Sole Proprietorship'">
 
                         <div class="col-md-4">
                             <label class="form-label">Owner Name</label>
@@ -275,7 +275,7 @@
                                   
                     <label class="btn btn-default" style="width: 100%;">
                         <input type="file" accept="image/*" (change)="selectFile($event)"
-                        style="width: 100%;" 
+                        style="width: 100%;" #imageInput (change)="processFile2(imageInput)" id="profile"
                          />
                     </label>
                             </div>

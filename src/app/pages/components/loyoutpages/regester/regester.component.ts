@@ -70,6 +70,19 @@ export class RegesterComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
+  processFile2(imageInput: any) {
+    this.loading = true;
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
+    this.files = file;
+    reader.addEventListener('load', (event: any) => {
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+      this.loading = false;
+    });
+
+    reader.readAsDataURL(file);
+  }
+
     // Function to handle radio button click
     onRadioButtonClick(value: any) {
       console.log(value);
@@ -134,7 +147,7 @@ export class RegesterComponent implements OnInit {
       TRA_number: new FormControl(''),
       company_certificate_number:new FormControl(''),
       upload_BPRA: new FormControl('BPRA'),
-      representative_CV: new FormControl('representative_CV'),
+      representative_CV: new FormControl('CV'),
       street: new FormControl(''),
       businessActivity: new FormControl(''),
       memberAccountId:new FormControl(this.memberAccountId)
@@ -167,15 +180,19 @@ export class RegesterComponent implements OnInit {
     const values = this.memberForm.value;
     this.membershipService.addMembership(values).subscribe((resp:any)=>{
       const form = new FormData();
-      // if (this.files!=null) {
-        
-      // }
+    
       form.append('file', this.files, this.files.name);
       form.append('fileCategory', values.upload_BPRA);
-      this.membershipUploadService.addFilesUpload(resp.memberShipFormId,form).subscribe((resp)=>{
-        console.log('uploaded');
-        
+      this.membershipUploadService.addFilesUpload(resp.memberShipFormId,form).subscribe((resp)=>{  
       })
+        if (this.files!=null) {
+          form.append('file', this.files, this.files.name);
+          form.append('fileCategory', values.representative_CV);
+          this.membershipUploadService.addFilesUpload(resp.memberShipFormId,form).subscribe((resp)=>{  
+            console.log('uploaded');
+            
+          })
+      }
       this.alert();
       this.reload()
       
@@ -186,7 +203,7 @@ export class RegesterComponent implements OnInit {
 
   reload(){
     this.router.navigateByUrl('',{skipLocationChange:true}).then(()=>{
-      this.router.navigate(['members'])
+      this.router.navigate([''])
     })
   }
 
