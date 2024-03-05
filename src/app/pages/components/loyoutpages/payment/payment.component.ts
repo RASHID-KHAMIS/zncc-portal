@@ -26,6 +26,7 @@ export class PaymentComponent implements OnInit{
      private invoicesService:InvoicesService){}
   ngOnInit(): void {
     this.fetchAllInvoice();
+    this.fetchByFormId()
   
   }
   applyFilter(event: Event) {
@@ -43,6 +44,13 @@ export class PaymentComponent implements OnInit{
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.loading = false;
+    })
+  }
+
+  fetchByFormId(){
+    this.invoicesService.getInvoiceByFormId('1').subscribe((resp:any)=>{
+      console.log(resp);
+      
     })
   }
 

@@ -14,4 +14,8 @@ export class InvoicesService {
   getAllInvoice(){
     return this.http.get(this.invoiceAPI)
   }
+
+  getInvoiceByFormId(id:any){
+    return this.http.get(this.invoiceAPI + "/" + "get-by" + "/" + id)
+  }
 }

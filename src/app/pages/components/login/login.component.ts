@@ -72,7 +72,6 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('email',decodedToken.sub.email),
           localStorage.setItem('memberAccountId',decodedToken.sub.userMemberId),
           localStorage.setItem('id',decodedToken.sub.id)
-
         }
         this.alert();
         if(decodedToken.sub.loginStatus == 0){
