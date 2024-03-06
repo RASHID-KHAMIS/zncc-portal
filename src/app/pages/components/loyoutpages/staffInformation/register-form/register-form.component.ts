@@ -105,12 +105,7 @@ export class RegisterFormComponent implements OnInit {
     })
   }
 
-//   callByZone(event: any) {
-//     const selectedValue = event.target ? (event.target as HTMLSelectElement).value : null;
-//     if (selectedValue !== null) {
-//         console.log(selectedValue);
-//     }
-// }
+
 
   regionList:any
   fetchAllRegion(){

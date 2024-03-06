@@ -40,6 +40,7 @@ export class StaffInformationComponent implements OnInit {
       // console.log(this.dataSource.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.loding = false
     })
   }
 

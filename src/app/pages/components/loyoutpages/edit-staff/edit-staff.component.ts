@@ -122,7 +122,8 @@ export class EditStaffComponent implements OnInit{
 
   fetchStaffById(staff:any){
     this.memberStaffService.getStaffById(staff).subscribe((resp:any)=>{
-      console.log(resp.regNo);
+      // console.log(resp);
+      
       this.staffEditForm = new FormGroup({
         id:new FormControl(resp.id),
         regNo: new FormControl(resp.regNo),
@@ -134,24 +135,24 @@ export class EditStaffComponent implements OnInit{
         maritalStatus:new FormControl(resp.maritalStatus),
         physicalAddress: new FormControl(resp.physicalAddress),
         isResidence: new FormControl(resp.isResidence),
-        zoneId: new FormControl(null,Validators.required),
-        phoneNumber:new FormControl(null,Validators.required),
-        isStaffHaveDisability:new FormControl(false), 
-        regionId: new FormControl(null),
-        districtId: new FormControl(null),
-        shehiaId: new FormControl(null),
-        streetName: new FormControl(null),
-        postCode: new FormControl(null),
-        houseNo:new FormControl(null),
-        terminationStatus: new FormControl(1),
-        email:new FormControl(null,Validators.email),
-        workPhone: new FormControl(null),
-        workEmail: new FormControl(null),
-        bankName:new FormControl(null),
-        accountNumber: new FormControl(null,Validators.required),
-        departmentId: new FormControl(null,Validators.required),
-        staffPosition: new FormControl(null,Validators.required),
-        personalId: new FormControl(null),
+        zoneId: new FormControl(resp.zoneId),
+        phoneNumber:new FormControl(resp.phoneNumber),
+        isStaffHaveDisability:new FormControl(resp.isStaffHaveDisability), 
+        regionId: new FormControl(resp.regionId),
+        districtId: new FormControl(resp.districtId),
+        shehiaId: new FormControl(resp.shehiaId),
+        streetName: new FormControl(resp.streetName),
+        postCode: new FormControl(resp.postCode),
+        houseNo:new FormControl(resp.houseNo),
+        terminationStatus: new FormControl(resp.terminationStatus),
+        email:new FormControl(resp.email),
+        workPhone: new FormControl(resp.workPhone),
+        workEmail: new FormControl(resp.workEmail),
+        bankName:new FormControl(resp.bankName),
+        accountNumber: new FormControl(resp.accountNumber),
+        departmentId: new FormControl(resp.departmentId),
+        staffPosition: new FormControl(resp.staffPosition),
+        personalId: new FormControl(resp.personalId),
   
       });
       
@@ -159,7 +160,9 @@ export class EditStaffComponent implements OnInit{
   }
 
   submit(){
-
+    const values = this.staffEditForm.value;
+    console.log(values);
+    
   }
 
 }
