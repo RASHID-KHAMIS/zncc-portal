@@ -9,6 +9,7 @@ export class InvoicesService {
 
 
   invoiceAPI = environment.baseUrl + "Invoices"
+  fileInvoiceAPI = environment.baseUrl + "fileInvoices"
   constructor(private http:HttpClient) { }
 
   getAllInvoice(){
@@ -17,5 +18,9 @@ export class InvoicesService {
 
   getInvoiceByFormId(id:any){
     return this.http.get(this.invoiceAPI + "/" + "get-by" + "/" + id)
+  }
+
+  addFileInvoices(body:any){
+    return this.http.post(this.fileInvoiceAPI,body)
   }
 }
