@@ -56,7 +56,7 @@ export class NewApplicantComponent implements OnInit{
   }
 
   onView(data:any){
-    // console.log(data);
+    console.log(data);
     this.router.navigate(['/view-member-info'], { queryParams: { id: data.memberShipFormId} });
   }
 }

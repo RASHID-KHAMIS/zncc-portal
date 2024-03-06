@@ -21,6 +21,7 @@ export class ViewMemberInfoComponent implements OnInit{
   dataSource = new MatTableDataSource();
   displayedColumns: string[] = ['No', 'Category','action'];
   loading: boolean = true;
+  check:boolean = false;
 
 
   verifyForm!:FormGroup;
@@ -53,21 +54,18 @@ export class ViewMemberInfoComponent implements OnInit{
 
   fetchPictureById(member:any){
     this.membershipUploadService.getPictureById(member).subscribe((resp:any)=>{
-      // console.log(resp);
+
       this.dataSource = new MatTableDataSource(resp);
+      this.check = true;
+      this.loading = false;
     })
-      
-    
-      // this.loading = false;
-      
-    // })
   }
 
   openPictureDialog(member: any): void {
     console.log(member.file_path);
     
     const dialogRef = this.dialog.open(PictureDialogComponentComponent, {
-      data: { pictureUrl: member.file_path } // Assuming 'file_path' contains the URL of the picture
+      data: { pictureUrl: member.file_path } 
     });
   
     dialogRef.afterClosed().subscribe(result => {
@@ -99,6 +97,8 @@ export class ViewMemberInfoComponent implements OnInit{
       console.error('Invalid file object.');
     }
   }
+
+  
   sizeList:any;
   fetchAllBusinessSize(){
     this.businessService.getAllBusinessSize().subscribe((resp:any)=>{

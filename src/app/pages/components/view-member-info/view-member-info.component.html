@@ -286,12 +286,11 @@
         </div><br>
 
 
-        <div class="card">
+        <div class="card" *ngIf="check">
             <div class="card-status-top bg-primary"></div>
             <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
         
             <div style="margin: 10px;">
-    
     
                 <table mat-table [dataSource]="dataSource" matSort>
     
