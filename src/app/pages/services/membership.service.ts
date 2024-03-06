@@ -33,4 +33,8 @@ export class MembershipService {
   verify(body:any){
     return this.http.post(this.membershipAPI +"/" + "verfyMember",body)
   }
+
+  getMemberBySectorId(id:any){
+    return this.http.get(this.membershipAPI + "/" + "bySector" + "/" + id)
+  }
 }

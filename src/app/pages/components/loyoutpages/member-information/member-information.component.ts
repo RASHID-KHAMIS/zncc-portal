@@ -60,13 +60,12 @@ export class MemberInformationComponent implements OnInit{
     this.membershipService.getMembershirpsByMemberID(this.memberAccountId).subscribe((resp:any)=>{
       this.memberInfo = resp;
       // console.log(this.memberInfo.memberShipFormId);
-
-
       this.companyOwnershipService.getByMembershipId(this.memberInfo.memberShipFormId).subscribe((resp:any)=>{
-        // console.log(resp);
+       if(resp.length >0){
+        this.check = true
+       }
         this.dataSource = new MatTableDataSource(resp);
         this.loading = false;
-        this.check = true;
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort
       })

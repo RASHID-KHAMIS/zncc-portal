@@ -9,6 +9,8 @@ import { ZoneService } from '../../services/zone.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MembershipUploadService } from '../../services/membership-upload.service';
 import { PictureDialogComponentComponent } from '../loyoutpages/picture-dialog-component/picture-dialog-component.component';
+import { InvoicesService } from '../../services/invoices.service';
+import { CompanyOwnershipService } from '../../services/company-ownership.service';
 
 @Component({
   selector: 'app-view-member-info',
@@ -20,8 +22,16 @@ export class ViewMemberInfoComponent implements OnInit{
 
   dataSource = new MatTableDataSource();
   displayedColumns: string[] = ['No', 'Category','action'];
+
+  dataSource2 = new MatTableDataSource();
+  displayedColumns2: string[] = ['No', 'invoiceNo','Date','Amount','Status','View','action'];
+
+  dataSource3 = new MatTableDataSource();
+  displayedColumns3: string[] = ['No', 'owner_name','owner_email','owner_phone','representative_name','position'];
   loading: boolean = true;
   check:boolean = false;
+  check2:boolean = false;
+  check3:boolean = false;
 
 
   verifyForm!:FormGroup;
@@ -29,8 +39,9 @@ export class ViewMemberInfoComponent implements OnInit{
     private route:ActivatedRoute,
     private membershipService:MembershipService,
     private businessService:BusinessService,
-    private zoneService:ZoneService,
+    private invoicesService:InvoicesService,
     private membershipUploadService:MembershipUploadService,
+    private companyOwnershipService:CompanyOwnershipService,
     private dialog:MatDialog){}
   ngOnInit(): void {
     this.fetchAllBusinessSize();
@@ -40,6 +51,7 @@ export class ViewMemberInfoComponent implements OnInit{
     // console.log(member);
     this.fetchMemberByID(member)
     this.fetchPictureById(member)
+    this.fetcInvoiceByMemberFormId(member)
   
   }
 
@@ -54,9 +66,10 @@ export class ViewMemberInfoComponent implements OnInit{
 
   fetchPictureById(member:any){
     this.membershipUploadService.getPictureById(member).subscribe((resp:any)=>{
-
+      if(resp.length >0){
+              this.check = true;
+      }
       this.dataSource = new MatTableDataSource(resp);
-      this.check = true;
       this.loading = false;
     })
   }
@@ -74,17 +87,6 @@ export class ViewMemberInfoComponent implements OnInit{
   }
 
   openPdf(file: any) {
-    // if (file && file.file_path) {
-    //   const extension = file.file_path.split('.').pop().toLowerCase();
-    //   if (extension === 'pdf') {
-    //     window.open('https://'+file.file_path, '_blank');
-    //   } else {
-    //     console.error('The file is not a PDF.');
-    //   }
-    // } else {
-    //   console.error('Invalid file object.');
-    // }
-
     if (file && file.file_path) {
       const extension = file.file_path.split('.').pop().toLowerCase();
       if (extension === 'pdf') {
@@ -98,6 +100,25 @@ export class ViewMemberInfoComponent implements OnInit{
     }
   }
 
+  openPdf2(file: any) {
+    this.invoicesService.getFileInvoiceByInvoiceId(file.invoiceId).subscribe((resp:any)=>{
+      console.log(resp);
+         
+    if (resp && resp.file_path) {
+      const extension = resp.file_path.split('.').pop().toLowerCase();
+      if (extension === 'pdf') {
+        const dialogOptions = 'width=800,height=600,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes';
+        window.open('https://'+resp.file_path, 'PDF Dialog', dialogOptions);
+      } else {
+        console.error('The file is not a PDF.');
+      }
+    } else {
+      console.error('Invalid file object.');
+    }
+      
+    })
+  }
+
   
   sizeList:any;
   fetchAllBusinessSize(){
@@ -107,18 +128,46 @@ export class ViewMemberInfoComponent implements OnInit{
     })
   }
 
+
+  fetcInvoiceByMemberFormId(id:any){
+    this.invoicesService.getInvoiceByFormId(id).subscribe((resp:any)=>{
+      // console.log(resp);
+      if(resp.length >0){
+        this.check2 = true;
+      }
+      this.dataSource2 = new MatTableDataSource(resp);
+      this.loading = false;
+      
+    })
+  }
+
+
   memberInfo:any;
   fetchMemberByID(memberId:any){
     this.membershipService.getByMemberId(memberId).subscribe((resp:any)=>{
       // console.log(resp);
       this.memberInfo = resp;
+
+      this.companyOwnershipService.getByMembershipId(resp.memberShipFormId).subscribe((resp:any)=>{
+        console.log(resp);
+        if(resp.length >0){
+          this.check3 = true;
+              }
+              this.dataSource3 = new MatTableDataSource(resp);
+              this.loading = false;
+                  })
       
       this.verifyForm = new FormGroup({
         businessSizeId: new FormControl(null,Validators.required),
         memberShipFormId: new FormControl(this.memberInfo.memberShipFormId),
-      })
+      });
+
+    
     })
   }
+
+
+
   configureForm(){
     this.verifyForm = new FormGroup({
       businessSizeId: new FormControl(null,Validators.required),
@@ -144,11 +193,9 @@ export class ViewMemberInfoComponent implements OnInit{
 
   onSave(){
     const values = this.verifyForm.value;
-    // console.log(values);
     this.membershipService.verify(values).subscribe((resp:any)=>{
       // console.log('verified');
       this.alert()
-      
     })
     
   }

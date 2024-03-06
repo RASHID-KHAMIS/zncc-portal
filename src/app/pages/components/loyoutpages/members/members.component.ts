@@ -20,10 +20,10 @@ export class MembersComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   
+  check:boolean = false;
   constructor(private membershipService: MembershipService,
     private router:Router,
-    private businessService:BusinessService,
-    private zoneService:ZoneService) {
+    private businessService:BusinessService) {
 
   }
   ngOnInit(): void {
@@ -48,12 +48,33 @@ export class MembersComponent implements OnInit {
 
 
   getAllMembership() {
-    this.membershipService.getAllMembership().subscribe((res: any) => {
+    this.membershipService.getAllMembership().subscribe((resp: any) => {
+   
+      this.loding = false;
+      this.dataSource = new MatTableDataSource(resp);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+        })
+  }
+
+  onSectorSelectionChange(event: any) {
+    const sectorId = event.value;
+    // console.log(sectorId);
+    this.fetchMemberBySectorId(sectorId);
+  }
+
+  fetchMemberBySectorId(id:any){
+        this.membershipService.getMemberBySectorId(id).subscribe((resp:any)=>{
+        // console.log(resp);
+      
         this.loding = false;
-        this.dataSource = new MatTableDataSource(res);
+        this.dataSource = new MatTableDataSource(resp);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-      })
+        
+       })
+    
+    
   }
 
   onView(data:any){

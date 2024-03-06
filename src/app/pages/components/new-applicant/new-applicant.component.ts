@@ -54,9 +54,16 @@ export class NewApplicantComponent implements OnInit{
         this.dataSource.sort = this.sort;
       })
   }
+  onSectorSelectionChange(event: any) {
+    const selectedSectorId = event.value;
+    console.log(selectedSectorId);
+    
+    // Now you can use selectedSectorId to fetch data or perform any action
+    // this.fetchDataBySectorId(selectedSectorId);
+  }
 
   onView(data:any){
-    console.log(data);
+    // console.log(data);
     this.router.navigate(['/view-member-info'], { queryParams: { id: data.memberShipFormId} });
   }
 }

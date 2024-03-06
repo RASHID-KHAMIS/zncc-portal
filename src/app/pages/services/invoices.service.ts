@@ -23,4 +23,8 @@ export class InvoicesService {
   addFileInvoices(body:any){
     return this.http.post(this.fileInvoiceAPI,body)
   }
+
+  getFileInvoiceByInvoiceId(id:any){
+    return this.http.get(this.fileInvoiceAPI + "/" + "with-invoice" + "/" + id)
+  }
 }
