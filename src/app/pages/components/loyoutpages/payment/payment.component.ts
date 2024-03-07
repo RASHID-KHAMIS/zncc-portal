@@ -102,7 +102,7 @@ export class PaymentComponent implements OnInit{
 
   openPdf2(file: any) {
     this.invoicesService.getFileInvoiceByInvoiceId(file.invoiceId).subscribe((resp:any)=>{
-      console.log(resp);
+      // console.log(resp);
          
     if (resp && resp.file_path) {
       const extension = resp.file_path.split('.').pop().toLowerCase();

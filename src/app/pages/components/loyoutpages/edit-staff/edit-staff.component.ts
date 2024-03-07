@@ -8,6 +8,7 @@ import { StaffsService } from 'src/app/pages/services/membersservice/staffs.serv
 import { RegionService } from 'src/app/pages/services/region.service';
 import { ShehiaService } from 'src/app/pages/services/shehia.service';
 import { ZoneService } from 'src/app/pages/services/zone.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-staff',
@@ -19,7 +20,6 @@ export class EditStaffComponent implements OnInit{
   staffEditForm!:FormGroup;
   constructor(private router:Router,
     private route:ActivatedRoute,
-    private staffsService: StaffsService,
     private zoneService:ZoneService,
     private regionService:RegionService,
     private districtService:DistrictService,
@@ -28,7 +28,7 @@ export class EditStaffComponent implements OnInit{
     private memberStaffService:MemberStaffService){}
   ngOnInit(): void {
     const staff = this.route.snapshot.queryParamMap.get('id');
-    console.log(staff);
+    // console.log(staff);
     this.fetchStaffById(staff)
     
     this.initForm();
@@ -116,7 +116,6 @@ export class EditStaffComponent implements OnInit{
       departmentId: new FormControl(null,Validators.required),
       staffPosition: new FormControl(null,Validators.required),
       personalId: new FormControl(null),
-
     });
   }
 
@@ -161,8 +160,45 @@ export class EditStaffComponent implements OnInit{
 
   submit(){
     const values = this.staffEditForm.value;
-    console.log(values);
+    const id = this.staffEditForm.value.id
+    // console.log(values);
+    this.memberStaffService.editStaff(id,values).subscribe((resp:any)=>{
+      // console.log(resp);
+      this.alert();
+      this.reload();
+      
+    })
     
   }
+
+  onBack(){
+    this.router.navigate(['staff-info'])
+  }
+
+  reload(){
+    this.router.navigateByUrl('',{skipLocationChange:true}).then(()=>{
+      this.router.navigate(['staff-info'])
+    })
+  }
+
+  alert(){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Staff Edited'
+    })
+  }
+
 
 }

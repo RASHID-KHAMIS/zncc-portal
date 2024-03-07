@@ -23,7 +23,7 @@
                             <path d="M12 5l0 14" />
                             <path d="M5 12l14 0" />
                         </svg>
-                        Register User
+                        Register Staff
                     </a>
                     <a routerLink="../register-staff" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
                         data-bs-target="#modal-report" aria-label="Create new report">
@@ -87,7 +87,9 @@
                 </ng-container>
                 <ng-container matColumnDef="gender">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>gender </th>
-                    <td mat-cell *matCellDef="let row"> {{row.gender}} </td>
+                    <td mat-cell *matCellDef="let row">
+                        {{ row.gender === 'M' ? 'Male' : row.gender === 'F' ? 'Female' : '' }}
+                     </td>
                 </ng-container>
 
                 <ng-container matColumnDef="physicalAddress">
