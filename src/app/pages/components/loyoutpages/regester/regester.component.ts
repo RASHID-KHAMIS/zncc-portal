@@ -83,7 +83,6 @@ export class RegesterComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
-    // Function to handle radio button click
     onRadioButtonClick(value: any) {
       console.log(value);
       this.memberForm.patchValue({
@@ -150,7 +149,8 @@ export class RegesterComponent implements OnInit {
       representative_CV: new FormControl('CV'),
       street: new FormControl(''),
       businessActivity: new FormControl(''),
-      memberAccountId:new FormControl(this.memberAccountId)
+      memberAccountId:new FormControl(this.memberAccountId),
+      numberOfStaf:new FormControl('', Validators.required),
     });
   }
 
