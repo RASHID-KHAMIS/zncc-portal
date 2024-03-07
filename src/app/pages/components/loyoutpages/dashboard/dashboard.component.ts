@@ -65,9 +65,11 @@ export class DashboardComponent implements OnInit{
 
       this.companyOwnershipService.getByMembershipId(this.memberInfo.memberShipFormId).subscribe((resp:any)=>{
         // console.log(resp);
+        if(resp.length > 0){
+          this.check = true;
+        }
         this.dataSource = new MatTableDataSource(resp);
         this.loading = false;
-        this.check = true;
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort
       })
@@ -139,6 +141,8 @@ export class DashboardComponent implements OnInit{
       }
     })
   }
+
+
 
   onSave(){
     this.ownerForm.patchValue({

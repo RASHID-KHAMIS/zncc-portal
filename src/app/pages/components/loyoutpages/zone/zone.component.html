@@ -64,16 +64,18 @@
                     <td mat-cell *matCellDef="let row;let i = index"> {{i + 1}} </td>
                 </ng-container>
 
-                <ng-container matColumnDef="ZoneCode">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Zone Code </th>
-                    <td mat-cell *matCellDef="let row"> {{row.zoneCode}}
-                    </td>
-                </ng-container>
                 <ng-container matColumnDef="ZoneName">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Zone Name </th>
                     <td mat-cell *matCellDef="let row"> {{row.zoneName}} </td>
                 </ng-container>
 
+
+                <ng-container matColumnDef="ZoneCode">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Zone Code </th>
+                    <td mat-cell *matCellDef="let row"> {{row.zoneCode}}
+                    </td>
+                </ng-container>
+             
 
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
