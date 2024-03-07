@@ -15,44 +15,59 @@ import { CompanyOwnershipService } from '../../services/company-ownership.servic
 @Component({
   selector: 'app-view-member-info',
   templateUrl: './view-member-info.component.html',
-  styleUrls: ['./view-member-info.component.css']
+  styleUrls: ['./view-member-info.component.css'],
 })
-export class ViewMemberInfoComponent implements OnInit{
+export class ViewMemberInfoComponent implements OnInit {
   @ViewChild('distributionDialog') distributionDialog!: TemplateRef<any>;
 
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['No', 'Category','action'];
+  displayedColumns: string[] = ['No', 'Category', 'action'];
 
   dataSource2 = new MatTableDataSource();
-  displayedColumns2: string[] = ['No', 'invoiceNo','Date','Amount','Status','View','action'];
+  displayedColumns2: string[] = [
+    'No',
+    'invoiceNo',
+    'Date',
+    'Amount',
+    'Status',
+    'View',
+    'action',
+  ];
 
   dataSource3 = new MatTableDataSource();
-  displayedColumns3: string[] = ['No', 'owner_name','owner_email','owner_phone','representative_name','position'];
+  displayedColumns3: string[] = [
+    'No',
+    'owner_name',
+    'owner_email',
+    'owner_phone',
+    'representative_name',
+    'position',
+  ];
   loading: boolean = true;
-  check:boolean = false;
-  check2:boolean = false;
-  check3:boolean = false;
+  check: boolean = false;
+  check2: boolean = false;
+  check3: boolean = false;
 
-
-  verifyForm!:FormGroup;
-  constructor(private router:Router,
-    private route:ActivatedRoute,
-    private membershipService:MembershipService,
-    private businessService:BusinessService,
-    private invoicesService:InvoicesService,
-    private membershipUploadService:MembershipUploadService,
-    private companyOwnershipService:CompanyOwnershipService,
-    private dialog:MatDialog){}
+  verifyForm!: FormGroup;
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private membershipService: MembershipService,
+    private businessService: BusinessService,
+    private invoicesService: InvoicesService,
+    private membershipUploadService: MembershipUploadService,
+    private companyOwnershipService: CompanyOwnershipService,
+    private dialog: MatDialog
+  ) {}
   ngOnInit(): void {
     this.fetchAllBusinessSize();
     this.configureForm();
 
     const member = this.route.snapshot.queryParamMap.get('id');
     // console.log(member);
-    this.fetchMemberByID(member)
-    this.fetchPictureById(member)
-    this.fetcInvoiceByMemberFormId(member)
-  
+    this.fetchMemberByID(member);
+    this.fetchPictureById(member);
+    this.fetcInvoiceByMemberFormId(member);
   }
 
   applyFilter(event: Event) {
@@ -63,25 +78,26 @@ export class ViewMemberInfoComponent implements OnInit{
     }
   }
 
-
-  fetchPictureById(member:any){
-    this.membershipUploadService.getPictureById(member).subscribe((resp:any)=>{
-      if(resp.length >0){
-              this.check = true;
-      }
-      this.dataSource = new MatTableDataSource(resp);
-      this.loading = false;
-    })
+  fetchPictureById(member: any) {
+    this.membershipUploadService
+      .getPictureById(member)
+      .subscribe((resp: any) => {
+        if (resp.length > 0) {
+          this.check = true;
+        }
+        this.dataSource = new MatTableDataSource(resp);
+        this.loading = false;
+      });
   }
 
   openPictureDialog(member: any): void {
     console.log(member.file_path);
-    
+
     const dialogRef = this.dialog.open(PictureDialogComponentComponent, {
-      data: { pictureUrl: member.file_path } 
+      data: { pictureUrl: member.file_path },
     });
-  
-    dialogRef.afterClosed().subscribe(result => {
+
+    dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
     });
   }
@@ -90,8 +106,9 @@ export class ViewMemberInfoComponent implements OnInit{
     if (file && file.file_path) {
       const extension = file.file_path.split('.').pop().toLowerCase();
       if (extension === 'pdf') {
-        const dialogOptions = 'width=800,height=600,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes';
-        window.open('https://'+file.file_path, 'PDF Dialog', dialogOptions);
+        const dialogOptions =
+          'width=800,height=600,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes';
+        window.open('https://' + file.file_path, 'PDF Dialog', dialogOptions);
       } else {
         console.error('The file is not a PDF.');
       }
@@ -101,130 +118,127 @@ export class ViewMemberInfoComponent implements OnInit{
   }
 
   openPdf2(file: any) {
-    this.invoicesService.getFileInvoiceByInvoiceId(file.invoiceId).subscribe((resp:any)=>{
-      console.log(resp);
-         
-    if (resp && resp.file_path) {
-      const extension = resp.file_path.split('.').pop().toLowerCase();
-      if (extension === 'pdf') {
-        const dialogOptions = 'width=800,height=600,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes';
-        window.open('https://'+resp.file_path, 'PDF Dialog', dialogOptions);
-      } else {
-        console.error('The file is not a PDF.');
-      }
-    } else {
-      console.error('Invalid file object.');
-    }
-      
-    })
+    this.invoicesService
+      .getFileInvoiceByInvoiceId(file.invoiceId)
+      .subscribe((resp: any) => {
+        console.log(resp);
+
+        if (resp && resp.file_path) {
+          const extension = resp.file_path.split('.').pop().toLowerCase();
+          if (extension === 'pdf') {
+            const dialogOptions =
+              'width=800,height=600,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes';
+            window.open(
+              'https://' + resp.file_path,
+              'PDF Dialog',
+              dialogOptions
+            );
+          } else {
+            console.error('The file is not a PDF.');
+          }
+        } else {
+          console.error('Invalid file object.');
+        }
+      });
   }
 
-  
-  sizeList:any;
-  fetchAllBusinessSize(){
-    this.businessService.getAllBusinessSize().subscribe((resp:any)=>{
-      this.sizeList =resp;
+  sizeList: any;
+  fetchAllBusinessSize() {
+    this.businessService.getAllBusinessSize().subscribe((resp: any) => {
+      this.sizeList = resp;
       // console.log(resp);
-    })
+    });
   }
 
-
-  fetcInvoiceByMemberFormId(id:any){
-    this.invoicesService.getInvoiceByFormId(id).subscribe((resp:any)=>{
+  fetcInvoiceByMemberFormId(id: any) {
+    this.invoicesService.getInvoiceByFormId(id).subscribe((resp: any) => {
       // console.log(resp);
-      if(resp.length >0){
+      if (resp.length > 0) {
         this.check2 = true;
       }
       this.dataSource2 = new MatTableDataSource(resp);
       this.loading = false;
-      
-    })
+    });
   }
 
-
-  memberInfo:any;
-  fetchMemberByID(memberId:any){
-    this.membershipService.getByMemberId(memberId).subscribe((resp:any)=>{
-      // console.log(resp);
+  memberInfo: any;
+  fetchMemberByID(memberId: any) {
+    this.membershipService.getByMemberId(memberId).subscribe((resp: any) => {
+      console.log(resp);
       this.memberInfo = resp;
 
-      this.companyOwnershipService.getByMembershipId(resp.memberShipFormId).subscribe((resp:any)=>{
-        // console.log(resp);
-        if(resp.length >0){
-          this.check3 = true;
-              }
-              this.dataSource3 = new MatTableDataSource(resp);
-              this.loading = false;
-                  })
-      
+      this.companyOwnershipService
+        .getByMembershipId(resp.memberShipFormId)
+        .subscribe((resp: any) => {
+          // console.log(resp);
+          if (resp.length > 0) {
+            this.check3 = true;
+          }
+          this.dataSource3 = new MatTableDataSource(resp);
+          this.loading = false;
+        });
+
       this.verifyForm = new FormGroup({
-        businessSizeId: new FormControl(null,Validators.required),
+        businessSizeId: new FormControl(null, Validators.required),
         memberShipFormId: new FormControl(this.memberInfo.memberShipFormId),
       });
-
-    
-    })
+    });
   }
 
-
-
-  configureForm(){
+  configureForm() {
     this.verifyForm = new FormGroup({
-      businessSizeId: new FormControl(null,Validators.required),
+      businessSizeId: new FormControl(null, Validators.required),
       memberShipFormId: new FormControl(this.memberInfo?.memberShipFormId),
-    })
+    });
   }
 
   openDialog() {
-
     let dialogRef = this.dialog.open(this.distributionDialog, {
       width: '650px',
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result !== undefined) {
         if (result !== 'no') {
-          const enabled = "Y"
-
+          const enabled = 'Y';
         } else if (result === 'no') {
         }
       }
-    })
+    });
   }
 
-  onSave(){
+  onSave() {
     const values = this.verifyForm.value;
-    this.membershipService.verify(values).subscribe((resp:any)=>{
-      // console.log('verified');
-      this.alert()
-    })
-    
+    this.membershipService.verify(values).subscribe((resp: any) => {
+      this.alert();
+    });
   }
 
-  onStatus(data:any){
+  onStatus(data: any) {
     Swal.fire({
-      title: "You confirm customer payments?",
+      title: 'You confirm customer payments?',
       showDenyButton: true,
       showCancelButton: true,
-      confirmButtonText: "Yes",
-      denyButtonText: `No`
+      confirmButtonText: 'Yes',
+      denyButtonText: `No`,
     }).then((result) => {
       if (result.isConfirmed) {
         const id = data.invoiceId;
         data.paymentStatus = '1';
-        this.invoicesService.editInvoiceStatus(id,data).subscribe((resp:any)=>{
-        })
-        Swal.fire("Saved!", "", "success");
+        this.invoicesService
+          .editInvoiceStatus(id, data)
+          .subscribe((resp: any) => {});
+        Swal.fire('Saved!', '', 'success');
       } else if (result.isDenied) {
-        Swal.fire("Changes are not saved", "", "info");
+        Swal.fire('Changes are not saved', '', 'info');
       }
     });
   }
 
-  onBack(){
-    this.router.navigate(['new-Applicant'])
+  onBack() {
+    this.router.navigate(['new-Applicant']);
   }
 
-  alert(){
+  alert() {
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
@@ -232,16 +246,14 @@ export class ViewMemberInfoComponent implements OnInit{
       timer: 3000,
       timerProgressBar: true,
       didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
+        toast.addEventListener('mouseenter', Swal.stopTimer);
+        toast.addEventListener('mouseleave', Swal.resumeTimer);
+      },
+    });
 
     Toast.fire({
       icon: 'success',
-      title: 'Verified Successfully'
-    })
+      title: 'Verified Successfully',
+    });
   }
-
-
 }

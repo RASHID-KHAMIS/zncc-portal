@@ -37,4 +37,12 @@ export class MembershipService {
   getMemberBySectorId(id:any){
     return this.http.get(this.membershipAPI + "/" + "bySector" + "/" + id)
   }
+
+  getVerifiedMember(){
+    return this.http.get(this.membershipAPI + "/" + "Verify" + "/")
+  }
+
+  getVerifiedMemberBySectorId(id:any){
+    return this.http.get(this.membershipAPI + "/" + "bySectorVerify" + "/" +id)
+  }
 }

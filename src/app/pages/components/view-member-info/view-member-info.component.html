@@ -53,8 +53,9 @@
                         </div>
                     </div>
                     <div class="col-md-4 d-flex justify-content-end">
-                        <button mat-raised-button color="primary"  (click)="openDialog()">Verify</button> &nbsp;&nbsp;
-                        <button mat-raised-button color="primary">Comment</button>&nbsp;&nbsp;
+                        <button mat-raised-button color="primary"  *ngIf="memberInfo?.isNewApplicant == 1" (click)="openDialog()">Verify</button> &nbsp;&nbsp;
+                        <button mat-raised-button color="primary" *ngIf="memberInfo?.isNewApplicant == 1">Comment</button>&nbsp;&nbsp;
+                        <button  class="btn btn-success"*ngIf="memberInfo?.isNewApplicant == 0">Verified</button>&nbsp;&nbsp;
                         <button mat-raised-button color="primary"  (click)="onBack()">Back</button>
                     </div>
                 </div>

@@ -54,13 +54,23 @@ export class NewApplicantComponent implements OnInit{
         this.dataSource.sort = this.sort;
       })
   }
+
+
   onSectorSelectionChange(event: any) {
-    const selectedSectorId = event.value;
-    console.log(selectedSectorId);
-    
-    // Now you can use selectedSectorId to fetch data or perform any action
-    // this.fetchDataBySectorId(selectedSectorId);
+    const sectorId = event.value;
+    // console.log(sectorId);
+    this.fetchMemberBySectorId(sectorId);
   }
+
+  fetchMemberBySectorId(id:any){
+        this.membershipService.getMemberBySectorId(id).subscribe((resp:any)=>{
+        this.loding = false;
+        this.dataSource = new MatTableDataSource(resp);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+       })
+  }
+
 
   onView(data:any){
     // console.log(data);

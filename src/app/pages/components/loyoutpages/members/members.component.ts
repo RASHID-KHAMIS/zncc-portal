@@ -11,24 +11,31 @@ import { ZoneService } from 'src/app/pages/services/zone.service';
 @Component({
   selector: 'app-members',
   templateUrl: './members.component.html',
-  styleUrls: ['./members.component.css']
+  styleUrls: ['./members.component.css'],
 })
 export class MembersComponent implements OnInit {
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['id', 'company_name', 'company_email', 'company_phone', 'representative_name', 'action'];
+  displayedColumns: string[] = [
+    'id',
+    'company_name',
+    'company_email',
+    'company_phone',
+    'representative_name',
+    'action',
+  ];
   loding = true;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  
-  check:boolean = false;
-  constructor(private membershipService: MembershipService,
-    private router:Router,
-    private businessService:BusinessService) {
 
-  }
+  check: boolean = false;
+  constructor(
+    private membershipService: MembershipService,
+    private router: Router,
+    private businessService: BusinessService
+  ) {}
   ngOnInit(): void {
-    this.getAllMembership();
-    this.fetchAllBusinessSector()
+    this.getAllVerifiedMembership();
+    this.fetchAllBusinessSector();
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -38,47 +45,43 @@ export class MembersComponent implements OnInit {
     }
   }
 
-  sectorList:any;
-  fetchAllBusinessSector(){
-    this.businessService.getAllBusinessSector().subscribe((resp:any)=>{
+  sectorList: any;
+  fetchAllBusinessSector() {
+    this.businessService.getAllBusinessSector().subscribe((resp: any) => {
       // console.log(resp);
       this.sectorList = resp;
-    })
+    });
   }
 
-
-  getAllMembership() {
-    this.membershipService.getAllMembership().subscribe((resp: any) => {
-   
+  getAllVerifiedMembership() {
+    this.membershipService.getVerifiedMember().subscribe((resp: any) => {
       this.loding = false;
       this.dataSource = new MatTableDataSource(resp);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-        })
+    });
   }
 
   onSectorSelectionChange(event: any) {
     const sectorId = event.value;
-    // console.log(sectorId);
-    this.fetchMemberBySectorId(sectorId);
+    console.log(sectorId);
+    this.fetchVerifiedMemberBySectorId(sectorId);
   }
 
-  fetchMemberBySectorId(id:any){
-        this.membershipService.getMemberBySectorId(id).subscribe((resp:any)=>{
+  fetchVerifiedMemberBySectorId(id: any) {
+    this.membershipService.getVerifiedMemberBySectorId(id).subscribe((resp: any) => {
         // console.log(resp);
-      
         this.loding = false;
         this.dataSource = new MatTableDataSource(resp);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-        
-       })
-    
-    
+      });
   }
 
-  onView(data:any){
+  onView(data: any) {
     // console.log(data);
-    this.router.navigate(['/view-member-info'], { queryParams: { id: data.memberShipFormId} });
+    this.router.navigate(['/view-member-info'], {
+      queryParams: { id: data.memberShipFormId },
+    });
   }
 }
