@@ -80,8 +80,6 @@ export class MembersComponent implements OnInit {
 
   onView(data: any) {
     // console.log(data);
-    this.router.navigate(['/view-member-info'], {
-      queryParams: { id: data.memberShipFormId },
-    });
+    this.router.navigate(['/view-member-info'], {queryParams: { id: data.memberShipFormId }});
   }
 }

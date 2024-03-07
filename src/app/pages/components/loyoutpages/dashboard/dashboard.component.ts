@@ -61,8 +61,7 @@ export class DashboardComponent implements OnInit{
   fetchByMembershipId(){
     this.membershipService.getMembershirpsByMemberID(this.memberAccountId).subscribe((resp:any)=>{
       this.memberInfo = resp;
-      // console.log(this.memberInfo.memberShipFormId);
-
+      // console.log(this.memberInfo);
 
       this.companyOwnershipService.getByMembershipId(this.memberInfo.memberShipFormId).subscribe((resp:any)=>{
         // console.log(resp);
@@ -161,6 +160,12 @@ export class DashboardComponent implements OnInit{
       this.alert2();
       this.reload();
     })
+  }
+
+  onEditInfo(data:any){
+    // console.log(data);
+    this.router.navigate(['/edit-company-info'], {queryParams: { id: data.memberShipFormId }});
+    
   }
 
   reload(){

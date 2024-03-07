@@ -233,6 +233,19 @@
             <!-- Page title actions -->
             <div class="col-auto ms-auto d-print-none">
                 <div class="btn-list">
+                    <button class="btn btn-success d-none d-sm-inline-block"
+                    *ngIf="memberInfo?.membership_type !== 'Sole Proprietorship'" (click)="onEditInfo(memberInfo)">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M12 5l0 14" />
+                        <path d="M5 12l14 0" />
+                    </svg>
+                    Edit Information
+                </button>
+                &nbsp;
                     <button class="btn btn-primary d-none d-sm-inline-block"
                         *ngIf="memberInfo?.membership_type !== 'Sole Proprietorship'" (click)="openDialog()">
 
@@ -445,6 +458,24 @@
                                     </svg>
                                     TRA Number: <strong>{{memberInfo?.TRA_number}}</strong>
                                 </div>
+
+                                <div>
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/clock -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary" width="24"
+                                        height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z">
+                                        </path>
+                                        <path d="M16 3v4"></path>
+                                        <path d="M8 3v4"></path>
+                                        <path d="M4 11h16"></path>
+                                        <path d="M11 15h1"></path>
+                                        <path d="M12 15v3"></path>
+                                    </svg>
+                                    Number of Staff: <strong>{{memberInfo?.numberOfStaf}}</strong>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -606,7 +637,7 @@
                         <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
                     </tr>
                 </table>
-                <mat-paginator [pageSizeOptions]="[ 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+              
             </div>
         </div>
     </div>
