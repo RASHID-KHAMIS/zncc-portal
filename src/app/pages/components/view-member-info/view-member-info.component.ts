@@ -149,7 +149,7 @@ export class ViewMemberInfoComponent implements OnInit{
       this.memberInfo = resp;
 
       this.companyOwnershipService.getByMembershipId(resp.memberShipFormId).subscribe((resp:any)=>{
-        console.log(resp);
+        // console.log(resp);
         if(resp.length >0){
           this.check3 = true;
               }
@@ -197,6 +197,27 @@ export class ViewMemberInfoComponent implements OnInit{
       // console.log('verified');
       this.alert()
     })
+    
+  }
+
+  onStatus(data:any){
+    Swal.fire({
+      title: "You confirm customer payments?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      denyButtonText: `No`
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const id = data.invoiceId;
+        data.paymentStatus = '1';
+        this.invoicesService.editInvoiceStatus(id,data).subscribe((resp:any)=>{
+        })
+        Swal.fire("Saved!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    });
     
   }
 

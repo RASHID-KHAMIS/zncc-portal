@@ -27,4 +27,8 @@ export class InvoicesService {
   getFileInvoiceByInvoiceId(id:any){
     return this.http.get(this.fileInvoiceAPI + "/" + "with-invoice" + "/" + id)
   }
+
+  editInvoiceStatus(id:any,body:any){
+    return this.http.put(this.invoiceAPI + "/" + "updatePaymentStatus" + "/" + id,body)
+  }
 }
