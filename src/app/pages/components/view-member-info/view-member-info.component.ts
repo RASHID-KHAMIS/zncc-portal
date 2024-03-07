@@ -164,7 +164,7 @@ export class ViewMemberInfoComponent implements OnInit {
   memberInfo: any;
   fetchMemberByID(memberId: any) {
     this.membershipService.getByMemberId(memberId).subscribe((resp: any) => {
-      console.log(resp);
+      // console.log(resp);
       this.memberInfo = resp;
 
       this.companyOwnershipService

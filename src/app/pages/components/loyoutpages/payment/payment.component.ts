@@ -120,8 +120,6 @@ export class PaymentComponent implements OnInit{
   }
 
 
-
-
   onBack(){
     this.router.navigate(['home'])
   }
@@ -129,7 +127,7 @@ export class PaymentComponent implements OnInit{
   
 
   openDialog(row:any) {
-    console.log(row.invoiceId);
+    // console.log(row.invoiceId);
     this.invoiceForm = new FormGroup({
       invoiceId:new FormControl(row.invoiceId)
     })  
