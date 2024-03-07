@@ -218,7 +218,6 @@ export class ViewMemberInfoComponent implements OnInit{
         Swal.fire("Changes are not saved", "", "info");
       }
     });
-    
   }
 
   onBack(){

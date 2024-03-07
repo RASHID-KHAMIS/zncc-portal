@@ -26,7 +26,7 @@ export class PaymentComponent implements OnInit{
   displayedColumns: string[] = ['No', 'invoiceNumber', 'nvoiceDate','invoiceAmount','paymentStatus'];
 
   dataSource2 = new MatTableDataSource();
-  displayedColumns2: string[] = ['No', 'invoiceNumber', 'nvoiceDate','invoiceAmount','paymentStatus','Actions'];
+  displayedColumns2: string[] = ['No', 'invoiceNumber', 'nvoiceDate','invoiceAmount','paymentStatus','View','Actions'];
   loading: boolean = true;
   @ViewChild('distributionDialog') distributionDialog!: TemplateRef<any>;
   role:any;
@@ -97,6 +97,25 @@ export class PaymentComponent implements OnInit{
   configureForm(){
     this.invoiceForm = new FormGroup({
       file: new FormControl('Invoice'),
+    })
+  }
+
+  openPdf2(file: any) {
+    this.invoicesService.getFileInvoiceByInvoiceId(file.invoiceId).subscribe((resp:any)=>{
+      console.log(resp);
+         
+    if (resp && resp.file_path) {
+      const extension = resp.file_path.split('.').pop().toLowerCase();
+      if (extension === 'pdf') {
+        const dialogOptions = 'width=800,height=600,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes';
+        window.open('https://'+resp.file_path, 'PDF Dialog', dialogOptions);
+      } else {
+        console.error('The file is not a PDF.');
+      }
+    } else {
+      console.error('Invalid file object.');
+    }
+      
     })
   }
 
