@@ -53,6 +53,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { PictureDialogComponentComponent } from './pages/components/loyoutpages/picture-dialog-component/picture-dialog-component.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { EditCompanyInfoComponent } from './pages/components/loyoutpages/edit-company-info/edit-company-info.component';
+import { ForgetPasswordComponent } from './pages/components/forget-password/forget-password.component';
 // import { PdfViewerModule } from 'ngx-extended-pdf-viewer'
 
 
@@ -91,6 +92,7 @@ import { EditCompanyInfoComponent } from './pages/components/loyoutpages/edit-co
     NewApplicantComponent,
     PictureDialogComponentComponent,
     EditCompanyInfoComponent,
+    ForgetPasswordComponent,
 
    
   ],

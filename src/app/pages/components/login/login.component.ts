@@ -45,7 +45,6 @@ export class LoginComponent implements OnInit {
     if (data != '') {
       this.password = false
     }
-
   }
 
   onLogin(){

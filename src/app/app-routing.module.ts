@@ -26,6 +26,7 @@ import { EditStaffComponent } from './pages/components/loyoutpages/edit-staff/ed
 import { ResetPasswordComponent } from './pages/components/reset-password/reset-password.component';
 import { NewApplicantComponent } from './pages/components/new-applicant/new-applicant.component';
 import { EditCompanyInfoComponent } from './pages/components/loyoutpages/edit-company-info/edit-company-info.component';
+import { ForgetPasswordComponent } from './pages/components/forget-password/forget-password.component';
 
 
 
@@ -39,6 +40,10 @@ const routes: Routes = [
   {
     path:'reset-password',
     component:ResetPasswordComponent
+  },
+  {
+    path:'forget-password',
+    component:ForgetPasswordComponent
   },
   {
     path: '', component: LayoutComponent
