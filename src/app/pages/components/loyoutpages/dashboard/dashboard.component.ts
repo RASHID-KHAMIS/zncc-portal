@@ -31,6 +31,7 @@ export class DashboardComponent implements OnInit{
 
   @ViewChild('distributionDialog') distributionDialog!: TemplateRef<any>;
   @ViewChild('distributionDialog2') distributionDialog2!: TemplateRef<any>;
+  @ViewChild('distributionDialog3') distributionDialog3!: TemplateRef<any>;
 
   GenderList: any[] = [
     { value: 'M', viewValue: 'Male' },
@@ -154,7 +155,6 @@ export class DashboardComponent implements OnInit{
   }
 
   openDialog2(row:any) {
-    console.log(row);
     this.ownerEditForm = new FormGroup({
       companyOwnerInformationId:new FormControl(row.companyOwnerInformationId),
       owner_name: new FormControl(row.owner_name),
@@ -371,6 +371,25 @@ export class DashboardComponent implements OnInit{
     } else {
       console.error('Invalid file object.');
     }
+  }
+
+  editDocument(row:any){
+    // console.log(row);
+ 
+    
+    let dialogRef = this.dialog.open(this.distributionDialog3, {
+      width: '650px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result !== 'no') {
+          const enabled = "Y"
+
+        } else if (result === 'no') {
+        }
+      }
+    })
+
   }
 
 
