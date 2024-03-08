@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit{
   dataSource = new MatTableDataSource();
   displayedColumns: string[] = ['No', 'owner_name', 'owner_email','owner_phone','representative_name','position','action'];
   dataSource2 = new MatTableDataSource();
-  displayedColumns2: string[] = ['No', 'Category', 'action'];
+  displayedColumns2: string[] = ['No', 'Category', 'view','action'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -53,7 +53,9 @@ export class DashboardComponent implements OnInit{
   isSoleProprietorship: boolean = false
   progress = 0;
   message = '';
-  files:any
+  files:any;
+
+  documentsForm!:FormGroup;
 
   constructor(private router:Router,
     private dialog:MatDialog,
@@ -65,6 +67,7 @@ export class DashboardComponent implements OnInit{
    this.memberAccountId = localStorage.getItem('memberAccountId');
    this.fetchByMembershipId();
    this.configureEditForm();
+   this.configureDocumentsForm();
 
    this.role = localStorage.getItem('role')
   }
@@ -85,7 +88,7 @@ export class DashboardComponent implements OnInit{
       // console.log(this.memberInfo.memberShipFormId);
 
          this.membershipUploadService.getPictureById(this.memberInfo.memberShipFormId).subscribe((resp:any)=>{
-      console.log(resp);
+      // console.log(resp);
 
       if (resp.length > 0) {
         this.check2 = true;
@@ -302,6 +305,75 @@ export class DashboardComponent implements OnInit{
       }
     }
   }
+
+  configureDocumentsForm(){
+    this.documentsForm = new FormGroup({
+      upload_BPRA: new FormControl('BPRA'),
+      representative_CV: new FormControl('CV'),
+      memberShipFormId:new FormControl(null)
+    })
+  }
+
+  onSubmit() {
+    this.documentsForm.patchValue({
+      memberShipFormId : this.memberInfo.memberShipFormId
+    })
+    const values = this.documentsForm.value;
+    const id = values.memberShipFormId;
+
+      const form = new FormData();
+      form.append('file', this.files, this.files.name);
+      form.append('fileCategory', values.upload_BPRA);
+      form.append('file', this.files, this.files.name);
+      form.append('fileCategory', values.representative_CV);
+      this.membershipUploadService.addFilesUpload(id,form).subscribe((resp)=>{  
+        this.alert3();
+        this.reload2()
+      })
+  }
+
+  reload2(){
+    this.router.navigateByUrl('',{skipLocationChange:true}).then(()=>{
+      this.router.navigate(['home'])
+    })
+  }
+
+  alert3(){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Documents Added Successfully'
+    })
+  }
+
+
+  openPdf(file: any) {
+    if (file && file.file_path) {
+      const extension = file.file_path.split('.').pop().toLowerCase();
+      if (extension === 'pdf') {
+        const dialogOptions =
+          'width=800,height=600,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes';
+        window.open('https://' + file.file_path, 'PDF Dialog', dialogOptions);
+      } else {
+        console.error('The file is not a PDF.');
+      }
+    } else {
+      console.error('Invalid file object.');
+    }
+  }
+
+
 
 
 
