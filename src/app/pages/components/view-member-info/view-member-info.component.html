@@ -54,9 +54,10 @@
                     </div>
                     <div class="col-md-4 d-flex justify-content-end">
                         <button class="btn btn-warning"  *ngIf="memberInfo?.isNewApplicant == 1" (click)="openDialog()">Verify</button> &nbsp;&nbsp;
-                        <button class="btn btn-secondary" *ngIf="memberInfo?.isNewApplicant == 1">Comment</button>&nbsp;&nbsp;
+                        <button class="btn btn-secondary" *ngIf="memberInfo?.isNewApplicant == 1" (click)="openDialog2(memberInfo)" >Comment</button>&nbsp;&nbsp;
                         <button  class="btn btn-success"  *ngIf="memberInfo?.isNewApplicant == 0">Verified</button>&nbsp;&nbsp;
-                        <button mat-raised-button color="primary"  (click)="onBack()">Back</button>
+                        <button mat-raised-button color="primary"  (click)="onBack()" *ngIf="memberInfo?.isNewApplicant == 1">Back</button>
+                        <button mat-raised-button color="primary"  (click)="onBack2()" *ngIf="memberInfo?.isNewApplicant == 0">Back</button>
                     </div>
                 </div>
 
@@ -75,6 +76,23 @@
         <div class="row g-3">
             <div class="col">
                 <ul class="timeline">
+                    <li class="timeline-event" *ngIf="comment?.length > 0">
+                        <div class="timeline-event-icon bg-twitter-lt">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/brand-twitter -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256">
+                                <path fill="currentColor"
+                                    d="M208 20H64a20 20 0 0 0-20 20v20H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v20a20 20 0 0 0 20 20h144a20 20 0 0 0 20-20V40a20 20 0 0 0-20-20m-4 192H68V44h136Zm-103.2-40.63a48 48 0 0 1 70.4 0a12 12 0 0 0 17.6-16.32a72 72 0 0 0-19.21-14.68a44 44 0 1 0-67.19 0a72.12 72.12 0 0 0-19.2 14.68a12 12 0 0 0 17.6 16.32M116 112a20 20 0 1 1 20 20a20 20 0 0 1-20-20" />
+                            </svg>
+                        </div>
+                        
+                        <div class="card timeline-event-card">
+                            <div class="card-body">
+                                <div class="text-secondary float-end"></div>
+                                <h4>Comments</h4>
+                                <p class="text-secondary">{{comment}}</p>
+                            </div>
+                        </div>
+                    </li>
                     <li class="timeline-event">
                         <div class="timeline-event-icon bg-twitter-lt">
                             <!-- Download SVG icon from http://tabler-icons.io/i/brand-twitter -->
@@ -83,6 +101,7 @@
                                     d="M208 20H64a20 20 0 0 0-20 20v20H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v20a20 20 0 0 0 20 20h144a20 20 0 0 0 20-20V40a20 20 0 0 0-20-20m-4 192H68V44h136Zm-103.2-40.63a48 48 0 0 1 70.4 0a12 12 0 0 0 17.6-16.32a72 72 0 0 0-19.21-14.68a44 44 0 1 0-67.19 0a72.12 72.12 0 0 0-19.2 14.68a12 12 0 0 0 17.6 16.32M116 112a20 20 0 1 1 20 20a20 20 0 0 1-20-20" />
                             </svg>
                         </div>
+                        
                         <div class="card timeline-event-card">
                             <div class="card-body">
                                 <div class="text-secondary float-end"></div>
@@ -480,3 +499,26 @@
 
     </app-card>
 </ng-template>
+
+<ng-template #distributionDialog2>
+    <app-card title="Comments">
+      <hr>
+      <form [formGroup]="commentsForm">
+        <div class="row">
+
+          <div class="col-md-12">
+            <mat-form-field  style="width: 100%;" appearance="outline">
+                    <mat-label>Leave a comment</mat-label>
+                    <textarea matInput placeholder="Ex. It makes me feel..." formControlName="comment_resone"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </form><br><br>
+
+      <div class="card-bottom">
+        <button mat-raised-button matDialogClose="yes" >Cancel</button> &nbsp;
+        <button mat-raised-button  color="primary"  matDialogClose="yes" (click)="onComment()">Comment</button>
+    </div>
+
+    </app-card>
+    </ng-template>

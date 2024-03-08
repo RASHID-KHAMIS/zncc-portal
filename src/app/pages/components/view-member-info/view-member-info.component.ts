@@ -11,6 +11,7 @@ import { MembershipUploadService } from '../../services/membership-upload.servic
 import { PictureDialogComponentComponent } from '../loyoutpages/picture-dialog-component/picture-dialog-component.component';
 import { InvoicesService } from '../../services/invoices.service';
 import { CompanyOwnershipService } from '../../services/company-ownership.service';
+import { MembershipCommentsService } from '../../services/membership-comments.service';
 
 @Component({
   selector: 'app-view-member-info',
@@ -19,6 +20,7 @@ import { CompanyOwnershipService } from '../../services/company-ownership.servic
 })
 export class ViewMemberInfoComponent implements OnInit {
   @ViewChild('distributionDialog') distributionDialog!: TemplateRef<any>;
+  @ViewChild('distributionDialog2') distributionDialog2!: TemplateRef<any>;
 
   dataSource = new MatTableDataSource();
   displayedColumns: string[] = ['No', 'Category', 'action'];
@@ -49,6 +51,7 @@ export class ViewMemberInfoComponent implements OnInit {
   check3: boolean = false;
 
   verifyForm!: FormGroup;
+  commentsForm!:FormGroup;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -57,17 +60,20 @@ export class ViewMemberInfoComponent implements OnInit {
     private invoicesService: InvoicesService,
     private membershipUploadService: MembershipUploadService,
     private companyOwnershipService: CompanyOwnershipService,
-    private dialog: MatDialog
-  ) {}
+    private dialog: MatDialog,
+    private membershipCommentsService:MembershipCommentsService) {}
   ngOnInit(): void {
     this.fetchAllBusinessSize();
     this.configureForm();
+    this.configureCommentForm();
+  
 
     const member = this.route.snapshot.queryParamMap.get('id');
-    // console.log(member);
+    console.log(member);
     this.fetchMemberByID(member);
     this.fetchPictureById(member);
     this.fetcInvoiceByMemberFormId(member);
+    this.fetchCommentsByMembershipId(member);
   }
 
   applyFilter(event: Event) {
@@ -79,9 +85,7 @@ export class ViewMemberInfoComponent implements OnInit {
   }
 
   fetchPictureById(member: any) {
-    this.membershipUploadService
-      .getPictureById(member)
-      .subscribe((resp: any) => {
+    this.membershipUploadService.getPictureById(member).subscribe((resp: any) => {
         if (resp.length > 0) {
           this.check = true;
         }
@@ -192,6 +196,14 @@ export class ViewMemberInfoComponent implements OnInit {
     });
   }
 
+  configureCommentForm(){
+    this.commentsForm = new FormGroup({
+      comment_resone:new FormControl(null),
+      memberShipFormId:new FormControl(null),
+      commentedDate:new FormControl(new Date())
+    })
+  }
+
   openDialog() {
     let dialogRef = this.dialog.open(this.distributionDialog, {
       width: '650px',
@@ -238,6 +250,50 @@ export class ViewMemberInfoComponent implements OnInit {
     this.router.navigate(['new-Applicant']);
   }
 
+  onBack2() {
+    this.router.navigate(['members']);
+  }
+
+  openDialog2(memberInfo:any) {
+    let dialogRef = this.dialog.open(this.distributionDialog2, {
+      width: '650px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result !== 'no') {
+          const enabled = "Y"
+
+        } else if (result === 'no') {
+        }
+      }
+    })
+  }
+
+  onComment(){
+    // console.log(this.memberInfo);
+    this.commentsForm.patchValue({
+      memberShipFormId : this.memberInfo.memberShipFormId
+    })
+    const values = this.commentsForm.value;
+    // console.log(values);
+    this.membershipCommentsService.addComments(values).subscribe((resp:any)=>{
+      this.alert2();
+      
+    })
+  }
+
+
+  comment:any;
+  fetchCommentsByMembershipId(member:any){
+    this.membershipCommentsService.getCommentsByMemberFormId(member).subscribe((resp:any)=>{
+      console.log(resp.comment_resone);  
+      this.comment = resp.comment_resone; 
+    })
+    
+  }
+
+
+
   alert() {
     const Toast = Swal.mixin({
       toast: true,
@@ -254,6 +310,25 @@ export class ViewMemberInfoComponent implements OnInit {
     Toast.fire({
       icon: 'success',
       title: 'Verified Successfully',
+    });
+  }
+
+  alert2() {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer);
+        toast.addEventListener('mouseleave', Swal.resumeTimer);
+      },
+    });
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Commented Successfully',
     });
   }
 }
