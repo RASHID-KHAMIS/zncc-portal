@@ -6,8 +6,15 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { CompanyOwnershipService } from 'src/app/pages/services/company-ownership.service';
+import { MembershipUploadService } from 'src/app/pages/services/membership-upload.service';
 import { MembershipService } from 'src/app/pages/services/membership.service';
 import Swal from 'sweetalert2';
+class ImageSnippet {
+  pending: boolean = false;
+  status: string = 'init';
+
+  constructor(public src: string, public file: File) { }
+}
 
 @Component({
   selector: 'app-dashboard',
@@ -17,6 +24,8 @@ import Swal from 'sweetalert2';
 export class DashboardComponent implements OnInit{
   dataSource = new MatTableDataSource();
   displayedColumns: string[] = ['No', 'owner_name', 'owner_email','owner_phone','representative_name','position','action'];
+  dataSource2 = new MatTableDataSource();
+  displayedColumns2: string[] = ['No', 'Category', 'action'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -34,11 +43,23 @@ export class DashboardComponent implements OnInit{
   memberAccountId:any;
   loading: boolean = true;
   check:boolean = false;
+  check2:boolean = false;
   role:any;
+
+  selectedFiles?: FileList;
+  currentFile?: File;
+  selectedFile!: ImageSnippet;
+  preview = './../../../../../assets/avata.png';
+  isSoleProprietorship: boolean = false
+  progress = 0;
+  message = '';
+  files:any
+
   constructor(private router:Router,
     private dialog:MatDialog,
     private membershipService:MembershipService,
-    private companyOwnershipService:CompanyOwnershipService){}
+    private companyOwnershipService:CompanyOwnershipService,
+    private membershipUploadService:MembershipUploadService){}
   ngOnInit(): void {
     this.configureForm();
    this.memberAccountId = localStorage.getItem('memberAccountId');
@@ -61,7 +82,18 @@ export class DashboardComponent implements OnInit{
   fetchByMembershipId(){
     this.membershipService.getMembershirpsByMemberID(this.memberAccountId).subscribe((resp:any)=>{
       this.memberInfo = resp;
-      // console.log(this.memberInfo);
+      // console.log(this.memberInfo.memberShipFormId);
+
+         this.membershipUploadService.getPictureById(this.memberInfo.memberShipFormId).subscribe((resp:any)=>{
+      console.log(resp);
+
+      if (resp.length > 0) {
+        this.check2 = true;
+      }
+      this.dataSource2 = new MatTableDataSource(resp);
+      this.loading = false;
+    
+    })
 
       this.companyOwnershipService.getByMembershipId(this.memberInfo.memberShipFormId).subscribe((resp:any)=>{
         // console.log(resp);
@@ -74,6 +106,8 @@ export class DashboardComponent implements OnInit{
         this.dataSource.sort = this.sort
       })
     })
+
+ 
   }
 
   configureForm(){
@@ -216,6 +250,59 @@ export class DashboardComponent implements OnInit{
       title: 'Owner Edited Successfully'
     })
   }
+
+  processFile(imageInput: any) {
+    this.loading = true;
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
+    this.files = file;
+    reader.addEventListener('load', (event: any) => {
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+      this.loading = false;
+    });
+
+    reader.readAsDataURL(file);
+  }
+
+  processFile2(imageInput: any) {
+    this.loading = true;
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
+    this.files = file;
+    reader.addEventListener('load', (event: any) => {
+      this.selectedFile = new ImageSnippet(event.target.result, file);
+      this.loading = false;
+    });
+
+    reader.readAsDataURL(file);
+  }
+
+
+  selectFile(event: any): void {
+    this.message = '';
+    this.preview = '';
+    this.progress = 0;
+    this.selectedFiles = event.target.files;
+
+    if (this.selectedFiles) {
+      const file: File | null = this.selectedFiles.item(0);
+
+      if (file) {
+        this.preview = '';
+        this.currentFile = file;
+
+        const reader = new FileReader();
+
+        reader.onload = (e: any) => {
+          console.log(e.target.result);
+          this.preview = e.target.result;
+        };
+
+        reader.readAsDataURL(this.currentFile);
+      }
+    }
+  }
+
 
 
 }

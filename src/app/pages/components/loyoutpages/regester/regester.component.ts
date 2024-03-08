@@ -32,12 +32,13 @@ export class RegesterComponent implements OnInit {
   isSoleProprietorship: boolean = false
   progress = 0;
   message = '';
+  files:any
 
 
   imageInfos?: Observable<any>;
   memberAccountId:any;
   loading:boolean = true;
-  files:any
+
   constructor(private fb: FormBuilder, 
     private router:Router,
     private memberService: MemberService,

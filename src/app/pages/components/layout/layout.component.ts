@@ -16,23 +16,9 @@ export class LayoutComponent {
   }
   ngOnInit(): void {
     this.role = localStorage.getItem("role")
-    // console.log(this.role);
-    
-    // this.fullName = localStorage.getItem("fullName")
-    // this.cheLoging()
+ 
   }
 
-  cheLoging() {
-    // let localData = localStorage.getItem("user")
-    // if (localData == null) {
-    //   this.router.navigate(["/"])
-    // }
-  }
-
-  // Onlogout() {
-  //   localStorage.clear()
-  //   this.router.navigate(["/"])
-  // }
 
   onLogOut(){
     localStorage.clear();

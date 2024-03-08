@@ -52,6 +52,7 @@ export class ViewMemberInfoComponent implements OnInit {
 
   verifyForm!: FormGroup;
   commentsForm!:FormGroup;
+  role:any;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -63,13 +64,14 @@ export class ViewMemberInfoComponent implements OnInit {
     private dialog: MatDialog,
     private membershipCommentsService:MembershipCommentsService) {}
   ngOnInit(): void {
+    this.role = localStorage.getItem("role")
     this.fetchAllBusinessSize();
     this.configureForm();
     this.configureCommentForm();
   
 
     const member = this.route.snapshot.queryParamMap.get('id');
-    console.log(member);
+    // console.log(member);
     this.fetchMemberByID(member);
     this.fetchPictureById(member);
     this.fetcInvoiceByMemberFormId(member);
@@ -171,9 +173,7 @@ export class ViewMemberInfoComponent implements OnInit {
       // console.log(resp);
       this.memberInfo = resp;
 
-      this.companyOwnershipService
-        .getByMembershipId(resp.memberShipFormId)
-        .subscribe((resp: any) => {
+      this.companyOwnershipService.getByMembershipId(resp.memberShipFormId).subscribe((resp: any) => {
           // console.log(resp);
           if (resp.length > 0) {
             this.check3 = true;
@@ -286,7 +286,7 @@ export class ViewMemberInfoComponent implements OnInit {
   comment:any;
   fetchCommentsByMembershipId(member:any){
     this.membershipCommentsService.getCommentsByMemberFormId(member).subscribe((resp:any)=>{
-      console.log(resp.comment_resone);  
+      // console.log(resp.comment_resone);  
       this.comment = resp.comment_resone; 
     })
     

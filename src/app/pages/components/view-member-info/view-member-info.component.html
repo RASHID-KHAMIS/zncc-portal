@@ -86,11 +86,14 @@
                         </div>
                         
                         <div class="card timeline-event-card">
-                            <div class="card-body">
-                                <div class="text-secondary float-end"></div>
-                                <h4>Comments</h4>
-                                <p class="text-secondary">{{comment}}</p>
+                            <div class="card bg-primary-lt">
+                                <div class="card-body">
+                                    <div class="text-secondary float-end"></div>
+                                    <h4>Comments</h4>
+                                    <p class="text-secondary">{{comment}}</p>
+                                </div>
                             </div>
+                           
                         </div>
                     </li>
                     <li class="timeline-event">
@@ -414,6 +417,10 @@
                 </table>
          
             </div>
+        </div>
+
+        <div class="card" *ngIf="!check">
+            <h1>hhhhh</h1>
         </div>
         <br>
 
