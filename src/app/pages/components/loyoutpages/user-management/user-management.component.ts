@@ -1,10 +1,11 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MemberStaffService } from 'src/app/pages/services/member-staff.service';
 import { UsersService } from 'src/app/pages/services/users.service';
 
 @Component({
@@ -23,6 +24,7 @@ export class UserManagementComponent implements OnInit{
 
   userEditForm!:FormGroup;
   userForm!:FormGroup;
+  RegForm!:FormGroup;
 
 
   RoleList: any[] = [
@@ -32,12 +34,13 @@ export class UserManagementComponent implements OnInit{
   constructor(private router:Router,
     private route:ActivatedRoute,
     private dialog:MatDialog,
-    private usersService:UsersService){}
+    private usersService:UsersService,
+    private memberStaffService:MemberStaffService){}
   ngOnInit(): void {
     this.fetchAllStaff();
     this.configureUserForm();
     this.configureForm();
-    
+    this.configureRegForm()
   }
 
   applyFilter(event: Event) {
@@ -60,7 +63,22 @@ export class UserManagementComponent implements OnInit{
 
 
   openDialog() {
+    const values = this.RegForm.value;
+    // console.log(values.regNo);
+    this.memberStaffService.getStaffByRegNo(values.regNo).subscribe((resp:any)=>{
+      // console.log(resp);
 
+      this.userForm = new FormGroup({
+        email:new FormControl(resp.email),
+        staffId:new FormControl(resp.id),
+        role:new FormControl(null),
+        lastName:new FormControl(resp.lastName),
+      })
+
+
+      
+    })
+    
     let dialogRef = this.dialog.open(this.distributionDialog, {
       width: '650px',
     });
@@ -92,12 +110,28 @@ export class UserManagementComponent implements OnInit{
     })
   }
 
+ configureRegForm(){
+  this.RegForm = new FormGroup({
+    regNo:new FormControl(null,Validators.required)
+  })
+ }
   configureUserForm(){
     this.userForm = new FormGroup({
       email:new FormControl(null),
       role:new FormControl(null),
+      lastName:new FormControl(null),
     })
 
+  }
+
+  onAdd(){
+    const values =this.userForm.value;
+    console.log(values);
+    
+    this.usersService.addUserStaff(values).subscribe((resp:any)=>{
+      console.log('added');
+      
+    })
   }
 
   configureForm(){
@@ -107,6 +141,7 @@ export class UserManagementComponent implements OnInit{
 
     })
   }
+
 
   onEdit(){
 

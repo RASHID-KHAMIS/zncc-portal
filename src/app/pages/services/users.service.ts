@@ -21,4 +21,8 @@ export class UsersService {
   getAllStaff(){
     return this.http.get(this.userAPI + "/all-staff-user")
   }
+
+  addUserStaff(body:any){
+    return this.http.post(this.userAPI,body)
+  }
 }

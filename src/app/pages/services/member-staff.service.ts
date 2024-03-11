@@ -40,4 +40,8 @@ export class MemberStaffService {
   editStaffPosition(id:any,body:any){
     return this.http.put(this.staffPositionAPI + "/" + id,body)
   }
+
+  getStaffByRegNo(regNo:any){
+    return this.http.get(this.staffAPI + "/" + "by-reg-no" + "/" + regNo)
+  }
 }

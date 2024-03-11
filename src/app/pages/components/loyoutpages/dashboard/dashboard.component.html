@@ -231,11 +231,12 @@
                 <div class="row g-2 align-items-center">
 
                     <!-- Page title actions -->
-                    <div class="col-auto ms-auto d-print-none">
+                    <div class="col-auto ms-auto d-print-none" style="margin-right: 8%;">
                         <div class="btn-list">
                             <button class="btn btn-success d-none d-sm-inline-block"
                                 *ngIf="memberInfo?.membership_type !== 'Sole Proprietorship'"
-                                (click)="onEditInfo(memberInfo)"> Edit Information</button>&nbsp;
+                                (click)="onEditInfo(memberInfo)"> Edit Information
+                            </button>&nbsp;
                             <button class="btn btn-primary d-none d-sm-inline-block"
                                 *ngIf="memberInfo?.membership_type !== 'Sole Proprietorship'" (click)="openDialog()">
 

@@ -10,7 +10,30 @@
                     Users  List
                 </h2>
             </div>
-       
+            <!-- Page title actions -->
+
+            <form [formGroup]="RegForm">
+                <div class="row">
+                    <div class="col-auto ms-auto d-print-none">
+                        <div class="btn-list">
+                            <div class="input-icon" style="width: 200%;">
+                                <input type="text" class="form-control form-control-rounded" formControlName="regNo" placeholder="Enter Staff Registration" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto d-print-none">
+                        <button class="btn btn-primary d-none d-sm-inline-block" [disabled]="!RegForm.valid" (click)="openDialog()">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M12 5l0 14" />
+                                <path d="M5 12l14 0" />
+                            </svg>
+                            Register User
+                        </button>
+                    </div>
+                </div>
+            </form>
+     
         </div>
     </div>
 </div>
@@ -25,7 +48,7 @@
         
         <div style="margin:10px 0px 0px 10px;" class="example-form ml-3  mb-3">
             <label class="form-label"></label>
-            <div class="input-icon" style="width: 50%;" > 
+            <div class="input-icon" style="width: 70%;" > 
                 <input type="text" #input (keyup)="applyFilter($event)" class="form-control form-control-rounded"
                     placeholder="Search…" />
                 <span class="input-icon-addon">
@@ -36,40 +59,6 @@
                     </svg>
                 </span>
             </div>
-        </div>
-
-        <div class="row"  style="margin-right: 10px; margin-top: -60px;">
-            <div class="col-md-3"></div>
-            <div class="col-md-3"></div>
-          
-            
-            <div class="col-md-3">
-                <div style="margin:10px 0px 0px 10px;" class="example-form ml-3  mb-3">
-                    <label class="form-label"></label>
-                    <div class="input-icon" style="width: 90%;" > 
-                        <input type="text" #input (keyup)="applyFilter($event)" class="form-control form-control-rounded"
-                            placeholder="Enter Registration Number" />
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3" style="margin-top: 10px;">
-                <div class="col-auto ms-auto">
-                    <div class="btn-list">
-                        <button class="btn btn-primary d-none d-sm-inline-block"  (click)="openDialog()">
-        
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                                stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M12 5l0 14" />
-                                <path d="M5 12l14 0" />
-                            </svg>
-                            Register User
-                        </button>
-                    </div>
-                </div>
-            </div>
-           
         </div>
        
         <div style="margin: 10px;">
@@ -169,10 +158,9 @@
 
 </div>
 
-
 <ng-template #distributionDialog>
     <app-card title="Add User">
-      <hr>
+        <hr>
       <form [formGroup]="userForm">
         <div class="row">
           <div class="col-md-6">
@@ -181,7 +169,6 @@
               <input matInput placeholder="Unguja" formControlName="email">
             </mat-form-field>
           </div>
-
           <div class="col-md-6">
             <mat-form-field appearance="outline" style="width:100%;">
                 <mat-label>Role</mat-label>
@@ -192,18 +179,17 @@
                 </mat-select>
             </mat-form-field>
           </div>
-
-          
         </div>
       </form><br><br>
 
       <div class="card-bottom">
         <button mat-raised-button matDialogClose="yes" >Cancel</button> &nbsp;
-        <button mat-raised-button  color="primary"  matDialogClose="yes">Add</button>
+        <button mat-raised-button  color="primary"  matDialogClose="yes" (click)="onAdd()">Add</button>
     </div>
 
     </app-card>
     </ng-template>
+
 
 
 
