@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MemberStaffService } from 'src/app/pages/services/member-staff.service';
 import { UsersService } from 'src/app/pages/services/users.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-management',
@@ -30,10 +31,9 @@ export class UserManagementComponent implements OnInit{
   RoleList: any[] = [
     { value: 'SUPER ADMIN', viewValue: 'SUPER ADMIN' },
     { value: 'MEMBERSHIP OFFICER', viewValue: 'MEMBERSHIP OFFICER' },
-    // { value: 'MEMBERSHIP OFFICER', viewValue: 'MEMBERSHIP OFFICER' },
-    // { value: 'MEMBERSHIP OFFICER', viewValue: 'MEMBERSHIP OFFICER' },
-    // { value: 'MEMBERSHIP OFFICER', viewValue: 'MEMBERSHIP OFFICER' },
-    // { value: 'MEMBERSHIP OFFICER', viewValue: 'MEMBERSHIP OFFICER' },
+    { value: 'ACCOUNTANT', viewValue: 'ACCOUNTANT' },
+    { value: 'IT OFFICER', viewValue: 'IT OFFICER' },
+    { value: 'DIRECTOR', viewValue: 'DIRECTOR' },
   ];
   constructor(private router:Router,
     private route:ActivatedRoute,
@@ -61,6 +61,7 @@ export class UserManagementComponent implements OnInit{
       this.dataSource = new MatTableDataSource(resp);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.loading = false
       
     })
   }
@@ -98,8 +99,6 @@ export class UserManagementComponent implements OnInit{
   }
 
   openDialog2(row:any) {
- 
-
     let dialogRef = this.dialog.open(this.distributionDialog2, {
       width: '650px',
     });
@@ -133,7 +132,9 @@ export class UserManagementComponent implements OnInit{
     console.log(values);
     
     this.usersService.addUserStaff(values).subscribe((resp:any)=>{
-      console.log('added');
+      // console.log('added');
+      this.alert();
+      this.reload();
       
     })
   }
@@ -150,6 +151,32 @@ export class UserManagementComponent implements OnInit{
   onEdit(){
 
   }
+
+  reload(){
+    this.router.navigateByUrl('',{skipLocationChange:true}).then(()=>{
+      this.router.navigate(['user-management'])
+    })
+  }
+
+  alert(){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'User Added Successfully'
+    })
+  }
+
 
 
 }
