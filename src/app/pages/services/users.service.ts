@@ -17,4 +17,8 @@ export class UsersService {
   userFirstLogin(id:any,body:any){
     return this.http.post(this.userAPI + "/" + "firts-changePassword" + "/" + id,body )
   }
+
+  getAllStaff(){
+    return this.http.get(this.userAPI + "/all-staff-user")
+  }
 }

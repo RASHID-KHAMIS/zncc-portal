@@ -1,9 +1,11 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UsersService } from 'src/app/pages/services/users.service';
 
 @Component({
   selector: 'app-user-management',
@@ -12,17 +14,29 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class UserManagementComponent implements OnInit{
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['No', 'ZoneCode', 'ZoneName','action'];
+  displayedColumns: string[] = ['No', 'Name', 'Email','Status','LoginStatus','Actions'];
   loading: boolean = true;
   @ViewChild('distributionDialog') distributionDialog!: TemplateRef<any>;
   @ViewChild('distributionDialog2') distributionDialog2!: TemplateRef<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+  userEditForm!:FormGroup;
+  userForm!:FormGroup;
+
+
+  RoleList: any[] = [
+    { value: 'SUPER ADMIN', viewValue: 'SUPER ADMIN' },
+    { value: 'MEMBERSHIP OFFICER', viewValue: 'MEMBERSHIP OFFICER' },
+  ];
   constructor(private router:Router,
     private route:ActivatedRoute,
-    private dialog:MatDialog){}
+    private dialog:MatDialog,
+    private usersService:UsersService){}
   ngOnInit(): void {
+    this.fetchAllStaff();
+    this.configureUserForm();
+    this.configureForm();
     
   }
 
@@ -32,6 +46,16 @@ export class UserManagementComponent implements OnInit{
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  fetchAllStaff(){
+    this.usersService.getAllStaff().subscribe((resp:any)=>{
+      // console.log(resp);
+      this.dataSource = new MatTableDataSource(resp);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      
+    })
   }
 
 
@@ -66,6 +90,26 @@ export class UserManagementComponent implements OnInit{
         }
       }
     })
+  }
+
+  configureUserForm(){
+    this.userForm = new FormGroup({
+      email:new FormControl(null),
+      role:new FormControl(null),
+    })
+
+  }
+
+  configureForm(){
+    this.userEditForm = new FormGroup({
+      zoneCode:new FormControl(null),
+      zoneName:new FormControl(null)
+
+    })
+  }
+
+  onEdit(){
+
   }
 
 
