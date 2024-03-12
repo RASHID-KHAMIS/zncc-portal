@@ -219,10 +219,28 @@ export class ViewMemberInfoComponent implements OnInit {
   }
 
   onSave() {
-    const values = this.verifyForm.value;
-    this.membershipService.verify(values).subscribe((resp: any) => {
-      this.alert();
+
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want verify this member!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Verify!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const values = this.verifyForm.value;
+        this.membershipService.verify(values).subscribe((resp: any) => {
+        });
+        Swal.fire({
+          title: 'verified!',
+          text: 'Member Verified Successfully.',
+          icon: 'success',
+        });
+      }
     });
+
   }
 
   onStatus(data: any) {
@@ -273,13 +291,28 @@ export class ViewMemberInfoComponent implements OnInit {
     // console.log(this.memberInfo);
     this.commentsForm.patchValue({
       memberShipFormId : this.memberInfo.memberShipFormId
-    })
-    const values = this.commentsForm.value;
-    // console.log(values);
-    this.membershipCommentsService.addComments(values).subscribe((resp:any)=>{
-      this.alert2();
-      
-    })
+    });
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want send comment to this member!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Comment!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+       
+          const values = this.commentsForm.value;
+          this.membershipCommentsService.addComments(values).subscribe((resp:any)=>{
+          });
+        Swal.fire({
+          title: 'verified!',
+          text: 'Comment Sent Successfully.',
+          icon: 'success',
+        });
+      }
+    });
   }
 
 

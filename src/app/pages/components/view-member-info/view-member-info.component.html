@@ -53,11 +53,16 @@
                         </div>
                     </div>
                     <div class="col-md-4 d-flex justify-content-end">
-                        <button class="btn btn-warning"  *ngIf="memberInfo?.isNewApplicant == 1" (click)="openDialog()">Verify</button> &nbsp;&nbsp;
-                        <button class="btn btn-secondary" *ngIf="memberInfo?.isNewApplicant == 1" (click)="openDialog2(memberInfo)" >Comment</button>&nbsp;&nbsp;
-                        <button  class="btn btn-success"  *ngIf="memberInfo?.isNewApplicant == 0">Verified</button>&nbsp;&nbsp;
-                        <button mat-raised-button color="primary"  (click)="onBack()" *ngIf="memberInfo?.isNewApplicant == 1">Back</button>
-                        <button mat-raised-button color="primary"  (click)="onBack2()" *ngIf="memberInfo?.isNewApplicant == 0">Back</button>
+                        <button class="btn btn-warning" *ngIf="memberInfo?.isNewApplicant == 1"
+                            (click)="openDialog()">Verify</button> &nbsp;&nbsp;
+                        <button class="btn btn-secondary" *ngIf="memberInfo?.isNewApplicant == 1"
+                            (click)="openDialog2(memberInfo)">Comment</button>&nbsp;&nbsp;
+                        <button class="btn btn-success"
+                            *ngIf="memberInfo?.isNewApplicant == 0">Verified</button>&nbsp;&nbsp;
+                        <button mat-raised-button color="primary" (click)="onBack()"
+                            *ngIf="memberInfo?.isNewApplicant == 1">Back</button>
+                        <button mat-raised-button color="primary" (click)="onBack2()"
+                            *ngIf="memberInfo?.isNewApplicant == 0">Back</button>
                     </div>
                 </div>
 
@@ -84,7 +89,7 @@
                                     d="M208 20H64a20 20 0 0 0-20 20v20H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v20a20 20 0 0 0 20 20h144a20 20 0 0 0 20-20V40a20 20 0 0 0-20-20m-4 192H68V44h136Zm-103.2-40.63a48 48 0 0 1 70.4 0a12 12 0 0 0 17.6-16.32a72 72 0 0 0-19.21-14.68a44 44 0 1 0-67.19 0a72.12 72.12 0 0 0-19.2 14.68a12 12 0 0 0 17.6 16.32M116 112a20 20 0 1 1 20 20a20 20 0 0 1-20-20" />
                             </svg>
                         </div>
-                        
+
                         <div class="card timeline-event-card">
                             <div class="card bg-primary-lt">
                                 <div class="card-body">
@@ -93,7 +98,7 @@
                                     <p class="text-secondary">{{comment}}</p>
                                 </div>
                             </div>
-                           
+
                         </div>
                     </li>
                     <li class="timeline-event">
@@ -104,7 +109,7 @@
                                     d="M208 20H64a20 20 0 0 0-20 20v20H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v20a20 20 0 0 0 20 20h144a20 20 0 0 0 20-20V40a20 20 0 0 0-20-20m-4 192H68V44h136Zm-103.2-40.63a48 48 0 0 1 70.4 0a12 12 0 0 0 17.6-16.32a72 72 0 0 0-19.21-14.68a44 44 0 1 0-67.19 0a72.12 72.12 0 0 0-19.2 14.68a12 12 0 0 0 17.6 16.32M116 112a20 20 0 1 1 20 20a20 20 0 0 1-20-20" />
                             </svg>
                         </div>
-                        
+
                         <div class="card timeline-event-card">
                             <div class="card-body">
                                 <div class="text-secondary float-end"></div>
@@ -298,7 +303,8 @@
                                         <path d="M11 15h1"></path>
                                         <path d="M12 15v3"></path>
                                     </svg>
-                                    Gender: <strong>{{ memberInfo?.gender === 'M' ? 'Male' : (memberInfo?.gender === 'F' ?
+                                    Gender: <strong>{{ memberInfo?.gender === 'M' ? 'Male' : (memberInfo?.gender === 'F'
+                                        ?
                                         'Female' : 'Unknown') }}</strong>
                                 </div>
                             </div>
@@ -312,17 +318,17 @@
         <div class="card" *ngIf="check2">
             <div class="card-status-top bg-primary"></div>
             <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
-        
+
             <div style="margin: 10px;">
-    
+
                 <table mat-table [dataSource]="dataSource2" matSort>
-    
+
                     <!-- ID Column -->
                     <ng-container matColumnDef="No">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> SNo. </th>
                         <td mat-cell *matCellDef="let row;let i = index"> {{i + 1}} </td>
                     </ng-container>
-    
+
                     <ng-container matColumnDef="invoiceNo">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Invoice No. </th>
                         <td mat-cell *matCellDef="let row"> {{row.invoiceNumber}}
@@ -345,37 +351,39 @@
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
                         <td mat-cell *matCellDef="let row">
                             <span *ngIf="row.paymentStatus == 1">
-                              <span class="badge badge-success">PAID</span>
+                                <span class="badge badge-success">PAID</span>
                             </span>
                             <span *ngIf="row.paymentStatus == 0">
-                              <span class="badge badge-danger"> NOT PAID </span>
+                                <span class="badge badge-danger"> NOT PAID </span>
                             </span>
-                          </td>
+                        </td>
                     </ng-container>
 
                     <ng-container matColumnDef="View">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> View </th>
                         <td mat-cell *matCellDef="let row">
                             <button mat-icon-button (click)=" openPdf2(row)">
-                                <mat-icon _ngcontent-ygf-c404="" role="img" color="primary" class="mat-icon notranslate mat-primary material-icons" 
-                                aria-hidden="true" ng-reflect-color="primary" data-mat-icon-type="font">attachment</mat-icon>
+                                <mat-icon _ngcontent-ygf-c404="" role="img" color="primary"
+                                    class="mat-icon notranslate mat-primary material-icons" aria-hidden="true"
+                                    ng-reflect-color="primary" data-mat-icon-type="font">attachment</mat-icon>
                             </button>
-                          
+
                         </td>
                     </ng-container>
-                   
+
                     <ng-container matColumnDef="action">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
                         <td mat-cell *matCellDef="let row">
-                            <button class="btn btn-primary d-none d-sm-inline-block"  (click)="onStatus(row)">Confirm</button>
+                            <button class="btn btn-primary d-none d-sm-inline-block"
+                                (click)="onStatus(row)">Confirm</button>
                         </td>
                     </ng-container>
-    
+
                     <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
-    
+
                 </table>
-         
+
             </div>
         </div>
         <br>
@@ -383,39 +391,40 @@
         <div class="card" *ngIf="check">
             <div class="card-status-top bg-primary"></div>
             <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
-        
+
             <div style="margin: 10px;">
-    
+
                 <table mat-table [dataSource]="dataSource" matSort>
-    
+
                     <!-- ID Column -->
                     <ng-container matColumnDef="No">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> SNo. </th>
                         <td mat-cell *matCellDef="let row;let i = index"> {{i + 1}} </td>
                     </ng-container>
-    
+
                     <ng-container matColumnDef="Category">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
                         <td mat-cell *matCellDef="let row"> {{row.file_name}}
                         </td>
                     </ng-container>
-                   
+
                     <ng-container matColumnDef="action">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
                         <td mat-cell *matCellDef="let row">
                             <button mat-icon-button (click)=" openPdf(row)">
-                                <mat-icon _ngcontent-ygf-c404="" role="img" color="primary" class="mat-icon notranslate mat-primary material-icons" 
-                                aria-hidden="true" ng-reflect-color="primary" data-mat-icon-type="font">attachment</mat-icon>
+                                <mat-icon _ngcontent-ygf-c404="" role="img" color="primary"
+                                    class="mat-icon notranslate mat-primary material-icons" aria-hidden="true"
+                                    ng-reflect-color="primary" data-mat-icon-type="font">attachment</mat-icon>
                             </button>
-                          
+
                         </td>
                     </ng-container>
-    
+
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    
+
                 </table>
-         
+
             </div>
         </div>
 
@@ -424,17 +433,17 @@
         <div class="card" *ngIf="check3">
             <div class="card-status-top bg-primary"></div>
             <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
-        
+
             <div style="margin: 10px;">
-    
+
                 <table mat-table [dataSource]="dataSource3" matSort>
-    
+
                     <!-- ID Column -->
                     <ng-container matColumnDef="No">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> SNo. </th>
                         <td mat-cell *matCellDef="let row;let i = index"> {{i + 1}} </td>
                     </ng-container>
-    
+
                     <ng-container matColumnDef="owner_name">
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Owner Name </th>
                         <td mat-cell *matCellDef="let row"> {{row.owner_name}}
@@ -465,12 +474,12 @@
                         </td>
                     </ng-container>
 
-    
+
                     <tr mat-header-row *matHeaderRowDef="displayedColumns3"></tr>
                     <tr mat-row *matRowDef="let row; columns: displayedColumns3;"></tr>
-    
+
                 </table>
-         
+
             </div>
         </div>
 
@@ -498,7 +507,7 @@
 
         <div class="card-bottom">
             <button mat-raised-button matDialogClose="yes">Cancel</button> &nbsp;
-            <button mat-raised-button color="primary" matDialogClose="yes" (click)="onSave()">Add</button>
+            <button mat-raised-button color="primary" matDialogClose="yes" [disabled]="!verifyForm.valid" (click)="onSave()">Add</button>
         </div>
 
     </app-card>
@@ -506,23 +515,24 @@
 
 <ng-template #distributionDialog2>
     <app-card title="Comments">
-      <hr>
-      <form [formGroup]="commentsForm">
-        <div class="row">
+        <hr>
+        <form [formGroup]="commentsForm">
+            <div class="row">
 
-          <div class="col-md-12">
-            <mat-form-field  style="width: 100%;" appearance="outline">
-                    <mat-label>Leave a comment</mat-label>
-                    <textarea matInput placeholder="Ex. It makes me feel..." formControlName="comment_resone"></textarea>
-            </mat-form-field>
-          </div>
+                <div class="col-md-12">
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>Leave a comment</mat-label>
+                        <textarea matInput placeholder="Ex. It makes me feel..."
+                            formControlName="comment_resone"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+        </form><br><br>
+
+        <div class="card-bottom">
+            <button mat-raised-button matDialogClose="yes">Cancel</button> &nbsp;
+            <button mat-raised-button color="primary" matDialogClose="yes" (click)="onComment()">Comment</button>
         </div>
-      </form><br><br>
-
-      <div class="card-bottom">
-        <button mat-raised-button matDialogClose="yes" >Cancel</button> &nbsp;
-        <button mat-raised-button  color="primary"  matDialogClose="yes" (click)="onComment()">Comment</button>
-    </div>
 
     </app-card>
-    </ng-template>
+</ng-template>
