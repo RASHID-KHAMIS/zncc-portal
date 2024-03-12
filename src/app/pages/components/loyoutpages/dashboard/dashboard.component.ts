@@ -23,7 +23,7 @@ class ImageSnippet {
 })
 export class DashboardComponent implements OnInit{
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['No', 'owner_name', 'owner_email','owner_phone','representative_name','position','action'];
+  displayedColumns: string[] = ['No', 'owner_name','gender', 'owner_email','owner_phone','representative_name','position','action'];
   dataSource2 = new MatTableDataSource();
   displayedColumns2: string[] = ['No', 'Category', 'view','action'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;

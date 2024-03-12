@@ -27,6 +27,7 @@ import { ResetPasswordComponent } from './pages/components/reset-password/reset-
 import { NewApplicantComponent } from './pages/components/new-applicant/new-applicant.component';
 import { EditCompanyInfoComponent } from './pages/components/loyoutpages/edit-company-info/edit-company-info.component';
 import { ForgetPasswordComponent } from './pages/components/forget-password/forget-password.component';
+import { ViewStaffInfoComponent } from './pages/components/loyoutpages/view-staff-info/view-staff-info.component';
 
 
 
@@ -114,6 +115,10 @@ const routes: Routes = [
       {
         path:'edit-company-info',
         component:EditCompanyInfoComponent
+      },
+      {
+        path:'view-staff-info',
+        component:ViewStaffInfoComponent
       },
       
     ]

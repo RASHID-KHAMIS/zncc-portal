@@ -69,7 +69,6 @@ export class ViewMemberInfoComponent implements OnInit {
     this.configureForm();
     this.configureCommentForm();
   
-
     const member = this.route.snapshot.queryParamMap.get('id');
     // console.log(member);
     this.fetchMemberByID(member);

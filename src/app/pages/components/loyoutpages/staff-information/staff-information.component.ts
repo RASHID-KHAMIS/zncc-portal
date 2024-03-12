@@ -48,4 +48,10 @@ export class StaffInformationComponent implements OnInit {
     this.router.navigate(['/edit-staff'], { queryParams: { id: data.id} });
   }
 
+  onView(data:any){
+    // console.log(data);
+    this.router.navigate(['/view-staff-info'], {queryParams: { id: data.id}});
+    
+  }
+
 }
