@@ -54,4 +54,8 @@ export class BusinessService {
   addBusinessSector(body:any){
     return this.http.post(this.businessSectorAPI,body)
   }
+
+  editBusinessSector(id:any,body:any){
+    return this.http.put(this.businessSectorAPI + "/" + id,body)
+  }
 }

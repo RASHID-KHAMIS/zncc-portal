@@ -51,13 +51,14 @@
         <div class="card-status-top bg-primary"></div>
         <mat-progress-bar mode="indeterminate" *ngIf="loding"></mat-progress-bar>
 
-        <div style="margin:10px 0px 0px 10px;" class="example-form ml-3  mb-3">
+        <div style="margin:10px 0px 0px 10px;" class="example-form ml-3  mb-3">            
+        
+
             <label class="form-label"></label>
             <div class="input-icon">
                 <input type="text" #input (keyup)="applyFilter($event)" class="form-control form-control-rounded"
                     placeholder="Search…" />
                 <span class="input-icon-addon">
-                    <!-- SVG icon from http://tabler-icons.io/i/search -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                         <path fill="currentColor"
                             d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5l-1.5 1.5l-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16A6.5 6.5 0 0 1 3 9.5A6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14S14 12 14 9.5S12 5 9.5 5Z" />
@@ -101,7 +102,7 @@
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
                     <td mat-cell *matCellDef="let row">
                         <div class="row">
-                            <button title="Modify" class="col-md-2 btn btn-outline-primary">
+                            <button title="Modify" class="col-md-2 btn btn-outline-primary" (click)="dialgOpen2(row)">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                         <path fill="currentColor"
@@ -136,6 +137,39 @@
     </div>
 
 </div>
+
+<ng-template #callDialog2>
+    <app-card title="Edit Business Sector">
+      <form [formGroup]="businesSectorEditForm">
+        <div class="row">
+            <div class="col-md-6">
+                <mat-dialog-content>
+                    <mat-form-field appearance="outline" class="example-full-width">
+                        <mat-label>Sector Code</mat-label>
+                        <input matInput formControlName="sectorCode">
+                    </mat-form-field>
+                </mat-dialog-content>
+            </div>
+
+            <div class="col-md-6">
+                <mat-dialog-content>
+                    <mat-form-field appearance="outline" class="example-full-width">
+                        <mat-label>Sector Name</mat-label>
+                        <input matInput formControlName="sectorName">
+                    </mat-form-field>
+                </mat-dialog-content>
+            </div>
+        </div>
+      </form><br>
+      <div class="card-bottom">
+        <button mat-raised-button matDialogClose="yes" >Cancel</button> &nbsp;
+        <button mat-raised-button  color="primary"  matDialogClose="yes" (click)="onEdit()">Edit</button>
+    </div>
+
+    </app-card>
+    </ng-template>
+
+
 
 
     <ng-template #callDialog>

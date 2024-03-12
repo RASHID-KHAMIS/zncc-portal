@@ -25,4 +25,8 @@ export class UsersService {
   addUserStaff(body:any){
     return this.http.post(this.userAPI,body)
   }
+
+  editUserStatus(id:any,body:any){
+    return this.http.put(this.userAPI + "/" +"update-status" + "/" + id,body)
+  }
 }

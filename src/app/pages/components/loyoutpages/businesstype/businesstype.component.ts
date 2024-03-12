@@ -16,12 +16,14 @@ import Swal from 'sweetalert2';
 export class BusinesstypeComponent implements OnInit {
   dataSource = new MatTableDataSource();
   displayedColumns: string[] = ['id', 'sectorCode', 'sectorName','status','action'];
-  loding = true
+  loding = true;
   @ViewChild('callDialog') callDialog!: TemplateRef<any>;
+  @ViewChild('callDialog2') callDialog2!: TemplateRef<any>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   
-  businesSectorForm!: FormGroup
+  businesSectorForm!: FormGroup;
+  businesSectorEditForm!: FormGroup;
   constructor(private businessService: BusinessService, 
     public dialog: MatDialog,
     private router:Router,) {
@@ -29,11 +31,20 @@ export class BusinesstypeComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getAllBusinessSector()
-    this.createForm()
+    this.createForm();
+    this.configureEditForm()
   }
 
   createForm() {
     this.businesSectorForm = new FormGroup({
+      sectorCode: new FormControl(null,Validators.required),
+      sectorName: new FormControl(null,Validators.required)
+    })
+  }
+
+  configureEditForm() {
+    this.businesSectorEditForm = new FormGroup({
+      businessSectorId: new FormControl(null),
       sectorCode: new FormControl(null,Validators.required),
       sectorName: new FormControl(null,Validators.required)
     })
@@ -45,6 +56,7 @@ export class BusinesstypeComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
   dialgOpen() {
     let dialogRef = this.dialog.open(this.callDialog, {
       width: '600px',
@@ -60,6 +72,30 @@ export class BusinesstypeComponent implements OnInit {
       }
     })
   }
+
+  dialgOpen2(row:any) {
+    // console.log(row);
+    this.businesSectorEditForm = new FormGroup({
+      businessSectorId: new FormControl(row.businessSectorId),
+      sectorCode: new FormControl(row.sectorCode),
+      sectorName: new FormControl(row.sectorName)
+    })
+    
+    let dialogRef = this.dialog.open(this.callDialog2, {
+      width: '600px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result !== undefined) {
+        if (result !== 'no') {
+          const enabled = "Y"
+          // console.log(result);
+        } else if (result === 'no') {
+          // console.log('User clicked no.');
+        }
+      }
+    })
+  }
+
 
   getAllBusinessSector() {
     this.businessService.getAllBusinessSector().subscribe((resp: any) => {
@@ -79,60 +115,17 @@ export class BusinesstypeComponent implements OnInit {
       this.reload()
     })
   }
-  succeAlart() {
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
+
+  onEdit(){
+    const id = this.businesSectorEditForm.value.businessSectorId;
+    const values = this.businesSectorEditForm.value;
+    this.businessService.editBusinessSector(id,values).subscribe((resp:any)=>{
+      this.alert2();
+      this.reload()
     })
 
-    Toast.fire({
-      icon: 'success',
-      title: 'Signed in successfully'
-    })
   }
-  invalidAlart() {
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
 
-    Toast.fire({
-      icon: 'error',
-      title: 'Invalid Email Or Password'
-    })
-  }
-  failedAlert() {
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
-
-    Toast.fire({
-      icon: 'error',
-      title: 'Un Authorized'
-    })
-  }
 
   reload(){
     this.router.navigateByUrl('',{skipLocationChange:true}).then(()=>{
@@ -156,6 +149,26 @@ export class BusinesstypeComponent implements OnInit {
     Toast.fire({
       icon: 'success',
       title: 'Business Sector Added Successfully'
+    })
+  }
+
+
+  alert2(){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    Toast.fire({
+      icon: 'success',
+      title: 'Business Sector Edited'
     })
   }
 
