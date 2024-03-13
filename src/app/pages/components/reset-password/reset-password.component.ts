@@ -17,7 +17,8 @@ export class ResetPasswordComponent implements OnInit{
     resetForm !: FormGroup;
     shouldAddClass1 = false;
     shouldAddClass2 = true;
-    password = false
+    password = false;
+    loading:boolean = false;
     ngOnInit(): void {
       this.createForm()
     }
@@ -63,13 +64,14 @@ export class ResetPasswordComponent implements OnInit{
           this.alert();
           
         }else{
+          this.loading = true;
           const values = { ...this.resetForm.value }; 
           delete values.password2; 
           // console.log(values);
           this.usersService.userFirstLogin(this.route.snapshot.queryParamMap.get('id'),values).subscribe((resp:any)=>{
-            console.log(resp);
-            
+
             this.alert2();
+            this.loading = false;
             this.router.navigate([""])
 
           })

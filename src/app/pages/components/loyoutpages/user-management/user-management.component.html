@@ -87,13 +87,18 @@
                     <td mat-cell *matCellDef="let row"> {{row.email}} </td>
                 </ng-container>
 
+                <ng-container matColumnDef="role">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Role</th>
+                    <td mat-cell *matCellDef="let row"> {{row.role}} </td>
+                </ng-container>
+
                 <ng-container matColumnDef="Status">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Current Status</th>
                     <td mat-cell *matCellDef="let row">
-                        <span *ngIf="row.currentStatus == 1">
+                        <span *ngIf="row.status == 1">
                             <span class="badge bg-success">Active</span>
                         </span>
-                        <span *ngIf="row.currentStatus == 0">
+                        <span *ngIf="row.status == 0">
                             <span class="badge bg-orange"> In Active</span>
                         </span>
                     </td>
@@ -125,29 +130,29 @@
                                 </span>
                             </button>
 
-                            <button title="Modify" style="margin-left: 5px;" class="col-md-2 btn btn-outline-success" (click)="onBlock(row)"
-                            *ngIf="row.currentStatus == 1">
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
-                                    viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M18 1.5c2.9 0 5.25 2.35 
+                            <button title="Modify" style="margin-left: 5px;" class="col-md-2 btn btn-outline-success"
+                                (click)="onBlock(row)" *ngIf="row.status == 1">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
+                                        viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M18 1.5c2.9 0 5.25 2.35 
                                     5.25 5.25v3.75a.75.75 0 0 1-1.5 0V6.75a3.75 3.75 0 1 0-7.5
                                      0v3a3 3 0 0 1 3 3v6.75a3 3 0 0 1-3 3H3.75a3 3 0 0 1-3-3v-6.75a3 3 0 0 1 3-3h9v-3c0-2.9 2.35-5.25 5.25-5.25" />
-                                </svg>
-                            </span>
+                                    </svg>
+                                </span>
                             </button>
                             &nbsp;
 
-                            <button title="Modify" style="margin-left: 5px;" class="col-md-2 btn btn-outline-danger" (click)="unBlock(row)"
-                            *ngIf="row.currentStatus == 0">
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
-                                    viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M6 22q-.825 0-1.412-.587T4 20V10q0-.825.588-1.412T6 8h1V6q0-2.075 1.463-3.537T12 1q2.075 0 3.538 1.463T17 6v2h1q.825 0 1.413.588T20 10v10q0 .825-.587 1.413T18 22zm6-5q.825 0 1.413-.587T14 15q0-.825-.587-1.412T12 13q-.825 0-1.412.588T10 15q0 .825.588 1.413T12 17M9 8h6V6q0-1.25-.875-2.125T12 3q-1.25 0-2.125.875T9 6z" />
-                                </svg>
-                            </span>
+                            <button title="Modify" style="margin-left: 5px;" class="col-md-2 btn btn-outline-danger"
+                                (click)="unBlock(row)" *ngIf="row.status == 0">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
+                                        viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M6 22q-.825 0-1.412-.587T4 20V10q0-.825.588-1.412T6 8h1V6q0-2.075 1.463-3.537T12 1q2.075 0 3.538 1.463T17 6v2h1q.825 0 1.413.588T20 10v10q0 .825-.587 1.413T18 22zm6-5q.825 0 1.413-.587T14 15q0-.825-.587-1.412T12 13q-.825 0-1.412.588T10 15q0 .825.588 1.413T12 17M9 8h6V6q0-1.25-.875-2.125T12 3q-1.25 0-2.125.875T9 6z" />
+                                    </svg>
+                                </span>
                             </button>
                         </div>
 

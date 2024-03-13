@@ -223,7 +223,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group ">
-                                            <label for="nationalID">National ID</label>
+                                            <label for="nationalID">National ID/ZAN ID/Passport Number</label>
                                             <div>
                                                 <input type="text" class="form-control" id="nationalID" formControlName="idNumber">
                                             </div>
@@ -293,13 +293,11 @@
                                                 <path d="M12 5l0 14" />
                                                 <path d="M5 12l14 0" />
                                             </svg>
+                                            <mat-spinner diameter="30" *ngIf="loading"></mat-spinner>
                                             Create Account
                                         </button>
                                     </div>
                                 
-                                    <div class="col-md-4">
-                                        <mat-spinner diameter="30" *ngIf="loading"></mat-spinner>
-                                    </div>
                                 </div>
                                 <!-- <div class="col-md-4">
                                     <div class="form-group ">

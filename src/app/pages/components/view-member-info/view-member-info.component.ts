@@ -318,7 +318,7 @@ export class ViewMemberInfoComponent implements OnInit {
   comment:any;
   fetchCommentsByMembershipId(member:any){
     this.membershipCommentsService.getCommentsByMemberFormId(member).subscribe((resp:any)=>{
-      // console.log(resp.comment_resone);  
+      console.log(resp.comment_resone);  
       this.comment = resp.comment_resone; 
     })
     

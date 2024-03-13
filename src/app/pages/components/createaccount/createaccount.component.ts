@@ -366,7 +366,7 @@ export class CreateaccountComponent implements OnInit {
     this.loading = true;
     const values = this.userForm.value;
     this.memberService.addMember(values).subscribe((resp:any)=>{
-      // console.log(resp);
+      console.log(resp);
       
       this.loading = false;
       this.alert();

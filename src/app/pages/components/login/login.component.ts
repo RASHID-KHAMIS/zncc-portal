@@ -75,7 +75,6 @@ export class LoginComponent implements OnInit {
         this.alert();
         if(decodedToken.sub.loginStatus == 0){
           this.alert3();
-          // this.router.navigate(['/reset-password'], { queryParams: { id: decodedToken.sub.id} });
         }else{
           this.router.navigate(["home"])
         }
