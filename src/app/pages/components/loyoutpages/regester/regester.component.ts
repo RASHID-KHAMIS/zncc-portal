@@ -8,6 +8,7 @@ import { DistrictService } from 'src/app/pages/services/district.service';
 import { MembershipUploadService } from 'src/app/pages/services/membership-upload.service';
 import { MembershipService } from 'src/app/pages/services/membership.service';
 import { MemberService } from 'src/app/pages/services/membersservice/member.service';
+import { ProfilePictureService } from 'src/app/pages/services/profile-picture.service';
 import { RegionService } from 'src/app/pages/services/region.service';
 import Swal from 'sweetalert2';
 class ImageSnippet {
@@ -46,7 +47,8 @@ export class RegesterComponent implements OnInit {
     private districtService:DistrictService,
     private businessService:BusinessService,
     private membershipService:MembershipService,
-    private membershipUploadService:MembershipUploadService) { }
+    private membershipUploadService:MembershipUploadService,
+    private profilePictureService:ProfilePictureService) { }
     
 
   ngOnInit(): void {
@@ -125,8 +127,6 @@ export class RegesterComponent implements OnInit {
     }
   }
 
-
-
   initForm() {
     this.memberForm = new FormGroup({
       company_name:new FormControl('', Validators.required),
@@ -148,6 +148,7 @@ export class RegesterComponent implements OnInit {
       company_certificate_number:new FormControl(''),
       upload_BPRA: new FormControl('BPRA'),
       representative_CV: new FormControl('CV'),
+      // profile_pic: new FormControl('profile'),
       street: new FormControl(''),
       businessActivity: new FormControl(''),
       memberAccountId:new FormControl(this.memberAccountId),
@@ -165,7 +166,6 @@ export class RegesterComponent implements OnInit {
   districtList:any;
   fetchAllDistrict(){
     this.districtService.getAllDistricts().subscribe((resp:any)=>{
-      // console.log(resp);
       this.districtList = resp;
     })
   }
@@ -181,6 +181,14 @@ export class RegesterComponent implements OnInit {
     const values = this.memberForm.value;
     this.membershipService.addMembership(values).subscribe((resp:any)=>{
       const form = new FormData();
+
+      // form.append('file', this.files, this.files.name);
+      // form.append('fileCategory', values.profile_pic);
+      // this.profilePictureService.addProfilePic(resp.memberShipFormId,form).subscribe((resp:any)=>{
+      //   console.log(resp);
+      //   console.log('uploaded');
+        
+      // })
     
       form.append('file', this.files, this.files.name);
       form.append('fileCategory', values.upload_BPRA);
@@ -190,8 +198,6 @@ export class RegesterComponent implements OnInit {
           form.append('file', this.files, this.files.name);
           form.append('fileCategory', values.representative_CV);
           this.membershipUploadService.addFilesUpload(resp.memberShipFormId,form).subscribe((resp)=>{  
-            console.log('uploaded');
-            
           })
       }
       this.alert();

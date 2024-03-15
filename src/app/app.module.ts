@@ -55,6 +55,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { EditCompanyInfoComponent } from './pages/components/loyoutpages/edit-company-info/edit-company-info.component';
 import { ForgetPasswordComponent } from './pages/components/forget-password/forget-password.component';
 import { ViewStaffInfoComponent } from './pages/components/loyoutpages/view-staff-info/view-staff-info.component';
+import { BusinessSubSectorComponent } from './pages/components/loyoutpages/business-sub-sector/business-sub-sector.component';
 // import { PdfViewerModule } from 'ngx-extended-pdf-viewer'
 
 
@@ -95,6 +96,7 @@ import { ViewStaffInfoComponent } from './pages/components/loyoutpages/view-staf
     EditCompanyInfoComponent,
     ForgetPasswordComponent,
     ViewStaffInfoComponent,
+    BusinessSubSectorComponent,
 
    
   ],
