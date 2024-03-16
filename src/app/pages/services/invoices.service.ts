@@ -31,4 +31,6 @@ export class InvoicesService {
   editInvoiceStatus(id:any,body:any){
     return this.http.put(this.invoiceAPI + "/" + "updatePaymentStatus" + "/" + id,body)
   }
+
+
 }

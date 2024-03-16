@@ -23,10 +23,10 @@ class ImageSnippet {
 })
 export class PaymentComponent implements OnInit{
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['No', 'invoiceNumber', 'nvoiceDate','invoiceAmount','paymentStatus'];
+  displayedColumns: string[] = ['No','companyName','invoiceNumber','nvoiceDate','invoiceAmount','paymentStatus'];
 
   dataSource2 = new MatTableDataSource();
-  displayedColumns2: string[] = ['No', 'invoiceNumber', 'nvoiceDate','invoiceAmount','paymentStatus','View','Actions'];
+  displayedColumns2: string[] = ['No','companyName','companyPhone','invoiceNumber','nvoiceDate','invoiceAmount','paymentStatus','View','Actions'];
   loading: boolean = true;
   @ViewChild('distributionDialog') distributionDialog!: TemplateRef<any>;
   role:any;
@@ -46,6 +46,7 @@ export class PaymentComponent implements OnInit{
   message = '';
   files:any;
   invoiceForm!:FormGroup;
+  check:boolean = false;
   constructor(private router:Router,
     private route:ActivatedRoute,
      private invoicesService:InvoicesService,
@@ -54,6 +55,9 @@ export class PaymentComponent implements OnInit{
      private dialog:MatDialog){}
   ngOnInit(): void {
     this.memberAccountId = localStorage.getItem('memberAccountId');
+    // this.memberAccountId = localStorage.getItem('memberAccountId');
+    // console.log(this.memberAccountId);
+    
     this.role = localStorage.getItem('role');
     this.fetchAllInvoice();
     this.fetchByMembershipId();
@@ -71,6 +75,9 @@ export class PaymentComponent implements OnInit{
   fetchAllInvoice(){
     this.invoicesService.getAllInvoice().subscribe((resp:any)=>{
       // console.log(resp);
+      if (resp.length > 0) {
+        this.check = true;
+      }
       this.dataSource = new MatTableDataSource(resp);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -81,11 +88,14 @@ export class PaymentComponent implements OnInit{
   memberInfo:any;
   fetchByMembershipId(){
     this.membershipService.getMembershirpsByMemberID(this.memberAccountId).subscribe((resp:any)=>{
+      // console.log(resp);
+      
       this.memberInfo = resp;
-      // console.log(this.memberInfo.memberShipFormId);
+      console.log(this.memberInfo.memberShipFormId);
+      
 
       this.invoicesService.getInvoiceByFormId(this.memberInfo.memberShipFormId).subscribe((resp:any)=>{
-        // console.log(resp);
+        console.log(resp);
         this.dataSource2 = new MatTableDataSource(resp);
         this.dataSource2.paginator = this.paginator;
         this.dataSource2.sort = this.sort;
