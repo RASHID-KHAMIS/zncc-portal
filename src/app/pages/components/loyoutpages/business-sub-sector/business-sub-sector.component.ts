@@ -36,7 +36,6 @@ export class BusinessSubSectorComponent implements OnInit{
     this.configureEditForm();
     this.fetchAllBusinessSector();
     this.fetchAllBusinessSubSector();
-    
   }
 
   applyFilter(event: Event) {
@@ -51,13 +50,13 @@ export class BusinessSubSectorComponent implements OnInit{
   fetchAllBusinessSector() {
     this.businessService.getAllBusinessSector().subscribe((resp: any) => {
       this.sector = resp
-      
       })
   }
 
-
   fetchAllBusinessSubSector(){
     this.businessSubSectorService.getAllBusinessSubSector().subscribe((resp:any)=>{
+      console.log(resp);
+      
       this.loding = false
       this.dataSource = new MatTableDataSource(resp);
       this.dataSource.paginator = this.paginator;
@@ -82,8 +81,6 @@ export class BusinessSubSectorComponent implements OnInit{
   }
 
   dialgOpen2(row:any) {
-    console.log(row);
-    
     this.businessSubSectorEditForm = new FormGroup({
       businessSubSectorId:new FormControl(row.businessSubSectorId),
       businessSectorId:new FormControl(row.businessSectorId),
@@ -131,18 +128,21 @@ export class BusinessSubSectorComponent implements OnInit{
 
   submit(){
     const values = this.businessSubSectorForm.value;
-    console.log(values);
-    
+    // console.log(values);
     this.businessSubSectorService.addBusinessSubSector(values).subscribe((resp:any)=>{
-      console.log(resp);
-      
       this.reload();
       this.alert()
     })
   }
 
   onEdit(){
+    const id = this.businessSubSectorEditForm.value.businessSubSectorId;
+    const values = this.businessSubSectorEditForm.value;
 
+    this.businessSubSectorService.editBusinessSubSector(id,values).subscribe((resp:any)=>{
+      this.reload();
+      this.alert2()
+    })
   }
 
 

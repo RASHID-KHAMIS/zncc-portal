@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { BusinessSubSectorService } from 'src/app/pages/services/business-sub-sector.service';
 import { BusinessService } from 'src/app/pages/services/bussnessservices/business.service';
 import { DistrictService } from 'src/app/pages/services/district.service';
 import { MembershipUploadService } from 'src/app/pages/services/membership-upload.service';
@@ -48,14 +49,14 @@ export class RegesterComponent implements OnInit {
     private businessService:BusinessService,
     private membershipService:MembershipService,
     private membershipUploadService:MembershipUploadService,
-    private profilePictureService:ProfilePictureService) { }
+    private profilePictureService:ProfilePictureService,
+    private businessSubSectorService:BusinessSubSectorService) { }
     
 
   ngOnInit(): void {
     this.memberAccountId = localStorage.getItem('memberAccountId'),
     this.initForm();
     this.fetchAllRegion();
-    this.fetchAllDistrict();
     this.fetchBusinessSector();
 
   }
@@ -144,11 +145,12 @@ export class RegesterComponent implements OnInit {
       position: new FormControl(''),
       representative_email: new FormControl(''),
       businessSectorId: new FormControl(''),
+      businessSubSectorId: new FormControl(''),
       TRA_number: new FormControl(''),
       company_certificate_number:new FormControl(''),
       upload_BPRA: new FormControl('BPRA'),
       representative_CV: new FormControl('CV'),
-      // profile_pic: new FormControl('profile'),
+      profile_pic: new FormControl('profile'),
       street: new FormControl(''),
       businessActivity: new FormControl(''),
       memberAccountId:new FormControl(this.memberAccountId),
@@ -163,12 +165,6 @@ export class RegesterComponent implements OnInit {
     })
   }
 
-  districtList:any;
-  fetchAllDistrict(){
-    this.districtService.getAllDistricts().subscribe((resp:any)=>{
-      this.districtList = resp;
-    })
-  }
 
   sectorLists:any;
   fetchBusinessSector(){
@@ -176,19 +172,41 @@ export class RegesterComponent implements OnInit {
       this.sectorLists = resp;
     })
   }
+
+  subSectorLists:any
+  onSector(event:any){
+    const selectedValue = (event.target as HTMLSelectElement).value;
+    this.businessSubSectorService.getSubSectorBySectorID(selectedValue).subscribe((resp:any)=>{
+      // console.log(resp);
+      this.subSectorLists = resp
+      
+    })
+    
+  }
   
+
+  districtList:any;
+  onChange(event:any){
+    const selectedValue = (event.target as HTMLSelectElement).value;
+    this.districtService.getDistrictsByRegionID(selectedValue).subscribe((resp:any)=>{
+      this.districtList = resp;
+    })
+
+
+    
+  }
   submit() {
     const values = this.memberForm.value;
     this.membershipService.addMembership(values).subscribe((resp:any)=>{
       const form = new FormData();
 
-      // form.append('file', this.files, this.files.name);
-      // form.append('fileCategory', values.profile_pic);
-      // this.profilePictureService.addProfilePic(resp.memberShipFormId,form).subscribe((resp:any)=>{
-      //   console.log(resp);
-      //   console.log('uploaded');
+      form.append('file', this.files, this.files.name);
+      form.append('fileCategory', values.profile_pic);
+      this.profilePictureService.addProfilePic(resp.memberShipFormId,form).subscribe((resp:any)=>{
+        console.log(resp);
+        console.log('uploaded');
         
-      // })
+      })
     
       form.append('file', this.files, this.files.name);
       form.append('fileCategory', values.upload_BPRA);
@@ -210,7 +228,7 @@ export class RegesterComponent implements OnInit {
 
   reload(){
     this.router.navigateByUrl('',{skipLocationChange:true}).then(()=>{
-      this.router.navigate([''])
+      this.router.navigate(['home'])
     })
   }
 

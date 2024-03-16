@@ -108,7 +108,7 @@
                             <div class="col-md-4">
                                 <label class="form-label">Region</label>
 
-                                <select class="form-control" formControlName="regionId">
+                                <select class="form-control" formControlName="regionId" (change)="onChange($event)">
                                     <option value="">-- Select Region --</option>
                                     <option *ngFor="let region of regionList" [value]="region.regionId">
                                         {{region.regionName}}</option>
@@ -193,16 +193,18 @@
                         </div>
 
                         <div class="col-md-4">
+                            <label class="form-label">Owner Phone</label>
+                            <input type="tel" class="form-control" formControlName="owner_phone"
+                                placeholder="Owner phone" />
+                        </div>
+
+                        <div class="col-md-4">
                             <label class="form-label">Owner Email</label>
                             <input type="email" class="form-control" formControlName="owner_email"
                                 placeholder="Input owner email" />
                         </div>
 
-                        <div class="col-md-4">
-                            <label class="form-label">Owner Phone</label>
-                            <input type="tel" class="form-control" formControlName="owner_phone"
-                                placeholder="Owner phone" />
-                        </div>
+                       
                     </div>
 
                     <div class="row">
@@ -276,10 +278,19 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label class="form-label">Business Sector</label>
-                        <select class="form-control" formControlName="businessSectorId">
+                        <select class="form-control" formControlName="businessSectorId" (change)="onSector($event)">
                             <option value="">-- Select Business Sector --</option>
                             <option *ngFor="let sector of sectorLists" [value]="sector.businessSectorId">
                                 {{sector.sectorName}}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Business Sub Sector</label>
+                        <select class="form-control" formControlName="businessSubSectorId">
+                            <option value="">-- Select Sub Business Sector --</option>
+                            <option *ngFor="let sector of subSectorLists" [value]="sector.businessSubSectorId">
+                                {{sector.subsectorName}}</option>
                         </select>
                     </div>
 
@@ -292,7 +303,7 @@
 
                 <div class="row">
                     <div class="col-md-4" style="margin-top: 40px;">
-                        <button type="submit" class="btn btn-primary" (click)="  submit()">Register</button>
+                        <button type="submit" class="btn btn-primary" (click)="submit()">Register</button>
                     </div>
                 </div>
 

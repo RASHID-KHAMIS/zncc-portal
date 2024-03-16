@@ -66,9 +66,12 @@ export class DashboardComponent implements OnInit{
   ngOnInit(): void {
     this.configureForm();
    this.memberAccountId = localStorage.getItem('memberAccountId');
+  //  console.log(this.memberAccountId);
+   
    this.fetchByMembershipId();
    this.configureEditForm();
    this.configureDocumentsForm();
+   this.fetchCompanyByMemberAccount()
 
    this.role = localStorage.getItem('role')
   }
@@ -85,6 +88,8 @@ export class DashboardComponent implements OnInit{
   memberInfo:any;
   fetchByMembershipId(){
     this.membershipService.getMembershirpsByMemberID(this.memberAccountId).subscribe((resp:any)=>{
+      // console.log(resp);
+      
       this.memberInfo = resp;
       // console.log(this.memberInfo.memberShipFormId);
 
@@ -110,7 +115,42 @@ export class DashboardComponent implements OnInit{
         this.dataSource.sort = this.sort
       })
     })
+  }
 
+  companyList:any
+  fetchCompanyByMemberAccount(){
+    this.membershipService.getAllCompanyByMemberID(this.memberAccountId).subscribe((resp:any)=>{
+      // console.log(resp);
+      this.companyList = resp
+      
+    })
+
+  }
+
+  onSelectCompany(event:any){
+  
+      this.memberInfo = event.value;
+         this.membershipUploadService.getPictureById(this.memberInfo.memberShipFormId).subscribe((resp:any)=>{
+      // console.log(resp);
+
+      if (resp.length > 0) {
+        this.check2 = true;
+      }
+      this.dataSource2 = new MatTableDataSource(resp);
+      this.loading = false;
+    
+    })
+
+      this.companyOwnershipService.getByMembershipId(this.memberInfo.memberShipFormId).subscribe((resp:any)=>{
+        // console.log(resp);
+        if(resp.length > 0){
+          this.check = true;
+        }
+        this.dataSource = new MatTableDataSource(resp);
+        this.loading = false;
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort
+      })
  
   }
 

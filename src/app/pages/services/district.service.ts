@@ -21,4 +21,9 @@ export class DistrictService {
   editDistricts(id:any,body:any){
     return this.http.put(this.districtAPI + "/" + id,body)
   }
+
+
+  getDistrictsByRegionID(id:any){
+    return this.http.get(this.districtAPI + "/" + "by-region" + "/" +id)
+  }
 }

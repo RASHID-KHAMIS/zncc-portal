@@ -52,12 +52,10 @@
         <mat-progress-bar mode="indeterminate" *ngIf="loding"></mat-progress-bar>
 
         <div style="margin:10px 0px 0px 10px;" class="example-form ml-3  mb-3">
-
-
             <label class="form-label"></label>
             <div class="input-icon">
                 <input type="text" #input (keyup)="applyFilter($event)" class="form-control form-control-rounded"
-                    placeholder="Search…" />
+                    placeholder="Search…" style="width: 30%;" />
                 <span class="input-icon-addon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                         <path fill="currentColor"
@@ -79,11 +77,11 @@
 
                 <ng-container matColumnDef="subSectorName">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Sub Sector Name</th>
-                    <td mat-cell *matCellDef="let row"> {{row.sectorName}} </td>
+                    <td mat-cell *matCellDef="let row"> {{row.subsectorName}} </td>
                 </ng-container>
                 <ng-container matColumnDef="sectorName">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Sector Name </th>
-                    <td mat-cell *matCellDef="let row"> {{row.businessSectorId}} </td>
+                    <td mat-cell *matCellDef="let row"> {{row.sectorName}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="sectorCode">
@@ -163,14 +161,14 @@
                 <div class="col-md-4">
                     <mat-form-field style="width: 100%;" appearance="outline">
                         <mat-label>sector Name</mat-label>
-                        <input matInput placeholder="Unguja" formControlName="sectorName">
+                        <input matInput placeholder="sector Name" formControlName="sectorName">
                     </mat-form-field>
                 </div>
 
                 <div class="col-md-4">
                     <mat-form-field style="width: 100%;" appearance="outline">
                         <mat-label>sector Code</mat-label>
-                        <input matInput placeholder="Unguja" formControlName="sectorCode">
+                        <input matInput placeholder="sector Code" formControlName="sectorCode">
                     </mat-form-field>
                 </div>
             </div>
@@ -204,18 +202,17 @@
                     <div class="col-md-4">
                         <mat-form-field style="width: 100%;" appearance="outline">
                             <mat-label>sector Name</mat-label>
-                            <input matInput placeholder="Unguja" formControlName="sectorName">
+                            <input matInput placeholder="sector Name" formControlName="sectorName">
                         </mat-form-field>
                     </div>
     
                     <div class="col-md-4">
                         <mat-form-field style="width: 100%;" appearance="outline">
                             <mat-label>sector Code</mat-label>
-                            <input matInput placeholder="Unguja" formControlName="sectorCode">
+                            <input matInput placeholder="sector Code" formControlName="sectorCode">
                         </mat-form-field>
                     </div>
                 </div>
-    
             </form><br><br>
         <div class="card-bottom">
             <button mat-raised-button matDialogClose="yes">Cancel</button> &nbsp;

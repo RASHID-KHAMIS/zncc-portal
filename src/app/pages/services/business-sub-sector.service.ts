@@ -22,4 +22,8 @@ export class BusinessSubSectorService {
   editBusinessSubSector(id:any,body:any){
     return this.http.put(this.businessSuSectorAPI + "/" + id,body)
   }
+
+  getSubSectorBySectorID(id:any){
+    return this.http.get(this.businessSuSectorAPI + "/" + "with-businessSector" + "/" + id)
+  }
 }

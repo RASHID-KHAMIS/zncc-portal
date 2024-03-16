@@ -244,14 +244,16 @@
                 <div class="row" style="margin-top: -4%;">
 
                     <div class="col-md-4">
-                        <label class="form-label">Company Name</label>
-                        <select name="" id="" class="form-control" formControlName="gender">
-                            <option value="">-- Select Gender --</option>
-                            <option value="M">Male</option>
-                            <option value="F">Female</option>
-                        </select>
-
+                        <mat-form-field appearance="outline" style="width:100%;">
+                            <mat-label>Company Name</mat-label>
+                            <mat-select (selectionChange)="onSelectCompany($event)">
+                              <mat-option *ngFor="let list of companyList" [value]="list">
+                                {{list.company_name}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
                     </div>
+
                     <div class="col-md-4"></div>
                     <div class="col-md-4"></div>
                 </div><br><br>
@@ -338,6 +340,31 @@
                                     </div>
                                 </div>
                             </li>
+
+                            <li class="timeline-event">
+                                <div class="timeline-event-icon">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/briefcase -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z">
+                                        </path>
+                                        <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"></path>
+                                        <path d="M12 12l0 .01"></path>
+                                        <path d="M3 13a20 20 0 0 0 18 0"></path>
+                                    </svg>
+                                </div>
+                                <div class="card timeline-event-card">
+                                    <div class="card-body">
+                                        <div class="text-secondary float-end"></div>
+                                        <h4>Sub Sector</h4>
+                                        <p class="text-secondary">{{memberInfo?.subSectorName}}</p>
+                                    </div>
+                                </div>
+                            </li>
+
                             <li class="timeline-event">
                                 <div class="timeline-event-icon">
                                     <!-- Download SVG icon from http://tabler-icons.io/i/briefcase -->
@@ -358,6 +385,30 @@
                                         <div class="text-secondary float-end"></div>
                                         <h4>Sector</h4>
                                         <p class="text-secondary">{{memberInfo?.sectorName}}</p>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="timeline-event">
+                                <div class="timeline-event-icon">
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/briefcase -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z">
+                                        </path>
+                                        <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"></path>
+                                        <path d="M12 12l0 .01"></path>
+                                        <path d="M3 13a20 20 0 0 0 18 0"></path>
+                                    </svg>
+                                </div>
+                                <div class="card timeline-event-card">
+                                    <div class="card-body">
+                                        <div class="text-secondary float-end"></div>
+                                        <h4>Business Activity</h4>
+                                        <p class="text-secondary">{{memberInfo?.businessActivity}}</p>
                                     </div>
                                 </div>
                             </li>
