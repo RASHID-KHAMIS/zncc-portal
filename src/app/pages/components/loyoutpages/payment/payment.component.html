@@ -183,11 +183,11 @@
 
         <ng-container matColumnDef="invoiceNumber">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Invoice Number </th>
-          <td mat-cell *matCellDef="let row"> {{row.invoiceNumber}} 
+          <td mat-cell *matCellDef="let row"> {{row.invoiceNumber}}
           </td>
         </ng-container>
 
-    
+
         <ng-container matColumnDef="nvoiceDate">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Invoice Date</th>
           <td mat-cell *matCellDef="let row"> {{row.nvoiceDate | date:'dd-MM-YYYY'}} </td>
@@ -204,10 +204,10 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
           <td mat-cell *matCellDef="let row">
             <span *ngIf="row.paymentStatus == 1">
-              <span class="badge bg-green">PAID</span> 
+              <span class="badge bg-green">PAID</span>
             </span>
             <span *ngIf="row.paymentStatus == 0">
-              <span class="badge bg-orange">NOT PAID </span> 
+              <span class="badge bg-orange">NOT PAID </span>
             </span>
           </td>
         </ng-container>
@@ -226,23 +226,23 @@
   </div>
 
 
-<span *ngIf="!check">
-  <div class="row" *ngIf="role == 'MEMBERSHIP'">
-    <div class="col-md-6 col-lg-12">
-      <div class="card">
-        <div class="ribbon bg-red">COMMENTS</div>
-        <div class="card-body">
-          <h3 class="card-title">Invoice notifications</h3>
-          <p class="text-muted">No invoice provided yet for this member</p>
+  <span *ngIf="!check2">
+    <div class="row" *ngIf="role == 'MEMBERSHIP'">
+      <div class="col-md-6 col-lg-12">
+        <div class="card">
+          <div class="ribbon bg-red">COMMENTS</div>
+          <div class="card-body">
+            <h3 class="card-title">Invoice notifications</h3>
+            <p class="text-muted">No invoice provided yet for this member</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</span>
- <br>
+  </span>
+  <br>
 
-  <span *ngIf="check">
-  <div class="card" *ngIf="role == 'MEMBERSHIP'">
+  <span *ngIf="check2">
+    <div class="card" *ngIf="role == 'MEMBERSHIP'">
 
       <div class="card-status-top bg-primary"></div>
       <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
@@ -261,10 +261,10 @@
         </div>
       </div>
       <div style="margin: 10px;">
-  
-  
+
+
         <table mat-table [dataSource]="dataSource2" matSort>
-  
+
           <!-- ID Column -->
           <ng-container matColumnDef="No">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> SNo. </th>
@@ -282,7 +282,7 @@
             <td mat-cell *matCellDef="let row"> {{row.company_phone}}
             </td>
           </ng-container>
-  
+
           <ng-container matColumnDef="invoiceNumber">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Invoice Number </th>
             <td mat-cell *matCellDef="let row"> {{row.invoiceNumber}}
@@ -293,40 +293,41 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Invoice Date</th>
             <td mat-cell *matCellDef="let row"> {{row.nvoiceDate | date:'dd-MM-YYYY'}} </td>
           </ng-container>
-  
+
           <ng-container matColumnDef="invoiceAmount">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
             <td mat-cell *matCellDef="let row"> {{row.invoiceAmount | number}} </td>
           </ng-container>
-  
+
           <ng-container matColumnDef="paymentStatus">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
             <td mat-cell *matCellDef="let row">
               <span *ngIf="row.paymentStatus == 1">
-                <span class="badge bg-green">PAID</span> 
+                <span class="badge bg-green">PAID</span>
               </span>
               <span *ngIf="row.paymentStatus == 0">
-                <span class="badge bg-orange">NOT PAID </span> 
+                <span class="badge bg-orange">NOT PAID </span>
               </span>
             </td>
           </ng-container>
-  
+
           <ng-container matColumnDef="View">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> View </th>
             <td mat-cell *matCellDef="let row">
-                <button mat-icon-button (click)=" openPdf2(row)">
-                    <mat-icon _ngcontent-ygf-c404="" role="img" color="primary" class="mat-icon notranslate mat-primary material-icons" 
-                    aria-hidden="true" ng-reflect-color="primary" data-mat-icon-type="font">attachment</mat-icon>
-                </button>
-              
+              <button mat-icon-button (click)=" openPdf2(row)">
+                <mat-icon _ngcontent-ygf-c404="" role="img" color="primary"
+                  class="mat-icon notranslate mat-primary material-icons" aria-hidden="true" ng-reflect-color="primary"
+                  data-mat-icon-type="font">attachment</mat-icon>
+              </button>
+
             </td>
-        </ng-container>
-  
+          </ng-container>
+
           <ng-container matColumnDef="Actions">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
             <td mat-cell *matCellDef="let row">
               <button class="btn btn-primary d-none d-sm-inline-block" (click)="openDialog(row)">
-  
+
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
                   stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -337,11 +338,11 @@
               </button>
             </td>
           </ng-container>
-  
-  
+
+
           <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
-  
+
           <!-- Row shown when there is no matching data. -->
           <tr class="mat-row" *matNoDataRow>
             <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
@@ -349,9 +350,9 @@
         </table>
         <mat-paginator [pageSizeOptions]="[ 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
       </div>
-  </div>
+    </div>
 
-</span>
+  </span>
 
 </div>
 

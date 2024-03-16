@@ -6,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { CompanyOwnershipService } from 'src/app/pages/services/company-ownership.service';
+import { MembershipCommentsService } from 'src/app/pages/services/membership-comments.service';
 import { MembershipUploadService } from 'src/app/pages/services/membership-upload.service';
 import { MembershipService } from 'src/app/pages/services/membership.service';
 import Swal from 'sweetalert2';
@@ -62,7 +63,8 @@ export class DashboardComponent implements OnInit{
     private dialog:MatDialog,
     private membershipService:MembershipService,
     private companyOwnershipService:CompanyOwnershipService,
-    private membershipUploadService:MembershipUploadService){}
+    private membershipUploadService:MembershipUploadService,
+    private membershipCommentsService:MembershipCommentsService){}
   ngOnInit(): void {
     this.configureForm();
    this.memberAccountId = localStorage.getItem('memberAccountId');
@@ -88,9 +90,15 @@ export class DashboardComponent implements OnInit{
   memberInfo:any;
   fetchByMembershipId(){
     this.membershipService.getMembershirpsByMemberID(this.memberAccountId).subscribe((resp:any)=>{
-      // console.log(resp);
+      console.log(resp);
       
       this.memberInfo = resp;
+
+      this.membershipCommentsService.getCommentsByMemberFormId(this.memberInfo.memberShipFormId).subscribe((resp:any)=>{
+        // console.log(resp.comment_resone);  
+        this.comment = resp.comment_resone; 
+      })
+      
       // console.log(this.memberInfo.memberShipFormId);
 
          this.membershipUploadService.getPictureById(this.memberInfo.memberShipFormId).subscribe((resp:any)=>{
@@ -430,6 +438,11 @@ export class DashboardComponent implements OnInit{
       }
     })
 
+  }
+
+  comment:any;
+  fetchCommentsByMembershipId(member:any){
+  
   }
 
 

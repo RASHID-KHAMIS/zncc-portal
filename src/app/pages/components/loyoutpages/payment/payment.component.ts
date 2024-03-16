@@ -47,6 +47,7 @@ export class PaymentComponent implements OnInit{
   files:any;
   invoiceForm!:FormGroup;
   check:boolean = false;
+  check2:boolean = false;
   constructor(private router:Router,
     private route:ActivatedRoute,
      private invoicesService:InvoicesService,
@@ -91,11 +92,14 @@ export class PaymentComponent implements OnInit{
       // console.log(resp);
       
       this.memberInfo = resp;
-      console.log(this.memberInfo.memberShipFormId);
+      // console.log(this.memberInfo.memberShipFormId);
       
 
       this.invoicesService.getInvoiceByFormId(this.memberInfo.memberShipFormId).subscribe((resp:any)=>{
-        console.log(resp);
+        // console.log(resp);
+        if (resp.length > 0) {
+          this.check2 = true;
+        }
         this.dataSource2 = new MatTableDataSource(resp);
         this.dataSource2.paginator = this.paginator;
         this.dataSource2.sort = this.sort;
