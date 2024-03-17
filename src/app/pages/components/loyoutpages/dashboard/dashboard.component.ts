@@ -90,7 +90,7 @@ export class DashboardComponent implements OnInit{
   memberInfo:any;
   fetchByMembershipId(){
     this.membershipService.getMembershirpsByMemberID(this.memberAccountId).subscribe((resp:any)=>{
-      console.log(resp);
+      // console.log(resp);
       
       this.memberInfo = resp;
 

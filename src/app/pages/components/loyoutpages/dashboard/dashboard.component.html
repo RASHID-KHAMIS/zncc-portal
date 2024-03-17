@@ -217,12 +217,12 @@
                     <!-- Page title actions -->
                     <div class="col-auto ms-auto d-print-none" style="margin-right: 8%;">
                         <div class="btn-list">
-                            <button class="btn btn-success d-none d-sm-inline-block"
-                                *ngIf="memberInfo?.membership_type !== 'Sole Proprietorship'"
-                                (click)="onEditInfo(memberInfo)"> Edit Information
+                            <button class="btn btn-success d-none d-sm-inline-block"  (click)="onEditInfo(memberInfo)"
+                                *ngIf="memberInfo?.membership_type != 'Sole Proprietorship'"> Edit Information
+                                <!-- && memberInfo?.isNewApplicant != 0 -->
                             </button>&nbsp;
                             <button class="btn btn-primary d-none d-sm-inline-block"
-                                *ngIf="memberInfo?.membership_type !== 'Sole Proprietorship'" (click)="openDialog()">
+                                *ngIf="memberInfo?.membership_type != 'Sole Proprietorship'" (click)="openDialog()">
 
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                     viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
@@ -265,7 +265,7 @@
                     </div>
                     
                 </div><br>
-                <div class="row">
+                <div class="row" *ngIf="memberInfo?.isNewApplicant != 0">
                     <div class="col-md-8">
                         <div class="card bg-primary-lt">
                             <div class="ribbon bg-red">COMMENTS</div>
