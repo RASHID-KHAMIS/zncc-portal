@@ -46,6 +46,7 @@ export class DashboardComponent implements OnInit{
   loading: boolean = true;
   check:boolean = false;
   check2:boolean = false;
+  checked:boolean = false
   role:any;
 
   selectedFiles?: FileList;
@@ -58,6 +59,7 @@ export class DashboardComponent implements OnInit{
   files:any;
 
   documentsForm!:FormGroup;
+  checkComment:boolean=false;
 
   constructor(private router:Router,
     private dialog:MatDialog,
@@ -87,15 +89,25 @@ export class DashboardComponent implements OnInit{
   }
 
 
+  comment:any;
   memberInfo:any;
   fetchByMembershipId(){
     this.membershipService.getMembershirpsByMemberID(this.memberAccountId).subscribe((resp:any)=>{
-      // console.log(resp);
-      
+
       this.memberInfo = resp;
+      // console.log(this.memberInfo);
+      if (this.memberInfo !== undefined || this.memberInfo.length > 0) {
+        this.checked = true;
+      }
 
       this.membershipCommentsService.getCommentsByMemberFormId(this.memberInfo.memberShipFormId).subscribe((resp:any)=>{
-        // console.log(resp.comment_resone);  
+        // console.log(resp.memberShipCommentId.length); 
+        if (resp.memberShipCommentId.length > 0) {
+          this.checkComment = true;
+        }
+        
+        
+
         this.comment = resp.comment_resone; 
       })
       
@@ -439,12 +451,6 @@ export class DashboardComponent implements OnInit{
     })
 
   }
-
-  comment:any;
-  fetchCommentsByMembershipId(member:any){
-  
-  }
-
 
 
 
