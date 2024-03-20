@@ -208,7 +208,7 @@
     </div>
 
    
-    <span *ngIf="!checked">
+    <span *ngIf="role=='MEMBERSHIP' && !checked">
         <div class="col-md-10"style="margin-left: 8%;margin-right: 8%;">
             <div class="card bg-primary-lt">
                 <div class="ribbon bg-red">INFORMATION</div>
@@ -586,7 +586,7 @@
                                                     <path d="M12 6l0 13"></path>
                                                     <path d="M21 6l0 13"></path>
                                                 </svg>
-                                                Representative Name: <strong>{{memberInfo?.representative_name}}</strong>
+                                                Name: <strong>{{memberInfo?.representative_name}}</strong>
                                             </div>
                                             <div class="mb-2">
                                                 <!-- Download SVG icon from http://tabler-icons.io/i/briefcase -->
@@ -602,7 +602,7 @@
                                                     <path d="M12 12l0 .01"></path>
                                                     <path d="M3 13a20 20 0 0 0 18 0"></path>
                                                 </svg>
-                                                Representative Email: <strong>{{memberInfo?.representative_email}}</strong>
+                                                Email: <strong>{{memberInfo?.representative_email}}</strong>
                                             </div>
     
                                             <div class="mb-2">
@@ -621,7 +621,7 @@
                                                     <path d="M11 15h1"></path>
                                                     <path d="M12 15v3"></path>
                                                 </svg>
-                                                Representative Phone: <strong>{{memberInfo?.representative_phone}}</strong>
+                                                Phone: <strong>{{memberInfo?.representative_phone}}</strong>
                                             </div>
                                             <div>
                                                 <!-- Download SVG icon from http://tabler-icons.io/i/clock -->
@@ -780,7 +780,7 @@
                                     <td mat-cell *matCellDef="let row">
     
     
-                                        <button title="Modify" class="col-md-2 btn btn-outline-primary" (click)="editDocument(row)" >
+                                        <button title="Modify" class="col-md-1 btn btn-outline-primary" (click)="editDocument(row)" >
                                             <span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                                     <path fill="currentColor"

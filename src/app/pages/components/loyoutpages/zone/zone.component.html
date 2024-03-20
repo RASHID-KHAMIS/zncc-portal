@@ -79,7 +79,7 @@
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
                     <td mat-cell *matCellDef="let row">
                         <div class="row">
-                            <button title="Modify" class="col-md-2 btn btn-outline-primary" (click)="openDialog2(row)">
+                            <button title="Modify" class="col-md-1 btn btn-outline-primary" (click)="openDialog2(row)">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                         <path fill="currentColor"
@@ -87,16 +87,30 @@
                                     </svg>
                                 </span>
                             </button>
+                            &nbsp;
 
-                            <button title="distribute" style="margin-left: 5px;"
-                                class="col-md-2 btn btn-outline-success">
-                                <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                                        <path fill="currentColor"
-                                            d="M12.08 4.08L20 12l-7.92 7.92l-1.41-1.42l5.5-5.5H2v-2h14.17l-5.5-5.5l1.41-1.42M20 12v10h2V2h-2v10Z" />
-                                    </svg>
-                                </span>
-                            </button>
+                            <button title="Modify" style="margin-left: 5px;" class="col-md-1 btn btn-outline-success">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
+                                    viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M18 1.5c2.9 0 5.25 2.35 
+                                5.25 5.25v3.75a.75.75 0 0 1-1.5 0V6.75a3.75 3.75 0 1 0-7.5
+                                 0v3a3 3 0 0 1 3 3v6.75a3 3 0 0 1-3 3H3.75a3 3 0 0 1-3-3v-6.75a3 3 0 0 1 3-3h9v-3c0-2.9 2.35-5.25 5.25-5.25" />
+                                </svg>
+                            </span>
+                        </button>
+                        &nbsp;
+
+                        <button title="Modify" style="margin-left: 5px;" class="col-md-1 btn btn-outline-danger">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
+                                    viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M6 22q-.825 0-1.412-.587T4 20V10q0-.825.588-1.412T6 8h1V6q0-2.075 1.463-3.537T12 1q2.075 0 3.538 1.463T17 6v2h1q.825 0 1.413.588T20 10v10q0 .825-.587 1.413T18 22zm6-5q.825 0 1.413-.587T14 15q0-.825-.587-1.412T12 13q-.825 0-1.412.588T10 15q0 .825.588 1.413T12 17M9 8h6V6q0-1.25-.875-2.125T12 3q-1.25 0-2.125.875T9 6z" />
+                                </svg>
+                            </span>
+                        </button>
                         </div>
                     </td>
                 </ng-container>
