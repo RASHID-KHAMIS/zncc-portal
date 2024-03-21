@@ -22,4 +22,8 @@ export class RegionService {
   editRegion(id:any,body:any){
     return this.http.put(this.regionAPI + "/" + id ,body)
   }
+
+  getRegionByZoneID(id:any){
+    return this.http.get(this.regionAPI + "/" + "get-by-zone" + "/" +id)
+  }
 }

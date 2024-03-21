@@ -51,19 +51,19 @@
                         <div class="col-md-4">
                             <label class="form-label">Registration Number</label>
                             <input type="text" class="form-control" formControlName="regNo"
-                                placeholder="Input registration number" />
+                                placeholder="Registration number" />
                         </div>
     
                         <div class="col-md-4">
                             <label class="form-label">First Name</label>
                             <input type="text" class="form-control" formControlName="firstName"
-                                placeholder="Input first name" />
+                                placeholder="First name" />
                         </div>
     
                         <div class="col-md-4">
                             <label class="form-label">Middle Name</label>
                             <input type="text" class="form-control" formControlName="middleName"
-                                placeholder="Input middle name" />
+                                placeholder="Middle name" />
                         </div>
                     </div>
 
@@ -72,7 +72,7 @@
                     <div class="col-md-4">
                         <label class="form-label">Last Name</label>
                         <input type="text" class="form-control" formControlName="lastName"
-                            placeholder="Input last name" />
+                            placeholder="Last name" />
                     </div>
 
                     <div class="col-md-4">
@@ -94,13 +94,13 @@
                     <div class="col-md-4">
                         <label class="form-label">Phone Number</label>
                         <input type="tel" class="form-control" formControlName="phoneNumber"
-                            placeholder="Input phone number" />
+                            placeholder="Phone number" />
                     </div>
                      
 
                     <div class="col-md-4">
                         <label class="form-label">Email</label>
-                        <input type="email" class="form-control" formControlName="email" placeholder="Input email" />
+                        <input type="email" class="form-control" formControlName="Email" placeholder="Input email" />
                     </div>
 
                     <div class="col-md-4">
@@ -115,16 +115,16 @@
 
                 <div class="row">
                     <div class="col-md-4">
+                        <label class="form-label">Zan ID/National Id/Passport</label>
+                        <input type="text" class="form-control" formControlName="personalId"
+                            placeholder="Staff Position" />
+                    </div>
+                    
+                    <div class="col-md-4">
                         <label class="form-label">Is Staff Have Disability</label>
                         <input type="checkbox" class="form-check-input" formControlName="isStaffHaveDisability" />
                     </div>
 
-
-                    <div class="col-md-4">
-                        <label class="form-label">Zan ID/National Id/Passport</label>
-                        <input type="text" class="form-control" formControlName="personalId"
-                            placeholder="Input staffPosition" />
-                    </div>
                 </div>
                 </div>
                 <div class="col-md-4">
@@ -164,7 +164,7 @@
 
                     <div class="col-md-4">
                         <label class="form-label">Zone</label>
-                        <select  class="form-control" formControlName="zoneId">
+                        <select  class="form-control" formControlName="zoneId" (change)="onRegion($event)">
                             <option value="">-- Select Zone --</option>
                             <option *ngFor="let list of zoneLists" [value]="list.zoneId">{{list.zoneName}}</option>
                         </select>
@@ -172,7 +172,7 @@
 
                     <div class="col-md-4">
                         <label class="form-label">Region</label>
-                        <select  class="form-control" formControlName="regionId" (change)="onChange($event)">
+                        <select  class="form-control" formControlName="regionId" (change)="onDistricts($event)">
                             <option value="">-- Select Region --</option>
                             <option *ngFor="let list of regionList" [value]="list.regionId">{{list.regionName}}</option>
                         </select>
@@ -201,7 +201,7 @@
                     <div class="col-md-4">
                         <label class="form-label">Physical Address</label>
                         <input type="text" class="form-control" formControlName="physicalAddress"
-                            placeholder="Input physical address" />
+                            placeholder="Physical address" />
                     </div>
 
                 </div>
@@ -210,27 +210,65 @@
                     <div class="col-md-4">
                         <label class="form-label">Street Name</label>
                         <input type="text" class="form-control" formControlName="streetName"
-                            placeholder="Input street name" />
+                            placeholder="Street name" />
                     </div>
 
                     <div class="col-md-4">
                         <label class="form-label">House No</label>
                         <input type="text" class="form-control" formControlName="houseNo"
-                            placeholder="Input house number" />
+                            placeholder="House number" />
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Post Code</label>
                         <input type="text" class="form-control" formControlName="postCode"
-                            placeholder="Input post code" />
+                            placeholder="Post code" />
                     </div>
 
                 </div>
+
+                <br>
+                <mat-divider></mat-divider>
+                <br>
+                <h3> <b>Next of kin Information</b></h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Full Nanme</label>
+                        <input type="text" class="form-control" formControlName="kinName"
+                            placeholder="Next of kin full name " />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Physical Address</label>
+                        <input type="text" class="form-control" formControlName="kinAddress"
+                            placeholder="Next of kin ddress" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Phone Number</label>
+                        <input type="text" class="form-control" formControlName="kinPhone"
+                            placeholder="Next of kin phone number" />
+                    </div>
+                </div>
+
+
                 <br>
                 <mat-divider></mat-divider>
                 <br>
                 <h3> <b>Employment Information</b></h3>
 
                 <div class="row">
+
+                    <div class="col-md-4">
+                        <label class="form-label">Staff Category</label>
+                        <select  class="form-control" formControlName="staffCategoryId">
+                            <option value="">-- Select Staff Category --</option>
+                            <option value="1">Contract</option>
+                            <!-- 1year -->
+                            <option value="2">Volunteer</option>
+                            <!-- 3-6 months -->
+                            <option value="3">Interns</option>
+                        </select>
+                    </div>
                     <div class="col-md-4">
                         <label class="form-label">Department</label>
                         <select n class="form-control" formControlName="departmentId">
@@ -247,29 +285,26 @@
                             </select>
                     </div>
 
-                    <div class="col-md-4">
-                        <label class="form-label">Account Number</label>
-                        <input type="text" class="form-control" formControlName="accountNumber"
-                            placeholder="Input account number" />
-                    </div>
-
-              
                 </div>
 
                 <div class="row">
-                   
                     <div class="col-md-4">
-                        <label class="form-label">Work Phone</label>
+                        <label class="form-label">Phone Number</label>
                         <input type="tel" class="form-control" formControlName="workPhone"
-                            placeholder="Input work phone" />
+                            placeholder="Work phone" />
                     </div>
-
                     <div class="col-md-4">
-                        <label class="form-label">Work Email</label>
+                        <label class="form-label">Email</label>
                         <input type="email" class="form-control" formControlName="workEmail"
-                            placeholder="Input work email" />
+                            placeholder="Work email" />
                     </div>
+                </div>
 
+                <br>
+                <mat-divider></mat-divider>
+                <br>
+                <h3> <b>Bank Information</b></h3>
+                <div class="row">
                     <div class="col-md-4">
                         <label class="form-label">Bank Name</label>
                     
@@ -284,17 +319,20 @@
                             </select>
                     </div>
 
-                  
+                    <div class="col-md-4">
+                        <label class="form-label">Account Name</label>
+                        <input type="text" class="form-control" formControlName="accountName"
+                            placeholder="Account name" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Account Number</label>
+                        <input type="text" class="form-control" formControlName="accountNumber"
+                            placeholder="Account number" />
+                    </div>
+
                 </div>
 
-                <div class="row">
-                  
-                    <!-- <div class="col-md-4">
-                        <label class="form-label">Staff Category</label>
-                        <input class="form-control" formControlName="staffCategory"
-                            placeholder="Input staff category" />
-                    </div> -->
-                </div>
                 <div class="row mt-5">
                     <div class="col-md-5">
                         <button type="submit" class="btn btn-primary" (click)=" submit()">Submit</button>

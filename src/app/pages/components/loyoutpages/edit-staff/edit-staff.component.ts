@@ -17,6 +17,7 @@ import Swal from 'sweetalert2';
 })
 export class EditStaffComponent implements OnInit{
 
+  loading:boolean = true;
   staffEditForm!:FormGroup;
   constructor(private router:Router,
     private route:ActivatedRoute,
@@ -122,6 +123,7 @@ export class EditStaffComponent implements OnInit{
   fetchStaffById(staff:any){
     this.memberStaffService.getStaffById(staff).subscribe((resp:any)=>{
       // console.log(resp);
+      this.loading = false
       
       this.staffEditForm = new FormGroup({
         id:new FormControl(resp.id),
@@ -154,16 +156,13 @@ export class EditStaffComponent implements OnInit{
         personalId: new FormControl(resp.personalId),
   
       });
-      
     })
   }
 
   submit(){
     const values = this.staffEditForm.value;
     const id = this.staffEditForm.value.id
-    // console.log(values);
     this.memberStaffService.editStaff(id,values).subscribe((resp:any)=>{
-      // console.log(resp);
       this.alert();
       this.reload();
       

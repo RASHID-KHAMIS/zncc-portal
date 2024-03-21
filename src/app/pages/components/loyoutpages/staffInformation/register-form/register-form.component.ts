@@ -42,7 +42,6 @@ export class RegisterFormComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.fetchAllZone();
-    this.fetchAllRegion();
     this.fetchAllShehia();
     this.fetchAllDepartment();
     this.fetchStaffPosition();
@@ -98,10 +97,18 @@ export class RegisterFormComponent implements OnInit {
   }
 
   districtList:any;
-  onChange(event:any){
+  onDistricts(event:any){
     const selectedValue = (event.target as HTMLSelectElement).value;
     this.districtService.getDistrictsByRegionID(selectedValue).subscribe((resp:any)=>{
       this.districtList = resp;
+    })
+  }
+
+  regionList:any
+  onRegion(event:any){
+    const selectedValue = (event.target as HTMLSelectElement).value;
+    this.regionService.getRegionByZoneID(selectedValue).subscribe((resp:any)=>{
+      this.regionList = resp;
     })
   }
 
@@ -112,14 +119,6 @@ export class RegisterFormComponent implements OnInit {
     })
   }
 
-
-
-  regionList:any
-  fetchAllRegion(){
-    this.regionService.getAllRegion().subscribe((resp:any)=>{
-      this.regionList = resp; 
-    })
-  }
 
 
   shehiaLists:any;
@@ -167,12 +166,16 @@ export class RegisterFormComponent implements OnInit {
       email:new FormControl(null,Validators.email),
       workPhone: new FormControl(null),
       workEmail: new FormControl(null),
-      bankName:new FormControl(null),
+      bankName:new FormControl(null,Validators.required),
+      accountName: new FormControl(null,Validators.required),
       accountNumber: new FormControl(null,Validators.required),
       departmentId: new FormControl(null,Validators.required),
       staffPosition: new FormControl(null,Validators.required),
       personalId: new FormControl(null),
-      // religion: new FormControl(null),
+      staffCategoryId: new FormControl(null,Validators.required),
+      kinName: new FormControl(null),
+      kinAddress: new FormControl(null),
+      kinPhone: new FormControl(null),
 
     });
   }
