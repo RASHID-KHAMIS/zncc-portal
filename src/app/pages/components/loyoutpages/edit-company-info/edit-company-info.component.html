@@ -70,7 +70,7 @@
                             <div class="col-md-3">
                                 <label class="form-label">Region</label>
 
-                                <select class="form-control" formControlName="regionId">
+                                <select class="form-control" formControlName="regionId" >
                                     <option value="">-- Select Region --</option>
                                     <option *ngFor="let region of regionList" [value]="region.regionId">
                                         {{region.regionName}}</option>

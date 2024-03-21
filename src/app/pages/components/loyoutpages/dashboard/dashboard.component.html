@@ -75,7 +75,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
-                        <div class="subheader">Staff</div>
+                        <div class="subheader">Company</div>
                         <div class="ms-auto lh-1">
                           
                         </div>
@@ -109,7 +109,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
-                        <div class="subheader">Company</div>
+                        <div class="subheader">Staff</div>
                         <div class="ms-auto lh-1">
                           
                         </div>
@@ -229,26 +229,7 @@
     
                         <!-- Page title actions -->
                         <div class="col-auto ms-auto d-print-none" style="margin-right: 8%;">
-    
-                       
-                            
                             <div class="btn-list">
-                                <button class="btn btn-success d-none d-sm-inline-block"  (click)="onEditInfo(memberInfo)"
-                                    *ngIf="memberInfo?.membership_type != 'Sole Proprietorship'"> Edit Information
-                                    <!-- && memberInfo?.isNewApplicant != 0 -->
-                                </button>&nbsp;
-                                <button class="btn btn-primary d-none d-sm-inline-block"
-                                    *ngIf="memberInfo?.membership_type != 'Sole Proprietorship'" (click)="openDialog()">
-    
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                        stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                        <path d="M12 5l0 14" />
-                                        <path d="M5 12l14 0" />
-                                    </svg>
-                                    Register Owner
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -269,15 +250,29 @@
                                 </mat-select>
                               </mat-form-field>
                         </div>
+                        <div class="col-md-4">
+
+                        </div>
     
-                        <div class="col-md-8">
-                            <!-- <div class="card bg-primary-lt">
-                                <div class="ribbon bg-red">COMMENTS</div>
-                                <div class="card-body">
-                                  <h3 class="card-title">Invoice notifications</h3>
-                                  <p class="text-muted"><marquee behavior="scroll" direction="left">{{comment}}</marquee> </p>
-                                </div>
-                              </div> -->
+                        <div class="col-md-4">
+                              <button class="btn btn-success d-none d-sm-inline-block"  (click)="onEditInfo(memberInfo)"
+                              *ngIf="memberInfo?.membership_type != 'Sole Proprietorship'" style="margin-left: 20%"> Edit Information
+                              <!-- && memberInfo?.isNewApplicant != 0 -->
+                          </button>
+                                                         
+                                <button class="btn btn-primary d-none d-sm-inline-block"
+                                    *ngIf="memberInfo?.membership_type != 'Sole Proprietorship'" (click)="openDialog()"
+                                     style="margin-left: 60%;margin-top: -13%;">
+    
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                        <path d="M12 5l0 14" />
+                                        <path d="M5 12l14 0" />
+                                    </svg>
+                                    Register Owner
+                                </button>
                         </div>
                         
                     </div><br>
