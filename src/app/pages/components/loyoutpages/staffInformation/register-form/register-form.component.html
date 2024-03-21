@@ -43,46 +43,30 @@
         </div>
         <div style="margin: 40px;">
             <form [formGroup]="staffForm">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="row" style="float: right;padding-top: -10px;">
-                            <div>
-                                <img [src]="preview" style="float: right;" class="preview">
-                            </div>
-                            <div *ngIf="currentFile && progress" class="progress my-3">
-                                <div class="progress-bar progress-bar-info" role="progressbar"
-                                    attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"
-                                    [ngStyle]="{ width: progress + '%' }">
-                                    {{ progress }}%
-                                </div>
-                            </div>
-                            <div style="float: right;margin-bottom: 20px;">
-                                <label class="btn btn-default" style="float: right;">
-                                    <input type="file" accept="image/*" (change)="selectFile($event)" />
-                                </label>
-                            </div>
+                <mat-divider></mat-divider>
+                <h3> <b>Staff Information</b></h3>
+            <div class="row">
+                <div class="col-md-8"  style="margin-top: 30px;">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Registration Number</label>
+                            <input type="text" class="form-control" formControlName="regNo"
+                                placeholder="Input registration number" />
+                        </div>
+    
+                        <div class="col-md-4">
+                            <label class="form-label">First Name</label>
+                            <input type="text" class="form-control" formControlName="firstName"
+                                placeholder="Input first name" />
+                        </div>
+    
+                        <div class="col-md-4">
+                            <label class="form-label">Middle Name</label>
+                            <input type="text" class="form-control" formControlName="middleName"
+                                placeholder="Input middle name" />
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <label class="form-label">Registration Number</label>
-                        <input type="text" class="form-control" formControlName="regNo"
-                            placeholder="Input registration number" />
-                    </div>
 
-                    <div class="col-md-4">
-                        <label class="form-label">First Name</label>
-                        <input type="text" class="form-control" formControlName="firstName"
-                            placeholder="Input first name" />
-                    </div>
-
-                    <div class="col-md-4">
-                        <label class="form-label">Middle Name</label>
-                        <input type="text" class="form-control" formControlName="middleName"
-                            placeholder="Input middle name" />
-                    </div>
-                </div>
 
                 <div class="row">
                     <div class="col-md-4">
@@ -108,6 +92,18 @@
 
                 <div class="row">
                     <div class="col-md-4">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" formControlName="phoneNumber"
+                            placeholder="Input phone number" />
+                    </div>
+                     
+
+                    <div class="col-md-4">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" formControlName="email" placeholder="Input email" />
+                    </div>
+
+                    <div class="col-md-4">
                         <label class="form-label">Marital Status</label>
                             <select  class="form-control" formControlName="maritalStatus">
                                 <option value="">-- Select Merital Status --</option>
@@ -115,7 +111,52 @@
                                 <option value="Not Married">Not Married</option>
                             </select>
                     </div>
+                </div>
 
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Is Staff Have Disability</label>
+                        <input type="checkbox" class="form-check-input" formControlName="isStaffHaveDisability" />
+                    </div>
+
+
+                    <div class="col-md-4">
+                        <label class="form-label">Zan ID/National Id/Passport</label>
+                        <input type="text" class="form-control" formControlName="personalId"
+                            placeholder="Input staffPosition" />
+                    </div>
+                </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row" style="float: right;margin-top: 7%;">
+                                <div>
+                                    <img [src]="preview" style="float: right;width: 25%;" class="preview">
+                                </div>
+                                <div *ngIf="currentFile && progress" class="progress my-3">
+                                    <div class="progress-bar progress-bar-info" role="progressbar"
+                                        attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"
+                                        [ngStyle]="{ width: progress + '%' }">
+                                        {{ progress }}%
+                                    </div>
+                                </div>
+                                <div style="float: right;margin-bottom: 20px;">
+                                    <label class="btn btn-default" style="float: right;">
+                                        <input type="file" accept="image/*" (change)="selectFile($event)" />
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+                <mat-divider></mat-divider>
+                <br>
+                <h3> <b>Resident Information</b></h3>
+            
+                <div class="row">
                     <div class="col-md-4">
                         <label class="form-label">Is Residence</label>
                         <input type="checkbox" class="form-check-input" formControlName="isResidence" />
@@ -123,35 +164,27 @@
 
                     <div class="col-md-4">
                         <label class="form-label">Zone</label>
-                        <select n class="form-control" formControlName="zoneId">
+                        <select  class="form-control" formControlName="zoneId">
                             <option value="">-- Select Zone --</option>
                             <option *ngFor="let list of zoneLists" [value]="list.zoneId">{{list.zoneName}}</option>
                         </select>
                     </div>
 
-                    <!-- <div class="col-md-4">
-                        <label class="form-label">Zone</label>
-                        <select  class="form-control" formControlName="zoneId" (change)="callByZone($event)">
-                            <option value="">-- Select Zone --</option>
-                            <option *ngFor="let list of zoneLists" [value]="list.zoneId" >{{list.zoneName}}</option>
-                        </select>
-                    </div> -->
-                 
-                </div>
-
-                <div class="row">
-
                     <div class="col-md-4">
                         <label class="form-label">Region</label>
-                        <select n class="form-control" formControlName="regionId">
+                        <select  class="form-control" formControlName="regionId" (change)="onChange($event)">
                             <option value="">-- Select Region --</option>
                             <option *ngFor="let list of regionList" [value]="list.regionId">{{list.regionName}}</option>
                         </select>
                     </div>
 
+                </div>
+
+                <div class="row">
+
                     <div class="col-md-4">
                         <label class="form-label">District</label>
-                        <select n class="form-control" formControlName="districtId">
+                        <select  class="form-control" formControlName="districtId">
                             <option value="">-- Select District --</option>
                             <option *ngFor="let list of districtList" [value]="list.id">{{list.districtName}}</option>
                         </select>
@@ -159,20 +192,10 @@
 
                     <div class="col-md-4">
                         <label class="form-label">Shehia</label>
-                        <select n class="form-control" formControlName="shehiaId">
+                        <select  class="form-control" formControlName="shehiaId">
                             <option value="">-- Select Shehia --</option>
                             <option *ngFor="let list of shehiaLists" [value]="list.id">{{list.shehiaName}}</option>
                         </select>
-                    </div>
-
-                </div>
-
-                <div class="row">
-
-                    <div class="col-md-4">
-                        <label class="form-label">Street Name</label>
-                        <input type="text" class="form-control" formControlName="streetName"
-                            placeholder="Input street name" />
                     </div>
 
                     <div class="col-md-4">
@@ -181,27 +204,33 @@
                             placeholder="Input physical address" />
                     </div>
 
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Street Name</label>
+                        <input type="text" class="form-control" formControlName="streetName"
+                            placeholder="Input street name" />
+                    </div>
+
                     <div class="col-md-4">
                         <label class="form-label">House No</label>
                         <input type="text" class="form-control" formControlName="houseNo"
                             placeholder="Input house number" />
                     </div>
-                  
-                </div>
-
-                <div class="row">
                     <div class="col-md-4">
                         <label class="form-label">Post Code</label>
                         <input type="text" class="form-control" formControlName="postCode"
                             placeholder="Input post code" />
                     </div>
 
-                    <div class="col-md-4">
-                        <label class="form-label">Phone Number</label>
-                        <input type="tel" class="form-control" formControlName="phoneNumber"
-                            placeholder="Input phone number" />
-                    </div>
+                </div>
+                <br>
+                <mat-divider></mat-divider>
+                <br>
+                <h3> <b>Employment Information</b></h3>
 
+                <div class="row">
                     <div class="col-md-4">
                         <label class="form-label">Department</label>
                         <select n class="form-control" formControlName="departmentId">
@@ -209,14 +238,7 @@
                             <option *ngFor="let list of departmentList" [value]="list.departmentId">{{list.departmentName}}</option>
                         </select>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control" formControlName="email" placeholder="Input email" />
-                    </div>
-
+                 
                     <div class="col-md-4">
                         <label class="form-label">Staff Position</label>
                             <select n class="form-control" formControlName="staffPosition">
@@ -226,8 +248,9 @@
                     </div>
 
                     <div class="col-md-4">
-                        <label class="form-label">Is Staff Have Disability</label>
-                        <input type="checkbox" class="form-check-input" formControlName="isStaffHaveDisability" />
+                        <label class="form-label">Account Number</label>
+                        <input type="text" class="form-control" formControlName="accountNumber"
+                            placeholder="Input account number" />
                     </div>
 
               
@@ -265,20 +288,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-4">
-                        <label class="form-label">Account Number</label>
-                        <input type="text" class="form-control" formControlName="accountNumber"
-                            placeholder="Input account number" />
-                    </div>
-
-        
-                    <div class="col-md-4">
-                        <label class="form-label">Zan ID/National Id/Passport</label>
-                        <input type="text" class="form-control" formControlName="personalId"
-                            placeholder="Input staffPosition" />
-                    </div>
-
-
+                  
                     <!-- <div class="col-md-4">
                         <label class="form-label">Staff Category</label>
                         <input class="form-control" formControlName="staffCategory"

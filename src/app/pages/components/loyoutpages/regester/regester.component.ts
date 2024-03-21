@@ -192,8 +192,6 @@ export class RegesterComponent implements OnInit {
       this.districtList = resp;
     })
 
-
-    
   }
   submit() {
     const values = this.memberForm.value;

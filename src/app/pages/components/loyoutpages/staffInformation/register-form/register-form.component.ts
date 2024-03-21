@@ -43,7 +43,6 @@ export class RegisterFormComponent implements OnInit {
     this.initForm();
     this.fetchAllZone();
     this.fetchAllRegion();
-    this.fetchAllDistricts();
     this.fetchAllShehia();
     this.fetchAllDepartment();
     this.fetchStaffPosition();
@@ -98,6 +97,14 @@ export class RegisterFormComponent implements OnInit {
     }
   }
 
+  districtList:any;
+  onChange(event:any){
+    const selectedValue = (event.target as HTMLSelectElement).value;
+    this.districtService.getDistrictsByRegionID(selectedValue).subscribe((resp:any)=>{
+      this.districtList = resp;
+    })
+  }
+
   zoneLists:any;
   fetchAllZone(){
     this.zoneService.getAllZone().subscribe((resp:any)=>{
@@ -114,12 +121,6 @@ export class RegisterFormComponent implements OnInit {
     })
   }
 
-  districtList:any;
-  fetchAllDistricts(){
-    this.districtService.getAllDistricts().subscribe((resp:any)=>{
-      this.districtList = resp;     
-    })
-  }
 
   shehiaLists:any;
   fetchAllShehia(){
