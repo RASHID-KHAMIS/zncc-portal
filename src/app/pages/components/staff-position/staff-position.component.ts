@@ -45,6 +45,7 @@ export class StaffPositionComponent implements OnInit{
   fetchAllStaffPositions(){
     this.memberStaffService.getAllStaffPosition().subscribe((resp:any)=>{
       this.dataSource = new MatTableDataSource(resp);
+      this.loading = false;
       this.dataSource.paginator =  this.paginator,
       this.dataSource.sort = this.sort;
     })

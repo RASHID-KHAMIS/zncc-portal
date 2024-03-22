@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
@@ -176,6 +177,8 @@ export class RegesterComponent implements OnInit {
   subSectorLists:any
   onSector(event:any){
     const selectedValue = (event.target as HTMLSelectElement).value;
+    // console.log(selectedValue);
+    
     this.businessSubSectorService.getSubSectorBySectorID(selectedValue).subscribe((resp:any)=>{
       // console.log(resp);
       this.subSectorLists = resp
@@ -196,6 +199,8 @@ export class RegesterComponent implements OnInit {
   submit() {
     const values = this.memberForm.value;
     this.membershipService.addMembership(values).subscribe((resp:any)=>{
+      // console.log(values);
+      
       const form = new FormData();
 
       form.append('file', this.files, this.files.name);
@@ -217,7 +222,14 @@ export class RegesterComponent implements OnInit {
           })
       }
       this.alert();
-      this.reload()
+      this.reload() 
+    },
+    (error:HttpErrorResponse)=>{
+      // console.log(error.status);
+      if(error.status == 400){
+        Swal.fire("Company email exists!");
+        
+      }
       
     })
   }

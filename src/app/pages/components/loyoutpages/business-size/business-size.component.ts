@@ -46,6 +46,7 @@ export class BusinessSizeComponent implements OnInit{
   fetchAllBusinessSize(){
     this.businessService.getAllBusinessSize().subscribe((resp:any)=>{
       this.dataSource = new MatTableDataSource(resp);
+      this.loading = false;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort
     })

@@ -55,8 +55,7 @@ export class BusinessSubSectorComponent implements OnInit{
 
   fetchAllBusinessSubSector(){
     this.businessSubSectorService.getAllBusinessSubSector().subscribe((resp:any)=>{
-      console.log(resp);
-      
+      // console.log(resp);
       this.loding = false
       this.dataSource = new MatTableDataSource(resp);
       this.dataSource.paginator = this.paginator;
