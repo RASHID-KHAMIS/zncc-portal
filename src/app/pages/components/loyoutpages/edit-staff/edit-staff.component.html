@@ -27,6 +27,8 @@
       
         <div style="margin: 40px;">
             <form [formGroup]="staffEditForm">
+                <mat-divider></mat-divider>
+                <h3> <b>Staff Information</b></h3>
                 <div class="row">
                     <div class="col-md-4">
                         <label class="form-label">Registration Number</label>
@@ -70,6 +72,18 @@
                 </div>
 
                 <div class="row">
+
+                    <div class="col-md-4">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" formControlName="phoneNumber"
+                            placeholder="Phone number" />
+                    </div>
+                     
+                    <div class="col-md-4">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" formControlName="email" placeholder="email" />
+                    </div>
+
                     <div class="col-md-4">
                         <label class="form-label">Marital Status</label>
                         <select class="form-control" formControlName="maritalStatus">
@@ -78,7 +92,26 @@
                             <option value="Not Married">Not Married</option>
                         </select>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Zan ID/National Id/Passport</label>
+                        <input type="text" class="form-control" formControlName="personalId"
+                            placeholder="Input staffPosition" />
+                    </div>
 
+                    <div class="col-md-4">
+                        <label class="form-label">Is Staff Have Disability</label>
+                        <input type="checkbox" class="form-check-input" formControlName="isStaffHaveDisability" />
+                    </div>
+
+                </div>
+                <br>
+                <mat-divider></mat-divider>
+                <br>
+                <h3> <b>Resident Information</b></h3>
+
+                <div class="row">
                     <div class="col-md-4">
                         <label class="form-label">Is Residence</label>
                         <input type="checkbox" class="form-check-input" formControlName="isResidence" />
@@ -91,9 +124,6 @@
                             <option *ngFor="let list of zoneLists" [value]="list.zoneId">{{list.zoneName}}</option>
                         </select>
                     </div>
-                </div>
-
-                <div class="row">
 
                     <div class="col-md-4">
                         <label class="form-label">Region</label>
@@ -102,6 +132,10 @@
                             <option *ngFor="let list of regionList" [value]="list.regionId">{{list.regionName}}</option>
                         </select>
                     </div>
+                    
+                </div>
+
+                <div class="row">
 
                     <div class="col-md-4">
                         <label class="form-label">District</label>
@@ -119,6 +153,11 @@
                         </select>
                     </div>
 
+                    <div class="col-md-4">
+                        <label class="form-label">Physical Address</label>
+                        <input type="text" class="form-control" formControlName="physicalAddress"
+                            placeholder="Input physical address" />
+                    </div>
                 </div>
 
                 <div class="row">
@@ -130,31 +169,60 @@
                     </div>
 
                     <div class="col-md-4">
-                        <label class="form-label">Physical Address</label>
-                        <input type="text" class="form-control" formControlName="physicalAddress"
-                            placeholder="Input physical address" />
-                    </div>
-
-                    <div class="col-md-4">
                         <label class="form-label">House No</label>
                         <input type="text" class="form-control" formControlName="houseNo"
                             placeholder="Input house number" />
                     </div>
-
-                </div>
-
-                <div class="row">
                     <div class="col-md-4">
                         <label class="form-label">Post Code</label>
                         <input type="text" class="form-control" formControlName="postCode"
                             placeholder="Input post code" />
                     </div>
+                </div>
+
+                <br>
+                <mat-divider></mat-divider>
+                <br>
+                <h3> <b>Next of kin Information</b></h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control" formControlName="kinName"
+                            placeholder="Next of kin full name " />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Physical Address</label>
+                        <input type="text" class="form-control" formControlName="kinAddress"
+                            placeholder="Next of kin ddress" />
+                    </div>
 
                     <div class="col-md-4">
                         <label class="form-label">Phone Number</label>
-                        <input type="tel" class="form-control" formControlName="phoneNumber"
-                            placeholder="Input phone number" />
+                        <input type="text" class="form-control" formControlName="kinPhone"
+                            placeholder="Next of kin phone number" />
                     </div>
+                </div>
+
+                <br>
+                <mat-divider></mat-divider>
+                <br>
+                <h3> <b>Employment Information</b></h3>
+
+                <div class="row">
+                
+                    <div class="col-md-4">
+                        <label class="form-label">Staff Category</label>
+                        <select  class="form-control" formControlName="staffCategoryId">
+                            <option value="">-- Select Staff Category --</option>
+                            <option value="1">Contract</option>
+                            <!-- 1year -->
+                            <option value="2">Volunteer</option>
+                            <!-- 3-6 months -->
+                            <option value="3">Interns</option>
+                        </select>
+                    </div>
+
 
                     <div class="col-md-4">
                         <label class="form-label">Department</label>
@@ -163,13 +231,6 @@
                             <option *ngFor="let list of departmentList" [value]="list.departmentId">
                                 {{list.departmentName}}</option>
                         </select>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control" formControlName="email" placeholder="Input email" />
                     </div>
 
                     <div class="col-md-4">
@@ -180,28 +241,30 @@
                                 {{list.staffPersonalPosition_name}}</option>
                         </select>
                     </div>
-
-                    <div class="col-md-4">
-                        <label class="form-label">Is Staff Have Disability</label>
-                        <input type="checkbox" class="form-check-input" formControlName="isStaffHaveDisability" />
-                    </div>
-
-
                 </div>
 
                 <div class="row">
 
                     <div class="col-md-4">
-                        <label class="form-label">Work Phone</label>
+                        <label class="form-label">Phone Number</label>
                         <input type="tel" class="form-control" formControlName="workPhone"
                             placeholder="Input work phone" />
                     </div>
 
                     <div class="col-md-4">
-                        <label class="form-label">Work Email</label>
+                        <label class="form-label">Email</label>
                         <input type="email" class="form-control" formControlName="workEmail"
                             placeholder="Input work email" />
                     </div>
+
+                </div>
+
+                <br>
+                <mat-divider></mat-divider>
+                <br>
+                <h3> <b>Bank Information</b></h3>
+
+                <div class="row">
 
                     <div class="col-md-4">
                         <label class="form-label">Bank Name</label>
@@ -216,25 +279,17 @@
                             <option value="AMANA">AMANA</option>
                         </select>
                     </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Account Name</label>
+                        <input type="text" class="form-control" formControlName="accountName"
+                            placeholder="Account name" />
+                    </div>
 
-
-                </div>
-
-                <div class="row">
                     <div class="col-md-4">
                         <label class="form-label">Account Number</label>
                         <input type="text" class="form-control" formControlName="accountNumber"
                             placeholder="Input account number" />
                     </div>
-
-
-                    <div class="col-md-4">
-                        <label class="form-label">Zan ID/National Id/Passport</label>
-                        <input type="text" class="form-control" formControlName="personalId"
-                            placeholder="Input staffPosition" />
-                    </div>
-
-
                 </div>
                 <div class="row mt-5">
                     <div class="col-md-5">

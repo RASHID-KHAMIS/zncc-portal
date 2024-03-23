@@ -117,6 +117,11 @@ export class EditStaffComponent implements OnInit{
       departmentId: new FormControl(null,Validators.required),
       staffPosition: new FormControl(null,Validators.required),
       personalId: new FormControl(null),
+      staffCategoryId: new FormControl(null,Validators.required),
+      accountName: new FormControl(null,Validators.required),
+      kinName: new FormControl(null),
+      kinAddress: new FormControl(null),
+      kinPhone: new FormControl(null),
     });
   }
 
@@ -154,6 +159,11 @@ export class EditStaffComponent implements OnInit{
         departmentId: new FormControl(resp.departmentId),
         staffPosition: new FormControl(resp.staffPosition),
         personalId: new FormControl(resp.personalId),
+        accountName: new FormControl(resp.accountName),
+        staffCategoryId: new FormControl(resp.staffCategoryId),
+        kinName: new FormControl(resp.kinName),
+        kinAddress: new FormControl(resp.kinAddress),
+        kinPhone: new FormControl(resp.kinPhone),
   
       });
     })
