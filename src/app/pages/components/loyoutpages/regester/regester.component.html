@@ -43,20 +43,17 @@
                         <div class="row">
 
                             <div class="col-md-4">
-                                <label class="form-label">Company Name</label>
-                                <input type="text" class="form-control" formControlName="company_name"
-                                    placeholder="Company name" />
+                                <label class="form-label" >Company Name <span style="color: red;">*</span></label>
+                                <input type="text" class="form-control" formControlName="company_name" placeholder="Company name" required/>
                             </div>
 
                             <div class="col-md-4">
-                                <label class="form-label">Company Email</label>
-                                <input type="email" class="form-control" formControlName="company_email"
-                                    placeholder="Company email" />
+                                <label class="form-label">Company Email <span style="color: red;">*</span></label>
+                                <input type="email" class="form-control" formControlName="company_email" placeholder="Company email" required/>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">Company Phone</label>
-                                <input type="tel" class="form-control" formControlName="company_phone"
-                                    placeholder="Company phone" />
+                                <label class="form-label">Company Phone <span style="color: red;">*</span></label>
+                                <input type="tel" class="form-control" formControlName="company_phone" placeholder="Company phone" required/>
                             </div>
 
                         </div>
@@ -64,13 +61,12 @@
 
 
                             <div class="col-md-4">
-                                <label class="form-label">Number of staff</label>
-                                <input type="number" class="form-control" formControlName="numberOfStaf"
-                                    placeholder="Number of staff" />
+                                <label class="form-label">Number of staff <span style="color: red;">*</span></label>
+                                <input type="number" class="form-control" formControlName="numberOfStaf" placeholder="Number of staff" required/>
                             </div>
 
                             <div class="col-md-4">
-                                <label class="form-label">Company Certificate</label>
+                                <label class="form-label">Company Certificate <span style="color: red;">*</span></label>
                                 <div class="row">
                                     <div *ngIf="currentFile && progress" class="progress my-3">
                                         <div class="progress-bar progress-bar-info" role="progressbar"
@@ -83,26 +79,23 @@
                                         <label class="btn btn-default" style="width: 100%;">
                                             <input type="file" accept="image/*" (change)="selectFile($event)"
                                                 style="width: 100%;" #imageInput (change)="processFile(imageInput)"
-                                                id="profile" />
+                                                id="profile" required/>
                                         </label>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
-                                <label class="form-label">Company Certificate No</label>
-                                <input type="text" class="form-control" formControlName="company_certificate_number"
-                                    placeholder="Company certificate no" />
+                                <label class="form-label">Company Certificate No <span style="color: red;">*</span></label>
+                                <input type="text" class="form-control" formControlName="company_certificate_number" placeholder="Company certificate no" required/>
                             </div>
-
                         </div>
 
                         <div class="row">
 
                             <div class="col-md-4">
                                 <label class="form-label">TIN Number</label>
-                                <input type="text" class="form-control" formControlName="TRA_number"
-                                    placeholder="Business activity" />
+                                <input type="text" class="form-control" formControlName="TRA_number" placeholder="Tin Number" />
                             </div>
 
                             <div class="col-md-4">
@@ -126,9 +119,8 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4">
-                                <label class="form-label">Street Name</label>
-                                <input type="text" class="form-control" formControlName="street"
-                                    placeholder="Street Name" />
+                                <label class="form-label">Street Name <span style="color: red;">*</span></label>
+                                <input type="text" class="form-control" formControlName="street" placeholder="Street Name" required/>
                             </div>
                         </div>
 
@@ -188,8 +180,7 @@
 
                         <div class="col-md-4">
                             <label class="form-label">Owner Name</label>
-                            <input type="text" class="form-control" formControlName="owner_name"
-                                placeholder="Owner name" />
+                            <input type="text" class="form-control" formControlName="owner_name" placeholder="Owner name" />
                         </div>
 
                         <div class="col-md-4">
@@ -200,8 +191,7 @@
 
                         <div class="col-md-4">
                             <label class="form-label">Owner Email</label>
-                            <input type="email" class="form-control" formControlName="owner_email"
-                                placeholder="Input owner email" />
+                            <input type="email" class="form-control" formControlName="owner_email" placeholder="Input owner email" />
                         </div>
 
                        
@@ -210,20 +200,17 @@
                     <div class="row">
                         <div class="col-md-4">
                             <label class="form-label">Representative Name</label>
-                            <input type="text" class="form-control" formControlName="representative_name"
-                                placeholder="Representative name" />
+                            <input type="text" class="form-control" formControlName="representative_name" placeholder="Representative name" />
                         </div>
 
                         <div class="col-md-4">
                             <label class="form-label">Representative Phone</label>
-                            <input type="text" class="form-control" formControlName="representative_phone"
-                                placeholder="Representer No" />
+                            <input type="text" class="form-control" formControlName="representative_phone"placeholder="Representer No" />
                         </div>
 
                         <div class="col-md-4">
                             <label class="form-label">Representative Email</label>
-                            <input type="email" class="form-control" formControlName="representative_email"
-                                placeholder="Input representative email" />
+                            <input type="email" class="form-control" formControlName="representative_email" placeholder="Input representative email" />
                         </div>
 
                     </div>
@@ -295,15 +282,14 @@
                     </div>
 
                     <div class="col-md-4">
-                        <label class="form-label">Business Activity</label>
-                        <input type="text" class="form-control" formControlName="businessActivity"
-                            placeholder="Business activity" />
+                        <label class="form-label">Business Activity <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control" formControlName="businessActivity" placeholder="Business activity" required/>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-4" style="margin-top: 40px;">
-                        <button type="submit" class="btn btn-primary" (click)="submit()">Register</button>
+                        <button type="submit" class="btn btn-primary" [disabled]="!memberForm.valid" (click)="submit()">Register</button>
                     </div>
                 </div>
 

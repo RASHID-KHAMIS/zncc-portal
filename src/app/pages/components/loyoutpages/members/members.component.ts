@@ -48,13 +48,13 @@ export class MembersComponent implements OnInit {
   sectorList: any;
   fetchAllBusinessSector() {
     this.businessService.getAllBusinessSector().subscribe((resp: any) => {
-      // console.log(resp);
       this.sectorList = resp;
     });
   }
 
   getAllVerifiedMembership() {
     this.membershipService.getVerifiedMember().subscribe((resp: any) => {
+      // console.log(resp);
       this.loding = false;
       this.dataSource = new MatTableDataSource(resp);
       this.dataSource.paginator = this.paginator;
