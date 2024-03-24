@@ -66,7 +66,8 @@ export class LoginComponent implements OnInit {
         
         this.loading = false;
         if(decodedToken.sub.role.length >= 1){
-          // console.log(decodedToken.sub.role);
+          // console.log(decodedToken.sub);
+          localStorage.setItem('fisrName',decodedToken.sub.fisrName),
           localStorage.setItem('role',decodedToken.sub.role),
           localStorage.setItem('email',decodedToken.sub.email),
           localStorage.setItem('memberAccountId',decodedToken.sub.userMemberId),

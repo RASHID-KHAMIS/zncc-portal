@@ -120,6 +120,15 @@ export class ZoneComponent implements OnInit{
     })
   }
 
+  onBlock(row:any){
+    // console.log(row);
+    
+  }
+
+  unBlock(row:any){
+
+  }
+
   reload(){
     this.router.navigateByUrl('',{skipLocationChange:true}).then(()=>{
       this.router.navigate(['zone'])

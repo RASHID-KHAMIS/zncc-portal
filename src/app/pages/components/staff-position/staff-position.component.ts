@@ -82,6 +82,16 @@ export class StaffPositionComponent implements OnInit{
     })
   }
 
+
+  onBlock(row:any){
+    // console.log(row);
+    
+  }
+
+  unBlock(row:any){
+
+  }
+
   openDialog() {
 
     let dialogRef = this.dialog.open(this.distributionDialog, {

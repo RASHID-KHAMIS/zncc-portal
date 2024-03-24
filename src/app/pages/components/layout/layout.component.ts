@@ -11,12 +11,13 @@ import Swal from 'sweetalert2';
 
 export class LayoutComponent {
   role: any;
+  username:any;
   constructor(private router: Router) {
 
   }
   ngOnInit(): void {
-    this.role = localStorage.getItem("role")
- 
+    this.role = localStorage.getItem("role");
+    this.username = localStorage.getItem("fisrName")
   }
 
 

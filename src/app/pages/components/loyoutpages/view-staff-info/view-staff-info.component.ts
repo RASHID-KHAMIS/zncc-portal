@@ -21,7 +21,7 @@ export class ViewStaffInfoComponent implements OnInit{
   staffInfo:any
   fetchStaffById(id:any){
     this.memberStaffService.getStaffById(id).subscribe((resp:any)=>{
-      // console.log(resp);
+      console.log(resp);
       this.staffInfo = resp;
       
     })

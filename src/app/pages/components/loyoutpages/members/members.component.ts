@@ -64,7 +64,7 @@ export class MembersComponent implements OnInit {
 
   onSectorSelectionChange(event: any) {
     const sectorId = event.value;
-    console.log(sectorId);
+    // console.log(sectorId);
     this.fetchVerifiedMemberBySectorId(sectorId);
   }
 
