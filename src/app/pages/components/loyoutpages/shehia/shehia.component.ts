@@ -136,7 +136,54 @@ export class ShehiaComponent implements OnInit {
       this.reload()
     })
   }
+  onBlock(row:any){
+    // console.log(row);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want block this shehia!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, block!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const id = row.id;
+        row.currentStatus = '0';
+        this.shehiaService.editShehiaStatus(id, row).subscribe((resp: any) => {});
+        Swal.fire({
+          title: 'Blocked!',
+          text: 'Shehia has been blocked.',
+          icon: 'warning',
+        });
+      }
+    });
+    
+    
+  }
 
+  unBlock(row:any){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want block this shehia!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, block!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const id = row.id;
+        row.currentStatus = '1';
+        this.shehiaService.editShehiaStatus(id, row).subscribe((resp: any) => {});
+        Swal.fire({
+          title: 'Blocked!',
+          text: 'Shehia has been blocked.',
+          icon: 'success',
+        });
+      }
+    });
+  }
   reload(){
     this.router.navigateByUrl('',{skipLocationChange:true}).then(()=>{
       this.router.navigate(['shehia'])

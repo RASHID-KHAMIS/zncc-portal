@@ -122,11 +122,50 @@ export class ZoneComponent implements OnInit{
 
   onBlock(row:any){
     // console.log(row);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want block this zone!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, block!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const id = row.zoneId;
+        row.currentStatus = '0';
+        this.zoneService.editZoneStatus(id, row).subscribe((resp: any) => {});
+        Swal.fire({
+          title: 'Blocked!',
+          text: 'Zone has been blocked.',
+          icon: 'warning',
+        });
+      }
+    });
     
   }
 
   unBlock(row:any){
-
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want Un block this zone!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Un block!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const id = row.zoneId;
+        row.currentStatus = '1';
+        this.zoneService.editZoneStatus(id, row).subscribe((resp: any) => {});
+        Swal.fire({
+          title: 'Un blocked!',
+          text: 'Zone Unblocked Successfully.',
+          icon: 'success',
+        });
+      }
+    });
   }
 
   reload(){

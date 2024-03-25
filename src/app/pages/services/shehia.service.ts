@@ -21,4 +21,8 @@ export class ShehiaService {
   editShehia(id:any,body:any){
     return this.http.put(this.shehiaAPI + "/" + id,body)
   }
+
+  editShehiaStatus(id:any,body:any){
+    return this.http.put(this.shehiaAPI + "/" + "update-with-status" + "/" + id,body)
+  }
 }

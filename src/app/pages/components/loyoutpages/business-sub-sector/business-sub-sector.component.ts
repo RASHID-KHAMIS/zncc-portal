@@ -146,7 +146,7 @@ export class BusinessSubSectorComponent implements OnInit{
 
 
   onBlock(row:any){
-    // console.log(row);
+    console.log(row);
     
   }
 

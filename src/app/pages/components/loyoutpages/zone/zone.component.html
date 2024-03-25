@@ -79,7 +79,7 @@
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
                     <td mat-cell *matCellDef="let row">
                         <div class="row">
-                            <button title="Modify" class="col-md-1 btn btn-outline-primary" (click)="openDialog2(row)">
+                            <button  class="col-md-1 btn btn-outline-primary" (click)="openDialog2(row)">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                         <path fill="currentColor"
@@ -87,9 +87,9 @@
                                     </svg>
                                 </span>
                             </button>
-                            &nbsp;
+                        
 
-                            <button title="Modify" style="margin-left: 5px;" class="col-md-1 btn btn-outline-success" (click)="onBlock(row)">
+                            <button style="margin-left: 5px;" class="col-md-1 btn btn-outline-success" (click)="onBlock(row)" *ngIf="row.currentStatus == 1">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
                                     viewBox="0 0 24 24">
@@ -100,9 +100,9 @@
                                 </svg>
                             </span>
                         </button>
-                        &nbsp;
+                  
 
-                        <button title="Modify" style="margin-left: 5px;" class="col-md-1 btn btn-outline-danger"  (click)="unBlock(row)">
+                        <button style="margin-left: 5px;" class="col-md-1 btn btn-outline-danger"  (click)="unBlock(row)" *ngIf="row.currentStatus == 0">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
                                     viewBox="0 0 24 24">

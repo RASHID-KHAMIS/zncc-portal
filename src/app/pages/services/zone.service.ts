@@ -25,4 +25,7 @@ export class ZoneService {
   getByZoneId(id:any){
     return this.http.get(this.zoneAPI + "/" + id)
   }
+  editZoneStatus(id:any,body:any){
+    return this.http.put(this.zoneAPI + "/" + "update-with-status" + "/" + id,body)
+  }
 }

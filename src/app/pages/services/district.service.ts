@@ -26,4 +26,8 @@ export class DistrictService {
   getDistrictsByRegionID(id:any){
     return this.http.get(this.districtAPI + "/" + "by-region" + "/" +id)
   }
+
+  editDistrictsStatus(id:any,body:any){
+    return this.http.put(this.districtAPI + "/" + "update-with-status" + "/" + id,body)
+  }
 }

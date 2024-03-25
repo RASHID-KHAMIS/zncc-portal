@@ -138,12 +138,52 @@ export class DistrictComponent implements OnInit{
   }
 
   onBlock(row:any){
-    // console.log(row);
+    console.log(row);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want block this district!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, block!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const id = row.id;
+        row.currentStatus = '0';
+        this.districtService.editDistrictsStatus(id, row).subscribe((resp: any) => {});
+        Swal.fire({
+          title: 'Blocked!',
+          text: 'District has been blocked.',
+          icon: 'warning',
+        });
+      }
+    });
     
   }
 
   unBlock(row:any){
-
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want Un block this district!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Un block!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const id = row.id;
+        row.currentStatus = '0';
+        this.districtService.editDistrictsStatus(id, row).subscribe((resp: any) => {});
+        Swal.fire({
+          title: 'Un blocked!',
+          text: 'District Unblocked Successfully.',
+          icon: 'success',
+        });
+      }
+    });
+    
   }
   reload(){
     this.router.navigateByUrl('',{skipLocationChange:true}).then(()=>{
