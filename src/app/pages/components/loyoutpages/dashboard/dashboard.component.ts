@@ -9,6 +9,7 @@ import { CompanyOwnershipService } from 'src/app/pages/services/company-ownershi
 import { MembershipCommentsService } from 'src/app/pages/services/membership-comments.service';
 import { MembershipUploadService } from 'src/app/pages/services/membership-upload.service';
 import { MembershipService } from 'src/app/pages/services/membership.service';
+import { DashboardService } from 'src/app/services/dashboard.service';
 import Swal from 'sweetalert2';
 class ImageSnippet {
   pending: boolean = false;
@@ -66,12 +67,13 @@ export class DashboardComponent implements OnInit{
     private membershipService:MembershipService,
     private companyOwnershipService:CompanyOwnershipService,
     private membershipUploadService:MembershipUploadService,
-    private membershipCommentsService:MembershipCommentsService){}
+    private membershipCommentsService:MembershipCommentsService,
+    private dashboardService:DashboardService){}
   ngOnInit(): void {
     this.configureForm();
    this.memberAccountId = localStorage.getItem('memberAccountId');
   //  console.log(this.memberAccountId);
-   
+   this.fetchAllDashboardInfo();
    this.fetchByMembershipId();
    this.configureEditForm();
    this.configureDocumentsForm();
@@ -106,8 +108,6 @@ export class DashboardComponent implements OnInit{
           this.checkComment = true;
         }
         
-        
-
         this.comment = resp.comment_resone; 
       })
       
@@ -450,6 +450,13 @@ export class DashboardComponent implements OnInit{
       }
     })
 
+  }
+
+  fetchAllDashboardInfo(){
+    this.dashboardService.getDashboardData().subscribe((resp:any)=>{
+      console.log(resp);
+      
+    })
   }
 
 
