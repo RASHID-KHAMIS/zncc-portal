@@ -25,4 +25,8 @@ export class DepartmentService {
   editDepartmentStatus(id:any,body:any){
     return this.http.put(this.departmentAPI + "/" + "update-with-status" + "/" + id,body)
   }
+
+  getDepartmentWithStatus(){
+    return this.http.get(this.departmentAPI + "/" + "with-status" + "/")
+  }
 }

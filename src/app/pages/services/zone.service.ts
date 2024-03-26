@@ -28,4 +28,8 @@ export class ZoneService {
   editZoneStatus(id:any,body:any){
     return this.http.put(this.zoneAPI + "/" + "update-with-status" + "/" + id,body)
   }
+
+  getZoneWithStatus(){
+    return this.http.get(this.zoneAPI + "/" + "with-status" + "/")
+  }
 }

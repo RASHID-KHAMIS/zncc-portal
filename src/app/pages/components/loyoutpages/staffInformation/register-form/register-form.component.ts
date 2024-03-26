@@ -41,9 +41,9 @@ export class RegisterFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    this.fetchAllZone();
+    this.fetchAZoneWithStatus();
     this.fetchAllShehia();
-    this.fetchAllDepartment();
+    this.fetchDepartmentWithStatus();
     this.fetchStaffPosition();
     // this.imageInfos = this.uploadService.getFiles();
   }
@@ -113,8 +113,8 @@ export class RegisterFormComponent implements OnInit {
   }
 
   zoneLists:any;
-  fetchAllZone(){
-    this.zoneService.getAllZone().subscribe((resp:any)=>{
+  fetchAZoneWithStatus(){
+    this.zoneService.getZoneWithStatus().subscribe((resp:any)=>{
       this.zoneLists = resp;
     })
   }
@@ -129,8 +129,8 @@ export class RegisterFormComponent implements OnInit {
   }
 
   departmentList:any;
-  fetchAllDepartment(){
-    this.departmentService.getAllDepartment().subscribe((resp:any)=>{
+  fetchDepartmentWithStatus(){
+    this.departmentService.getDepartmentWithStatus().subscribe((resp:any)=>{
       this.departmentList = resp;
     })
   }
@@ -151,15 +151,15 @@ export class RegisterFormComponent implements OnInit {
       dob: new FormControl(null),
       gender:new FormControl(null,Validators.required),
       maritalStatus:new FormControl(null),
-      physicalAddress: new FormControl(null,Validators.required),
-      isResidence: new FormControl(null,Validators.required),
+      physicalAddress: new FormControl(null),
+      isResidence: new FormControl(null),
       zoneId: new FormControl(null,Validators.required),
       phoneNumber:new FormControl(null,Validators.required),
       isStaffHaveDisability:new FormControl(false), 
       regionId: new FormControl(null),
       districtId: new FormControl(null),
       shehiaId: new FormControl(null),
-      streetName: new FormControl(null),
+      streetName: new FormControl(null,Validators.required),
       postCode: new FormControl(null),
       houseNo:new FormControl(null),
       terminationStatus: new FormControl(1),
@@ -173,7 +173,7 @@ export class RegisterFormComponent implements OnInit {
       staffPosition: new FormControl(null,Validators.required),
       personalId: new FormControl(null),
       staffCategoryId: new FormControl(null,Validators.required),
-      kinName: new FormControl(null),
+      kinName: new FormControl(null,Validators.required),
       kinAddress: new FormControl(null),
       kinPhone: new FormControl(null),
 

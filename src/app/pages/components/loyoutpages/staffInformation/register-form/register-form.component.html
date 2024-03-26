@@ -2,7 +2,6 @@
     <div class="" style="margin: 0 20px 0 20px;">
         <div class="row g-2 align-items-center">
             <div class="col">
-                <!-- Page pre-title -->
                 <div class="page-pretitle">
 
                 </div>
@@ -10,15 +9,8 @@
                     Registration
                 </h2>
             </div>
-            <!-- Page title actions -->
             <div class="col-auto ms-auto d-print-none">
                 <div class="btn-list">
-                    <!-- <span class="d-none d-sm-inline">
-              <a href="#" class="btn">
-                New view
-              </a>
-            </span> -->
-
                 </div>
             </div>
         </div>
@@ -31,7 +23,7 @@
 
     <div class="card">
         <div class="card-status-top bg-primary"></div>
-        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
 
         <div style="margin:10px 0px 0px 10px;" class="example-form ml-3  mb-3">
             <label class="form-label"></label>
@@ -49,30 +41,30 @@
                 <div class="col-md-8"  style="margin-top: 30px;">
                     <div class="row">
                         <div class="col-md-4">
-                            <label class="form-label">Registration Number</label>
+                            <label class="form-label">Registration Number <span style="color: red;">*</span></label>
                             <input type="text" class="form-control" formControlName="regNo"
-                                placeholder="Registration number" />
+                                placeholder="Registration number" required/>
                         </div>
     
                         <div class="col-md-4">
-                            <label class="form-label">First Name</label>
+                            <label class="form-label">First Name <span style="color: red;">*</span></label>
                             <input type="text" class="form-control" formControlName="firstName"
-                                placeholder="First name" />
+                                placeholder="First name" required/>
                         </div>
     
                         <div class="col-md-4">
-                            <label class="form-label">Middle Name</label>
+                            <label class="form-label">Middle Name <span style="color: red;">*</span></label>
                             <input type="text" class="form-control" formControlName="middleName"
-                                placeholder="Middle name" />
+                                placeholder="Middle name" required/>
                         </div>
                     </div>
 
 
                 <div class="row">
                     <div class="col-md-4">
-                        <label class="form-label">Last Name</label>
+                        <label class="form-label">Last Name <span style="color: red;">*</span></label>
                         <input type="text" class="form-control" formControlName="lastName"
-                            placeholder="Last name" />
+                            placeholder="Last name" required/>
                     </div>
 
                     <div class="col-md-4">
@@ -81,7 +73,7 @@
                     </div>
 
                     <div class="col-md-4">
-                        <label class="form-label">Gender</label>
+                        <label class="form-label">Gender <span style="color: red;">*</span></label>
                         <select  class="form-control" formControlName="gender">
                             <option value="">-- Select Gender --</option>
                             <option value="M">Male</option>
@@ -92,15 +84,15 @@
 
                 <div class="row">
                     <div class="col-md-4">
-                        <label class="form-label">Phone Number</label>
+                        <label class="form-label">Phone Number <span style="color: red;">*</span></label>
                         <input type="tel" class="form-control" formControlName="phoneNumber"
-                            placeholder="Phone number" />
+                            placeholder="Phone number" required/>
                     </div>
                      
 
                     <div class="col-md-4">
                         <label class="form-label">Email</label>
-                        <input type="email" class="form-control" formControlName="Email" placeholder="Input email" />
+                        <input type="email" class="form-control" formControlName="Email" placeholder="email" />
                     </div>
 
                     <div class="col-md-4">
@@ -163,7 +155,7 @@
                     </div>
 
                     <div class="col-md-4">
-                        <label class="form-label">Zone</label>
+                        <label class="form-label">Zone <span style="color: red;">*</span></label>
                         <select  class="form-control" formControlName="zoneId" (change)="onRegion($event)">
                             <option value="">-- Select Zone --</option>
                             <option *ngFor="let list of zoneLists" [value]="list.zoneId">{{list.zoneName}}</option>
@@ -208,7 +200,7 @@
 
                 <div class="row">
                     <div class="col-md-4">
-                        <label class="form-label">Street Name</label>
+                        <label class="form-label">Street Name <span style="color: red;">*</span></label>
                         <input type="text" class="form-control" formControlName="streetName"
                             placeholder="Street name" />
                     </div>
@@ -232,9 +224,9 @@
                 <h3> <b>Next of kin Information</b></h3>
                 <div class="row">
                     <div class="col-md-4">
-                        <label class="form-label">Full Name</label>
+                        <label class="form-label">Full Name <span style="color: red;">*</span></label>
                         <input type="text" class="form-control" formControlName="kinName"
-                            placeholder="Next of kin full name " />
+                            placeholder="Next of kin full name" required/>
                     </div>
 
                     <div class="col-md-4">
@@ -259,8 +251,8 @@
                 <div class="row">
 
                     <div class="col-md-4">
-                        <label class="form-label">Staff Category</label>
-                        <select  class="form-control" formControlName="staffCategoryId">
+                        <label class="form-label">Staff Category <span style="color: red;">*</span></label>
+                        <select  class="form-control" formControlName="staffCategoryId" required>
                             <option value="">-- Select Staff Category --</option>
                             <option value="1">Contract</option>
                             <!-- 1year -->
@@ -270,16 +262,16 @@
                         </select>
                     </div>
                     <div class="col-md-4">
-                        <label class="form-label">Department</label>
-                        <select n class="form-control" formControlName="departmentId">
+                        <label class="form-label">Department <span style="color: red;">*</span></label>
+                        <select n class="form-control" formControlName="departmentId" required>
                             <option value="">-- Select Department --</option>
                             <option *ngFor="let list of departmentList" [value]="list.departmentId">{{list.departmentName}}</option>
                         </select>
                     </div>
                  
                     <div class="col-md-4">
-                        <label class="form-label">Staff Position</label>
-                            <select n class="form-control" formControlName="staffPosition">
+                        <label class="form-label">Staff Position <span style="color: red;">*</span></label>
+                            <select n class="form-control" formControlName="staffPosition" required>
                                 <option value="">-- Select Staff Position --</option>
                                 <option *ngFor="let list of positionList" [value]="list.staffPersonalPositionId">{{list.staffPersonalPosition_name}}</option>
                             </select>
@@ -289,9 +281,9 @@
 
                 <div class="row">
                     <div class="col-md-4">
-                        <label class="form-label">Phone Number</label>
+                        <label class="form-label">Phone Number <span style="color: red;">*</span></label>
                         <input type="tel" class="form-control" formControlName="workPhone"
-                            placeholder="Work phone" />
+                            placeholder="Work phone" required/>
                     </div>
                     <div class="col-md-4">
                         <label class="form-label">Email</label>
@@ -306,9 +298,9 @@
                 <h3> <b>Bank Information</b></h3>
                 <div class="row">
                     <div class="col-md-4">
-                        <label class="form-label">Bank Name</label>
+                        <label class="form-label">Bank Name <span style="color: red;">*</span></label>
                     
-                            <select name="" id="" class="form-control" formControlName="bankName">
+                            <select name="" id="" class="form-control" formControlName="bankName" required>
                                 <option value="">-- Select Bank Name --</option>
                                 <option value="PBZ">PBZ</option>
                                 <option value="CRDB">CRDB</option>
@@ -326,16 +318,16 @@
                     </div>
 
                     <div class="col-md-4">
-                        <label class="form-label">Account Number</label>
+                        <label class="form-label">Account Number <span style="color: red;">*</span></label>
                         <input type="text" class="form-control" formControlName="accountNumber"
-                            placeholder="Account number" />
+                            placeholder="Account number" required/>
                     </div>
 
                 </div>
 
                 <div class="row mt-5">
                     <div class="col-md-5">
-                        <button type="submit" class="btn btn-primary" (click)=" submit()">Submit</button>
+                        <button type="submit" class="btn btn-primary" (click)=" submit()" >Submit</button>
                     </div>
                 </div>
 
