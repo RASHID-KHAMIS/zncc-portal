@@ -454,7 +454,7 @@ export class DashboardComponent implements OnInit{
 
   fetchAllDashboardInfo(){
     this.dashboardService.getDashboardData().subscribe((resp:any)=>{
-      console.log(resp);
+      // console.log(resp);
       
     })
   }

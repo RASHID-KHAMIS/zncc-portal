@@ -88,10 +88,50 @@ export class DepartmentComponent implements OnInit{
 
   onBlock(row:any){
     // console.log(row);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want block this department!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, block!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const id = row.departmentId;
+        row.currentStatus = 0;
+        this.departmentService.editDepartmentStatus(id, row).subscribe((resp: any) => {});
+        Swal.fire({
+          title: 'Blocked!',
+          text: 'Department has been blocked.',
+          icon: 'warning',
+        });
+      }
+    });
     
   }
 
   unBlock(row:any){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want block this department!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Un block!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const id = row.departmentId;
+        row.currentStatus = 1;
+        this.departmentService.editDepartmentStatus(id, row).subscribe((resp: any) => {});
+        Swal.fire({
+          title: 'Un blocked!',
+          text: 'Department has been unblocked.',
+          icon: 'success',
+        });
+      }
+    });
 
   }
 

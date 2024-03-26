@@ -62,4 +62,8 @@ export class BusinessService {
   editBusinessSectorStatus(id:any,body:any){
     return this.http.put(this.businessSectorAPI + "/" + "update-with-status" + "/" + id,body)
   }
+
+  editBusinessSizeStatus(id:any,body:any){
+    return this.http.put(this.businessSizeAPI + "/" + "update-with-status" + "/" + id,body)
+  }
 }

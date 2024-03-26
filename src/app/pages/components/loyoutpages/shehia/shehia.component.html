@@ -98,7 +98,7 @@
                                 </span>
                             </button>
 
-                            <button  style="margin-left: 5px;" class="col-md-1 btn btn-outline-success" (click)="onBlock(row)">
+                            <button  style="margin-left: 5px;" class="col-md-1 btn btn-outline-success" (click)="onBlock(row)" *ngIf="row.currentStatus == 1">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
                                         viewBox="0 0 24 24">
@@ -110,7 +110,7 @@
                                 </span>
                             </button>
     
-                            <button  style="margin-left: 5px;" class="col-md-1 btn btn-outline-danger" (click)="unBlock(row)">
+                            <button  style="margin-left: 5px;" class="col-md-1 btn btn-outline-danger" (click)="unBlock(row)" *ngIf="row.currentStatus == 0">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
                                         viewBox="0 0 24 24">

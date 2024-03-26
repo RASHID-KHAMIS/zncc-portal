@@ -128,10 +128,50 @@ export class BusinessSizeComponent implements OnInit{
 
   onBlock(row:any){
     // console.log(row);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want block this business size!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, block!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const id = row.businessSizeId;
+        row.currentStatus = 0;
+        this.businessService.editBusinessSizeStatus(id, row).subscribe((resp: any) => {});
+        Swal.fire({
+          title: 'Blocked!',
+          text: 'Business size has been blocked.',
+          icon: 'warning',
+        });
+      }
+    });
     
   }
 
   unBlock(row:any){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want Un block this business size!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Un block!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const id = row.businessSizeId;
+        row.currentStatus = '1';
+        this.businessService.editBusinessSizeStatus(id, row).subscribe((resp: any) => {});
+        Swal.fire({
+          title: 'Un blocked!',
+          text: 'Business size Unblocked Successfully.',
+          icon: 'success',
+        });
+      }
+    });
 
   }
 
