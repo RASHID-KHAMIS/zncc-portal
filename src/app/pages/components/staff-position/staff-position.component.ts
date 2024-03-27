@@ -85,11 +85,51 @@ export class StaffPositionComponent implements OnInit{
 
   onBlock(row:any){
     // console.log(row);
-    
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want block this zone!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, block!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const id = row.staffPersonalPositionId;
+        row.currentStatus = '0';
+        this.memberStaffService.editStaffPositionStatus(id, row).subscribe((resp: any) => {});
+        Swal.fire({
+          title: 'Blocked!',
+          text: 'Staff Position has been blocked.',
+          icon: 'warning',
+        });
+      }
+    });
+ 
   }
 
   unBlock(row:any){
-
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You want Un block this staff position!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Un block!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const id = row.staffPersonalPositionId;
+        row.currentStatus = 1;
+        this.memberStaffService.editStaffPositionStatus(id, row).subscribe((resp: any) => {});
+        Swal.fire({
+          title: 'Un blocked!',
+          text: 'Staff Position Unblocked Successfully.',
+          icon: 'success',
+        });
+      }
+    });
+    
   }
 
   openDialog() {

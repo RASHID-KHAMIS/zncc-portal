@@ -1,11 +1,12 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import {
   ApexNonAxisChartSeries,
   ApexResponsive,
   ApexChart,
-  ChartComponent
-} from "ng-apexcharts";
+  ChartComponent,
+} from 'ng-apexcharts';
+import { DashboardService } from 'src/app/pages/services/dashboard.service';
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -16,33 +17,48 @@ export type ChartOptions = {
 @Component({
   selector: 'app-piechart',
   templateUrl: './piechart.component.html',
-  styleUrls: ['./piechart.component.css']
+  styleUrls: ['./piechart.component.css'],
 })
-export class PiechartComponent {
-  @ViewChild("chart") chart!: ChartComponent;
+export class PiechartComponent implements OnInit {
+  @ViewChild('chart') chart!: ChartComponent;
   public chartOptions!: Partial<ChartOptions>;
-  constructor() {
-    this.chartOptions = {
-      series: [44, 55, 13, 40],
-      chart: {
-        width: 500,
-        type: "pie"
-      },
+  constructor(private dashboardService: DashboardService) {}
+  ngOnInit(): void {
+    this.dashboardInformation();
+  }
 
-      labels: ["sole Proprietorship", "Partnership", "Company", "Association"],
-      responsive: [
-        {
-          breakpoint: 700,
-          options: {
-            chart: {
-              width: 400
+  dashboardInformation() {
+    let sectorName: any[] = [];
+    let memberNumber: any[] = [];
+    this.dashboardService.getDshboardInfo().subscribe((resp: any) => {
+      resp.withBusinessSector.map((data: any) => {
+
+        memberNumber.push(data.memberNumber*10);
+        sectorName.push(data.sectorName);
+      });
+
+      this.chartOptions = {
+        series: memberNumber,
+        chart: {
+          width: 500,
+          type: 'pie',
+        },
+  
+        labels: sectorName,
+        responsive: [
+          {
+            breakpoint: 700,
+            options: {
+              chart: {
+                width: 400,
+              },
+              legend: {
+                position: 'bottom',
+              },
             },
-            legend: {
-              position: "bottom"
-            }
-          }
-        }
-      ]
-    };
+          },
+        ],
+      };
+    });
   }
 }

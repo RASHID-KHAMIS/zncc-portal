@@ -44,4 +44,8 @@ export class MemberStaffService {
   getStaffByRegNo(regNo:any){
     return this.http.get(this.staffAPI + "/" + "by-reg-no" + "/" + regNo)
   }
+
+  editStaffPositionStatus(id:any,body:any){
+    return this.http.put(this.staffPositionAPI + "/" + "update-with-status" + "/" + id,body)
+  }
 }
