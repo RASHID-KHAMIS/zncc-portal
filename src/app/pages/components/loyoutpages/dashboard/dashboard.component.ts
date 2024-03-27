@@ -6,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { CompanyOwnershipService } from 'src/app/pages/services/company-ownership.service';
+import { DashboardService } from 'src/app/pages/services/dashboard.service';
 import { MembershipCommentsService } from 'src/app/pages/services/membership-comments.service';
 import { MembershipUploadService } from 'src/app/pages/services/membership-upload.service';
 import { MembershipService } from 'src/app/pages/services/membership.service';
@@ -67,7 +68,8 @@ export class DashboardComponent implements OnInit{
     private membershipService:MembershipService,
     private companyOwnershipService:CompanyOwnershipService,
     private membershipUploadService:MembershipUploadService,
-    private membershipCommentsService:MembershipCommentsService,){}
+    private membershipCommentsService:MembershipCommentsService,
+    private dashboardService:DashboardService){}
   ngOnInit(): void {
     this.configureForm();
    this.memberAccountId = localStorage.getItem('memberAccountId');
@@ -77,7 +79,8 @@ export class DashboardComponent implements OnInit{
    this.configureDocumentsForm();
    this.fetchCompanyByMemberAccount()
 
-   this.role = localStorage.getItem('role')
+   this.role = localStorage.getItem('role');
+   this.dashboardInformation()
   }
 
   applyFilter(event: Event) {
@@ -448,6 +451,14 @@ export class DashboardComponent implements OnInit{
       }
     })
 
+  }
+
+  information:any;
+  dashboardInformation(){
+    this.dashboardService.getDshboardInfo().subscribe((resp:any)=>{
+      this.information = resp;
+      console.log(this.information);    
+    })
   }
 
 
