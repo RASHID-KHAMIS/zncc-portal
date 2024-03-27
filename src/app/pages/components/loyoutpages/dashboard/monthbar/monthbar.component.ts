@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   ApexAxisChartSeries,
@@ -10,6 +11,7 @@ import {
   ApexXAxis,
   ApexFill
 } from "ng-apexcharts";
+import { DashboardService } from 'src/app/pages/services/dashboard.service';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -29,7 +31,11 @@ export type ChartOptions = {
 export class MonthbarComponent implements OnInit {
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions!: Partial<ChartOptions>;
+
+  constructor(private dashboardService:DashboardService) {}
   ngOnInit(): void {
+
+    this.dashboardInformation();
     this.chartOptions = {
       series: [
         {
@@ -141,10 +147,29 @@ export class MonthbarComponent implements OnInit {
     };
   }
 
+  information:any;
+  dashboardInformation(){
+    let month:any[] = [];
+    let memberNumber:any[] = [];
+    this.dashboardService.getDshboardInfo().subscribe((resp:any)=>{
+      this.information = resp;
+      console.log(this.information);
+      
+      for(let v = 0; v < resp.applicationInMonth.length; v++){
+        console.log(resp.applicanInMonth[v]);
+        
+        // month.push(element.applicationInMonth.month);
+        // memberNumber.push(element.applicationInMonth.memberNumber);
+        // console.log(element);
+      } 
+      // console.log(month);
+      
 
-  constructor() {
-
+    })
   }
+
+
+
 
 
 

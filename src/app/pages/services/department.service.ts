@@ -29,4 +29,5 @@ export class DepartmentService {
   getDepartmentWithStatus(){
     return this.http.get(this.departmentAPI + "/" + "with-status" + "/")
   }
+
 }

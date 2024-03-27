@@ -42,7 +42,7 @@ export class RegisterFormComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.fetchAZoneWithStatus();
-    this.fetchAllShehia();
+    // this.fetchAllShehia();
     this.fetchDepartmentWithStatus();
     this.fetchStaffPosition();
     // this.imageInfos = this.uploadService.getFiles();
@@ -103,6 +103,13 @@ export class RegisterFormComponent implements OnInit {
       this.districtList = resp;
     })
   }
+  shehiaLists:any;
+  onShehia(event:any){
+    const selectedValue = (event.target as HTMLSelectElement).value;
+    this.shehiaService.getShehiaByDistrictID(selectedValue).subscribe((resp:any)=>{
+      this.shehiaLists = resp
+    })
+  }
 
   regionList:any
   onRegion(event:any){
@@ -119,14 +126,6 @@ export class RegisterFormComponent implements OnInit {
     })
   }
 
-
-
-  shehiaLists:any;
-  fetchAllShehia(){
-    this.shehiaService.getAllShehia().subscribe((resp:any)=>{
-      this.shehiaLists = resp;
-    })
-  }
 
   departmentList:any;
   fetchDepartmentWithStatus(){

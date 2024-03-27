@@ -25,4 +25,9 @@ export class ShehiaService {
   editShehiaStatus(id:any,body:any){
     return this.http.put(this.shehiaAPI + "/" + "update-with-status" + "/" + id,body)
   }
+
+  getShehiaByDistrictID(id:any){
+    return this.http.get(this.shehiaAPI + "/" + "by-district" + "/" +id)
+  }
+
 }

@@ -174,7 +174,7 @@ export class DistrictComponent implements OnInit{
     }).then((result) => {
       if (result.isConfirmed) {
         const id = row.id;
-        row.currentStatus = '0';
+        row.currentStatus = 1;
         this.districtService.editDistrictsStatus(id, row).subscribe((resp: any) => {});
         Swal.fire({
           title: 'Un blocked!',

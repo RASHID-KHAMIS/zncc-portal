@@ -176,7 +176,7 @@
 
                     <div class="col-md-4">
                         <label class="form-label">District</label>
-                        <select  class="form-control" formControlName="districtId">
+                        <select  class="form-control" formControlName="districtId" (change)="onShehia($event)">
                             <option value="">-- Select District --</option>
                             <option *ngFor="let list of districtList" [value]="list.id">{{list.districtName}}</option>
                         </select>
