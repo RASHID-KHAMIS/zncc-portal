@@ -163,7 +163,7 @@
 
                 <div class="col-md-4">
                     <mat-form-field appearance="outline" style="width:100%;">
-                        <mat-label> Sub Sector Name</mat-label>
+                        <mat-label> Sector Name</mat-label>
                         <mat-select formControlName="businessSectorId">
                             <mat-option *ngFor="let list of sector" [value]="list.businessSectorId">
                                 {{list.sectorName}}
@@ -174,7 +174,7 @@
 
                 <div class="col-md-4">
                     <mat-form-field style="width: 100%;" appearance="outline">
-                        <mat-label>sector Name</mat-label>
+                        <mat-label>Sub Sector Name</mat-label>
                         <input matInput placeholder="sub sector name" formControlName="sectorName">
                     </mat-form-field>
                 </div>
@@ -204,9 +204,9 @@
     
                     <div class="col-md-4">
                         <mat-form-field appearance="outline" style="width:100%;">
-                            <mat-label> Sub Sector Name</mat-label>
-                            <mat-select formControlName="businessSectorId">
-                                <mat-option *ngFor="let list of sector" [value]="list.businessSectorId">
+                            <mat-label> Sector Name</mat-label>
+                            <mat-select formControlName="sectorName">
+                                <mat-option *ngFor="let list of sector" [value]="list.sectorName">
                                     {{list.sectorName}}
                                 </mat-option>
                             </mat-select>
@@ -215,14 +215,14 @@
     
                     <div class="col-md-4">
                         <mat-form-field style="width: 100%;" appearance="outline">
-                            <mat-label>sector Name</mat-label>
-                            <input matInput placeholder="sub sector name" formControlName="sectorName">
+                            <mat-label>Sub sector Name</mat-label>
+                            <input matInput placeholder="sub sector name" formControlName="subsectorName">
                         </mat-form-field>
                     </div>
     
                     <div class="col-md-4">
                         <mat-form-field style="width: 100%;" appearance="outline">
-                            <mat-label>sector Code</mat-label>
+                            <mat-label>Sub sector Code</mat-label>
                             <input matInput placeholder="sub sector code" formControlName="sectorCode">
                         </mat-form-field>
                     </div>

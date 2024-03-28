@@ -11,6 +11,9 @@
             </div>
             <div class="col-auto ms-auto d-print-none">
                 <div class="btn-list">
+                    <div class="col-md-4 d-flex justify-content-end">
+                        <button mat-raised-button color="primary" (click)="onBack()">Back</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -327,7 +330,7 @@
 
                 <div class="row mt-5">
                     <div class="col-md-5">
-                        <button type="submit" class="btn btn-primary" (click)=" submit()" >Submit</button>
+                        <button type="submit" class="btn btn-primary" (click)=" submit()" [disabled]="staffForm.invalid">Submit</button>
                     </div>
                 </div>
 

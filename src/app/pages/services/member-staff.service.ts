@@ -48,4 +48,8 @@ export class MemberStaffService {
   editStaffPositionStatus(id:any,body:any){
     return this.http.put(this.staffPositionAPI + "/" + "update-with-status" + "/" + id,body)
   }
+
+  getAllStaffPositionWithStatus(){
+    return this.http.get(this.staffPositionAPI + "/" + "with-status" + "/")
+  }
 }

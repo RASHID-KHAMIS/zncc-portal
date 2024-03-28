@@ -44,7 +44,7 @@ export class RegisterFormComponent implements OnInit {
     this.fetchAZoneWithStatus();
     // this.fetchAllShehia();
     this.fetchDepartmentWithStatus();
-    this.fetchStaffPosition();
+    this.fetchStaffPositionWithStatus();
     // this.imageInfos = this.uploadService.getFiles();
   }
   applyFilter(event: Event) {
@@ -135,8 +135,8 @@ export class RegisterFormComponent implements OnInit {
   }
 
   positionList:any
-  fetchStaffPosition(){
-    this.memberStaffService.getAllStaffPosition().subscribe((resp:any)=>{
+  fetchStaffPositionWithStatus(){
+    this.memberStaffService.getAllStaffPositionWithStatus().subscribe((resp:any)=>{
       this.positionList = resp;
     })
   }
@@ -162,7 +162,7 @@ export class RegisterFormComponent implements OnInit {
       postCode: new FormControl(null),
       houseNo:new FormControl(null),
       terminationStatus: new FormControl(1),
-      email:new FormControl(null,Validators.email),
+      email:new FormControl(null,[Validators.required,Validators.email]),
       workPhone: new FormControl(null),
       workEmail: new FormControl(null),
       bankName:new FormControl(null,Validators.required),
@@ -189,6 +189,11 @@ export class RegisterFormComponent implements OnInit {
     })
 
   }
+
+  onBack(){
+    this.router.navigate(['staff-info']);
+  }
+
 
   succeAlart() {
     const Toast = Swal.mixin({
