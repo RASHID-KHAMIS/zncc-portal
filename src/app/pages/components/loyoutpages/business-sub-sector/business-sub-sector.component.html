@@ -205,8 +205,8 @@
                     <div class="col-md-4">
                         <mat-form-field appearance="outline" style="width:100%;">
                             <mat-label> Sector Name</mat-label>
-                            <mat-select formControlName="sectorName">
-                                <mat-option *ngFor="let list of sector" [value]="list.sectorName">
+                            <mat-select formControlName="businessSectorId">
+                                <mat-option *ngFor="let list of sector" [value]="list.businessSectorId">
                                     {{list.sectorName}}
                                 </mat-option>
                             </mat-select>
@@ -216,7 +216,7 @@
                     <div class="col-md-4">
                         <mat-form-field style="width: 100%;" appearance="outline">
                             <mat-label>Sub sector Name</mat-label>
-                            <input matInput placeholder="sub sector name" formControlName="subsectorName">
+                            <input matInput placeholder="sub sector name" formControlName="sectorName">
                         </mat-form-field>
                     </div>
     

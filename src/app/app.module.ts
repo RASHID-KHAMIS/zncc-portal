@@ -56,6 +56,7 @@ import { EditCompanyInfoComponent } from './pages/components/loyoutpages/edit-co
 import { ForgetPasswordComponent } from './pages/components/forget-password/forget-password.component';
 import { ViewStaffInfoComponent } from './pages/components/loyoutpages/view-staff-info/view-staff-info.component';
 import { BusinessSubSectorComponent } from './pages/components/loyoutpages/business-sub-sector/business-sub-sector.component';
+
 // import { PdfViewerModule } from 'ngx-extended-pdf-viewer'
 
 

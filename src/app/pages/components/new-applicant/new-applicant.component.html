@@ -13,12 +13,6 @@
             <!-- Page title actions -->
             <div class="col-auto ms-auto d-print-none">
                 <div class="btn-list">
-                    <!-- <span class="d-none d-sm-inline">
-              <a href="#" class="btn">
-                New view
-              </a>
-            </span> -->
-
                 </div>
             </div>
         </div>
@@ -37,8 +31,8 @@
             <div class="col-md-6">
                 <div style="margin:10px 0px 0px 10px;" class="example-form ml-3  mb-3">
                     <label class="form-label"></label>
-                    <div class="input-icon">
-                        <input type="text" #input (keyup)="applyFilter($event)" class="form-control form-control-rounded" placeholder="Filter " />
+                    <div class="input-icon"  style="width: 70%;">
+                        <input type="text" #input (keyup)="applyFilter($event)" class="form-control form-control-rounded" placeholder="Filter" />
                         <span class="input-icon-addon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                 <path fill="currentColor"
@@ -87,6 +81,20 @@
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Company Phone </th>
                     <td mat-cell *matCellDef="let row">
                         {{row.company_phone}}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="sectorName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Sector Name</th>
+                    <td mat-cell *matCellDef="let row">
+                        {{row.sectorName}}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="subSectorName">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Sub Sector Name</th>
+                    <td mat-cell *matCellDef="let row">
+                        {{ row.subSectorName ? row.subSectorName : 'N/T' }}
                     </td>
                 </ng-container>
                 <ng-container matColumnDef="representative_name">

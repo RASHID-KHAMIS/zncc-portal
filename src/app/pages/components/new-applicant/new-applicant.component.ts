@@ -14,7 +14,7 @@ import { ZoneService } from '../../services/zone.service';
 })
 export class NewApplicantComponent implements OnInit{
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['id', 'company_name', 'company_email', 'company_phone', 'representative_name', 'action'];
+  displayedColumns: string[] = ['id', 'company_name', 'company_email', 'company_phone','sectorName','subSectorName','representative_name', 'action'];
   loding = true;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -48,6 +48,8 @@ export class NewApplicantComponent implements OnInit{
 
   getAllMembership() {
     this.membershipService.getAllMembership().subscribe((res: any) => {
+      // console.log(res);
+      
         this.loding = false;
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.paginator = this.paginator;

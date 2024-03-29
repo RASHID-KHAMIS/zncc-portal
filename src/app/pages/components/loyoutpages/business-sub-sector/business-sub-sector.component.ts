@@ -83,8 +83,8 @@ export class BusinessSubSectorComponent implements OnInit{
     // console.log(row);
     this.businessSubSectorEditForm = new FormGroup({
       businessSubSectorId:new FormControl(row.businessSubSectorId),
-      sectorName:new FormControl(row.sectorName),
-      subsectorName:new FormControl(row.subsectorName),
+      businessSectorId:new FormControl(row.businessSectorId),
+      sectorName:new FormControl(row.subsectorName),
       sectorCode:new FormControl(row.sectorCode),
     })
     let dialogRef = this.dialog.open(this.callDialog2, {
@@ -135,15 +135,12 @@ export class BusinessSubSectorComponent implements OnInit{
   onEdit(){
     const id = this.businessSubSectorEditForm.value.businessSubSectorId;
     const values = this.businessSubSectorEditForm.value;
-    console.log(id);
-    console.log(values);
-    
-    
-
-    // this.businessSubSectorService.editBusinessSubSector(id,values).subscribe((resp:any)=>{
-    //   this.reload();
-    //   this.alert2()
-    // })
+    // console.log(id);
+    // console.log(values);
+    this.businessSubSectorService.editBusinessSubSector(id,values).subscribe((resp:any)=>{
+      this.reload();
+      this.alert2()
+    })
   }
 
 

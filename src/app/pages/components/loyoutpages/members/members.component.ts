@@ -15,14 +15,7 @@ import { ZoneService } from 'src/app/pages/services/zone.service';
 })
 export class MembersComponent implements OnInit {
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = [
-    'id',
-    'company_name',
-    'company_email',
-    'company_phone',
-    'representative_name',
-    'action',
-  ];
+  displayedColumns: string[] = ['id','company_name','company_email','company_phone','sectorName','subSectorName','representative_name','action'];
   loding = true;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
