@@ -166,15 +166,19 @@ export class RegisterFormComponent implements OnInit {
       workPhone: new FormControl(null),
       workEmail: new FormControl(null),
       bankName:new FormControl(null,Validators.required),
-      accountName: new FormControl(null,Validators.required),
+      AccountName: new FormControl(null),
       accountNumber: new FormControl(null,Validators.required),
       departmentId: new FormControl(null,Validators.required),
       staffPosition: new FormControl(null,Validators.required),
       personalId: new FormControl(null),
-      staffCategoryId: new FormControl(null,Validators.required),
-      kinName: new FormControl(null,Validators.required),
-      kinAddress: new FormControl(null),
-      kinPhone: new FormControl(null),
+      staffCategory: new FormControl(null,Validators.required),
+      NextOfKinFullName: new FormControl(null,Validators.required),
+      NextOfKinAddress: new FormControl(null),
+      NextOfKinPhoneNumber: new FormControl(null),
+
+      // Department 
+      // EmploymentPhoneNumber 
+      // EmploymentEmail
 
     });
   }

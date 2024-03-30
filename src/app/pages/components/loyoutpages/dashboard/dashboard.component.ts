@@ -456,6 +456,8 @@ export class DashboardComponent implements OnInit{
   information:any;
   dashboardInformation(){
     this.dashboardService.getDshboardInfo().subscribe((resp:any)=>{
+      console.log(resp);
+      
       this.information = resp;  
     })
   }

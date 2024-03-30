@@ -52,10 +52,10 @@
 
             <div class="col-md-3 mt-3">
                 <mat-form-field appearance="outline" style="width:90%;">
-                    <mat-label>Filter By Business Status</mat-label>
-                    <mat-select (selectionChange)="onSectorSelectionChange($event)">
-                      <mat-option *ngFor="let list of sectorList" [value]="list.businessSectorId">
-                        {{list.sectorName}}
+                    <mat-label>Filter By Active Status</mat-label>
+                    <mat-select (selectionChange)="onSectorSelectionChange2($event)">
+                      <mat-option *ngFor="let list of activeList" [value]="list.value">
+                        {{list.viewValue}}
                       </mat-option>
                     </mat-select>
                   </mat-form-field>
@@ -103,7 +103,7 @@
                         {{ row.subSectorName ? row.subSectorName : 'N/T' }}
                     </td>
                 </ng-container>
-                
+
                 <ng-container matColumnDef="representative_name">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Representative Name</th>
                     <td mat-cell *matCellDef="let row">

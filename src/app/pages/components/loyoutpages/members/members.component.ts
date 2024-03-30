@@ -21,6 +21,11 @@ export class MembersComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   check: boolean = false;
+
+  activeList: any[] = [
+    { value: 1, viewValue: 'Active' },
+    { value: 0, viewValue: 'In Active' },
+  ];
   constructor(
     private membershipService: MembershipService,
     private router: Router,
@@ -59,6 +64,11 @@ export class MembersComponent implements OnInit {
     const sectorId = event.value;
     // console.log(sectorId);
     this.fetchVerifiedMemberBySectorId(sectorId);
+  }
+
+  onSectorSelectionChange2(event:any){
+    console.log(event.value);
+    
   }
 
   fetchVerifiedMemberBySectorId(id: any) {

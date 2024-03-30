@@ -28,6 +28,7 @@ export class PaymentComponent implements OnInit{
   dataSource2 = new MatTableDataSource();
   displayedColumns2: string[] = ['No','companyName','companyPhone','invoiceNumber','nvoiceDate','invoiceAmount','paymentStatus','View','Actions'];
   loading: boolean = true;
+  spinnerLoading:boolean = false;
   @ViewChild('distributionDialog') distributionDialog!: TemplateRef<any>;
   role:any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -89,6 +90,7 @@ export class PaymentComponent implements OnInit{
 
   memberInfo:any;
   fetchByMembershipId(){
+    this.spinnerLoading = true;
     this.membershipService.getMembershirpsByMemberID(this.memberAccountId).subscribe((resp:any)=>{
       // console.log(resp);
       
@@ -100,11 +102,13 @@ export class PaymentComponent implements OnInit{
         // console.log(resp);
         if (resp.length > 0) {
           this.check2 = true;
+          this.spinnerLoading = false
         }
         this.dataSource2 = new MatTableDataSource(resp);
         this.dataSource2.paginator = this.paginator;
         this.dataSource2.sort = this.sort;
            this.loading = false;
+           this.spinnerLoading = false
       })
     })
   }
