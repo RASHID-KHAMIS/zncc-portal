@@ -1,0 +1,17 @@
+
+  
+  /* Styling for your logo image */
+  .logo-image {
+    width: 80px; /* Set a suitable width for your image */
+    height: 50px; /* Maintain aspect ratio */
+    border-radius: 50%;
+    margin-left: 20px;
+    margin-right:12px
+   /* Adjust spacing between the image and h1 tag */
+  }
+
+  .navbar-brand-autodark{
+    font-size:20px;
+    margin-top: 12px;
+  }
+  

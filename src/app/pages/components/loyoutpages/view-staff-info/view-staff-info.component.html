@@ -1,0 +1,304 @@
+<div class="page-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-auto">
+                <span class="avatar avatar-lg rounded" style="background-image: url(assets/profileImage.jpg)"></span>
+            </div>
+            <div class="col">
+                <h1 class="fw-bold">{{staffInfo?.firstName + " " + staffInfo?.middleName + " " + staffInfo?.lastName}}
+                </h1>
+                <div class="my-2">
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="list-inline list-inline-dots text-secondary">
+                            <div class="list-inline-item">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M3 7l6 -3l6 3l6 -3v13l-6 3l-6 -3l-6 3v-13"></path>
+                                    <path d="M9 4v13"></path>
+                                    <path d="M15 7v13"></path>
+                                </svg>
+                                {{staffInfo?.phoneNumber}}
+                            </div>
+                            <div class="list-inline-item">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path
+                                        d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z">
+                                    </path>
+                                    <path d="M3 7l9 6l9 -6"></path>
+                                </svg>
+                                <a  class="text-reset">{{staffInfo?.email}}</a>
+                            </div>
+                            <div class="list-inline-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24"
+                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                    stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M3 20h18v-8a3 3 0 0 0 -3 -3h-12a3 3 0 0 0 -3 3v8z"></path>
+                                    <path
+                                        d="M3 14.803c.312 .135 .654 .204 1 .197a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1a2.4 2.4 0 0 0 2 -1a2.4 2.4 0 0 1 2 -1a2.4 2.4 0 0 1 2 1a2.4 2.4 0 0 0 2 1c.35 .007 .692 -.062 1 -.197">
+                                    </path>
+                                    <path d="M12 4l1.465 1.638a2 2 0 1 1 -3.015 .099l1.55 -1.737z"></path>
+                                </svg>
+                                {{ staffInfo?.gender === 'M' ? 'Male' : (staffInfo?.gender === 'F' ?'Female' :
+                                'Unknown') }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 d-flex justify-content-end">
+                        <button mat-raised-button color="primary" (click)="onBack()">Back</button>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-auto ms-auto">
+                <div class="btn-list">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-body">
+
+    <div class="container-xl">
+        <div class="row g-3">
+            <div class="col">
+                <ul class="timeline">
+
+                    <li class="timeline-event">
+                        <div class="timeline-event-icon bg-twitter-lt">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256">
+                                <path fill="currentColor"
+                                    d="M208 20H64a20 20 0 0 0-20 20v20H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v20a20 20 0 0 0 20 20h144a20 20 0 0 0 20-20V40a20 20 0 0 0-20-20m-4 192H68V44h136Zm-103.2-40.63a48 48 0 0 1 70.4 0a12 12 0 0 0 17.6-16.32a72 72 0 0 0-19.21-14.68a44 44 0 1 0-67.19 0a72.12 72.12 0 0 0-19.2 14.68a12 12 0 0 0 17.6 16.32M116 112a20 20 0 1 1 20 20a20 20 0 0 1-20-20" />
+                            </svg>
+                        </div>
+
+                        <div class="card timeline-event-card">
+                            <div class="card-body">
+                                <div class="text-secondary float-end"></div>
+                                <h4>Department</h4>
+                                <p class="text-secondary">{{staffInfo?.departmentName}}</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="timeline-event">
+                        <div class="timeline-event-icon">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path
+                                    d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z">
+                                </path>
+                                <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"></path>
+                                <path d="M12 12l0 .01"></path>
+                                <path d="M3 13a20 20 0 0 0 18 0"></path>
+                            </svg>
+                        </div>
+                        <div class="card timeline-event-card">
+                            <div class="card-body">
+                                <div class="text-secondary float-end"></div>
+                                <h4>Staff Category</h4>
+                                <p class="text-secondary">{{staffInfo?.staffCategory == 1 ? 'Contract' :
+                                    (staffInfo?.staffCategory == 2 ? 'Volunteers' :
+                                    (staffInfo?.staffCategory == 3 ? 'Interns' : 'Unknown'))}}</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="timeline-event">
+                        <div class="timeline-event-icon">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path
+                                    d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z">
+                                </path>
+                                <path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"></path>
+                                <path d="M12 12l0 .01"></path>
+                                <path d="M3 13a20 20 0 0 0 18 0"></path>
+                            </svg>
+                        </div>
+                        <div class="card timeline-event-card">
+                            <div class="card-body">
+                                <div class="text-secondary float-end"></div>
+                                <h4>Staff Position</h4>
+                                <p class="text-secondary">{{staffInfo?.staffPersonalPosition_name}}</p>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="timeline-event">
+                        <div class="timeline-event-icon bg-facebook-lt">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256">
+                                <path fill="currentColor"
+                                    d="M201.54 54.46A104 104 0 0 0 54.46 201.54A104 104 0 0 0 201.54 54.46m-11.31 11.32a88.18 88.18 0 0 1 11 13.48L167.55 119l-27.92-78.22a87.34 87.34 0 0 1 50.6 25M155.59 133l-18.16 21.37l-27.59-5l-9.43-26.37l18.16-21.37l27.59 5ZM65.77 65.78a87.34 87.34 0 0 1 56.66-25.59l17.51 49L58.3 74.32a88 88 0 0 1 7.47-8.54m-19.12 95.76a88.41 88.41 0 0 1 2.53-72.62l51.21 9.35Zm19.12 28.68a88.18 88.18 0 0 1-11-13.48L88.45 137l27.92 78.18a87.34 87.34 0 0 1-50.6-24.96m124.46 0a87.34 87.34 0 0 1-56.66 25.59l-17.51-49l81.64 14.91a88 88 0 0 1-7.47 8.5m-34.62-32.49l53.74-63.27a88.41 88.41 0 0 1-2.53 72.62Z" />
+                            </svg>
+                        </div>
+                        <div class="card timeline-event-card">
+                            <div class="card-body">
+                                <div class="text-secondary float-end"></div>
+                                <h4>Registration Number</h4>
+                                <p class="text-secondary">{{staffInfo?.regionId}}</p>
+                            </div>
+                        </div>
+                    </li>
+
+
+                </ul>
+            </div>
+            <div class="col-lg-4">
+                <div class="row row-cards">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title">Personal information</div>
+                                <div class="mb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                        viewBox="0 0 256 256">
+                                        <path fill="currentColor"
+                                            d="M208 20H64a20 20 0 0 0-20 20v20H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v20a20 20 0 0 0 20 20h144a20 20 0 0 0 20-20V40a20 20 0 0 0-20-20m-4 192H68V44h136Zm-103.2-40.63a48 48 0 0 1 70.4 0a12 12 0 0 0 17.6-16.32a72 72 0 0 0-19.21-14.68a44 44 0 1 0-67.19 0a72.12 72.12 0 0 0-19.2 14.68a12 12 0 0 0 17.6 16.32M116 112a20 20 0 1 1 20 20a20 20 0 0 1-20-20" />
+                                    </svg>
+                                    Is Resident: <strong class="badge" [ngClass]="{
+                                    'bg-success': staffInfo?.isResidence === '1',
+                                    'bg-orange': staffInfo?.isResidence === '0'}">
+                                        {{ staffInfo?.isResidence === '0' ? 'No' : (staffInfo?.isResidence === '1'
+                                        ?'Yes' : 'Unknown') }}</strong>
+
+                                </div>
+                                <div class="mb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                        viewBox="0 0 256 256">
+                                        <path fill="currentColor"
+                                            d="M208 20H64a20 20 0 0 0-20 20v20H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v20a20 20 0 0 0 20 20h144a20 20 0 0 0 20-20V40a20 20 0 0 0-20-20m-4 192H68V44h136Zm-103.2-40.63a48 48 0 0 1 70.4 0a12 12 0 0 0 17.6-16.32a72 72 0 0 0-19.21-14.68a44 44 0 1 0-67.19 0a72.12 72.12 0 0 0-19.2 14.68a12 12 0 0 0 17.6 16.32M116 112a20 20 0 1 1 20 20a20 20 0 0 1-20-20" />
+                                    </svg>
+                                    Zone: <strong>{{staffInfo?.zoneName}}</strong>
+                                </div>
+                                <div class="mb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                        viewBox="0 0 256 256">
+                                        <path fill="currentColor"
+                                            d="M208 20H64a20 20 0 0 0-20 20v20H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v20a20 20 0 0 0 20 20h144a20 20 0 0 0 20-20V40a20 20 0 0 0-20-20m-4 192H68V44h136Zm-103.2-40.63a48 48 0 0 1 70.4 0a12 12 0 0 0 17.6-16.32a72 72 0 0 0-19.21-14.68a44 44 0 1 0-67.19 0a72.12 72.12 0 0 0-19.2 14.68a12 12 0 0 0 17.6 16.32M116 112a20 20 0 1 1 20 20a20 20 0 0 1-20-20" />
+                                    </svg>
+                                    Region: <strong>{{staffInfo?.regionName}}</strong>
+                                </div>
+
+                                <div class="mb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                        viewBox="0 0 256 256">
+                                        <path fill="currentColor"
+                                            d="M208 20H64a20 20 0 0 0-20 20v20H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v20a20 20 0 0 0 20 20h144a20 20 0 0 0 20-20V40a20 20 0 0 0-20-20m-4 192H68V44h136Zm-103.2-40.63a48 48 0 0 1 70.4 0a12 12 0 0 0 17.6-16.32a72 72 0 0 0-19.21-14.68a44 44 0 1 0-67.19 0a72.12 72.12 0 0 0-19.2 14.68a12 12 0 0 0 17.6 16.32M116 112a20 20 0 1 1 20 20a20 20 0 0 1-20-20" />
+                                    </svg>
+                                    District: <strong>{{staffInfo?.districtName}}</strong>
+                                </div>
+
+                                <div class="mb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                        viewBox="0 0 256 256">
+                                        <path fill="currentColor"
+                                            d="M208 20H64a20 20 0 0 0-20 20v20H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v20a20 20 0 0 0 20 20h144a20 20 0 0 0 20-20V40a20 20 0 0 0-20-20m-4 192H68V44h136Zm-103.2-40.63a48 48 0 0 1 70.4 0a12 12 0 0 0 17.6-16.32a72 72 0 0 0-19.21-14.68a44 44 0 1 0-67.19 0a72.12 72.12 0 0 0-19.2 14.68a12 12 0 0 0 17.6 16.32M116 112a20 20 0 1 1 20 20a20 20 0 0 1-20-20" />
+                                    </svg>
+                                    Shehia: <strong>{{staffInfo?.shehiaName}}</strong>
+                                </div>
+
+                                <div class="mb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                        viewBox="0 0 256 256">
+                                        <path fill="currentColor"
+                                            d="M208 20H64a20 20 0 0 0-20 20v20H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v20a20 20 0 0 0 20 20h144a20 20 0 0 0 20-20V40a20 20 0 0 0-20-20m-4 192H68V44h136Zm-103.2-40.63a48 48 0 0 1 70.4 0a12 12 0 0 0 17.6-16.32a72 72 0 0 0-19.21-14.68a44 44 0 1 0-67.19 0a72.12 72.12 0 0 0-19.2 14.68a12 12 0 0 0 17.6 16.32M116 112a20 20 0 1 1 20 20a20 20 0 0 1-20-20" />
+                                    </svg>
+                                    Physical Address: <strong>{{staffInfo?.physicalAddress}}</strong>
+                                </div>
+                                <div class="mb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                        viewBox="0 0 256 256">
+                                        <path fill="currentColor"
+                                            d="M208 20H64a20 20 0 0 0-20 20v20H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v20a20 20 0 0 0 20 20h144a20 20 0 0 0 20-20V40a20 20 0 0 0-20-20m-4 192H68V44h136Zm-103.2-40.63a48 48 0 0 1 70.4 0a12 12 0 0 0 17.6-16.32a72 72 0 0 0-19.21-14.68a44 44 0 1 0-67.19 0a72.12 72.12 0 0 0-19.2 14.68a12 12 0 0 0 17.6 16.32M116 112a20 20 0 1 1 20 20a20 20 0 0 1-20-20" />
+                                    </svg>
+                                    House Number: <strong>{{staffInfo?.houseNo}}</strong>
+                                </div>
+                                <div class="mb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                        viewBox="0 0 256 256">
+                                        <path fill="currentColor"
+                                            d="M208 20H64a20 20 0 0 0-20 20v20H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v20a20 20 0 0 0 20 20h144a20 20 0 0 0 20-20V40a20 20 0 0 0-20-20m-4 192H68V44h136Zm-103.2-40.63a48 48 0 0 1 70.4 0a12 12 0 0 0 17.6-16.32a72 72 0 0 0-19.21-14.68a44 44 0 1 0-67.19 0a72.12 72.12 0 0 0-19.2 14.68a12 12 0 0 0 17.6 16.32M116 112a20 20 0 1 1 20 20a20 20 0 0 1-20-20" />
+                                    </svg>
+                                    Date of Birth: <strong>{{staffInfo?.dob | date : 'dd/MM/YYYY'}}</strong>
+                                </div>
+
+
+                                <div class="mb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                        viewBox="0 0 256 256">
+                                        <path fill="currentColor"
+                                            d="M208 20H64a20 20 0 0 0-20 20v20H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v20a20 20 0 0 0 20 20h144a20 20 0 0 0 20-20V40a20 20 0 0 0-20-20m-4 192H68V44h136Zm-103.2-40.63a48 48 0 0 1 70.4 0a12 12 0 0 0 17.6-16.32a72 72 0 0 0-19.21-14.68a44 44 0 1 0-67.19 0a72.12 72.12 0 0 0-19.2 14.68a12 12 0 0 0 17.6 16.32M116 112a20 20 0 1 1 20 20a20 20 0 0 1-20-20" />
+                                    </svg>
+                                    Merital Status: <strong>{{staffInfo?.maritalStatus}}</strong>
+                                </div>
+
+
+                                <div class="mb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                        viewBox="0 0 256 256">
+                                        <path fill="currentColor"
+                                            d="M208 20H64a20 20 0 0 0-20 20v20H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v20a20 20 0 0 0 20 20h144a20 20 0 0 0 20-20V40a20 20 0 0 0-20-20m-4 192H68V44h136Zm-103.2-40.63a48 48 0 0 1 70.4 0a12 12 0 0 0 17.6-16.32a72 72 0 0 0-19.21-14.68a44 44 0 1 0-67.19 0a72.12 72.12 0 0 0-19.2 14.68a12 12 0 0 0 17.6 16.32M116 112a20 20 0 1 1 20 20a20 20 0 0 1-20-20" />
+                                    </svg>
+                                    Bank Name: <strong>{{staffInfo?.bankName}}</strong>
+                                </div>
+
+                                <div class="mb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                        viewBox="0 0 256 256">
+                                        <path fill="currentColor"
+                                            d="M208 20H64a20 20 0 0 0-20 20v20H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v20a20 20 0 0 0 20 20h144a20 20 0 0 0 20-20V40a20 20 0 0 0-20-20m-4 192H68V44h136Zm-103.2-40.63a48 48 0 0 1 70.4 0a12 12 0 0 0 17.6-16.32a72 72 0 0 0-19.21-14.68a44 44 0 1 0-67.19 0a72.12 72.12 0 0 0-19.2 14.68a12 12 0 0 0 17.6 16.32M116 112a20 20 0 1 1 20 20a20 20 0 0 1-20-20" />
+                                    </svg>
+                                    Account Number: <strong>{{staffInfo?.accountNumber}}</strong>
+                                </div>
+
+                                <div class="mb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                        viewBox="0 0 256 256">
+                                        <path fill="currentColor"
+                                            d="M208 20H64a20 20 0 0 0-20 20v20H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v20a20 20 0 0 0 20 20h144a20 20 0 0 0 20-20V40a20 20 0 0 0-20-20m-4 192H68V44h136Zm-103.2-40.63a48 48 0 0 1 70.4 0a12 12 0 0 0 17.6-16.32a72 72 0 0 0-19.21-14.68a44 44 0 1 0-67.19 0a72.12 72.12 0 0 0-19.2 14.68a12 12 0 0 0 17.6 16.32M116 112a20 20 0 1 1 20 20a20 20 0 0 1-20-20" />
+                                    </svg>
+                                    ID: <strong>{{staffInfo?.personalId}}</strong>
+                                </div>
+
+                                <div class="mb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                        viewBox="0 0 256 256">
+                                        <path fill="currentColor"
+                                            d="M208 20H64a20 20 0 0 0-20 20v20H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v32H32a12 12 0 0 0 0 24h12v20a20 20 0 0 0 20 20h144a20 20 0 0 0 20-20V40a20 20 0 0 0-20-20m-4 192H68V44h136Zm-103.2-40.63a48 48 0 0 1 70.4 0a12 12 0 0 0 17.6-16.32a72 72 0 0 0-19.21-14.68a44 44 0 1 0-67.19 0a72.12 72.12 0 0 0-19.2 14.68a12 12 0 0 0 17.6 16.32M116 112a20 20 0 1 1 20 20a20 20 0 0 1-20-20" />
+                                    </svg>
+                                    Have Disability: <strong class="badge" [ngClass]="{
+                                    'bg-success': staffInfo?.isStaffHaveDisability === '1',
+                                    'bg-orange': staffInfo?.isStaffHaveDisability === '0'}">
+                                        {{ staffInfo?.isStaffHaveDisability === '0' ? 'No' :
+                                        (staffInfo?.isStaffHaveDisability === '1' ?'Yes' : 'Unknown') }}</strong>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+
+    </div>
+
+</div>

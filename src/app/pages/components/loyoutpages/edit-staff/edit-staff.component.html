@@ -1,0 +1,305 @@
+<div class="page-header d-print-none">
+    <div class="" style="margin: 0 20px 0 20px;">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                <!-- Page pre-title -->
+                <div class="page-pretitle">
+
+                </div>
+                <h2 class="page-title">
+                    Edit  Staff Information
+                </h2>
+            </div>
+            <!-- Page title actions -->
+            <div class="col-md-4 d-flex justify-content-end">
+                <button mat-raised-button color="primary" (click)="onBack()">Back</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-body ">
+
+    <div class="card">
+        <div class="card-status-top bg-primary"></div>
+        <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+
+      
+        <div style="margin: 40px;">
+            <form [formGroup]="staffEditForm">
+                <mat-divider></mat-divider>
+                <h3> <b>Staff Information</b></h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Registration Number</label>
+                        <input type="text" class="form-control" formControlName="regNo"
+                            placeholder="Input registration number" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">First Name</label>
+                        <input type="text" class="form-control" formControlName="firstName"
+                            placeholder="Input first name" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Middle Name</label>
+                        <input type="text" class="form-control" formControlName="middleName"
+                            placeholder="Input middle name" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Last Name</label>
+                        <input type="text" class="form-control" formControlName="lastName"
+                            placeholder="Input last name" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Date of Birth</label>
+                        <input type="date" class="form-control" formControlName="dob" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Gender</label>
+                        <select class="form-control" formControlName="gender">
+                            <option value="">-- Select Gender --</option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" formControlName="phoneNumber"
+                            placeholder="Phone number" />
+                    </div>
+                     
+                    <div class="col-md-4">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" formControlName="email" placeholder="email" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Marital Status</label>
+                        <select class="form-control" formControlName="maritalStatus">
+                            <option value="">-- Select Merital Status --</option>
+                            <option value="Married">Married</option>
+                            <option value="Not Married">Not Married</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Zan ID/National Id/Passport</label>
+                        <input type="text" class="form-control" formControlName="personalId"
+                            placeholder="Input staffPosition" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Is Staff Have Disability</label>
+                        <input type="checkbox" class="form-check-input" formControlName="isStaffHaveDisability" />
+                    </div>
+
+                </div>
+                <br>
+                <mat-divider></mat-divider>
+                <br>
+                <h3> <b>Resident Information</b></h3>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Is Residence</label>
+                        <input type="checkbox" class="form-check-input" formControlName="isResidence" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Zone</label>
+                        <select n class="form-control" formControlName="zoneId">
+                            <option value="">-- Select Zone --</option>
+                            <option *ngFor="let list of zoneLists" [value]="list.zoneId">{{list.zoneName}}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Region</label>
+                        <select n class="form-control" formControlName="regionId">
+                            <option value="">-- Select Region --</option>
+                            <option *ngFor="let list of regionList" [value]="list.regionId">{{list.regionName}}</option>
+                        </select>
+                    </div>
+                    
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <label class="form-label">District</label>
+                        <select n class="form-control" formControlName="districtId">
+                            <option value="">-- Select District --</option>
+                            <option *ngFor="let list of districtList" [value]="list.id">{{list.districtName}}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Shehia</label>
+                        <select n class="form-control" formControlName="shehiaId">
+                            <option value="">-- Select Shehia --</option>
+                            <option *ngFor="let list of shehiaLists" [value]="list.id">{{list.shehiaName}}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Physical Address</label>
+                        <input type="text" class="form-control" formControlName="physicalAddress"
+                            placeholder="Input physical address" />
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <label class="form-label">Street Name</label>
+                        <input type="text" class="form-control" formControlName="streetName"
+                            placeholder="Input street name" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">House No</label>
+                        <input type="text" class="form-control" formControlName="houseNo"
+                            placeholder="Input house number" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Post Code</label>
+                        <input type="text" class="form-control" formControlName="postCode"
+                            placeholder="Input post code" />
+                    </div>
+                </div>
+
+                <br>
+                <mat-divider></mat-divider>
+                <br>
+                <h3> <b>Next of kin Information</b></h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control" formControlName="kinName"
+                            placeholder="Next of kin full name " />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Physical Address</label>
+                        <input type="text" class="form-control" formControlName="kinAddress"
+                            placeholder="Next of kin ddress" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Phone Number</label>
+                        <input type="text" class="form-control" formControlName="kinPhone"
+                            placeholder="Next of kin phone number" />
+                    </div>
+                </div>
+
+                <br>
+                <mat-divider></mat-divider>
+                <br>
+                <h3> <b>Employment Information</b></h3>
+
+                <div class="row">
+                
+                    <div class="col-md-4">
+                        <label class="form-label">Staff Category</label>
+                        <select  class="form-control" formControlName="staffCategoryId">
+                            <option value="">-- Select Staff Category --</option>
+                            <option value="1">Contract</option>
+                            <!-- 1year -->
+                            <option value="2">Volunteer</option>
+                            <!-- 3-6 months -->
+                            <option value="3">Interns</option>
+                        </select>
+                    </div>
+
+
+                    <div class="col-md-4">
+                        <label class="form-label">Department</label>
+                        <select n class="form-control" formControlName="departmentId">
+                            <option value="">-- Select Department --</option>
+                            <option *ngFor="let list of departmentList" [value]="list.departmentId">
+                                {{list.departmentName}}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Staff Position</label>
+                        <select n class="form-control" formControlName="staffPosition">
+                            <option value="">-- Select Staff Position --</option>
+                            <option *ngFor="let list of positionList" [value]="list.staffPersonalPositionId">
+                                {{list.staffPersonalPosition_name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" formControlName="workPhone"
+                            placeholder="Input work phone" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" formControlName="workEmail"
+                            placeholder="Input work email" />
+                    </div>
+
+                </div>
+
+                <br>
+                <mat-divider></mat-divider>
+                <br>
+                <h3> <b>Bank Information</b></h3>
+
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <label class="form-label">Bank Name</label>
+
+                        <select name="" id="" class="form-control" formControlName="bankName">
+                            <option value="">-- Select Bank Name --</option>
+                            <option value="PBZ">PBZ</option>
+                            <option value="CRDB">CRDB</option>
+                            <option value="NMB">NMB</option>
+                            <option value="Equity">Equity</option>
+                            <option value="NBC">NBC</option>
+                            <option value="AMANA">AMANA</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Account Name</label>
+                        <input type="text" class="form-control" formControlName="accountName"
+                            placeholder="Account name" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Account Number</label>
+                        <input type="text" class="form-control" formControlName="accountNumber"
+                            placeholder="Input account number" />
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-md-5">
+                        <button type="submit" class="btn btn-primary" (click)=" submit()">Edit</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>

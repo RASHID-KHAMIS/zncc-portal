@@ -1,0 +1,222 @@
+<div class="page-header d-print-none">
+    <div class="" style="margin: 0 20px 0 20px;">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                <!-- Page pre-title -->
+                <div class="page-pretitle">
+
+                </div>
+                <h2 class="page-title">
+                    Edit Membership Form
+                </h2>
+            </div>
+            <!-- Page title actions -->
+            <div class="col-auto ms-auto d-print-none">
+                <div class="btn-list">
+                  <button class="btn btn-primary d-none d-sm-inline-block" (click)="onBack()">Back</button>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="page-body ">
+
+    <div class="card">
+        <div class="card-status-top bg-primary"></div>
+        <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
+
+        <div style="margin: 40px;">
+            <form [formGroup]="memberForm">
+                
+                <h3>Company Information</h3>
+                <mat-divider></mat-divider>
+                <div class="row">
+                
+                        <div class="row">
+
+                            <div class="col-md-3">
+                                <label class="form-label">Company Name</label>
+                                <input type="text" class="form-control" formControlName="company_name"
+                                    placeholder="Input company name" />
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label">Company Email</label>
+                                <input type="email" class="form-control" formControlName="company_email"
+                                    placeholder="Input company email" />
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Company Phone</label>
+                                <input type="tel" class="form-control" formControlName="company_phone"
+                                    placeholder="Input company phone" />
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Representative Phone</label>
+                                <input type="text" class="form-control" formControlName="representative_phone"
+                                    placeholder="Input representer No" />
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="form-label">Number of staff</label>
+                                <input type="number" class="form-control" formControlName="numberOfStaf"
+                                    placeholder="Input Number of staff" />
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label">Region</label>
+
+                                <select class="form-control" formControlName="regionId" >
+                                    <option value="">-- Select Region --</option>
+                                    <option *ngFor="let region of regionList" [value]="region.regionId">
+                                        {{region.regionName}}</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label">District</label>
+                                <select class="form-control" formControlName="districtId">
+                                    <option value="">-- Select District --</option>
+                                    <option *ngFor="let district of districtList" [value]="district.id">
+                                        {{district.districtName}}</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label class="form-label">Street Name</label>
+                                <input type="text" class="form-control" formControlName="street"
+                                    placeholder="Input Street Name" />
+                            </div>
+                        </div>
+                 
+                </div>
+
+                <br>
+                <mat-divider></mat-divider>
+                <br>
+                <h3>Membership</h3>
+                <div class="row">
+
+                    <div class="col-md">
+                        <label class="form-label">Membership Type</label>
+
+                        <mat-radio-group formControlName="membership_type">
+                            <mat-radio-button class="example-margin" value="Sole Proprietorship">Sole Proprietorship</mat-radio-button>
+                            <mat-radio-button class="example-margin" value="Partnership">Partnership</mat-radio-button>
+                            <mat-radio-button class="example-margin" value="Company">Company</mat-radio-button>
+                            <mat-radio-button class="example-margin" value="Association">Association</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+
+
+                </div>
+                <div>
+                    <br>
+                    <mat-divider></mat-divider>
+                    <br>
+                    <h3>Company Owner Information</h3>
+                    <div class="row" *ngIf="memberForm?.get('membership_type')?.value === 'Sole Proprietorship'">
+
+                        <div class="col-md-4">
+                            <label class="form-label">Owner Name</label>
+                            <input type="text" class="form-control" formControlName="owner_name"
+                                placeholder="Input owner name" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Owner Email</label>
+                            <input type="email" class="form-control" formControlName="owner_email"
+                                placeholder="Input owner email" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Owner Phone</label>
+                            <input type="tel" class="form-control" formControlName="owner_phone"
+                                placeholder="Input owner phone" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-label">Representative Name</label>
+                            <input type="text" class="form-control" formControlName="representative_name"
+                                placeholder="Input representative name" />
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Gender</label>
+                            <select name="" id="" class="form-control" formControlName="gender">
+                                <option value="">-- Select Gender --</option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label">Position</label>
+                            <input type="text" class="form-control" formControlName="position"
+                                placeholder="Input position" />
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label">Representative Email</label>
+                            <input type="email" class="form-control" formControlName="representative_email"
+                                placeholder="Input representative email" />
+                        </div>
+
+                    </div>
+                </div>
+                <br>
+                <mat-divider></mat-divider>
+                <br>
+                <h3>Business Information</h3>
+                <div class="row">
+                    <div class="col-md-3">
+                        <label class="form-label">Business Sector</label>
+                        <select class="form-control" formControlName="businessSectorId">
+                            <option value="">-- Select Business Sector --</option>
+                            <option *ngFor="let sector of sectorLists" [value]="sector.businessSectorId">
+                                {{sector.sectorName}}</option>
+                        </select>
+                    </div>
+
+
+                    <div class="col-md-3">
+                        <label class="form-label">TRA Number</label>
+                        <input type="text" class="form-control" formControlName="TRA_number"
+                            placeholder="Input business activity" />
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label">Company Certificate No</label>
+                        <input type="text" class="form-control" formControlName="company_certificate_number"
+                            placeholder="Input company certificate no" />
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label">Business Activity</label>
+                        <input type="text" class="form-control" formControlName="businessActivity"
+                            placeholder="Input business activity" />
+                    </div>
+
+
+                </div>
+            
+                <div class="row">
+                    <div class="col-md-4" style="margin-top: 40px;">
+                        <button type="submit" class="btn btn-primary" (click)="onEdit()">Edit</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    
+
+</div>

@@ -1,0 +1,303 @@
+<div class="page-header d-print-none">
+    <div class="" style="margin: 0 20px 0 20px;">
+        <div class="row g-2 align-items-center">
+            <div class="col">
+                <!-- Page pre-title -->
+                <div class="page-pretitle">
+
+                </div>
+                <h2 class="page-title">
+                    Membership Registration
+                </h2>
+            </div>
+            <div class="col-auto ms-auto d-print-none">
+                <div class="btn-list">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="page-body ">
+
+    <div class="card">
+        <div class="card-status-top bg-primary"></div>
+        <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->
+
+        <div style="margin:10px 0px 0px 10px;" class="example-form ml-3  mb-3">
+            <label class="form-label"></label>
+            <div class="input-icon">
+                <h2 class="page-title">
+                    MEMBERSHIP APPLICATION FORM
+                </h2>
+            </div>
+        </div>
+        <div style="margin: 40px;">
+            <form [formGroup]="memberForm">
+                <mat-divider></mat-divider>
+                <h3>Company Information</h3>
+                <div class="row">
+                    <div class="col-md-8" style="margin-top: 30px;">
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <label class="form-label" >Company Name <span style="color: red;">*</span></label>
+                                <input type="text" class="form-control" formControlName="company_name" placeholder="Company name" required/>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label">Company Email <span style="color: red;">*</span></label>
+                                <input type="email" class="form-control" formControlName="company_email" placeholder="Company email" required/>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Company Phone <span style="color: red;">*</span></label>
+                                <input type="tel" class="form-control" formControlName="company_phone" placeholder="Company phone" required/>
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+
+                            <div class="col-md-4">
+                                <label class="form-label">Number of staff <span style="color: red;">*</span></label>
+                                <input type="number" class="form-control" formControlName="numberOfStaf" placeholder="Number of staff" required/>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label">Company Certificate <span style="color: red;">*</span></label>
+                                <div class="row">
+                                    <div *ngIf="currentFile && progress" class="progress my-3">
+                                        <div class="progress-bar progress-bar-info" role="progressbar"
+                                            attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"
+                                            [ngStyle]="{ width: progress + '%' }">
+                                            {{ progress }}%
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="btn btn-default" style="width: 100%;">
+                                            <input type="file" accept="image/*" (change)="selectFile($event)"
+                                                style="width: 100%;" #imageInput (change)="processFile(imageInput)"
+                                                id="profile" required/>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label">Company Certificate No <span style="color: red;">*</span></label>
+                                <input type="text" class="form-control" formControlName="company_certificate_number" placeholder="Company certificate no" required/>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <label class="form-label">TIN Number</label>
+                                <input type="text" class="form-control" formControlName="TRA_number" placeholder="Tin Number" />
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label">Region</label>
+
+                                <select class="form-control" formControlName="regionId" (change)="onChange($event)">
+                                    <option value="">-- Select Region --</option>
+                                    <option *ngFor="let region of regionList" [value]="region.regionId">
+                                        {{region.regionName}}</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label class="form-label">District</label>
+                                <select class="form-control" formControlName="districtId">
+                                    <option value="">-- Select District --</option>
+                                    <option *ngFor="let district of districtList" [value]="district.id">
+                                        {{district.districtName}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="form-label">Street Name <span style="color: red;">*</span></label>
+                                <input type="text" class="form-control" formControlName="street" placeholder="Street Name" required/>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row" style="float: right;padding-top: -10px;">
+                                    <div>
+                                        <img [src]="preview" style="float: right;" class="preview">
+                                    </div>
+                                    <div *ngIf="currentFile && progress" class="progress my-3">
+                                        <div class="progress-bar progress-bar-info" role="progressbar"
+                                            attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"
+                                            [ngStyle]="{ width: progress + '%' }">
+                                            {{ progress }}%
+                                        </div>
+                                    </div>
+                                    <div style="float: right;margin-bottom: 20px;">
+                                        <label class="btn btn-default" style="float: right;">
+                                            <input type="file" accept="image/*" (change)="selectFile($event)" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <br>
+                <mat-divider></mat-divider>
+                <br>
+                <h3>Membership</h3>
+                <div class="row">
+
+                    <div class="col-md">
+                        <label class="form-label">Membership Type</label>
+
+                        <mat-radio-group formControlName="membership_type">
+                            <mat-radio-button class="example-margin" value="Sole Proprietorship">Sole
+                                Proprietorship</mat-radio-button>
+                            <mat-radio-button class="example-margin" value="Partnership">Partnership</mat-radio-button>
+                            <mat-radio-button class="example-margin" value="Company">Company</mat-radio-button>
+                            <mat-radio-button class="example-margin" value="Association">Association</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+
+
+                </div>
+                <div>
+                    <br>
+                    <mat-divider></mat-divider>
+                    <br>
+                    <h3>Company Owner Information</h3>
+                    <div class="row" *ngIf="memberForm?.get('membership_type')?.value === 'Sole Proprietorship'">
+
+                        <div class="col-md-4">
+                            <label class="form-label">Owner Name</label>
+                            <input type="text" class="form-control" formControlName="owner_name" placeholder="Owner name" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Owner Phone</label>
+                            <input type="tel" class="form-control" formControlName="owner_phone"
+                                placeholder="Owner phone" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Owner Email</label>
+                            <input type="email" class="form-control" formControlName="owner_email" placeholder="Input owner email" />
+                        </div>
+
+                       
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Representative Name</label>
+                            <input type="text" class="form-control" formControlName="representative_name" placeholder="Representative name" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Representative Phone</label>
+                            <input type="text" class="form-control" formControlName="representative_phone"placeholder="Representer No" />
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label">Representative Email</label>
+                            <input type="email" class="form-control" formControlName="representative_email" placeholder="Input representative email" />
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <label class="form-label">Gender</label>
+                            <select name="" id="" class="form-control" formControlName="gender">
+                                <option value="">-- Select Gender --</option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <label class="form-label">Position</label>
+                            <input type="text" class="form-control" formControlName="position"
+                                placeholder="Input position" />
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <label class="form-label">Representative CV</label>
+                            <div class="row">
+
+                                <div *ngIf="currentFile && progress" class="progress my-3">
+                                    <div class="progress-bar progress-bar-info" role="progressbar"
+                                        attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"
+                                        [ngStyle]="{ width: progress + '%' }">
+                                        {{ progress }}%
+                                    </div>
+                                </div>
+                                <div>
+
+                                    <label class="btn btn-default" style="width: 100%;">
+                                        <input type="file" accept="image/*" (change)="selectFile($event)"
+                                            style="width: 100%;" #imageInput (change)="processFile2(imageInput)"
+                                            id="profile" />
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+                <mat-divider></mat-divider>
+                <br>
+                <h3>Business Information</h3>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Business Sector</label>
+                        <select class="form-control" formControlName="businessSectorId" (change)="onSector($event)">
+                            <option value="">-- Select Business Sector --</option>
+                            <option *ngFor="let sector of sectorLists" [value]="sector.businessSectorId">
+                                {{sector.sectorName}}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Business Sub Sector</label>
+                        <select class="form-control" formControlName="businessSubSectorId">
+                            <option value="">-- Select Sub Business Sector --</option>
+                            <option *ngFor="let sector of subSectorLists" [value]="sector.businessSubSectorId">
+                                {{sector.subsectorName}}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">Business Activity <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control" formControlName="businessActivity" placeholder="Business activity" required/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4" style="margin-top: 40px;">
+                        <button type="submit" class="btn btn-primary" [disabled]="!memberForm.valid" (click)="submit()">Register</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+
+
+</div>
