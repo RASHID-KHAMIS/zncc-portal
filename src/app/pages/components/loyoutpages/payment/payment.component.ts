@@ -21,22 +21,22 @@ class ImageSnippet {
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.css'],
 })
-export class PaymentComponent implements OnInit{
+export class PaymentComponent implements OnInit {
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['No','companyName','invoiceNumber','nvoiceDate','invoiceAmount','paymentStatus'];
+  displayedColumns: string[] = ['No', 'companyName', 'invoiceNumber', 'nvoiceDate', 'invoiceAmount', 'paymentStatus'];
 
   dataSource2 = new MatTableDataSource();
-  displayedColumns2: string[] = ['No','companyName','companyPhone','invoiceNumber','nvoiceDate','invoiceAmount','paymentStatus','View','Actions'];
+  displayedColumns2: string[] = ['No', 'companyName', 'companyPhone', 'invoiceNumber', 'nvoiceDate', 'invoiceAmount', 'paymentStatus', 'View', 'Actions'];
   loading: boolean = true;
-  spinnerLoading:boolean = false;
+  spinnerLoading: boolean = false;
   @ViewChild('distributionDialog') distributionDialog!: TemplateRef<any>;
-  role:any;
+  role: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  
-  zoneForm!:FormGroup;
-  zoneEditForm!:FormGroup;
-  memberAccountId:any;
+
+  zoneForm!: FormGroup;
+  zoneEditForm!: FormGroup;
+  memberAccountId: any;
 
   selectedFiles?: FileList;
   currentFile?: File;
@@ -45,26 +45,26 @@ export class PaymentComponent implements OnInit{
   isSoleProprietorship: boolean = false
   progress = 0;
   message = '';
-  files:any;
-  invoiceForm!:FormGroup;
-  check:boolean = false;
-  check2:boolean = false;
-  constructor(private router:Router,
-    private route:ActivatedRoute,
-     private invoicesService:InvoicesService,
-     private membershipService:MembershipService,
-     private companyOwnershipService:CompanyOwnershipService,
-     private dialog:MatDialog){}
+  files: any;
+  invoiceForm!: FormGroup;
+  check: boolean = false;
+  check2: boolean = false;
+  constructor(private router: Router,
+    private route: ActivatedRoute,
+    private invoicesService: InvoicesService,
+    private membershipService: MembershipService,
+    private companyOwnershipService: CompanyOwnershipService,
+    private dialog: MatDialog) { }
   ngOnInit(): void {
     this.memberAccountId = localStorage.getItem('memberAccountId');
     // this.memberAccountId = localStorage.getItem('memberAccountId');
     // console.log(this.memberAccountId);
-    
+
     this.role = localStorage.getItem('role');
     this.fetchAllInvoice();
     this.fetchByMembershipId();
     this.configureForm();
-  
+
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -74,12 +74,12 @@ export class PaymentComponent implements OnInit{
     }
   }
 
-  fetchAllInvoice(){
-    this.invoicesService.getAllInvoice().subscribe((resp:any)=>{
+  fetchAllInvoice() {
+    this.invoicesService.getAllInvoice().subscribe((resp: any) => {
       // console.log(resp);
       if (resp.length > 0) {
         this.check = true;
-       
+
       }
       this.dataSource = new MatTableDataSource(resp);
       this.dataSource.paginator = this.paginator;
@@ -88,17 +88,15 @@ export class PaymentComponent implements OnInit{
     })
   }
 
-  memberInfo:any;
-  fetchByMembershipId(){
+  memberInfo: any;
+  fetchByMembershipId() {
     this.spinnerLoading = true;
-    this.membershipService.getMembershirpsByMemberID(this.memberAccountId).subscribe((resp:any)=>{
+    this.membershipService.getMembershirpsByMemberID(this.memberAccountId).subscribe((resp: any) => {
       // console.log(resp);
-      
+
       this.memberInfo = resp;
       // console.log(this.memberInfo.memberShipFormId);
-      
-
-      this.invoicesService.getInvoiceByFormId(this.memberInfo.memberShipFormId).subscribe((resp:any)=>{
+      this.invoicesService.getInvoiceByFormId(this.memberInfo.memberShipFormId).subscribe((resp: any) => {
         // console.log(resp);
         if (resp.length > 0) {
           this.check2 = true;
@@ -107,50 +105,50 @@ export class PaymentComponent implements OnInit{
         this.dataSource2 = new MatTableDataSource(resp);
         this.dataSource2.paginator = this.paginator;
         this.dataSource2.sort = this.sort;
-           this.loading = false;
-           this.spinnerLoading = false
+        this.loading = false;
+        this.spinnerLoading = false
       })
     })
   }
 
-  configureForm(){
+  configureForm() {
     this.invoiceForm = new FormGroup({
       file: new FormControl('Invoice'),
     })
   }
 
   openPdf2(file: any) {
-    this.invoicesService.getFileInvoiceByInvoiceId(file.invoiceId).subscribe((resp:any)=>{
+    this.invoicesService.getFileInvoiceByInvoiceId(file.invoiceId).subscribe((resp: any) => {
       // console.log(resp);
-         
-    if (resp && resp.file_path) {
-      const extension = resp.file_path.split('.').pop().toLowerCase();
-      if (extension === 'pdf') {
-        const dialogOptions = 'width=800,height=600,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes';
-        window.open('https://'+resp.file_path, 'PDF Dialog', dialogOptions);
+
+      if (resp && resp.file_path) {
+        const extension = resp.file_path.split('.').pop().toLowerCase();
+        if (extension === 'pdf') {
+          const dialogOptions = 'width=800,height=600,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes';
+          window.open('https://' + resp.file_path, 'PDF Dialog', dialogOptions);
+        } else {
+          console.error('The file is not a PDF.');
+        }
       } else {
-        console.error('The file is not a PDF.');
+        console.error('Invalid file object.');
       }
-    } else {
-      console.error('Invalid file object.');
-    }
-      
+
     })
   }
 
 
-  onBack(){
+  onBack() {
     this.router.navigate(['home'])
   }
 
-  
 
-  openDialog(row:any) {
+
+  openDialog(row: any) {
     // console.log(row.invoiceId);
     this.invoiceForm = new FormGroup({
-      invoiceId:new FormControl(row.invoiceId)
-    })  
-    
+      invoiceId: new FormControl(row.invoiceId)
+    })
+
     let dialogRef = this.dialog.open(this.distributionDialog, {
       width: '650px',
     });
@@ -165,20 +163,20 @@ export class PaymentComponent implements OnInit{
     })
   }
 
-  onSubmit(){
+  onSubmit() {
     const values = this.invoiceForm.value;
 
     const form = new FormData();
-    
+
     form.append('file', this.files, this.files.name);
     form.append('invoiceId', values.invoiceId);
     // console.log(form);
-    this.invoicesService.addFileInvoices(form).subscribe((resp:any)=>{
+    this.invoicesService.addFileInvoices(form).subscribe((resp: any) => {
       this.alert();
       this.reload()
-      
+
     })
-    
+
   }
 
   selectFile(event: any): void {
@@ -220,13 +218,13 @@ export class PaymentComponent implements OnInit{
     reader.readAsDataURL(file);
   }
 
-  reload(){
-    this.router.navigateByUrl('',{skipLocationChange:true}).then(()=>{
+  reload() {
+    this.router.navigateByUrl('', { skipLocationChange: true }).then(() => {
       this.router.navigate(['payment'])
     })
   }
 
-  alert(){
+  alert() {
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',

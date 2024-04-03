@@ -28,8 +28,6 @@
 
 
 <div class="page-body ">
-
-
   <div class="card" *ngIf="role == 'SUPER ADMIN'">
     <div class="card-status-top bg-primary"></div>
     <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
@@ -47,11 +45,10 @@
         </span>
       </div>
     </div>
+
+
     <div style="margin: 10px;">
-
-
       <table mat-table [dataSource]="dataSource" matSort>
-
         <!-- ID Column -->
         <ng-container matColumnDef="No">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> SNo. </th>
@@ -111,8 +108,8 @@
 
 
   <!-- <mat-spinner *ngIf="spinnerLoading"></mat-spinner> -->
-  <span *ngIf="!check2">
-    <div class="row" *ngIf="role == 'MEMBERSHIP'">
+  <div class="card" *ngIf="role == 'MEMBERSHIP'&& !check2">
+    <div class="row" >
       <div class="col-md-6 col-lg-12">
         <div class="card">
           <div class="ribbon bg-red">COMMENTS</div>
@@ -123,12 +120,11 @@
         </div>
       </div>
     </div>
-  </span>
+  </div>
   <br>
 
-  <span *ngIf="check2">
-    <div class="card" *ngIf="role == 'MEMBERSHIP'">
 
+    <div class="card" *ngIf="role == 'MEMBERSHIP'">
       <div class="card-status-top bg-primary"></div>
       <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
       <div style="margin:10px 0px 0px 10px;" class="example-form ml-3  mb-3">
@@ -235,8 +231,6 @@
         <mat-paginator [pageSizeOptions]="[ 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
       </div>
     </div>
-
-  </span>
 
 </div>
 

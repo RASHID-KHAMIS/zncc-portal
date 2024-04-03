@@ -34,6 +34,8 @@ export class MembersComponent implements OnInit {
   ngOnInit(): void {
     this.getAllVerifiedMembership();
     this.fetchAllBusinessSector();
+    this.fetchAllActiveMember();
+    this.fetchAllAInActiveMember();
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -67,7 +69,12 @@ export class MembersComponent implements OnInit {
   }
 
   onSectorSelectionChange2(event:any){
-    console.log(event.value);
+    // console.log(event.value);
+    if(event.value==1){
+      this.fetchAllActiveMember();
+    }else{
+      this.fetchAllAInActiveMember();
+    }
     
   }
 
@@ -81,8 +88,27 @@ export class MembersComponent implements OnInit {
       });
   }
 
+  fetchAllActiveMember(){
+    this.membershipService.getAllActiveMember().subscribe((resp:any)=>{
+      // console.log(resp);
+      this.loding = false;
+      this.dataSource = new MatTableDataSource(resp);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    })
+  }
+
+  fetchAllAInActiveMember(){
+    this.membershipService.getAllAInctiveMember().subscribe((resp:any)=>{
+      // console.log(resp);
+      this.loding = false;
+      this.dataSource = new MatTableDataSource(resp);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    })
+  }
+
   onView(data: any) {
-    // console.log(data);
     this.router.navigate(['/view-member-info'], {queryParams: { id: data.memberShipFormId }});
   }
 }

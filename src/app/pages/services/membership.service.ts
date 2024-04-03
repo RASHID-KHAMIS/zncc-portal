@@ -53,4 +53,12 @@ export class MembershipService {
   getAllCompanyByMemberID(id:any){
     return this.http.get(this.membershipAPI + "/" + "with-all-account-id" + "/" + id)
   }
+  getAllActiveMember(){
+    return this.http.get(this.membershipAPI + "/" + "active" + "/")
+  }
+
+  getAllAInctiveMember(){
+    return this.http.get(this.membershipAPI + "/" + "in-active" + "/")
+  }
+
 }
