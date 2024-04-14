@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 })
 export class BusinesstypeComponent implements OnInit {
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['id', 'sectorCode', 'sectorName','status','action'];
+  displayedColumns: string[] = ['id','sectorName','sectorCode','status','action'];
   loding = true;
   @ViewChild('callDialog') callDialog!: TemplateRef<any>;
   @ViewChild('callDialog2') callDialog2!: TemplateRef<any>;

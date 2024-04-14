@@ -63,16 +63,17 @@
                     <td mat-cell *matCellDef="let row;let i = index"> {{i + 1}} </td>
                 </ng-container>
 
-                <ng-container matColumnDef="departmentCode">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Department Code </th>
-                    <td mat-cell *matCellDef="let row"> {{row.departmentCode}}
-                    </td>
-                </ng-container>
+               
                 <ng-container matColumnDef="departmentName">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Department Name </th>
                     <td mat-cell *matCellDef="let row"> {{row.departmentName}} </td>
                 </ng-container>
 
+                <ng-container matColumnDef="departmentCode">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Department Code </th>
+                    <td mat-cell *matCellDef="let row"> {{row.departmentCode}}
+                    </td>
+                </ng-container>
 
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>

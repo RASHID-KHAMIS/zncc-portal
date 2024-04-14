@@ -16,7 +16,7 @@ import Swal from 'sweetalert2';
 })
 export class RegionComponent implements OnInit{
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['No', 'RegionName','ZoneName','RegionCode','action'];
+  displayedColumns: string[] = ['No', 'RegionName','ZoneName','action'];
   loading: boolean = true;
   @ViewChild('distributionDialog') distributionDialog!: TemplateRef<any>;
   @ViewChild('distributionDialog2') distributionDialog2!: TemplateRef<any>;

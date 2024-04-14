@@ -77,13 +77,15 @@
                     <td mat-cell *matCellDef="let row;let i = index"> {{i + 1}} </td>
                 </ng-container>
 
-                <ng-container matColumnDef="sectorCode">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Sector Code</th>
-                    <td mat-cell *matCellDef="let row"> {{row.sectorCode}} </td>
-                </ng-container>
+    
                 <ng-container matColumnDef="sectorName">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Sector Name </th>
                     <td mat-cell *matCellDef="let row"> {{row.sectorName}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="sectorCode">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Sector Code</th>
+                    <td mat-cell *matCellDef="let row"> {{row.sectorCode}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="status">

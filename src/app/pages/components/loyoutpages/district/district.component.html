@@ -13,7 +13,7 @@
             <!-- Page title actions -->
             <div class="col-auto ms-auto d-print-none">
                 <div class="btn-list">
-                    <button class="btn btn-primary d-none d-sm-inline-block"  (click)="openDialog()">
+                    <button class="btn btn-primary d-none d-sm-inline-block" (click)="openDialog()">
 
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
                             stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
@@ -39,7 +39,7 @@
         <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
         <div style="margin:10px 0px 0px 10px;" class="example-form ml-3  mb-3">
             <label class="form-label"></label>
-            <div class="input-icon" style="width: 30%;" > 
+            <div class="input-icon" style="width: 30%;">
                 <input type="text" #input (keyup)="applyFilter($event)" class="form-control form-control-rounded"
                     placeholder="Search…" />
                 <span class="input-icon-addon">
@@ -66,20 +66,20 @@
                     <td mat-cell *matCellDef="let row"> {{row.districtName}}
                     </td>
                 </ng-container>
-             
+
 
                 <ng-container matColumnDef="RegionName">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Region Name </th>
                     <td mat-cell *matCellDef="let row"> {{row.regionName}} </td>
                 </ng-container>
 
-
+                <!-- 
                 <ng-container matColumnDef="DistrictCode">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>District Code</th>
                     <td mat-cell *matCellDef="let row"> {{row.districtCode}}
                     </td>
-                </ng-container>
-        
+                </ng-container> -->
+
                 <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
                     <td mat-cell *matCellDef="let row">
@@ -92,9 +92,10 @@
                                     </svg>
                                 </span>
                             </button>
-                          
 
-                            <button style="margin-left: 5px;" class="col-md-1 btn btn-outline-success" (click)="onBlock(row)" *ngIf="row.currentStatus == 1">
+
+                            <button style="margin-left: 5px;" class="col-md-1 btn btn-outline-success"
+                                (click)="onBlock(row)" *ngIf="row.currentStatus == 1">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
                                         viewBox="0 0 24 24">
@@ -105,14 +106,17 @@
                                     </svg>
                                 </span>
                             </button>
-                        
-    
-                            <button  style="margin-left: 5px;" class="col-md-1 btn btn-outline-danger" (click)="unBlock(row)" *ngIf="row.currentStatus == 0">
+
+
+                            <button style="margin-left: 5px;" class="col-md-1 btn btn-outline-danger"
+                                (click)="unBlock(row)" *ngIf="row.currentStatus == 0">
                                 <span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em"
                                         viewBox="0 0 24 24">
                                         <path fill="currentColor"
-                                            d="M6 22q-.825 0-1.412-.587T4 20V10q0-.825.588-1.412T6 8h1V6q0-2.075 1.463-3.537T12 1q2.075 0 3.538 1.463T17 6v2h1q.825 0 1.413.588T20 10v10q0 .825-.587 1.413T18 22zm6-5q.825 0 1.413-.587T14 15q0-.825-.587-1.412T12 13q-.825 0-1.412.588T10 15q0 .825.588 1.413T12 17M9 8h6V6q0-1.25-.875-2.125T12 3q-1.25 0-2.125.875T9 6z" />
+                                            d="M6 22q-.825 0-1.412-.587T4 20V10q0-.825.588-1.412T6 8h1V6q0-2.075 1.463-3.537T12 1q2.075 0 3.538 
+                                            1.463T17 6v2h1q.825 0 1.413.588T20 10v10q0 .825-.587 1.413T18 22zm6-5q.825 0 1.413-.587T14 15q0-.825-.587-1.412T12 13q-.825 0-1.412.588T10
+                                             15q0 .825.588 1.413T12 17M9 8h6V6q0-1.25-.875-2.125T12 3q-1.25 0-2.125.875T9 6z" />
                                     </svg>
                                 </span>
                             </button>
@@ -128,7 +132,7 @@
                     <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
                 </tr>
             </table>
-            <mat-paginator [pageSizeOptions]="[ 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+            <mat-paginator [pageSizeOptions]="[ 25, 30, 100]" aria-label="Select page of users"></mat-paginator>
         </div>
     </div>
 
@@ -138,70 +142,70 @@
 
 <ng-template #distributionDialog>
     <app-card title="Add District">
-      <hr>
-      <form [formGroup]="districtForm">
-        <div class="row">
-            <div class="col-md-6">
-                <mat-form-field appearance="outline" style="width:100%;">
-                    <mat-label>Region Name</mat-label>
-                    <mat-select formControlName="regionId">
-                      <mat-option *ngFor="let region of regionLists" [value]="region.regionId">
-                        {{region.regionName}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-            </div>
-
-    
-              <div class="col-md-6">
-                <mat-form-field  style="width: 100%;" appearance="outline">
-                  <mat-label>District Name</mat-label>
-                  <input matInput placeholder="district name" formControlName="districtName">
-                </mat-form-field>
-              </div>
-        </div>
-      
-      </form><br><br>
-
-      <div class="card-bottom">
-        <button mat-raised-button matDialogClose="yes" >Cancel</button> &nbsp;
-        <button mat-raised-button  color="primary"  matDialogClose="yes" (click)="onSave()">Add</button>
-    </div>
-
-    </app-card>
-    </ng-template>
-
-    <ng-template #distributionDialog2>
-        <app-card title="Edit District">
-          <hr>
-          <form [formGroup]="districtEditForm">
+        <hr>
+        <form [formGroup]="districtForm">
             <div class="row">
                 <div class="col-md-6">
                     <mat-form-field appearance="outline" style="width:100%;">
                         <mat-label>Region Name</mat-label>
                         <mat-select formControlName="regionId">
-                          <mat-option *ngFor="let region of regionLists" [value]="region.regionId">
-                            {{region.regionName}}
-                          </mat-option>
+                            <mat-option *ngFor="let region of regionLists" [value]="region.regionId">
+                                {{region.regionName}}
+                            </mat-option>
                         </mat-select>
-                      </mat-form-field>
-                </div>
-    
-            
-                  <div class="col-md-6">
-                    <mat-form-field  style="width: 100%;" appearance="outline">
-                      <mat-label>District Name</mat-label>
-                      <input matInput placeholder="district name" formControlName="districtName">
                     </mat-form-field>
-                  </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>District Name</mat-label>
+                        <input matInput placeholder="district name" formControlName="districtName">
+                    </mat-form-field>
+                </div>
             </div>
-          
-          </form><br><br>
-    
-          <div class="card-bottom">
-            <button mat-raised-button matDialogClose="yes" >Cancel</button> &nbsp;
-            <button mat-raised-button  color="primary"  matDialogClose="yes" (click)="onEdit()">Edit</button>
+
+        </form><br><br>
+
+        <div class="card-bottom">
+            <button mat-raised-button matDialogClose="yes">Cancel</button> &nbsp;
+            <button mat-raised-button color="primary" matDialogClose="yes" (click)="onSave()">Add</button>
         </div>
-    
-        </app-card>
-        </ng-template>
+
+    </app-card>
+</ng-template>
+
+<ng-template #distributionDialog2>
+    <app-card title="Edit District">
+        <hr>
+        <form [formGroup]="districtEditForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field appearance="outline" style="width:100%;">
+                        <mat-label>Region Name</mat-label>
+                        <mat-select formControlName="regionId">
+                            <mat-option *ngFor="let region of regionLists" [value]="region.regionId">
+                                {{region.regionName}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+
+                <div class="col-md-6">
+                    <mat-form-field style="width: 100%;" appearance="outline">
+                        <mat-label>District Name</mat-label>
+                        <input matInput placeholder="district name" formControlName="districtName">
+                    </mat-form-field>
+                </div>
+            </div>
+
+        </form><br><br>
+
+        <div class="card-bottom">
+            <button mat-raised-button matDialogClose="yes">Cancel</button> &nbsp;
+            <button mat-raised-button color="primary" matDialogClose="yes" (click)="onEdit()">Edit</button>
+        </div>
+
+    </app-card>
+</ng-template>

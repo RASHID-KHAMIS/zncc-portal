@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 })
 export class DepartmentComponent implements OnInit{
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['No', 'departmentCode', 'departmentName','action'];
+  displayedColumns: string[] = ['No','departmentName','departmentCode','action'];
   loading: boolean = true;
   @ViewChild('distributionDialog') distributionDialog!: TemplateRef<any>;
   @ViewChild('distributionDialog2') distributionDialog2!: TemplateRef<any>;
