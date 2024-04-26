@@ -23,7 +23,6 @@ export class ViewStaffInfoComponent implements OnInit{
     this.memberStaffService.getStaffById(id).subscribe((resp:any)=>{
       // console.log(resp);
       this.staffInfo = resp;
-      
     })
   }
 

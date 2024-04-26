@@ -120,7 +120,7 @@ export class RegesterComponent implements OnInit {
         const reader = new FileReader();
 
         reader.onload = (e: any) => {
-          console.log(e.target.result);
+          // console.log(e.target.result);
           this.preview = e.target.result;
         };
 
