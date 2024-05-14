@@ -13,7 +13,7 @@ import { StaffsService } from 'src/app/pages/services/membersservice/staffs.serv
 })
 export class StaffInformationComponent implements OnInit {
   dataSource = new MatTableDataSource();
-  displayedColumns: string[] = ['id', 'fullName', 'regNo', 'gender', 'physicalAddress', 'phoneNumber', 'action'];
+  displayedColumns: string[] = ['id', 'fullName', 'regNo', 'gender', 'physicalAddress','position', 'phoneNumber', 'action'];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   loding: boolean = true;

@@ -24,158 +24,28 @@
     </div>
 </div>
 
-
-
 <div class="page-body" style="margin: 10px;">
 
-    <div class="row row-deck row-cards" *ngIf="role=='SUPER ADMIN'">
-        <div class="col-sm-6 col-lg-3">
-            <div class="card">
+    <span *ngIf="!checked">
+        <div class="col-md-10"style="margin-left: 8%;margin-right: 8%;">
+            <div class="card bg-primary-lt">
+                <div class="ribbon bg-red">INFORMATION</div>
                 <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="subheader">New Application</div>
-                        <div class="ms-auto lh-1">
-                            <div class="dropdown">
-                          
-                            </div>
-                        </div>
-                    </div>
-                    <div class="h1 mb-3" *ngIf="information">{{information.applicant.new_applicant_sum}}</div>
-                    <div class="d-flex mb-2">
-                        <div>Number of New Application</div>
-                        <div class="ms-auto">
+                  <h3 class="card-title">Company notifications</h3>
+                  <p class="text-muted"><marquee behavior="scroll" direction="left">No company registered to this member yet</marquee> </p>
+                </div>
+              </div>
+    </div><br>
+    </span>
 
-                        </div>
-                    </div>
-                    <div class="progress progress-sm">
-                        <div class="progress-bar bg-primary" style="width: 75%" role="progressbar" aria-valuenow="75"
-                            aria-valuemin="0" aria-valuemax="100" aria-label="75% Complete">
-                            <span class="visually-hidden">10% Complete</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="subheader">Registered Application</div>
-                        <div class="ms-auto lh-1">
-                          
-                        </div>
-                    </div>
-                    <div class="h1 mb-3" *ngIf="information">{{information.applicant.register_applicant_sum}}</div>
-                    <div class="d-flex mb-2">
-                        <div>Number of Registered Application</div>
-                        <div class="ms-auto">
-                   
-                        </div>
-                    </div>
-                    <div class="progress progress-sm">
-                        <div class="progress-bar bg-primary" style="width: 75%" role="progressbar" aria-valuenow="75"
-                            aria-valuemin="0" aria-valuemax="100" aria-label="75% Complete">
-                            <span class="visually-hidden">10% Complete</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="subheader">Staff</div>
-                        <div class="ms-auto lh-1">
-                          
-                        </div>
-                    </div>
-                    <div class="h1 mb-3" *ngIf="information">{{information.staff.numberOfStaf}}</div>
-                    <div class="d-flex mb-2">
-                        <div>Number of Staff</div>
-                        <div class="ms-auto">
-                            <!-- <span class="text-green d-inline-flex align-items-center lh-1">
-                                7% 
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon ms-1" width="24" height="24"
-                                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                    stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                    <path d="M3 17l6 -6l4 4l8 -8" />
-                                    <path d="M14 7l7 0l0 7" />
-                                </svg>
-                            </span> -->
-                        </div>
-                    </div>
-                    <div class="progress progress-sm">
-                        <div class="progress-bar bg-primary" style="width: 75%" role="progressbar" aria-valuenow="75"
-                            aria-valuemin="0" aria-valuemax="100" aria-label="75% Complete">
-                            <span class="visually-hidden">10% Complete</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-lg-3">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="subheader">Active User</div>
-                        <div class="ms-auto lh-1">
-                    
-                        </div>
-                    </div>
-                    <div class="h1 mb-3" *ngIf="information">{{information.activeUser.activeuser}}</div>
-                    <div class="d-flex mb-2">
-                        <div>Number of Registered Users</div>
-                        <div class="ms-auto">
-                          
-                        </div>
-                    </div>
-                    <div class="progress progress-sm">
-                        <div class="progress-bar bg-primary" style="width: 75%" role="progressbar" aria-valuenow="75"
-                            aria-valuemin="0" aria-valuemax="100" aria-label="75% Complete">
-                            <span class="visually-hidden">10% Complete</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="row" *ngIf="role=='SUPER ADMIN'">
-        <div class="col-sm-6 col-lg-6" style=" margin-top: 30px;">
-            <div class="card">
-                <div class="card-body">
-                    <h3>Members Applied In Monthly</h3>
-                    <app-monthbar></app-monthbar>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-lg-6 justify-content-center" style=" margin-top: 30px;">
-
-
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="text-center">Type Of Company Applied</h3>
-                    <div class="d-flex justify-content-center">
-                        <app-piechart></app-piechart>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-   
- 
-<!--       
     <span *ngIf="checked">
-        <div class="row" *ngIf="role=='MEMBERSHIP'">
-       
+        <div class="row">
+            <!-- Page body -->
             <div class="page-header d-print-none">
                 <div class="" style="margin: 0 20px 0 20px;">
                     <div class="row g-2 align-items-center">
     
-                
+                        <!-- Page title actions -->
                         <div class="col-auto ms-auto d-print-none" style="margin-right: 8%;">
                             <div class="btn-list">
                             </div>
@@ -205,7 +75,7 @@
                         <div class="col-md-4">
                               <button class="btn btn-success d-none d-sm-inline-block"  (click)="onEditInfo(memberInfo)"
                               *ngIf="memberInfo?.membership_type != 'Sole Proprietorship'" style="margin-left: 20%"> Edit Information
-                     
+                              <!-- && memberInfo?.isNewApplicant != 0 -->
                           </button>
                                                          
                                 <button class="btn btn-primary d-none d-sm-inline-block"
@@ -247,7 +117,7 @@
                             </div>
                             <div class="list-inline list-inline-dots text-secondary">
                                 <div class="list-inline-item">
-                                
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/map -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24"
                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                         stroke-linecap="round" stroke-linejoin="round">
@@ -259,7 +129,7 @@
                                     {{memberInfo?.regionName}}, {{memberInfo?.districtName}}
                                 </div>
                                 <div class="list-inline-item">
-                                  
+                                    <!-- Download SVG icon from http://tabler-icons.io/i/mail -->
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline" width="24" height="24"
                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                         stroke-linecap="round" stroke-linejoin="round">
@@ -302,7 +172,7 @@
                             <ul class="timeline">
                                 <li class="timeline-event">
                                     <div class="timeline-event-icon bg-twitter-lt">
-                                    
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/brand-twitter -->
                                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                             viewBox="0 0 256 256">
                                             <path fill="currentColor"
@@ -320,7 +190,7 @@
     
                                 <li class="timeline-event">
                                     <div class="timeline-event-icon">
-                                 
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/briefcase -->
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                             stroke-linecap="round" stroke-linejoin="round">
@@ -344,7 +214,7 @@
     
                                 <li class="timeline-event">
                                     <div class="timeline-event-icon">
-                                 
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/briefcase -->
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                             stroke-linecap="round" stroke-linejoin="round">
@@ -370,7 +240,7 @@
     
                                 <li class="timeline-event">
                                     <div class="timeline-event-icon">
-                             
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/briefcase -->
                                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
                                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                             stroke-linecap="round" stroke-linejoin="round">
@@ -394,7 +264,7 @@
     
                                 <li class="timeline-event">
                                     <div class="timeline-event-icon bg-facebook-lt">
-                          
+                                        <!-- Download SVG icon from http://tabler-icons.io/i/brand-facebook -->
                                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                             viewBox="0 0 256 256">
                                             <path fill="currentColor"
@@ -420,7 +290,7 @@
                                         <div class="card-body">
                                             <div class="card-title">Company information</div>
                                             <div class="mb-2">
-                                     
+                                                <!-- Download SVG icon from http://tabler-icons.io/i/book -->
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary"
                                                     width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                                                     stroke="currentColor" fill="none" stroke-linecap="round"
@@ -435,7 +305,7 @@
                                                 Company Name: <strong>{{memberInfo?.company_name}}</strong>
                                             </div>
                                             <div class="mb-2">
-                                           
+                                                <!-- Download SVG icon from http://tabler-icons.io/i/briefcase -->
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary"
                                                     width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                                                     stroke="currentColor" fill="none" stroke-linecap="round"
@@ -452,7 +322,7 @@
                                             </div>
     
                                             <div class="mb-2">
-                             
+                                                <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary"
                                                     width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                                                     stroke="currentColor" fill="none" stroke-linecap="round"
@@ -470,7 +340,7 @@
                                                 Company Phone: <strong>{{memberInfo?.company_phone}}</strong>
                                             </div>
                                             <div class="mb-2">
-                                            
+                                                <!-- Download SVG icon from http://tabler-icons.io/i/clock -->
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary"
                                                     width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                                                     stroke="currentColor" fill="none" stroke-linecap="round"
@@ -489,7 +359,7 @@
                                             </div>
     
                                             <div class="mb-2">
-                                             
+                                                <!-- Download SVG icon from http://tabler-icons.io/i/clock -->
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary"
                                                     width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                                                     stroke="currentColor" fill="none" stroke-linecap="round"
@@ -516,7 +386,7 @@
                                         <div class="card-body">
                                             <div class="card-title">Representative information</div>
                                             <div class="mb-2">
-                                       
+                                                <!-- Download SVG icon from http://tabler-icons.io/i/book -->
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary"
                                                     width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                                                     stroke="currentColor" fill="none" stroke-linecap="round"
@@ -531,7 +401,7 @@
                                                 Name: <strong>{{memberInfo?.representative_name}}</strong>
                                             </div>
                                             <div class="mb-2">
-                                      
+                                                <!-- Download SVG icon from http://tabler-icons.io/i/briefcase -->
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary"
                                                     width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                                                     stroke="currentColor" fill="none" stroke-linecap="round"
@@ -548,7 +418,7 @@
                                             </div>
     
                                             <div class="mb-2">
-                                             
+                                                <!-- Download SVG icon from http://tabler-icons.io/i/calendar -->
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary"
                                                     width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                                                     stroke="currentColor" fill="none" stroke-linecap="round"
@@ -566,7 +436,7 @@
                                                 Phone: <strong>{{memberInfo?.representative_phone}}</strong>
                                             </div>
                                             <div>
-                                         
+                                                <!-- Download SVG icon from http://tabler-icons.io/i/clock -->
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon me-2 text-secondary"
                                                     width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                                                     stroke="currentColor" fill="none" stroke-linecap="round"
@@ -601,7 +471,7 @@
                                 <input type="text" #input (keyup)="applyFilter($event)"
                                     class="form-control form-control-rounded" placeholder="Search…" />
                                 <span class="input-icon-addon">
-                            
+                                    <!-- SVG icon from http://tabler-icons.io/i/search -->
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                                         <path fill="currentColor"
                                             d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5l-1.5 1.5l-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16A6.5 6.5 0 0 1 3 9.5A6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14S14 12 14 9.5S12 5 9.5 5Z" />
@@ -614,7 +484,7 @@
     
                             <table mat-table [dataSource]="dataSource" matSort>
     
-                           
+                                <!-- ID Column -->
                                 <ng-container matColumnDef="No">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header> SNo. </th>
                                     <td mat-cell *matCellDef="let row;let i = index"> {{i + 1}} </td>
@@ -673,7 +543,7 @@
                                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     
-                         
+                                <!-- Row shown when there is no matching data. -->
                                 <tr class="mat-row" *matNoDataRow>
                                     <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
                                 </tr>
@@ -693,7 +563,7 @@
     
                             <table mat-table [dataSource]="dataSource2" matSort>
     
-              
+                                <!-- ID Column -->
                                 <ng-container matColumnDef="No">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header> SNo. </th>
                                     <td mat-cell *matCellDef="let row;let i = index"> {{i + 1}} </td>
@@ -999,6 +869,8 @@
                 </app-card>
             </ng-template>
         </div>
-    </span> -->
-   
+    </span>
+
+
 </div>
+

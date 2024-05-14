@@ -18,7 +18,8 @@
       <!-- Page title actions -->
       <div class="col-auto ms-auto d-print-none">
         <div class="btn-list">
-          <button class="btn btn-primary d-none d-sm-inline-block" (click)="onBack()">Back</button>
+          <button class="btn btn-primary d-none d-sm-inline-block" (click)="onBack()" *ngIf="role == 'SUPER ADMIN'">Back</button>
+          <button class="btn btn-primary d-none d-sm-inline-block" (click)="onBack2()" *ngIf="role == 'MEMBERSHIP'">Back</button>
         </div>
       </div>
     </div>

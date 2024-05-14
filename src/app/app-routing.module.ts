@@ -29,6 +29,7 @@ import { EditCompanyInfoComponent } from './pages/components/loyoutpages/edit-co
 import { ForgetPasswordComponent } from './pages/components/forget-password/forget-password.component';
 import { ViewStaffInfoComponent } from './pages/components/loyoutpages/view-staff-info/view-staff-info.component';
 import { BusinessSubSectorComponent } from './pages/components/loyoutpages/business-sub-sector/business-sub-sector.component';
+import { MemberDashboardComponent } from './pages/components/loyoutpages/member-dashboard/member-dashboard.component';
 
 
 
@@ -53,6 +54,10 @@ const routes: Routes = [
     children: [
       {
         path: 'home', component: DashboardComponent,
+
+      },
+      {
+        path: 'dashboard', component: MemberDashboardComponent,
 
       },
       {

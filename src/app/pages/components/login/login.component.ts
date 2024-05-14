@@ -13,12 +13,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
   constructor(private router: Router,
-  private usersService:UsersService) { }
+    private usersService: UsersService) { }
   loginForm !: FormGroup;
   shouldAddClass1 = false;
   shouldAddClass2 = true;
   password = false
-  loading:boolean = false;
+  loading: boolean = false;
   ngOnInit(): void {
     this.createForm()
   }
@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onLogin(){
+  onLogin() {
     if (this.loginForm.value.email == '') {
       this.shouldAddClass1 = true
     } else if (this.loginForm.value.password == '') {
@@ -56,40 +56,56 @@ export class LoginComponent implements OnInit {
       this.loading = true;
       const values = this.loginForm.value;
       const jwtHelper = new JwtHelperService();
-      this.usersService.userLogin(values).subscribe((resp:any)=>{
-      if(resp?.error?.status==404 || resp?.error?.status==401){
-        this.alert2();
-        this.loading = false;
-      }else{
-        const decodedToken = jwtHelper.decodeToken(resp.accessToken);
-        // console.log(decodedToken.sub);
-        
-        this.loading = false;
-        if(decodedToken.sub.role.length >= 1){
+      this.usersService.userLogin(values).subscribe((resp: any) => {
+        if (resp?.error?.status == 404 || resp?.error?.status == 401) {
+          this.alert2();
+          this.loading = false;
+        } else {
+          const decodedToken = jwtHelper.decodeToken(resp.accessToken);
           // console.log(decodedToken.sub);
-          localStorage.setItem('fisrName',decodedToken.sub.fisrName),
-          localStorage.setItem('role',decodedToken.sub.role),
-          localStorage.setItem('email',decodedToken.sub.email),
-          localStorage.setItem('memberAccountId',decodedToken.sub.userMemberId),
-          localStorage.setItem('id',decodedToken.sub.id)
+
+          this.loading = false;
+          if (decodedToken.sub.role.length >= 1) {
+            console.log(decodedToken.sub);
+            localStorage.setItem('fisrName', decodedToken.sub.fisrName),
+              localStorage.setItem('lastName', decodedToken.sub.lastName),
+              localStorage.setItem('role', decodedToken.sub.role),
+              localStorage.setItem('email', decodedToken.sub.email),
+              localStorage.setItem('memberAccountId', decodedToken.sub.userMemberId),
+              localStorage.setItem('id', decodedToken.sub.id)
+          }
+          this.alert();
+          if (decodedToken.sub.loginStatus == 0) {
+            this.alert3();
+          } else {
+
+            switch (decodedToken.sub.role) {
+              case 'SUPER ADMIN':
+                this.router.navigate(["home"]).then(() => {
+                  location.reload();
+                })
+                break;
+
+              case 'MEMBERSHIP':
+                this.router.navigate(["dashboard"]).then(() => {
+                  location.reload();
+                })
+                break;
+              default:
+                this.router.navigateByUrl("")
+            }
+          }
         }
-        this.alert();
-        if(decodedToken.sub.loginStatus == 0){
-          this.alert3();
-        }else{
-          this.router.navigate(["home"])
-        }
-      }
-      },  (error: HttpErrorResponse) => {
+      }, (error: HttpErrorResponse) => {
 
         this.alert2();
       }
       )
-     
+
     }
   }
 
-  alert(){
+  alert() {
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
@@ -109,7 +125,7 @@ export class LoginComponent implements OnInit {
   }
 
 
-  alert2(){
+  alert2() {
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
@@ -128,7 +144,7 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  alert3(){
+  alert3() {
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',

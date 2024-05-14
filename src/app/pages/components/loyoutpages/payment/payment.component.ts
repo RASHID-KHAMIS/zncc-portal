@@ -141,6 +141,10 @@ export class PaymentComponent implements OnInit {
     this.router.navigate(['home'])
   }
 
+  onBack2(){
+    this.router.navigate(['dashboard'])
+  }
+
 
 
   openDialog(row: any) {

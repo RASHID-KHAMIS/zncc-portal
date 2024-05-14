@@ -12,19 +12,36 @@ import Swal from 'sweetalert2';
 export class LayoutComponent {
   role: any;
   username:any;
+  fname:any;
+  lname:any
   constructor(private router: Router) {
 
   }
   ngOnInit(): void {
     this.role = localStorage.getItem("role");
-    this.username = localStorage.getItem("fisrName")
+    this.fname = localStorage.getItem("fisrName")
+    this.lname = localStorage.getItem("lastName")
+
+    this.username = this.fname + " " + this.lname
   }
 
 
   onLogOut(){
-    localStorage.clear();
-    this.router.navigateByUrl("/");
-    this.alert();
+    Swal.fire({
+      title: "Logout?",
+      text: "Are you sure you want to logout?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      cancelButtonText: "Cancel"
+  }).then((result) => {
+      if (result.isConfirmed) {
+          sessionStorage.clear();
+          this.router.navigate(["/"]);
+          this.alert();
+      }
+  });
+
   }
 
   alert(){

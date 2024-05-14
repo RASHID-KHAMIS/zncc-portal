@@ -38,7 +38,7 @@ export class UserManagementComponent implements OnInit {
 
   RoleList: any[] = [
     { value: 'SUPER ADMIN', viewValue: 'SUPER ADMIN' },
-    { value: 'MEMBERSHIP OFFICER', viewValue: 'MEMBERSHIP OFFICER' },
+    { value: 'MEMBERSHIP', viewValue: 'MEMBERSHIP OFFICER' },
     { value: 'ACCOUNTANT', viewValue: 'ACCOUNTANT' },
     { value: 'IT OFFICER', viewValue: 'IT OFFICER' },
     { value: 'DIRECTOR', viewValue: 'DIRECTOR' },

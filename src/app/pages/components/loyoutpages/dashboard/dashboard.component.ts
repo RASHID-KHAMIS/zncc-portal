@@ -73,7 +73,6 @@ export class DashboardComponent implements OnInit{
   ngOnInit(): void {
     this.configureForm();
    this.memberAccountId = localStorage.getItem('memberAccountId');
-  //  console.log(this.memberAccountId);
    this.fetchByMembershipId();
    this.configureEditForm();
    this.configureDocumentsForm();
@@ -143,7 +142,6 @@ export class DashboardComponent implements OnInit{
     this.membershipService.getAllCompanyByMemberID(this.memberAccountId).subscribe((resp:any)=>{
       // console.log(resp);
       this.companyList = resp
-      
     })
 
   }
@@ -436,8 +434,6 @@ export class DashboardComponent implements OnInit{
 
   editDocument(row:any){
     // console.log(row);
- 
-    
     let dialogRef = this.dialog.open(this.distributionDialog3, {
       width: '650px',
     });
@@ -457,7 +453,6 @@ export class DashboardComponent implements OnInit{
   dashboardInformation(){
     this.dashboardService.getDshboardInfo().subscribe((resp:any)=>{
       // console.log(resp);
-      
       this.information = resp;  
     })
   }

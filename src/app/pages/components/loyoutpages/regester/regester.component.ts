@@ -177,8 +177,6 @@ export class RegesterComponent implements OnInit {
   subSectorLists:any
   onSector(event:any){
     const selectedValue = (event.target as HTMLSelectElement).value;
-    // console.log(selectedValue);
-    
     this.businessSubSectorService.getSubSectorBySectorID(selectedValue).subscribe((resp:any)=>{
       // console.log(resp);
       this.subSectorLists = resp
@@ -199,17 +197,16 @@ export class RegesterComponent implements OnInit {
   submit() {
     const values = this.memberForm.value;
     this.membershipService.addMembership(values).subscribe((resp:any)=>{
-      // console.log(values);
-      
+
       const form = new FormData();
 
-      form.append('file', this.files, this.files.name);
-      form.append('fileCategory', values.profile_pic);
-      this.profilePictureService.addProfilePic(resp.memberShipFormId,form).subscribe((resp:any)=>{
-        console.log(resp);
-        console.log('uploaded');
+      // form.append('file', this.files, this.files.name);
+      // form.append('fileCategory', values.profile_pic);
+      // this.profilePictureService.addProfilePic(resp.memberShipFormId,form).subscribe((resp:any)=>{
+      //   console.log(resp);
+      //   console.log('uploaded');
         
-      })
+      // })
     
       form.append('file', this.files, this.files.name);
       form.append('fileCategory', values.upload_BPRA);
