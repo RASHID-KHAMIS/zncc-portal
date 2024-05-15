@@ -383,10 +383,10 @@
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
                         <td mat-cell *matCellDef="let row">
                             <span *ngIf="row.paymentStatus == 1">
-                                <span class="badge badge-success">PAID</span>
+                                <span class="badge bg-green">PAID</span>
                             </span>
                             <span *ngIf="row.paymentStatus == 0">
-                                <span class="badge badge-danger"> NOT PAID </span>
+                                <span class="badge bg-orange"> NOT PAID </span>
                             </span>
                         </td>
                     </ng-container>
@@ -407,7 +407,12 @@
                         <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
                         <td mat-cell *matCellDef="let row">
                             <button class="btn btn-primary d-none d-sm-inline-block"
-                                (click)="onStatus(row)">Confirm</button>
+                                (click)="onStatus(row)" *ngIf="row.paymentStatus == 0">
+                                Confirm
+                            </button>
+                            <span *ngIf="row.paymentStatus == 1">
+                                <span class="badge bg-green">PAID</span>
+                            </span>
                         </td>
                     </ng-container>
 

@@ -157,7 +157,7 @@ export class ViewMemberInfoComponent implements OnInit {
 
   fetcInvoiceByMemberFormId(id: any) {
     this.invoicesService.getInvoiceByFormId(id).subscribe((resp: any) => {
-      // console.log(resp);
+      console.log(resp);
       if (resp.length > 0) {
         this.check2 = true;
       }
@@ -238,7 +238,9 @@ export class ViewMemberInfoComponent implements OnInit {
           icon: 'success',
         });
       }
+      this.reload();
     });
+   
 
   }
 
@@ -260,6 +262,7 @@ export class ViewMemberInfoComponent implements OnInit {
       } else if (result.isDenied) {
         Swal.fire('Changes are not saved', '', 'info');
       }
+      this.reload2()
     });
   }
 
@@ -323,6 +326,19 @@ export class ViewMemberInfoComponent implements OnInit {
     })
     
   }
+
+  reload(){
+    this.router.navigateByUrl('',{skipLocationChange:true}).then(()=>{
+      this.router.navigate(['new-Applicant'])
+    })
+  }
+
+  reload2(){
+    this.router.navigateByUrl('',{skipLocationChange:true}).then(()=>{
+      this.router.navigate(['payment'])
+    })
+  }
+
 
 
 

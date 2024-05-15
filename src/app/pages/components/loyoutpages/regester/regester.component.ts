@@ -196,17 +196,19 @@ export class RegesterComponent implements OnInit {
   }
   submit() {
     const values = this.memberForm.value;
+    console.log(values);
+    
     this.membershipService.addMembership(values).subscribe((resp:any)=>{
 
       const form = new FormData();
 
-      // form.append('file', this.files, this.files.name);
-      // form.append('fileCategory', values.profile_pic);
-      // this.profilePictureService.addProfilePic(resp.memberShipFormId,form).subscribe((resp:any)=>{
-      //   console.log(resp);
-      //   console.log('uploaded');
+      form.append('file', this.files, this.files.name);
+      form.append('fileCategory', values.profile_pic);
+      this.profilePictureService.addProfilePic(resp.memberShipFormId,form).subscribe((resp:any)=>{
+        console.log(resp);
+        console.log('uploaded');
         
-      // })
+      })
     
       form.append('file', this.files, this.files.name);
       form.append('fileCategory', values.upload_BPRA);
@@ -225,7 +227,6 @@ export class RegesterComponent implements OnInit {
       // console.log(error.status);
       if(error.status == 400){
         Swal.fire("Company email exists!");
-        
       }
       
     })
@@ -235,7 +236,7 @@ export class RegesterComponent implements OnInit {
 
   reload(){
     this.router.navigateByUrl('',{skipLocationChange:true}).then(()=>{
-      this.router.navigate(['home'])
+      this.router.navigate(['dashboard'])
     })
   }
 

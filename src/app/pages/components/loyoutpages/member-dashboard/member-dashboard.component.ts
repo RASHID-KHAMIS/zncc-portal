@@ -75,12 +75,12 @@ export class MemberDashboardComponent implements OnInit{
     
   ngOnInit(): void {
 
-    this.memberAccountId = localStorage.getItem('memberAccountId');
+    // this.memberAccountId = localStorage.getItem('memberAccountId');
     this.configureDocumentsForm();
 
     this.configureForm();
     this.memberAccountId = localStorage.getItem('memberAccountId');
-   //  console.log(this.memberAccountId);
+    // console.log(this.memberAccountId);
     this.fetchByMembershipId();
     this.configureEditForm();
     this.configureDocumentsForm();
@@ -100,9 +100,10 @@ export class MemberDashboardComponent implements OnInit{
 
   fetchByMembershipId(){
     this.membershipService.getMembershirpsByMemberID(this.memberAccountId).subscribe((resp:any)=>{
-
+      console.log(resp);
+      
       this.memberInfo = resp;
-      // console.log(this.memberInfo);
+      console.log(this.memberInfo);
       if (this.memberInfo !== undefined || this.memberInfo.length > 0) {
         this.checked = true;
       }
@@ -135,7 +136,7 @@ export class MemberDashboardComponent implements OnInit{
           this.check = true;
         }
         this.dataSource = new MatTableDataSource(resp);
-        this.loading = false;
+        // this.loading = false;
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort
       })

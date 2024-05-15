@@ -40,7 +40,6 @@ export class NewApplicantComponent implements OnInit{
   sectorList:any;
   fetchAllBusinessSector(){
     this.businessService.getAllBusinessSector().subscribe((resp:any)=>{
-      // console.log(resp);
       this.sectorList = resp;
     })
   }

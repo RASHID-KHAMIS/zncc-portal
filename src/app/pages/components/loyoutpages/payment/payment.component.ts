@@ -92,7 +92,6 @@ export class PaymentComponent implements OnInit {
   fetchByMembershipId() {
     this.spinnerLoading = true;
     this.membershipService.getMembershirpsByMemberID(this.memberAccountId).subscribe((resp: any) => {
-      // console.log(resp);
 
       this.memberInfo = resp;
       // console.log(this.memberInfo.memberShipFormId);
@@ -169,12 +168,9 @@ export class PaymentComponent implements OnInit {
 
   onSubmit() {
     const values = this.invoiceForm.value;
-
     const form = new FormData();
-
     form.append('file', this.files, this.files.name);
     form.append('invoiceId', values.invoiceId);
-    // console.log(form);
     this.invoicesService.addFileInvoices(form).subscribe((resp: any) => {
       this.alert();
       this.reload()
@@ -191,18 +187,13 @@ export class PaymentComponent implements OnInit {
 
     if (this.selectedFiles) {
       const file: File | null = this.selectedFiles.item(0);
-
       if (file) {
         this.preview = '';
         this.currentFile = file;
-
         const reader = new FileReader();
-
         reader.onload = (e: any) => {
-          // console.log(e.target.result);
           this.preview = e.target.result;
         };
-
         reader.readAsDataURL(this.currentFile);
       }
     }
