@@ -48,7 +48,6 @@ export class NewApplicantComponent implements OnInit{
   getAllMembership() {
     this.membershipService.getAllMembership().subscribe((res: any) => {
       // console.log(res);
-      
         this.loding = false;
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.paginator = this.paginator;

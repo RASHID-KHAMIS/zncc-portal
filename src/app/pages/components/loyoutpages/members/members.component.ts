@@ -16,11 +16,12 @@ import { ZoneService } from 'src/app/pages/services/zone.service';
 export class MembersComponent implements OnInit {
   dataSource = new MatTableDataSource();
   displayedColumns: string[] = ['id','company_name','company_email','company_phone','sectorName','subSectorName','representative_name','action'];
-  loding = true;
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   check: boolean = false;
+  loding = true;
 
   activeList: any[] = [
     { value: 1, viewValue: 'Active' },
@@ -54,11 +55,11 @@ export class MembersComponent implements OnInit {
 
   getAllVerifiedMembership() {
     this.membershipService.getVerifiedMember().subscribe((resp: any) => {
-      // console.log(resp);
-      this.loding = false;
+      console.log(resp);
       this.dataSource = new MatTableDataSource(resp);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.loding = false;
     });
   }
 

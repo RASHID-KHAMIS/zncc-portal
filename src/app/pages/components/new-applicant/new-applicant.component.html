@@ -28,7 +28,7 @@
         <mat-progress-bar mode="indeterminate" *ngIf="loding"></mat-progress-bar>
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div style="margin:10px 0px 0px 10px;" class="example-form ml-3  mb-3">
                     <label class="form-label"></label>
                     <div class="input-icon"  style="width: 70%;">
@@ -42,9 +42,10 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-4"></div>
             <div class="col-md-4 mt-3">
                 
-                    <mat-form-field appearance="outline" style="width:100%;">
+                    <mat-form-field appearance="outline" style="width:80%;">
                         <mat-label>Filter By Business Sector</mat-label>
                         <mat-select  (selectionChange)="onSectorSelectionChange($event)">
                           <mat-option *ngFor="let list of sectorList" [value]="list.businessSectorId">
