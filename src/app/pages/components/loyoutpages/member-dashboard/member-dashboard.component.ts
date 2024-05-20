@@ -107,12 +107,13 @@ export class MemberDashboardComponent implements OnInit{
         this.checked = true;
       }
 
-      this.membershipCommentsService.getCommentsByMemberFormId(this.memberInfo.memberShipFormId).subscribe((resp:any)=>{
-        if (resp.memberShipCommentId.length > 0) {
+      this.membershipCommentsService.getCommentsByMemberFormId(this.memberInfo.memberShipFormId).subscribe((resp2:any)=>{
+        console.log(resp2.memberShipCommentId); 
+        if (resp2.memberShipCommentId.length > 0) {
           this.checkComment = true;
         }
         
-        this.comment = resp.comment_resone; 
+        this.comment = resp2.comment_resone; 
       })
       
          this.membershipUploadService.getPictureById(this.memberInfo.memberShipFormId).subscribe((resp:any)=>{
@@ -153,26 +154,23 @@ export class MemberDashboardComponent implements OnInit{
   
     this.memberInfo = event.value;
        this.membershipUploadService.getPictureById(this.memberInfo.memberShipFormId).subscribe((resp:any)=>{
-    // console.log(resp);
-
-    if (resp.length > 0) {
-      this.check2 = true;
-    }
-    this.dataSource2 = new MatTableDataSource(resp);
-    this.loading = false;
-
-  })
+      });
 
     this.companyOwnershipService.getByMembershipId(this.memberInfo.memberShipFormId).subscribe((resp:any)=>{
-      // console.log(resp);
+      console.log(resp);
       if(resp.length > 0){
         this.check = true;
       }
-      this.dataSource = new MatTableDataSource(resp);
-      this.loading = false;
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort
-    })
+    });
+
+    this.membershipCommentsService.getCommentsByMemberFormId(this.memberInfo.memberShipFormId).subscribe((resp2:any)=>{
+      if (resp2.memberShipCommentId.length > 0) {
+        this.checkComment = true;
+      }else{
+        this.checkComment = false;
+      }
+      this.comment = resp2.comment_resone; 
+    });
 
 }
 
