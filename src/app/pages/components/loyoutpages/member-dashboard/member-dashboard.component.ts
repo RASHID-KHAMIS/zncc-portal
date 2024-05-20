@@ -100,16 +100,14 @@ export class MemberDashboardComponent implements OnInit{
 
   fetchByMembershipId(){
     this.membershipService.getMembershirpsByMemberID(this.memberAccountId).subscribe((resp:any)=>{
-      console.log(resp);
+      // console.log(resp);
       
       this.memberInfo = resp;
-      console.log(this.memberInfo);
       if (this.memberInfo !== undefined || this.memberInfo.length > 0) {
         this.checked = true;
       }
 
       this.membershipCommentsService.getCommentsByMemberFormId(this.memberInfo.memberShipFormId).subscribe((resp:any)=>{
-        // console.log(resp.memberShipCommentId.length); 
         if (resp.memberShipCommentId.length > 0) {
           this.checkComment = true;
         }
@@ -117,8 +115,6 @@ export class MemberDashboardComponent implements OnInit{
         this.comment = resp.comment_resone; 
       })
       
-      // console.log(this.memberInfo.memberShipFormId);
-
          this.membershipUploadService.getPictureById(this.memberInfo.memberShipFormId).subscribe((resp:any)=>{
       // console.log(resp);
 
