@@ -55,7 +55,7 @@ export class MembersComponent implements OnInit {
 
   getAllVerifiedMembership() {
     this.membershipService.getVerifiedMember().subscribe((resp: any) => {
-      console.log(resp);
+      // console.log(resp);
       this.dataSource = new MatTableDataSource(resp);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -65,7 +65,6 @@ export class MembersComponent implements OnInit {
 
   onSectorSelectionChange(event: any) {
     const sectorId = event.value;
-    // console.log(sectorId);
     this.fetchVerifiedMemberBySectorId(sectorId);
   }
 

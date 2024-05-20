@@ -157,7 +157,7 @@ export class ViewMemberInfoComponent implements OnInit {
 
   fetcInvoiceByMemberFormId(id: any) {
     this.invoicesService.getInvoiceByFormId(id).subscribe((resp: any) => {
-      console.log(resp);
+      // console.log(resp);
       if (resp.length > 0) {
         this.check2 = true;
       }
