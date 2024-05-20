@@ -170,7 +170,7 @@ export class MemberDashboardComponent implements OnInit {
       // console.log(resp2);
       this.comment = resp2.comment_resone;
       this.checkComment = true;
-      console.log(this.comment);
+      // console.log(this.comment);
       
     }, (error: HttpErrorResponse) => {
       this.checkComment = false;

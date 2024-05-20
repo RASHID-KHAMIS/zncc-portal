@@ -38,7 +38,6 @@ export class LayoutComponent {
       if (result.isConfirmed) {
           sessionStorage.clear();
           this.router.navigate(["/"]);
-          this.alert();
       }
   });
 
