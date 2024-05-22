@@ -21,7 +21,6 @@ import { CreateaccountComponent } from './pages/components/createaccount/createa
 import { MemberInformationComponent } from './pages/components/loyoutpages/member-information/member-information.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MonthbarComponent } from './pages/components/loyoutpages/dashboard/monthbar/monthbar.component';
-import { NgApexchartsModule } from 'ng-apexcharts';
 import { PiechartComponent } from './pages/components/loyoutpages/dashboard/piechart/piechart.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
@@ -114,7 +113,6 @@ import { MemberDashboardComponent } from './pages/components/loyoutpages/member-
     MatPaginatorModule,
     MatDividerModule,
     HttpClientModule,
-    NgApexchartsModule,
     MatCheckboxModule,
     MatRadioModule,
     MatDialogModule,

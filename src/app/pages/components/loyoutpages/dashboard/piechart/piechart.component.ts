@@ -1,27 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-
-import {
-  ApexNonAxisChartSeries,
-  ApexResponsive,
-  ApexChart,
-  ChartComponent,
-} from 'ng-apexcharts';
+import * as ApexCharts from 'apexcharts';
 import { DashboardService } from 'src/app/pages/services/dashboard.service';
 
-export type ChartOptions = {
-  series: ApexNonAxisChartSeries;
-  chart: ApexChart;
-  responsive: ApexResponsive[];
-  labels: any;
-};
 @Component({
   selector: 'app-piechart',
   templateUrl: './piechart.component.html',
   styleUrls: ['./piechart.component.css'],
 })
 export class PiechartComponent implements OnInit {
-  @ViewChild('chart') chart!: ChartComponent;
-  public chartOptions!: Partial<ChartOptions>;
   constructor(private dashboardService: DashboardService) {}
   ngOnInit(): void {
     this.dashboardInformation();
@@ -37,7 +23,7 @@ export class PiechartComponent implements OnInit {
         sectorName.push(data.sectorName);
       });
 
-      this.chartOptions = {
+      let chart_01 = {
         series: memberNumber,
         chart: {
           width: 500,
@@ -59,6 +45,10 @@ export class PiechartComponent implements OnInit {
           },
         ],
       };
+
+      let chartPie = new ApexCharts(document.querySelector("#chart"),chart_01);
+      chartPie.render()
+
     });
   }
 }

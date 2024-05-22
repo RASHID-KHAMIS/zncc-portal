@@ -52,7 +52,7 @@ export class MonthbarComponent implements OnInit {
         memberNumber.push(data.memberNumber)
      
       })
-      this.chartOptions = {
+      let chart_02 = {
         series: [
           {
             name: "member",
@@ -66,13 +66,13 @@ export class MonthbarComponent implements OnInit {
         plotOptions: {
           bar: {
             dataLabels: {
-              position: "top" // top, center, bottom
+              position: "top" 
             }
           }
         },
         dataLabels: {
           enabled: true,
-          formatter: function (val) {
+          formatter: function (val:any) {
             return val + "%";
           },
           offsetY: -20,
@@ -133,7 +133,7 @@ export class MonthbarComponent implements OnInit {
           },
           labels: {
             show: false,
-            formatter: function (val) {
+            formatter: function (val:any) {
               return val + "%";
             }
           }
@@ -148,6 +148,9 @@ export class MonthbarComponent implements OnInit {
           }
         }
       };
+
+      let ChartBar = new ApexCharts(document.querySelector("#chart2"),chart_02);
+      ChartBar.render();
       
     })
   }
