@@ -89,7 +89,7 @@ export class RegesterComponent implements OnInit {
   }
 
     onRadioButtonClick(value: any) {
-      console.log(value);
+      // console.log(value);
       this.memberForm.patchValue({
         membership_type:value
       })
@@ -231,8 +231,6 @@ export class RegesterComponent implements OnInit {
       
     })
   }
-
-
 
   reload(){
     this.router.navigateByUrl('',{skipLocationChange:true}).then(()=>{

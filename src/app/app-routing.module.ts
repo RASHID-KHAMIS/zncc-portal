@@ -9,9 +9,7 @@ import { StaffInformationComponent } from './pages/components/loyoutpages/staff-
 import { RegisterFormComponent } from './pages/components/loyoutpages/staffInformation/register-form/register-form.component';
 import { CreateaccountComponent } from './pages/components/createaccount/createaccount.component';
 import { MemberInformationComponent } from './pages/components/loyoutpages/member-information/member-information.component';
-
 import { BusinesstypeComponent } from './pages/components/loyoutpages/businesstype/businesstype.component';
-
 import { PaymentComponent } from './pages/components/loyoutpages/payment/payment.component';
 import { ZoneComponent } from './pages/components/loyoutpages/zone/zone.component';
 import { RegionComponent } from './pages/components/loyoutpages/region/region.component';

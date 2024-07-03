@@ -363,41 +363,24 @@ export class CreateaccountComponent implements OnInit {
   }
 
   onCreate(){
-    this.loading = true;
+    // this.loading = true;
     const values = this.userForm.value;
-    this.memberService.addMember(values).subscribe((resp:any)=>{
-      console.log(resp);
+    this.alert();
+    // this.alertSuccess();
+    // this.memberService.addMember(values).subscribe((resp:any)=>{
       
-      this.loading = false;
-      this.alert();
-      this.alertSuccess();
-      this.reload()
-    },(error:HttpErrorResponse)=>{
-      this.alertEmail()
-       }
-    )
+      // this.loading = false;
+      // this.alert();
+      // this.alertSuccess();
+      // this.reload()
+    // },(error:HttpErrorResponse)=>{
+    //   this.alertEmail()
+    //    }
+    // )
     
   }
 
-  togglePassword(input: HTMLInputElement) {
-    if (input.type === 'password') {
-      input.type = 'text';
-    } else {
-      input.type = 'password';
-    }
-  }
-  inputData(data: any) {
-    if (data != '') {
-      this.shouldAddClass1 = false
-    }
 
-  }
-  inputPass(data: any) {
-    if (data != '') {
-      this.password = false
-    }
-
-  }
 
   reload(){
     this.router.navigateByUrl('',{skipLocationChange:true}).then(()=>{
@@ -407,7 +390,7 @@ export class CreateaccountComponent implements OnInit {
 
   alert(){
     Swal.fire({
-      title: "Verify your Registration in your Email",
+      title: "You are Registered but verify your registration in your email to login",
       showClass: {
         popup: `
           animate__animated
@@ -423,6 +406,7 @@ export class CreateaccountComponent implements OnInit {
         `
       }
     });
+    this.reload()
   }
 
   alertEmail(){
@@ -462,5 +446,7 @@ export class CreateaccountComponent implements OnInit {
       title: 'Registered Successfully'
     })
   }
+
+
 
 }

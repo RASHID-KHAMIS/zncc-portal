@@ -31,3 +31,10 @@ th {
 h3{
     font-weight: bold;
 }
+.rounded-img {
+    border-radius: 50%;
+    width: 100%;
+    height: auto; /* Ensures the image retains its aspect ratio */
+    object-fit: cover; /* Ensures the image covers the space evenly */
+  }
+  

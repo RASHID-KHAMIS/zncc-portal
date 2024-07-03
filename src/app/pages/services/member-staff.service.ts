@@ -20,6 +20,10 @@ export class MemberStaffService {
     return this.http.post(this.staffAPI,body)
   }
 
+  addStaffImage(id:any,body:any){
+    return this.http.get(this.staffAPI + "/" + id +"/profile",body)
+  }
+
   editStaff(id:any,body:any){
     return this.http.put(this.staffAPI + "/" + id,body)
   }

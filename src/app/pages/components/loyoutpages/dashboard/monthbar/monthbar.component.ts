@@ -139,9 +139,9 @@ export class MonthbarComponent implements OnInit {
           }
         },
         title: {
-          text: "Monthly Inflation in Argentina, 2002",
+          text: "Monthly Member Summary in ZNCC, 2024",
   
-          offsetY: 320,
+          offsetY: 330,
           align: "center",
           style: {
             color: "#444"

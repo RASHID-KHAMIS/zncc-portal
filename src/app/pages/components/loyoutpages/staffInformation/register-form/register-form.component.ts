@@ -21,11 +21,8 @@ export class RegisterFormComponent implements OnInit {
   dataSource = new MatTableDataSource();
   displayedColumns: string[] = ['id', 'order_number', 'company_id', 'paper_id', 'quantity', 'action'];
   staffForm!: FormGroup;
-  selectedFiles?: FileList;
   currentFile?: File;
-
   preview = './../../../../../assets/avata.png';
-
   progress = 0;
   message = '';
 
@@ -42,7 +39,6 @@ export class RegisterFormComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.fetchAZoneWithStatus();
-    // this.fetchAllShehia();
     this.fetchDepartmentWithStatus();
     this.fetchStaffPositionWithStatus();
     // this.imageInfos = this.uploadService.getFiles();
@@ -50,52 +46,45 @@ export class RegisterFormComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
 
 
+  selectedFiles?: FileList;
   selectFile(event: any): void {
-    this.message = '';
-    this.preview = '';
-    this.progress = 0;
     this.selectedFiles = event.target.files;
-
+    console.log(this.selectedFiles);
+    
     if (this.selectedFiles) {
       const file: File | null = this.selectedFiles.item(0);
-
       if (file) {
         this.preview = '';
         this.currentFile = file;
-
         const reader = new FileReader();
-
         reader.onload = (e: any) => {
-          console.log(e.target.result);
           this.preview = e.target.result;
         };
-
         reader.readAsDataURL(this.currentFile);
       }
     }
   }
-
+  
   upload(): void {
     this.progress = 0;
-
+  
     if (this.selectedFiles) {
       const file: File | null = this.selectedFiles.item(0);
-
+  
       if (file) {
         this.currentFile = file;
       }
-
+  
       this.selectedFiles = undefined;
     }
   }
-
+  
   districtList:any;
   onDistricts(event:any){
     const selectedValue = (event.target as HTMLSelectElement).value;
@@ -175,11 +164,6 @@ export class RegisterFormComponent implements OnInit {
       NextOfKinFullName: new FormControl(null,Validators.required),
       NextOfKinAddress: new FormControl(null),
       NextOfKinPhoneNumber: new FormControl(null),
-
-      // Department 
-      // EmploymentPhoneNumber 
-      // EmploymentEmail
-
     });
   }
 
@@ -188,6 +172,10 @@ export class RegisterFormComponent implements OnInit {
     const values = this.staffForm.value;
     // console.log(values);
     this.memberStaffService.addStaff(values).subscribe((resp:any)=>{
+
+      // const form1 = new FormData();
+      // form1.append('imageFile',this.selectedFiles,)
+      // this.memberStaffService.addStaffImage(resp.id)
           this.alert();
       this.reload();
     })

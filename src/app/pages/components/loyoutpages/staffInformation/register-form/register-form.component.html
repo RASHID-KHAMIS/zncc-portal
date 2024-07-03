@@ -125,25 +125,27 @@
                 <div class="col-md-4">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="row" style="float: right;margin-top: 7%;">
-                                <div>
-                                    <img [src]="preview" style="float: right;width: 25%;" class="preview">
-                                </div>
-                                <div *ngIf="currentFile && progress" class="progress my-3">
-                                    <div class="progress-bar progress-bar-info" role="progressbar"
-                                        attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"
-                                        [ngStyle]="{ width: progress + '%' }">
-                                        {{ progress }}%
-                                    </div>
-                                </div>
-                                <div style="float: right;margin-bottom: 20px;">
-                                    <label class="btn btn-default" style="float: right;">
-                                        <input type="file" accept="image/*" (change)="selectFile($event)" />
-                                    </label>
-                                </div>
+                          <div class="row" style="float: right; margin-top: 7%;">
+                            <div>
+                              <img [src]="preview" class="preview rounded-img" style="float: right; width: 25%; margin-right: 20%;">
                             </div>
+                            <div *ngIf="currentFile && progress" class="progress my-3">
+                              <div class="progress-bar progress-bar-info" role="progressbar"
+                                attr.aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100"
+                                [ngStyle]="{ width: progress + '%' }">
+                                {{ progress }}%
+                              </div>
+                            </div>
+                            <div style="float: right; margin-bottom: 20px;">
+                              <label class="btn btn-default" style="float: right;">
+                                <input type="file" (change)="selectFile($event)" />
+                              </label>
+                            </div>
+                          </div>
                         </div>
-                    </div>
+                      </div>
+                      
+                    
                 </div>
             </div>
             <br>
