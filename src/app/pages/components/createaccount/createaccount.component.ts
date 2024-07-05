@@ -367,16 +367,16 @@ export class CreateaccountComponent implements OnInit {
     const values = this.userForm.value;
     this.alert();
     // this.alertSuccess();
-    // this.memberService.addMember(values).subscribe((resp:any)=>{
+    this.memberService.addMember(values).subscribe((resp:any)=>{
       
-      // this.loading = false;
-      // this.alert();
-      // this.alertSuccess();
-      // this.reload()
-    // },(error:HttpErrorResponse)=>{
-    //   this.alertEmail()
-    //    }
-    // )
+      this.loading = false;
+      this.alert();
+      this.alertSuccess();
+      this.reload()
+    },(error:HttpErrorResponse)=>{
+      this.alertEmail()
+       }
+    )
     
   }
 
