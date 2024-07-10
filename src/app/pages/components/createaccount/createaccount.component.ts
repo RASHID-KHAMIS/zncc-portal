@@ -372,7 +372,6 @@ export class CreateaccountComponent implements OnInit {
       this.loading = false;
       this.alert();
       this.alertSuccess();
-      this.reload()
     },(error:HttpErrorResponse)=>{
       this.alertEmail()
        }
@@ -406,7 +405,7 @@ export class CreateaccountComponent implements OnInit {
         `
       }
     });
-    this.reload()
+    // this.reload()
   }
 
   alertEmail(){
